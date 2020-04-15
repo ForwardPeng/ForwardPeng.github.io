@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://forwardpeng.github.io/"/>
-  <updated>2020-04-15T09:23:04.774Z</updated>
+  <updated>2020-04-15T14:20:30.477Z</updated>
   <id>http://forwardpeng.github.io/</id>
   
   <author>
@@ -17,42 +17,28 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>newbook</title>
+    <title>STL标准模板库</title>
     <link href="http://forwardpeng.github.io/2020/04/15/newbook/"/>
     <id>http://forwardpeng.github.io/2020/04/15/newbook/</id>
-    <published>2020-04-15T05:51:15.819Z</published>
-    <updated>2020-04-15T09:23:04.774Z</updated>
+    <published>2020-04-15T05:47:40.000Z</published>
+    <updated>2020-04-15T14:20:30.477Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;!-- build time:Wed Apr 15 2020 21:06:18 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;stl&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#stl&quot;&gt;&lt;/a&gt; STL&lt;/h1&gt;&lt;h2 id=&quot;
+        &lt;!-- build time:Wed Apr 15 2020 22:48:10 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;stl&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#stl&quot;&gt;&lt;/a&gt; STL&lt;/h1&gt;&lt;h2 id=&quot;
       
     
     </summary>
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://forwardpeng.github.io/2020/04/15/hello-world/"/>
-    <id>http://forwardpeng.github.io/2020/04/15/hello-world/</id>
-    <published>2020-04-15T05:32:27.811Z</published>
-    <updated>2020-04-15T05:32:27.811Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;!-- build time:Wed Apr 15 2020 21:06:17 GMT+0800 (GMT+08:00) --&gt;&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external nofo
-      
-    
-    </summary>
+      <category term="web前端" scheme="http://forwardpeng.github.io/categories/web%E5%89%8D%E7%AB%AF/"/>
     
     
+      <category term="C++" scheme="http://forwardpeng.github.io/tags/C/"/>
+    
+      <category term="标准模板库" scheme="http://forwardpeng.github.io/tags/%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93/"/>
     
   </entry>
   
