@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://forwardpeng.github.io/2020/04/15/newbook/</loc>
+    
+    <lastmod>2020-04-16T02:48:59.567Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://forwardpeng.github.io/2020/04/16/interview-tree/</loc>
+    
+    <lastmod>2020-04-16T02:47:02.259Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://forwardpeng.github.io/2020/04/15/algo-tree/</loc>
+    
+    <lastmod>2020-04-16T02:46:53.103Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://forwardpeng.github.io/2020/04/16/MySQL-database/</loc>
+    
+    <lastmod>2020-04-16T02:46:23.198Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://forwardpeng.github.io/tags/index.html</loc>
     
     <lastmod>2020-04-16T01:53:51.407Z</lastmod>
@@ -12,20 +40,6 @@
     <loc>http://forwardpeng.github.io/categories/index.html</loc>
     
     <lastmod>2020-04-16T01:51:00.843Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://forwardpeng.github.io/2020/04/15/newbook/</loc>
-    
-    <lastmod>2020-04-16T01:48:02.570Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://forwardpeng.github.io/2020/04/15/algo-tree/</loc>
-    
-    <lastmod>2020-04-16T01:41:26.593Z</lastmod>
     
   </url>
   
