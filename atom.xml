@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://forwardpeng.github.io/"/>
-  <updated>2020-04-21T04:35:29.190Z</updated>
+  <updated>2020-04-21T10:16:10.718Z</updated>
   <id>http://forwardpeng.github.io/</id>
   
   <author>
@@ -15,6 +15,78 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sql-触发器</title>
+    <link href="http://forwardpeng.github.io/2020/04/21/sql-%E8%A7%A6%E5%8F%91%E5%99%A8/"/>
+    <id>http://forwardpeng.github.io/2020/04/21/sql-%E8%A7%A6%E5%8F%91%E5%99%A8/</id>
+    <published>2020-04-21T10:16:10.000Z</published>
+    <updated>2020-04-21T10:16:10.718Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;!-- build time:Tue Apr 21 2020 18:16:18 GMT+0800 (GMT+08:00) --&gt;&lt;!-- rebuild by neat --&gt;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>sql-存储</title>
+    <link href="http://forwardpeng.github.io/2020/04/21/sql-%E5%AD%98%E5%82%A8/"/>
+    <id>http://forwardpeng.github.io/2020/04/21/sql-%E5%AD%98%E5%82%A8/</id>
+    <published>2020-04-21T09:11:25.000Z</published>
+    <updated>2020-04-21T10:15:54.841Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;!-- build time:Tue Apr 21 2020 18:16:18 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;存储引擎&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#存储引擎&quot;&gt;&lt;/a&gt; 存储引擎&lt;/h1&gt;&lt;h2 i
+      
+    
+    </summary>
+    
+    
+      <category term="计算机基础" scheme="http://forwardpeng.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="SQL" scheme="http://forwardpeng.github.io/tags/SQL/"/>
+    
+      <category term="数据库" scheme="http://forwardpeng.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sql-主键及约束</title>
+    <link href="http://forwardpeng.github.io/2020/04/21/sql-%E4%B8%BB%E9%94%AE%E5%8F%8A%E7%BA%A6%E6%9D%9F/"/>
+    <id>http://forwardpeng.github.io/2020/04/21/sql-%E4%B8%BB%E9%94%AE%E5%8F%8A%E7%BA%A6%E6%9D%9F/</id>
+    <published>2020-04-21T05:14:36.000Z</published>
+    <updated>2020-04-21T09:00:41.680Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;!-- build time:Tue Apr 21 2020 18:16:18 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;主键primary-key&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#主键primary-key&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="计算机基础" scheme="http://forwardpeng.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="SQL" scheme="http://forwardpeng.github.io/tags/SQL/"/>
+    
+      <category term="数据库" scheme="http://forwardpeng.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>sql-视图</title>
@@ -27,7 +99,7 @@
     
       
       
-        &lt;!-- build time:Tue Apr 21 2020 12:38:28 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;视图简介&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#视图简介&quot;&gt;&lt;/a&gt; 视图简介&lt;/h1&gt;&lt;p&gt;视图
+        &lt;!-- build time:Tue Apr 21 2020 18:16:18 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;视图简介&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#视图简介&quot;&gt;&lt;/a&gt; 视图简介&lt;/h1&gt;&lt;p&gt;视图
       
     
     </summary>
@@ -53,7 +125,7 @@
     
       
       
-        &lt;!-- build time:Tue Apr 21 2020 12:38:28 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;数据类型简介&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#数据类型简介&quot;&gt;&lt;/a&gt; 数据类型简介&lt;/h1
+        &lt;!-- build time:Tue Apr 21 2020 18:16:18 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;数据类型简介&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#数据类型简介&quot;&gt;&lt;/a&gt; 数据类型简介&lt;/h1
       
     
     </summary>
@@ -79,7 +151,7 @@
     
       
       
-        &lt;!-- build time:Tue Apr 21 2020 12:38:28 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;子查询&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#子查询&quot;&gt;&lt;/a&gt; 子查询&lt;/h1&gt;&lt;p&gt;子查询指一
+        &lt;!-- build time:Tue Apr 21 2020 18:16:18 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;子查询&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#子查询&quot;&gt;&lt;/a&gt; 子查询&lt;/h1&gt;&lt;p&gt;子查询指一
       
     
     </summary>
@@ -99,13 +171,13 @@
     <link href="http://forwardpeng.github.io/2020/04/18/SQL-%E6%9F%A5%E8%AF%A2(%E4%B8%80)/"/>
     <id>http://forwardpeng.github.io/2020/04/18/SQL-%E6%9F%A5%E8%AF%A2(%E4%B8%80)/</id>
     <published>2020-04-18T09:49:11.000Z</published>
-    <updated>2020-04-19T14:12:39.400Z</updated>
+    <updated>2020-04-21T09:16:39.764Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;!-- build time:Tue Apr 21 2020 12:38:28 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;数据库表查询操作&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#数据库表查询操作&quot;&gt;&lt;/a&gt; 数据库表查询
+        &lt;!-- build time:Tue Apr 21 2020 18:16:18 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;查询数据表&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#查询数据表&quot;&gt;&lt;/a&gt; 查询数据表&lt;/h1&gt;&lt;p
       
     
     </summary>
@@ -131,7 +203,7 @@
     
       
       
-        &lt;!-- build time:Tue Apr 21 2020 12:38:28 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;索引简介&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#索引简介&quot;&gt;&lt;/a&gt; 索引简介&lt;/h1&gt;&lt;p&gt;索引
+        &lt;!-- build time:Tue Apr 21 2020 18:16:18 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;索引简介&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#索引简介&quot;&gt;&lt;/a&gt; 索引简介&lt;/h1&gt;&lt;p&gt;索引
       
     
     </summary>
@@ -147,17 +219,17 @@
   </entry>
   
   <entry>
-    <title>SQL-数据操作语言</title>
+    <title>SQL-数据操作语言(DML)</title>
     <link href="http://forwardpeng.github.io/2020/04/16/SQL-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E8%A8%80/"/>
     <id>http://forwardpeng.github.io/2020/04/16/SQL-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E8%A8%80/</id>
     <published>2020-04-16T10:05:27.000Z</published>
-    <updated>2020-04-18T09:49:49.970Z</updated>
+    <updated>2020-04-21T09:13:21.144Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;!-- build time:Tue Apr 21 2020 12:38:28 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;数据操作语言dml&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#数据操作语言dml&quot;&gt;&lt;/a&gt; 数据操作
+        &lt;!-- build time:Tue Apr 21 2020 18:16:18 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;insert-into-向数据库表中插入数据&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#insert-
       
     
     </summary>
@@ -183,7 +255,7 @@
     
       
       
-        &lt;!-- build time:Tue Apr 21 2020 12:38:28 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;树&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#树&quot;&gt;&lt;/a&gt; 树&lt;/h1&gt;&lt;h2 id=&quot;二叉树&quot;&gt;&lt;
+        &lt;!-- build time:Tue Apr 21 2020 18:16:18 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;树&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#树&quot;&gt;&lt;/a&gt; 树&lt;/h1&gt;&lt;h2 id=&quot;二叉树&quot;&gt;&lt;
       
     
     </summary>
@@ -199,17 +271,17 @@
   </entry>
   
   <entry>
-    <title>SQL-数据定义语言</title>
+    <title>SQL-数据定义语言(DDL)</title>
     <link href="http://forwardpeng.github.io/2020/04/16/SQL-%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80/"/>
     <id>http://forwardpeng.github.io/2020/04/16/SQL-%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80/</id>
     <published>2020-04-16T02:21:26.000Z</published>
-    <updated>2020-04-18T09:50:18.222Z</updated>
+    <updated>2020-04-21T09:18:18.912Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;!-- build time:Tue Apr 21 2020 12:38:28 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;数据定义语言ddl&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#数据定义语言ddl&quot;&gt;&lt;/a&gt; 数据定义
+        &lt;!-- build time:Tue Apr 21 2020 18:16:18 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;数据库&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#数据库&quot;&gt;&lt;/a&gt; 数据库&lt;/h1&gt;&lt;h2 id=&quot;
       
     
     </summary>
@@ -229,13 +301,13 @@
     <link href="http://forwardpeng.github.io/2020/04/15/algo-tree/"/>
     <id>http://forwardpeng.github.io/2020/04/15/algo-tree/</id>
     <published>2020-04-15T15:46:44.000Z</published>
-    <updated>2020-04-16T02:59:34.112Z</updated>
+    <updated>2020-04-21T09:17:11.772Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;!-- build time:Tue Apr 21 2020 12:38:28 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;基本数据结构&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#基本数据结构&quot;&gt;&lt;/a&gt; 基本数据结构&lt;/h1
+        &lt;!-- build time:Tue Apr 21 2020 18:16:18 GMT+0800 (GMT+08:00) --&gt;&lt;p&gt;介绍几种基本的结构：栈、队列、链表和有根树。同时介绍由数组构造对象和指针的方法。（参考算法导论第三版P129 - P160）&lt;/p&gt;&lt;h1 id
       
     
     </summary>
@@ -261,7 +333,7 @@
     
       
       
-        &lt;!-- build time:Tue Apr 21 2020 12:38:28 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;stl&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#stl&quot;&gt;&lt;/a&gt; STL&lt;/h1&gt;&lt;h2 id=&quot;
+        &lt;!-- build time:Tue Apr 21 2020 18:16:19 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;stl&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#stl&quot;&gt;&lt;/a&gt; STL&lt;/h1&gt;&lt;h2 id=&quot;
       
     
     </summary>
