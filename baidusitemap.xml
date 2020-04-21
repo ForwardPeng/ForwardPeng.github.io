@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://forwardpeng.github.io/2020/04/21/sql-%E8%A7%86%E5%9B%BE/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>http://forwardpeng.github.io/2020/04/16/SQL-%E7%B4%A2%E5%BC%95/</loc>
+    <lastmod>2020-04-20</lastmod>
+  </url>  <url>
     <loc>http://forwardpeng.github.io/2020/04/20/SQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</loc>
     <lastmod>2020-04-20</lastmod>
   </url>  <url>
@@ -14,9 +20,6 @@
     <lastmod>2020-04-18</lastmod>
   </url>  <url>
     <loc>http://forwardpeng.github.io/2020/04/16/SQL-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E8%A8%80/</loc>
-    <lastmod>2020-04-18</lastmod>
-  </url>  <url>
-    <loc>http://forwardpeng.github.io/2020/04/16/SQL-%E7%B4%A2%E5%BC%95/</loc>
     <lastmod>2020-04-18</lastmod>
   </url>  <url>
     <loc>http://forwardpeng.github.io/2020/04/16/interview-tree/</loc>
