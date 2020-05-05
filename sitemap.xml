@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://forwardpeng.github.io/2020/05/05/NumPy/</loc>
+    
+    <lastmod>2020-05-05T09:51:37.208Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://forwardpeng.github.io/2020/05/04/Django%E6%A1%86%E6%9E%B6%E7%AC%94%E8%AE%B0/</loc>
     
-    <lastmod>2020-05-05T06:40:39.532Z</lastmod>
+    <lastmod>2020-05-05T06:56:19.587Z</lastmod>
     
   </url>
   
