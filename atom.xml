@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://forwardpeng.github.io/"/>
-  <updated>2020-06-20T13:29:14.831Z</updated>
+  <updated>2021-02-11T01:44:58.547Z</updated>
   <id>http://forwardpeng.github.io/</id>
   
   <author>
@@ -17,22 +17,78 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>hbase学习(一)</title>
-    <link href="http://forwardpeng.github.io/2020/06/20/hbase/"/>
-    <id>http://forwardpeng.github.io/2020/06/20/hbase/</id>
-    <published>2020-06-20T09:07:40.000Z</published>
-    <updated>2020-06-20T13:29:14.831Z</updated>
+    <title>博客命令备忘</title>
+    <link href="http://forwardpeng.github.io/2021/02/11/%E5%8D%9A%E5%AE%A2%E5%91%BD%E4%BB%A4%E5%A4%87%E5%BF%98/"/>
+    <id>http://forwardpeng.github.io/2021/02/11/%E5%8D%9A%E5%AE%A2%E5%91%BD%E4%BB%A4%E5%A4%87%E5%BF%98/</id>
+    <published>2021-02-11T01:44:58.000Z</published>
+    <updated>2021-02-11T01:44:58.547Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;!-- build time:Sat Jun 20 2020 21:32:26 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;HBase简介&quot;&gt;&lt;a href=&quot;#HBase简介&quot; class=&quot;headerlink&quot; title=&quot;HBase简介&quot;&gt;&lt;/a&gt;
+        &lt;!-- build time:Thu Feb 11 2021 09:45:19 GMT+0800 (GMT+08:00) --&gt;&lt;!-- rebuild by neat --&gt;
       
     
     </summary>
     
     
+    
+  </entry>
+  
+  <entry>
+    <title>HBase学习(二)</title>
+    <link href="http://forwardpeng.github.io/2020/06/20/HBase%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://forwardpeng.github.io/2020/06/20/HBase%E5%AD%A6%E4%B9%A0/</id>
+    <published>2020-06-20T13:43:18.000Z</published>
+    <updated>2020-06-21T14:34:18.275Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;!-- build time:Thu Feb 11 2021 09:45:19 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;hbase模型&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#hbase模型&quot;&gt;&lt;/a&gt; HBase模型&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="大数据" scheme="http://forwardpeng.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="数据库" scheme="http://forwardpeng.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="NoSQL数据库" scheme="http://forwardpeng.github.io/tags/NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="大数据框架" scheme="http://forwardpeng.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HBase学习(一)</title>
+    <link href="http://forwardpeng.github.io/2020/06/20/hbase/"/>
+    <id>http://forwardpeng.github.io/2020/06/20/hbase/</id>
+    <published>2020-06-20T09:07:40.000Z</published>
+    <updated>2020-06-20T13:45:09.595Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;!-- build time:Thu Feb 11 2021 09:45:19 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;hbase简介&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#hbase简介&quot;&gt;&lt;/a&gt; HBase简介&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="大数据" scheme="http://forwardpeng.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="数据库" scheme="http://forwardpeng.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="NoSQL数据库" scheme="http://forwardpeng.github.io/tags/NoSQL%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="大数据框架" scheme="http://forwardpeng.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/"/>
     
   </entry>
   
@@ -428,54 +484,6 @@
       
       
         &lt;!-- build time:Tue May 12 2020 18:46:29 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;模式的定义与特点&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#模式的定义与特点&quot;&gt;&lt;/a&gt; 模式的定义与
-      
-    
-    </summary>
-    
-    
-      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>代理模式</title>
-    <link href="http://forwardpeng.github.io/2020/05/12/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://forwardpeng.github.io/2020/05/12/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</id>
-    <published>2020-05-12T02:14:53.000Z</published>
-    <updated>2020-05-12T03:33:39.136Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;!-- build time:Tue May 12 2020 18:46:29 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;定义与特点&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#定义与特点&quot;&gt;&lt;/a&gt; 定义与特点&lt;/h1&gt;&lt;p
-      
-    
-    </summary>
-    
-    
-      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>建造者模式</title>
-    <link href="http://forwardpeng.github.io/2020/05/12/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://forwardpeng.github.io/2020/05/12/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</id>
-    <published>2020-05-11T16:03:22.000Z</published>
-    <updated>2020-05-12T02:14:10.055Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;!-- build time:Tue May 12 2020 18:46:29 GMT+0800 (GMT+08:00) --&gt;&lt;h1 id=&quot;定义与特点&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#定义与特点&quot;&gt;&lt;/a&gt; 定义与特点&lt;/h1&gt;&lt;p
       
     
     </summary>
