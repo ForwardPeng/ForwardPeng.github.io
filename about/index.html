@@ -358,21 +358,21 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/" target="_blank">2</a></span>
+    <span class="count"><a href="/" target="_blank">44</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories" target="_blank">3</a></span>
+    <span class="count"><a href="/categories" target="_blank">9</a></span>
     <span class="name">分类</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/tags" target="_blank">2</a></span>
+    <span class="count"><a href="/tags" target="_blank">12</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -387,21 +387,21 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/" target="_blank">2</a></span>
+    <span class="count"><a href="/" target="_blank">44</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories" target="_blank">3</a></span>
+    <span class="count"><a href="/categories" target="_blank">9</a></span>
     <span class="name">分类</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/tags" target="_blank">2</a></span>
+    <span class="count"><a href="/tags" target="_blank">12</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -550,7 +550,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,0,0,0,0,1,1],
+                data: [0,0,0,0,0,0,0,0,0,0,0,5,1],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -592,7 +592,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"计算机基础","value":1},{"name":"操作系统","value":1},{"name":"机器学习","value":1}],
+                data: [{"name":"计算机基础","value":16},{"name":"设计模式","value":22},{"name":"操作系统","value":1},{"name":"数据结构","value":1},{"name":"大数据","value":2},{"name":"数据挖掘","value":3},{"name":"机器学习","value":2},{"name":"Python","value":14},{"name":"机器学习","value":3}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -616,7 +616,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         xAxis: [
             {
                 type: 'category',
-                data: ["数据结构","工程实践"]
+                data: ["设计模式","Python","数据结构","搜索推荐","多线程","算法导论","线性表","推荐排序","搜索广告","工程实践"]
             }
         ],
         yAxis: [
@@ -629,7 +629,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [1,1],
+                data: [22,14,2,2,2,1,1,1,1,1],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
@@ -799,8 +799,64 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             
+            <a href="/tags/算法导论/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">算法导论</span>
+            </a>
+            
+            
+            
+            <a href="/tags/线性表/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">线性表</span>
+            </a>
+            
+            
+            
+            <a href="/tags/设计模式/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">设计模式</span>
+            </a>
+            
+            
+            
+            <a href="/tags/推荐排序/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">推荐排序</span>
+            </a>
+            
+            
+            
+            <a href="/tags/搜索推荐/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">搜索推荐</span>
+            </a>
+            
+            
+            
+            <a href="/tags/搜索广告/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">搜索广告</span>
+            </a>
+            
+            
+            
             <a href="/tags/工程实践/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">工程实践</span>
+            </a>
+            
+            
+            
+            <a href="/tags/Web框架/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">Web框架</span>
+            </a>
+            
+            
+            
+            
+            
+            <a href="/tags/Numpy/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">Numpy</span>
+            </a>
+            
+            
+            
+            <a href="/tags/多线程/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">多线程</span>
             </a>
             
             
@@ -863,7 +919,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">10.7k</span>
+            <span class="white-color">133.1k</span>
             
 
             <br>

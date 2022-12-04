@@ -47,10 +47,94 @@
   
   <entry>
     <title>机器学习实战</title>
+    <link href="http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/wai-mai-shou-ye-lie-biao-pai-xu-jie-shao/"/>
+    <id>http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/wai-mai-shou-ye-lie-biao-pai-xu-jie-shao/</id>
+    <published>2022-11-29T01:07:40.000Z</published>
+    <updated>2022-11-29T07:25:46.296Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;外卖首页列表排序介绍&quot;&gt;&lt;a href=&quot;#外卖首页列表排序介绍&quot; class=&quot;headerlink&quot; title=&quot;外卖首页列表排序介绍&quot;&gt;&lt;/a&gt;外卖首页列表排序介绍&lt;/h1&gt;&lt;h2 id=&quot;一、产品形态与技术架构&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="大数据" scheme="http://forwardpeng.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="机器学习" scheme="http://forwardpeng.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="推荐排序" scheme="http://forwardpeng.github.io/tags/%E6%8E%A8%E8%8D%90%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>广告深度预估技术在到店场景下的突破</title>
+    <link href="http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/guang-gao-shen-du-yu-gu-ji-zhu-zai-mei-tuan-dao-dian-de-tu-po/"/>
+    <id>http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/guang-gao-shen-du-yu-gu-ji-zhu-zai-mei-tuan-dao-dian-de-tu-po/</id>
+    <published>2022-11-29T01:07:40.000Z</published>
+    <updated>2022-12-04T13:54:03.988Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot; title=&quot;一、背景&quot;&gt;&lt;/a&gt;一、背景&lt;/h2&gt;&lt;h3 id=&quot;1-1-背景&quot;&gt;&lt;a href=&quot;#1-1-背景&quot; class=&quot;headerlink&quot; title=&quot;1.1
+        
+      
+    
+    </summary>
+    
+      <category term="数据挖掘" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+      <category term="机器学习" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="搜索推荐" scheme="http://forwardpeng.github.io/tags/%E6%90%9C%E7%B4%A2%E6%8E%A8%E8%8D%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用户行为序列在搜索广告CTR预估场景的探索与实践</title>
+    <link href="http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/yong-hu-xing-wei-xu-lie-zai-sou-suo-guang-gao-ctr-yu-gu-chang-jing-zhong-de-tan-suo-yu-shi-jian/"/>
+    <id>http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/yong-hu-xing-wei-xu-lie-zai-sou-suo-guang-gao-ctr-yu-gu-chang-jing-zhong-de-tan-suo-yu-shi-jian/</id>
+    <published>2022-11-29T01:07:40.000Z</published>
+    <updated>2022-12-04T13:50:54.381Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;用户行为序列在搜索广告CTR预估场景的探索与实践&quot;&gt;&lt;a href=&quot;#用户行为序列在搜索广告CTR预估场景的探索与实践&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="数据挖掘" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+      <category term="机器学习" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="搜索广告" scheme="http://forwardpeng.github.io/tags/%E6%90%9C%E7%B4%A2%E5%B9%BF%E5%91%8A/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习实战</title>
     <link href="http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/suan-fa-shi-jian/ji-qi-xue-xi-shi-zhan/"/>
     <id>http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/suan-fa-shi-jian/ji-qi-xue-xi-shi-zhan/</id>
     <published>2022-11-29T01:07:40.000Z</published>
-    <updated>2022-12-04T13:28:12.383Z</updated>
+    <updated>2022-12-04T13:50:45.042Z</updated>
     
     <summary type="html">
     
@@ -64,10 +148,404 @@
     
     </summary>
     
-      <category term="机器学习" scheme="http://forwardpeng.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="数据挖掘" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+      <category term="机器学习" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
       <category term="工程实践" scheme="http://forwardpeng.github.io/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>推荐排序机制在品类新客优化上的探索与实践</title>
+    <link href="http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/tui-jian-pai-xu-ji-zhi-zai-pin-lei-xin-ke-you-hua-shang-de-tan-suo/"/>
+    <id>http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/tui-jian-pai-xu-ji-zhi-zai-pin-lei-xin-ke-you-hua-shang-de-tan-suo/</id>
+    <published>2022-11-29T01:07:40.000Z</published>
+    <updated>2022-12-04T13:50:06.227Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、引言&quot;&gt;&lt;a href=&quot;#一、引言&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="大数据" scheme="http://forwardpeng.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="机器学习" scheme="http://forwardpeng.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="搜索推荐" scheme="http://forwardpeng.github.io/tags/%E6%90%9C%E7%B4%A2%E6%8E%A8%E8%8D%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解释器模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/14/she-ji-mo-shi/jie-shi-qi-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/14/she-ji-mo-shi/jie-shi-qi-mo-shi/</id>
+    <published>2020-05-14T15:29:12.000Z</published>
+    <updated>2022-11-29T00:59:43.872Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在软件开发中，会遇到有些问题多次重复出现，而且有一定的相似性和规律性。如果将它们归纳成一种简单的语言，那么这些问题实例将是该语言的一些句子，这样就可以用“编译原理”中的解释器模式来实现了。&lt;/p&gt;
+&lt;h1 id=&quot;定义与特点&quot;&gt;&lt;a href=&quot;#定义与特点&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>备忘录模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/14/she-ji-mo-shi/bei-wang-lu-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/14/she-ji-mo-shi/bei-wang-lu-mo-shi/</id>
+    <published>2020-05-14T15:25:06.000Z</published>
+    <updated>2022-11-29T00:59:43.771Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;定义与特点&quot;&gt;&lt;a href=&quot;#定义与特点&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>访问者模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/14/she-ji-mo-shi/fang-wen-zhe-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/14/she-ji-mo-shi/fang-wen-zhe-mo-shi/</id>
+    <published>2020-05-14T15:14:54.000Z</published>
+    <updated>2022-11-29T00:59:43.879Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;定义与特点&quot;&gt;&lt;a href=&quot;#定义与特点&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>迭代器模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/14/she-ji-mo-shi/die-dai-qi-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/14/she-ji-mo-shi/die-dai-qi-mo-shi/</id>
+    <published>2020-05-14T08:39:21.000Z</published>
+    <updated>2022-11-29T00:59:43.894Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;定义与特点&quot;&gt;&lt;a href=&quot;#定义与特点&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>中介者模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/14/she-ji-mo-shi/zhong-jie-zhe-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/14/she-ji-mo-shi/zhong-jie-zhe-mo-shi/</id>
+    <published>2020-05-14T08:19:28.000Z</published>
+    <updated>2022-11-29T00:59:43.729Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在 MVC 框架中，控制器（C）就是模型（M）和视图（V）的中介者；还有大家常用的 QQ 聊天程序的“中介者”是QQ服务器。所有这些，都可以采用“中介者模式”来实现，它将大大降低对象之间的耦合性，提高系统的灵活性。&lt;/p&gt;
+&lt;h1 id=&quot;定义与特点&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>观察者模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/guan-cha-zhe-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/guan-cha-zhe-mo-shi/</id>
+    <published>2020-05-13T15:26:32.000Z</published>
+    <updated>2022-11-29T00:59:43.864Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在现实世界中，许多对象并不是独立存在的，其中一个对象的行为发生改变可能会导致一个或者多个其他对象的行为也发生改变。例如，某种商品的物价上涨时会导致部分商家高兴，而消费者伤心；还有，当我们开车到交叉路口时，遇到红灯会停，遇到绿灯会行。这样的例子还有很多，例如，股票价格与股民、
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>状态模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/zhuang-tai-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/zhuang-tai-mo-shi/</id>
+    <published>2020-05-13T14:22:06.000Z</published>
+    <updated>2022-12-04T13:54:33.231Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;状态模式的解决思想是：当控制一个对象状态转换的条件表达式过于复杂时，把相关“判断逻辑”提取出来，放到一系列的状态类当中，这样可以把原来复杂的逻辑判断简单化。如人的情绪有高兴的时候和伤心的时候，不同的情绪有不同的行为，当然外界也会影响其情绪变化。&lt;/p&gt;
+&lt;h1
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>责任链模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/ze-ren-lian-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/ze-ren-lian-mo-shi/</id>
+    <published>2020-05-13T13:49:27.000Z</published>
+    <updated>2022-11-29T00:59:43.887Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;定义与特点&quot;&gt;&lt;a href=&quot;#定义与特点&quot; class=&quot;headerlink&quot; title=&quot;定义与特点&quot;&gt;&lt;/a&gt;定义与特点&lt;/h1&gt;&lt;p&gt;责任链（Chain of
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>命令模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/ming-ling-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/ming-ling-mo-shi/</id>
+    <published>2020-05-13T13:26:05.000Z</published>
+    <updated>2022-11-29T00:59:43.765Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在现实生活中，这样的例子也很多，例如，电视机遥控器（命令发送者）通过按钮（具体命令）来遥控电视机（命令接收者），还有计算机键盘上的“功能键”等。&lt;/p&gt;
+&lt;h1 id=&quot;定义与特点&quot;&gt;&lt;a href=&quot;#定义与特点&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>策略设计模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/ce-lue-she-ji-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/ce-lue-she-ji-mo-shi/</id>
+    <published>2020-05-13T04:45:55.000Z</published>
+    <updated>2022-11-29T00:59:43.842Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;定义与特点&quot;&gt;&lt;a href=&quot;#定义与特点&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>模板方法模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/mo-ban-fang-fa-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/mo-ban-fang-fa-mo-shi/</id>
+    <published>2020-05-13T03:50:35.000Z</published>
+    <updated>2022-11-29T00:59:43.820Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;定义与特点&quot;&gt;&lt;a href=&quot;#定义与特点&quot; class=&quot;headerlink&quot; title=&quot;定义与特点&quot;&gt;&lt;/a&gt;定义与特点&lt;/h1&gt;&lt;p&gt;模板方法（Template
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>组合模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/zu-he-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/13/she-ji-mo-shi/zu-he-mo-shi/</id>
+    <published>2020-05-12T16:23:42.000Z</published>
+    <updated>2022-12-04T13:54:39.768Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;组合模式的定义与特点&quot;&gt;&lt;a href=&quot;#组合模式的定义与特点&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>享元模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/12/she-ji-mo-shi/xiang-yuan-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/12/she-ji-mo-shi/xiang-yuan-mo-shi/</id>
+    <published>2020-05-12T15:34:18.000Z</published>
+    <updated>2022-11-29T00:59:43.737Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>外观模式</title>
+    <link href="http://forwardpeng.github.io/2020/05/12/she-ji-mo-shi/wai-guan-mo-shi/"/>
+    <id>http://forwardpeng.github.io/2020/05/12/she-ji-mo-shi/wai-guan-mo-shi/</id>
+    <published>2020-05-12T12:57:30.000Z</published>
+    <updated>2022-11-29T00:59:43.777Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;软件设计中，当一个系统的功能越来越强，子系统会越来越多，客户对系统的访问也变得越来越复杂。这时如果系统内部发生改变，客户端也要跟着改变，这违背了“开闭原则”，也违背了“迪米特法则”，所以有必要为多个子系统提供一个统一的接口，从而降低系统的耦合度，这就是外观模式的目标。&lt;/p
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://forwardpeng.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   

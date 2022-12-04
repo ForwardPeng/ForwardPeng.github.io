@@ -1,0 +1,1793 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Python-文件操作, 模式识别、机器学习、运筹优化、数据挖掘">
+    <meta name="baidu-site-verification" content="fmlEuI34ir">
+    <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
+    <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
+    <meta name="description" content="基本操作常见的操作包括创建、删除、修改权限、读取、写入等，这些操作可大致分为以下 2 类：
+
+删除、修改权限：作用于文件本身，属于系统级操作。
+写入、读取：是文件最常用的操作，作用于文件的内容，属于应用级操作。
+
+文件的应用级操作可以分为以">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Python-文件操作 | Peng&#39;s Blog</title>
+    <link rel="icon" type="image/jpeg" href="/medias/logo.jpg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?ce84511d3df71640a9378a69f6293044";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+    
+
+    <script>
+        (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Peng's Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-comments"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Peng's Blog</div>
+        <div class="logo-desc">
+            
+            中国地质大学（武汉） | 计算机科学与技术 | Machine Learning &amp; Data Mining
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-comments"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/ForwardPeng" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/ForwardPeng" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Python-文件操作
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/Python/" target="_blank">
+                            <span class="chip bg-color">Python</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/计算机基础/" class="post-category" target="_blank">
+                            计算机基础
+                        </a>
+                        
+                        <a href="/categories/计算机基础/Python/" class="post-category" target="_blank">
+                            Python
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-29
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    ForwardPeng
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    21 分
+                </div>
+                
+                
+
+                
+                <div id="busuanzi_container_page_pv" class="info-break-policy">
+                    <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                    <span id="busuanzi_value_page_pv"></span>
+                </div>
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><p>常见的操作包括创建、删除、修改权限、读取、写入等，这些操作可大致分为以下 2 类：</p>
+<ul>
+<li>删除、修改权限：作用于文件本身，属于系统级操作。</li>
+<li>写入、读取：是文件最常用的操作，作用于文件的内容，属于应用级操作。</li>
+</ul>
+<p>文件的应用级操作可以分为以下3步，每一步都需要借助对应的函数实现：</p>
+<ul>
+<li>打开文件：使用 open()函数，该函数会返回一个文件对象；</li>
+<li>对已打开文件做读/写操作：读取文件内容可使用read()、readline() 以及 readlines() 函数；向文件中写入内容，可以使用write()函数。</li>
+<li>关闭文件：完成对文件的读/写操作之后，最后需要关闭文件，可以使用 close() 函数。</li>
+</ul>
+<h1 id="open-函数：打开指定文件"><a href="#open-函数：打开指定文件" class="headerlink" title="open()函数：打开指定文件"></a>open()函数：打开指定文件</h1><p>open()函数用于创建或打开指定文件，该函数的常用语法格式如下：</p>
+<blockquote>
+<p>file = open(file_name [, mode=’r’ [ , buffering=-1 [ , encoding = None ]]])</p>
+</blockquote>
+<p>此格式中，用[]括起来的部分为可选参数，即可以使用也可以省略。其中，各个参数所代表的含义如下：</p>
+<ul>
+<li>file：表示要创建的文件对象。</li>
+<li>file_mode：要创建或打开文件的文件名称，该名称要用引号（单引号或双引号都可以）括起来。需要注意的是，如果要打开的文件和当前执行的代码文件位于同一目录，则直接写文件名即可；否则，此参数需要指定打开文件所在的完整路径。</li>
+<li>mode：可选参数，用于指定文件的打开模式。可选的打开模式如表 1 所示。如果不写，则默认以只读（r）模式打开文件。<br>buffing：可选参数，用于指定对文件做读写操作时，是否使用缓冲区（本节后续会详细介绍）。</li>
+<li>encoding：手动设定打开文件时所使用的编码格式，不同平台的 ecoding 参数值也不同，以 Windows 为例，其默认为 cp936（实际上就是 GBK 编码）</li>
+</ul>
+<p>open()函数支持的文件打开模式如下表：<br>| 模式 | 意义                                                                                                                                                   | 注意事项                                                       |<br>| —- | —————————————————————————————————————————————————— | ————————————————————– |<br>| r    | 只读模式打开文件，读文件内容的指针会放在文件的开头。                                                                                                   | 操作的文件必须存在。                                           |<br>| rb   | 以二进制格式、采用只读模式打开文件，读文件内容的指针位于文件的开头，一般用于非文本文件，如图片文件、音频文件等。                                       | 操作的文件必须存在。                                           |<br>| r+   | 打开文件后，既可以从头读取文件内容，也可以从开头向文件中写入新的内容，写入的新内容会覆盖文件中等长度的原有内容。                                       | 操作的文件必须存在。                                           |<br>| rb+  | 以二进制格式、采用读写模式打开文件，读写文件的指针会放在文件的开头，通常针对非文本文件（如音频文件）。                                                 | 操作的文件必须存在。                                           |<br>| w    | 以只写模式打开文件，若该文件存在，打开时会清空文件中原有的内容。    若文件存在，会清空其原有内容（覆盖文件）；反之，则创建新文件。                        | 若文件存在，会清空其原有内容（覆盖文件）；反之，则创建新文件。 |<br>| wb   | 以二进制格式、只写模式打开文件，一般用于非文本文件（如音频文件）                                                                                       | 若文件存在，会清空其原有内容（覆盖文件）；反之，则创建新文件。 |     | wb+                                                | 以二进制格式、读写模式打开文件，一般用于非文本文件             | 若文件存在，会清空其原有内容（覆盖文件）；反之，则创建新文件。 |<br>|      |<br>| w+   | 打开文件后，会对原有内容进行清空，并对该文件有读写权限。                                                                                               | 若文件存在，会清空其原有内容（覆盖文件）；反之，则创建新文件。 | wb+ | 以二进制格式、读写模式打开文件，一般用于非文本文件 | 若文件存在，会清空其原有内容（覆盖文件）；反之，则创建新文件。 |<br>|      |<br>| wb+  | 以二进制格式、读写模式打开文件，一般用于非文本文件                                                                                                     | 若文件存在，会清空其原有内容（覆盖文件）；反之，则创建新文件。 |<br>| a    | 以追加模式打开一个文件，对文件只有写入权限，如果文件已经存在，文件指针将放在文件的末尾（即新写入内容会位于已有内容之后）；反之，则会创建新文件。       |                                                                |<br>| ab   | 以二进制格式打开文件，并采用追加模式，对文件只有写权限。如果该文件已存在，文件指针位于文件末尾（新写入文件会位于已有内容之后）；反之，则创建新文件。   |                                                                |<br>| a+   | 以读写模式打开文件；如果文件存在，文件指针放在文件的末尾（新写入文件会位于已有内容之后）；反之，则创建新文件。                                         |<br>| ab+  | 以二进制模式打开文件，并采用追加模式，对文件具有读写权限，如果文件存在，则文件指针位于文件的末尾（新写入文件会位于已有内容之后）；反之，则创建新文件。 |</p>
+<blockquote>
+<p>文件打开模式，直接决定了后续可以对文件做哪些操作。例如，使用 r 模式打开的文件，后续编写的代码只能读取文件，而无法修改文件内容。</p>
+</blockquote>
+ <div align="center"><img src="/images/module.png" width="400"></div>
+ <center>图1 不同文件打开模式的功能</center>
+
+<h2 id="open-是否需要缓冲区"><a href="#open-是否需要缓冲区" class="headerlink" title="open()是否需要缓冲区"></a>open()是否需要缓冲区</h2><p> 如果buffing参数的值为0（或者 False），则表示在打开指定文件时不使用缓冲区；如果buffing参数值为大于 1 的整数，该整数用于指定缓冲区的大小（单位是字节）；如果buffing参数的值为负数，则代表使用默认的缓冲区大小。</p>
+<blockquote>
+<p>使用缓冲区，则程序在执行输出操作时，会先将所有数据都输出到缓冲区中，然后继续执行其它操作，缓冲区中的数据会有外设自行读取处理；同样，当程序执行输入操作时，会先等外设将数据读入缓冲区中，无需同外设做同步读写操作。</p>
+</blockquote>
+<h2 id="open-文件对象常用的属性"><a href="#open-文件对象常用的属性" class="headerlink" title="open()文件对象常用的属性"></a>open()文件对象常用的属性</h2><p> 成功打开文件之后，可以调用文件对象本身拥有的属性获取当前文件的部分信息，其常见的属性为：</p>
+<ul>
+<li>file.name：返回文件的名称；</li>
+<li>file.mode：返回打开文件时，采用的文件打开模式；</li>
+<li>file.encoding：返回打开文件时使用的编码格式；</li>
+<li>file.closed：判断文件是否己经关闭。</li>
+</ul>
+<h1 id="read-函数：按字节-字符-读取文件"><a href="#read-函数：按字节-字符-读取文件" class="headerlink" title="read()函数：按字节(字符)读取文件"></a>read()函数：按字节(字符)读取文件</h1><p>Python 提供了如下 3 种函数，它们都可以帮我们实现读取文件中数据的操作：</p>
+<ul>
+<li>read() 函数：逐个字节或者字符读取文件中的内容；</li>
+<li>readline() 函数：逐行读取文件中的内容；</li>
+<li>readlines() 函数：一次性读取文件中多行内容。<h2 id="read-函数"><a href="#read-函数" class="headerlink" title="read()函数"></a>read()函数</h2>如果文件是以文本模式（非二进制模式）打开的，则 read() 函数会逐个字符进行读取；反之，如果文件以二进制模式打开，则 read() 函数会逐个字节进行读取。read() 函数的基本语法格式如下：<blockquote>
+<p>file.read([size])</p>
+</blockquote>
+</li>
+</ul>
+<p>其中，file表示已打开的文件对象；size 作为一个可选参数，用于指定一次最多可读取的字符（字节）个数，如果省略，则默认一次性读取所有内容。注意，当操作文件结束后，必须调用close() 函数手动将打开的文件进行关闭，这样可以避免程序发生不必要的错误。</p>
+<h2 id="readline-函数"><a href="#readline-函数" class="headerlink" title="readline()函数"></a>readline()函数</h2><p>readline() 函数用于读取文件中的一行，包含最后的换行符“\n”。此函数的基本语法格式为：</p>
+<blockquote>
+<p>file.readline([size])</p>
+</blockquote>
+<p>其中，file 为打开的文件对象；size 为可选参数，用于指定读取每一行时，一次最多读取的字符（字节）数。和read()函数一样，此函数成功读取文件数据的前提是，使用 open() 函数指定打开文件的模式必须为可读模式（包括 r、rb、r+、rb+ 4 种）。</p>
+<blockquote>
+<p>由于 readline() 函数在读取文件中一行的内容时，会读取最后的换行符“\n”，再加上 print() 函数输出内容时默认会换行，所以输出结果中会看到多出了一个空行。</p>
+</blockquote>
+<h2 id="readlines-函数"><a href="#readlines-函数" class="headerlink" title="readlines()函数"></a>readlines()函数</h2><p>readlines() 函数用于读取文件中的所有行，它和调用不指定 size 参数的 read() 函数类似，只不过该函数返回是一个字符串列表，其中每个元素为文件中的一行内容。和readline()函数一样，readlines()函数在读取每一行时，会连同行尾的换行符一块读取。readlines()函数的基本语法格式如下：</p>
+<blockquote>
+<p>file.readlines()</p>
+</blockquote>
+<p>其中，file 为打开的文件对象。和 read()、readline() 函数一样，它要求打开文件的模式必须为可读模式（包括 r、rb、r+、rb+ 4 种）。</p>
+<h1 id="write-和writelines-：向文件中写入数据"><a href="#write-和writelines-：向文件中写入数据" class="headerlink" title="write()和writelines()：向文件中写入数据"></a>write()和writelines()：向文件中写入数据</h1><p>Python 中的文件对象提供了 write() 函数，可以向文件中写入指定内容。该函数的语法格式如下：</p>
+<blockquote>
+<p>file.write(string)</p>
+</blockquote>
+<p>其中，file 表示已经打开的文件对象；string 表示要写入文件的字符串（或字节串，仅适用写入二进制文件中）。<br><font color="red">注意，在使用 write() 向文件中写入数据，需保证使用 open() 函数是以 r+、w、w+、a 或 a+ 的模式打开文件，否则执行 write() 函数会抛出 io.UnsupportedOperation 错误。</font></p>
+<p>采用不同的文件打开模式，会直接影响 write() 函数向文件中写入数据的效果。<br>另外，在写入文件完成后，一定要调用 close() 函数将打开的文件关闭，否则写入的内容不会保存到文件中。例如，将上面程序中最后一行 f.close() 删掉，再次运行此程序并打开 a.txt，你会发现该文件是空的。这是因为，当我们在写入文件内容时，操作系统不会立刻把数据写入磁盘，而是先缓存起来，只有调用 close() 函数时，操作系统才会保证把没有写入的数据全部写入磁盘文件中。</p>
+<h2 id="writelines-函数"><a href="#writelines-函数" class="headerlink" title="writelines()函数"></a>writelines()函数</h2><p>Python 的文件对象中，不仅提供了 write() 函数，还提供了 writelines() 函数，可以实现将字符串列表写入文件中。注意，写入函数只有 write() 和 writelines() 函数，而没有名为 writeline 的函数。</p>
+<pre class="line-numbers language-python"><code class="language-python">f <span class="token operator">=</span> open<span class="token punctuation">(</span><span class="token string">'a.txt'</span><span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span>
+n <span class="token operator">=</span> open<span class="token punctuation">(</span><span class="token string">'b.txt'</span><span class="token punctuation">,</span><span class="token string">'w+'</span><span class="token punctuation">)</span>
+n<span class="token punctuation">.</span>writelines<span class="token punctuation">(</span>f<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+n<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+f<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用 writelines()函数向文件中写入多行数据时，不会自动给各行添加换行符。上面例子中，之所以b.txt文件中会逐行显示数据，是因为readlines()函数在读取各行数据时，读入了行尾的换行符。</p>
+<h1 id="colse-函数"><a href="#colse-函数" class="headerlink" title="colse()函数"></a>colse()函数</h1><p>Python 出于效率的考虑，会先将数据临时存储到缓冲区中，只有使用close()函数关闭文件时，才会将缓冲区中的数据真正写入文件中。语法格式：</p>
+<blockquote>
+<p>file.close()</p>
+</blockquote>
+<p>当然在某些实际场景中，我们可能需要在将数据成功写入到文件中，但并不想关闭文件。这也是可以实现的，调用 flush() 函数即可。</p>
+<h1 id="tell-函数"><a href="#tell-函数" class="headerlink" title="tell()函数"></a>tell()函数</h1><p>当向文件中写入数据时，如果不是文件的尾部，写入位置的原有数据不会自行向后移动，新写入的数据会将文件中处于该位置的数据直接覆盖掉。基本语法为：</p>
+<blockquote>
+<p>file.tell()</p>
+<pre class="line-numbers language-python"><code class="language-python"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h1 id="a-txt-http-forwardpeng-club"><a href="#a-txt-http-forwardpeng-club" class="headerlink" title="a.txt: http://forwardpeng.club"></a>a.txt: <a href="http://forwardpeng.club" target="_blank" rel="noopener">http://forwardpeng.club</a></h1><p>f = open(“a.txt”, ‘r’)<br>print(f.tell())<br>print(f.read(3))<br>print(f.tell())<br>‘’’<br>0<br>htt<br>3<br>‘’’<br>```</p>
+<h1 id="seek-函数"><a href="#seek-函数" class="headerlink" title="seek()函数"></a>seek()函数</h1><p>seek()函数用于将文件指针移动至指定位置，该函数的语法格式如下：<br>file.seek(offset[, whence])</p>
+<p>其中，各个参数的含义如下：</p>
+<ul>
+<li>file：表示文件对象；</li>
+<li>whence：作为可选参数，用于指定文件指针要放置的位置，该参数的参数值有 3 个选择：0 代表文件头（默认值）、1 代表当前位置、2 代表文件尾。</li>
+<li>offset：表示相对于 whence 位置文件指针的偏移量，正数表示向后偏移，负数表示向前偏移。例如，当whence == 0 &amp;&amp;offset == 3（即 seek(3,0) ），表示文件指针移动至距离文件开头处 3 个字符的位置；当whence == 1 &amp;&amp;offset == 5（即 seek(5,1) ），表示文件指针向后移动，移动至距离当前位置 5 个字符处。<blockquote>
+<p>注意，当 offset 值非 0 时，Python 要求文件必须要以二进制格式打开，否则会抛出 io.UnsupportedOperation 错误。</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="pickle模块：实现对象持久化存储"><a href="#pickle模块：实现对象持久化存储" class="headerlink" title="pickle模块：实现对象持久化存储"></a>pickle模块：实现对象持久化存储</h1><p>pickle 模块提供了以下 4 个函数供我们使用：</p>
+<ul>
+<li>dumps()：将 Python 中的对象序列化成二进制对象，并返回；</li>
+<li>loads()：读取给定的二进制对象数据，并将其转换为 Python 对象；</li>
+<li>dump()：将 Python 中的对象序列化成二进制对象，并写入文件；</li>
+<li>load()：读取指定的序列化数据文件，并返回对象。</li>
+</ul>
+<p>以上这4个函数可以分成两类，其中 dumps 和 loads 实现基于内存的 Python 对象与二进制互转；dump 和 load 实现基于文件的 Python 对象与二进制互转。</p>
+<h2 id="pickle-dumps-函数"><a href="#pickle-dumps-函数" class="headerlink" title="pickle.dumps()函数"></a>pickle.dumps()函数</h2><p>用于将 Python 对象转为二进制对象，其语法格式如下：<br>dumps(obj, protocol=None, *, fix_imports=True)</p>
+<p>此格式中各个参数的含义为：</p>
+<ul>
+<li>obj：要转换的 Python 对象；</li>
+<li>protocol：pickle 的转码协议，取值为 0、1、2、3、4，其中 0、1、2 对应 Python 早期的版本，3 和 4 则对应 Python 3.x 版本及之后的版本。未指定情况下，默认为 3。</li>
+<li>其它参数：为了兼容 Python 2.x 版本而保留的参数，Python 3.x 中可以忽略。<h2 id="pickle-loads-函数"><a href="#pickle-loads-函数" class="headerlink" title="pickle.loads()函数"></a>pickle.loads()函数</h2>用于将二进制对象转换成 Python 对象，其基本格式如下：<blockquote>
+<p>loads(data, *, fix_imports=True, encoding=’ASCII’, errors=’strict’)</p>
+</blockquote>
+</li>
+</ul>
+<p>其中，data 参数表示要转换的二进制对象，其它参数只是为了兼容Python 2.x版本而保留的，可以忽略。</p>
+<h2 id="pickle-dump"><a href="#pickle-dump" class="headerlink" title="pickle.dump()"></a>pickle.dump()</h2><p>用于将 Python 对象转换成二进制文件，其基本语法格式为：</p>
+<blockquote>
+<p>dump (obj, file,protocol=None, *, fix mports=True)</p>
+</blockquote>
+<p>其中各个参数的具体含义如下：</p>
+<ul>
+<li>obj：要转换的 Python 对象。</li>
+<li>file：转换到指定的二进制文件中，要求该文件必须是以”wb”的打开方式进行操作。</li>
+<li>protocol：和 dumps() 函数中 protocol 参数的含义完全相同，因此这里不再重复描述。</li>
+</ul>
+<h2 id="pickle-load-函数"><a href="#pickle-load-函数" class="headerlink" title="pickle.load()函数"></a>pickle.load()函数</h2><p>用于将二进制对象文件转换成 Python 对象。该函数的基本语法格式为：</p>
+<blockquote>
+<p>load(file, *, fix_imports=True, encoding=’ASCII’, errors=’strict’)</p>
+</blockquote>
+<p>其中，file参数表示要转换的二进制对象文件（必须以 “rb” 的打开方式操作文件）。</p>
+<p>pickle 不支持并发地访问持久性对象，在复杂的系统环境下，尤其是读取海量数据时，使用 pickle 会使整个系统的I/O读取性能成为瓶颈。这种情况下，可以使用 ZODB。</p>
+<h1 id="fileinput模块：逐行读取多个文件"><a href="#fileinput模块：逐行读取多个文件" class="headerlink" title="fileinput模块：逐行读取多个文件"></a>fileinput模块：逐行读取多个文件</h1><p>fileinput 模块中 input() 该函数的语法格式如下：</p>
+<blockquote>
+<p>fileinput.input（files=”filename1, filename2, …”, inplace=False, backup=’’, bufsize=0, mode=’r’, openhook=None）</p>
+</blockquote>
+<p>此函数会返回一个 FileInput 对象，它可以理解为是将多个指定文件合并之后的文件对象。其中，各个参数的含义如下：</p>
+<ul>
+<li>files：多个文件的路径列表；</li>
+<li>inplace：用于指定是否将标准输出的结果写回到文件，此参数默认值为 False；</li>
+<li>backup：用于指定备份文件的扩展名；</li>
+<li>bufsize：指定缓冲区的大小，默认为 0；</li>
+<li>mode：打开文件的格式，默认为 r（只读格式）；</li>
+<li>openhook：控制文件的打开方式，例如编码格式等。</li>
+</ul>
+<p>fileinput模块常见函数如下表：<br>| 函数名                  | 功能描述                                        |<br>| ———————– | ———————————————– |<br>| fileinput.filename()    | 返回当前正在读取的文件名称。                    |<br>| fileinput.fileno()      | 返回当前正在读取文件的文件描述符。              |<br>| fileinput.lineno()      | 返回当前读取了多少行。                          |<br>| fileinput.filelineno()  | 返回当前正在读取的内容位于当前文件中的行号。    |<br>| fileinput.isfirstline() | 判断当前读取的内容在当前文件中是否位于第 1 行。 |<br>| fileinput.nextfile()    | 关闭当前正在读取的文件，并开始读取下一个文件。  |<br>| fileinput.close()       | 关闭 FileInput 对象。                           |</p>
+<h1 id="linecache模块：读取指定行"><a href="#linecache模块：读取指定行" class="headerlink" title="linecache模块：读取指定行"></a>linecache模块：读取指定行</h1><p>linecache模块擅长读取指定文件中的指定行。换句话说，如果我们想读取某个文件中指定行包含的数据，就可以使用 linecache模块。inecache 模块中常用的函数及其功能如下表所示。<br>| 函数基本格式                                             | 功能                                                                                                                                                                                                                                                                        |<br>| ——————————————————– | ————————————————————————————————————————————————————————————————————————————————————————— |<br>| linecache.getline(filename, lineno, module_globals=None) | 读取指定模块中指定文件的指定行（仅读取指定文件时，无需指定模块）。其中，filename 参数用来指定文件名，lineno 用来指定行号，module_globals 参数用来指定要读取的具体模块名。注意，当指定文件以相对路径的方式传给 filename 参数时，该函数以按照 sys.path 规定的路径查找该文件。 |<br>| linecache.clearcache()                                   | 如果程序某处，不再需要之前使用 getline() 函数读取的数据，则可以使用该函数清空缓存。                                                                                                                                                                                         |<br>| linecache.checkcache                                     | (filename=None)    检查缓存的有效性，即如果使用 getline() 函数读取的数据，其实在本地已经被修改，而我们需要的是新的数据，此时就可以使用该函数检查缓存的是否为新的数据。注意，如果省略文件名，该函数将检车所有缓存数据的有效性。                                                 |</p>
+<h1 id="os-path模块常见函数"><a href="#os-path模块常见函数" class="headerlink" title="os.path模块常见函数"></a>os.path模块常见函数</h1><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>os.path.abspath(path)</td>
+<td>返回 path 的绝对路径。</td>
+</tr>
+<tr>
+<td>os.path.basename(path)</td>
+<td>获取 path 路径的基本名称，即 path 末尾到最后一个斜杠的位置之间的字符串。</td>
+</tr>
+<tr>
+<td>os.path.commonprefix(list)</td>
+<td>返回 list（多个路径）中，所有 path 共有的最长的路径。</td>
+</tr>
+<tr>
+<td>os.path.dirname(path)</td>
+<td>返回 path 路径中的目录部分。</td>
+</tr>
+<tr>
+<td>os.path.exists(path)</td>
+<td>判断 path 对应的文件是否存在，如果存在，返回 True；反之，返回 False。和 lexists() 的区别在于，exists()会自动判断失效的文件链接（类似 Windows 系统中文件的快捷方式），而 lexists() 却不会。</td>
+</tr>
+<tr>
+<td>os.path.lexists(path)</td>
+<td>判断路径是否存在，如果存在，则返回 True；反之，返回 False。</td>
+</tr>
+<tr>
+<td>os.path.expanduser(path)</td>
+<td>把 path 中包含的 “<del>“ 和 “</del>user” 转换成用户目录。</td>
+</tr>
+<tr>
+<td>os.path.expandvars(path)</td>
+<td>根据环境变量的值替换 path 中包含的 “$name” 和 “${name}”。</td>
+</tr>
+<tr>
+<td>os.path.getatime(path)</td>
+<td>返回 path 所指文件的最近访问时间（浮点型秒数）。</td>
+</tr>
+<tr>
+<td>os.path.getmtime(path)</td>
+<td>返回文件的最近修改时间（单位为秒）。</td>
+</tr>
+<tr>
+<td>os.path.getctime(path)</td>
+<td>返回文件的创建时间（单位为秒，自 1970 年 1 月 1 日起（又称 Unix 时间））。</td>
+</tr>
+<tr>
+<td>os.path.getsize(path)</td>
+<td>返回文件大小，如果文件不存在就返回错误。</td>
+</tr>
+<tr>
+<td>os.path.isabs(path)</td>
+<td>判断是否为绝对路径。</td>
+</tr>
+<tr>
+<td>os.path.isfile(path)</td>
+<td>判断路径是否为文件。</td>
+</tr>
+<tr>
+<td>os.path.isdir(path)</td>
+<td>判断路径是否为目录。</td>
+</tr>
+<tr>
+<td>os.path.islink(path)</td>
+<td>判断路径是否为链接文件（类似 Windows 系统中的快捷方式）。</td>
+</tr>
+<tr>
+<td>os.path.ismount(path)</td>
+<td>判断路径是否为挂载点。</td>
+</tr>
+<tr>
+<td>os.path.join(path1[, path2[, …]])</td>
+<td>把目录和文件名合成一个路径。</td>
+</tr>
+<tr>
+<td>os.path.normcase(path)</td>
+<td>转换 path 的大小写和斜杠。</td>
+</tr>
+<tr>
+<td>os.path.normpath(path)</td>
+<td>规范 path 字符串形式。</td>
+</tr>
+<tr>
+<td>os.path.realpath(path)</td>
+<td>返回 path 的真实路径。</td>
+</tr>
+<tr>
+<td>os.path.relpath(path[, start])</td>
+<td>从 start 开始计算相对路径。</td>
+</tr>
+<tr>
+<td>os.path.samefile(path1, path2)</td>
+<td>判断目录或文件是否相同。</td>
+</tr>
+<tr>
+<td>os.path.sameopenfile(fp1, fp2)</td>
+<td>判断 fp1 和 fp2 是否指向同一文件。</td>
+</tr>
+<tr>
+<td>os.path.samestat(stat1, stat2)</td>
+<td>判断 stat1 和 stat2 是否指向同一个文件。</td>
+</tr>
+<tr>
+<td>os.path.split(path)</td>
+<td>把路径分割成 dirname 和 basename，返回一个元组。</td>
+</tr>
+<tr>
+<td>os.path.splitdrive(path)</td>
+<td>一般用在 windows 下，返回驱动器名和路径组成的元组。</td>
+</tr>
+<tr>
+<td>os.path.splitext(path)</td>
+<td>分割路径，返回路径名和文件扩展名的元组。</td>
+</tr>
+<tr>
+<td>os.path.splitunc(path)</td>
+<td>把路径分割为加载点与文件。</td>
+</tr>
+<tr>
+<td>os.path.walk(path, visit, arg)</td>
+<td>遍历path，进入每个目录都调用 visit 函数，visit 函数必须有 3 个参数(arg, dirname, names)，dirname 表示当前目录的目录名，names 代表当前目录下的所有文件名，args 则为 walk 的第三个参数。</td>
+</tr>
+<tr>
+<td>os.path.supports_unicode_filenames</td>
+<td>设置是否可以将任意 Unicode 字符串用作文件名。</td>
+</tr>
+</tbody></table>
+<h1 id="fnmatch模块：用于文件名匹配"><a href="#fnmatch模块：用于文件名匹配" class="headerlink" title="fnmatch模块：用于文件名匹配"></a>fnmatch模块：用于文件名匹配</h1><p>fnmatch模块中，常用的函数及功能如下表：<br>| 函数名                                 | 功能                                                                        |<br>| ————————————– | ————————————————————————— |<br>| fnmatch.filter(names, pattern)         | 对 names 列表进行过滤，返回 names 列表中匹配 pattern 的文件名组成的子集合。 |<br>| fnmatch.fnmatch(filename, pattern)     | 判断 filename 文件名，是否和指定 pattern 字符串匹配                         |<br>| fnmatch.fnmatchcase(filename, pattern) | 和 fnmatch() 函数功能大致相同，只是该函数区分大小写。                       |<br>| fnmatch.translate(pattern)             | 将一个UNIX shell风格的pattern字符串，转换为正则表达式                       |</p>
+<p>fnmatch 模块匹配文件名的模式使用的就是 UNIX shell 风格，其支持使用如下几个通配符：</p>
+<ul>
+<li>*：可匹配任意个任意字符。</li>
+<li>？：可匹配一个任意字符。</li>
+<li>[字符序列]：可匹配中括号里字符序列中的任意字符。该字符序列也支持中画线表示法。比如 [a-c] 可代表 a、b 和 c 字符中任意一个。</li>
+<li>[!字符序列]：可匹配不在中括号里字符序列中的任意字符。</li>
+</ul>
+<h1 id="tempfile模块：生成临时文件和临时目录"><a href="#tempfile模块：生成临时文件和临时目录" class="headerlink" title="tempfile模块：生成临时文件和临时目录"></a>tempfile模块：生成临时文件和临时目录</h1><table>
+<thead>
+<tr>
+<th>tempfile 模块函数</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tempfile.TemporaryFile(mode=’w+b’, buffering=None, encoding=None, newline=None, suffix=None, prefix=None, dir=None)</td>
+<td>创建临时文件。该函数返回一个类文件对象，也就是支持文件 I/O。</td>
+</tr>
+<tr>
+<td>tempfile.NamedTemporaryFile(mode=’w+b’, buffering=None, encoding=None, newline=None, suffix=None, prefix=None, dir=None, delete=True)</td>
+<td>创建临时文件。该函数的功能与上一个函数的功能大致相同，只是它生成的临时文件在文件系统中有文件名。</td>
+</tr>
+<tr>
+<td>tempfile.SpooledTemporaryFile(max_size=0, mode=’w+b’, buffering=None, encoding=None, newline=None, suffix=None, prefix=None, dir=None)</td>
+<td>创建临时文件。与 TemporaryFile 函数相比，当程序向该临时文件输出数据时，会先输出到内存中，直到超过 max_size 才会真正输出到物理磁盘中。</td>
+</tr>
+<tr>
+<td>tempfile.TemporaryDirectory(suffix=None, prefix=None, dir=None)</td>
+<td>生成临时目录。</td>
+</tr>
+<tr>
+<td>tempfile.gettempdir()</td>
+<td>获取系统的临时目录。</td>
+</tr>
+<tr>
+<td>tempfile.gettempdirb()</td>
+<td>与 gettempdir() 相同，只是该函数返回字节串。</td>
+</tr>
+<tr>
+<td>tempfile.gettempprefix()</td>
+<td>返回用于生成临时文件的前缀名。</td>
+</tr>
+<tr>
+<td>tempfile.gettempprefixb()</td>
+<td>与 gettempprefix() 相同，只是该函数返回字节串。</td>
+</tr>
+<tr>
+<td>创建临时文件的方法：</td>
+<td></td>
+</tr>
+<tr>
+<td>* 第一种方式是手动创建临时文件，读写临时文件后需要主动关闭它，当程序关闭该临时文件时，该文件会被自动删除。</td>
+<td></td>
+</tr>
+<tr>
+<td>* 第二种方式则是使用 with 语句创建临时文件，这样 with 语句会自动关闭临时文件。</td>
+<td></td>
+</tr>
+</tbody></table>
+
+            </div>
+            <hr />
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">感谢您的支持，我会继续努力的!</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechatpay.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《Python-文件操作》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/04/29/bian-cheng-yu-yan/python/python-wen-jian-cao-zuo/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                ForwardPeng
+            </a> 采用
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '查教程获取',
+        clientSecret: '查教程获取',
+        repo: 'https://forwardpeng.github.io/',
+        owner: 'forwardpeng',
+        admin: "forwardpeng",
+        id: '2020/04/29/bian-cheng-yu-yan/python/python-wen-jian-cao-zuo/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+    <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<!-- <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script> -->
+
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: '查教程获取',
+        appKey: '查教程获取',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'false' === 'true',
+        avatar: 'wavatar',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '如果你没有GitHub账号，还可以在这里评论啦！'
+    });
+</script>
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/04/30/bian-cheng-yu-yan/python/python-bing-fa-bian-cheng/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Python-并发编程(一)">
+                        
+                        <span class="card-title">Python-并发编程(一)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            进程与线程几乎所有的操作系统都支持同时运行多个任务，每个任务通常是一个程序，每一个运行中的程序就是一个进程，即进程是应用程序的执行实例。现代的操作系统几乎都支持多进程并发执行。
+
+并发和并行是两个概念，并行指在同一时刻有多条指令在多个处理器
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/计算机基础/" class="post-category" target="_blank">
+                                    计算机基础
+                                </a>
+                            
+                            <a href="/categories/计算机基础/Python/" class="post-category" target="_blank">
+                                    Python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/" target="_blank">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/多线程/" target="_blank">
+                        <span class="chip bg-color">多线程</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/04/29/bian-cheng-yu-yan/python/python-yi-chang-chu-li-ji-zhi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="Python-异常处理机制">
+                        
+                        <span class="card-title">Python-异常处理机制</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            常见的异常类型
+
+
+异常类型
+含义
+实例
+
+
+
+AssertionError
+当 assert 关键字后的条件为假时，程序运行会停止并抛出 AssertionError 异常
+&gt;&gt;&gt; demo_list = [‘C语言中文
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/计算机基础/" class="post-category" target="_blank">
+                                    计算机基础
+                                </a>
+                            
+                            <a href="/categories/计算机基础/Python/" class="post-category" target="_blank">
+                                    Python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/" target="_blank">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Peng's Blog<br />'
+            + '作者: ForwardPeng<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () { bodyElement.removeChild(newdiv); }, 200);
+    });
+</script>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2022-2035 ForwordPeng. 版权所有
+
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">133.1k</span>
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+            <br>
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <i class="fa fa-heart-o"></i>
+                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                人次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+            </span>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/ForwardPeng" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:penghe6666@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://zhihu.com/people/ForwardPeng" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-inverse">知</i>
+    </a>
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=2313977059&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/ForwardPeng" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+    $(document).ready(function () {
+
+        var int = setInterval(fixCount, 50);
+        var pvcountOffset = 80000;
+        var uvcountOffset = 20000;
+
+        function fixCount() {
+            if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+                clearInterval(int);
+            }
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                clearInterval(int);
+            }
+        }
+    });
+</script>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2022, 12, 04, 00, 00, 00); //北京时间2022-12-04 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <script type="text/javascript"> var OriginTitile = document.title, st; document.addEventListener("visibilitychange", function () { document.hidden ? (document.title = "Peng's Blog", clearTimeout(st)) : (document.title = "Peng's Blog", st = setTimeout(function () { document.title = OriginTitile }, 3e3)) })
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=查教程获取"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '查教程获取');
+</script>
+
+
+
+    
+    <script src="/libs/others/clicklove.js"></script>
+    
+
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    <!-- 雪花特效 -->
+    
+
+</body>
+
+</html>

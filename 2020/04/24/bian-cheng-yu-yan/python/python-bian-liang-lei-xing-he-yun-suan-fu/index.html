@@ -1,0 +1,1767 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Python-变量类型和运算符, 模式识别、机器学习、运筹优化、数据挖掘">
+    <meta name="baidu-site-verification" content="fmlEuI34ir">
+    <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
+    <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
+    <meta name="description" content="Python变量的定义和使用变量保存的数据可以被多次修改，而常量一旦保存某个数据之后就不能修改了。
+Python变量的赋值将数据放入变量的过程叫做赋值（Assignment）。Python使用等号=作为赋值运算符，具体格式为：
+
+name ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Python-变量类型和运算符 | Peng&#39;s Blog</title>
+    <link rel="icon" type="image/jpeg" href="/medias/logo.jpg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?ce84511d3df71640a9378a69f6293044";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+    
+
+    <script>
+        (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Peng's Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-comments"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Peng's Blog</div>
+        <div class="logo-desc">
+            
+            中国地质大学（武汉） | 计算机科学与技术 | Machine Learning &amp; Data Mining
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-comments"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/ForwardPeng" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/ForwardPeng" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Python-变量类型和运算符
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/Python/" target="_blank">
+                            <span class="chip bg-color">Python</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/计算机基础/" class="post-category" target="_blank">
+                            计算机基础
+                        </a>
+                        
+                        <a href="/categories/计算机基础/Python/" class="post-category" target="_blank">
+                            Python
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-24
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    ForwardPeng
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    6.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    24 分
+                </div>
+                
+                
+
+                
+                <div id="busuanzi_container_page_pv" class="info-break-policy">
+                    <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                    <span id="busuanzi_value_page_pv"></span>
+                </div>
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Python变量的定义和使用"><a href="#Python变量的定义和使用" class="headerlink" title="Python变量的定义和使用"></a>Python变量的定义和使用</h1><p>变量保存的数据可以被多次修改，而常量一旦保存某个数据之后就不能修改了。</p>
+<h2 id="Python变量的赋值"><a href="#Python变量的赋值" class="headerlink" title="Python变量的赋值"></a>Python变量的赋值</h2><p>将数据放入变量的过程叫做赋值（Assignment）。Python使用等号=作为赋值运算符，具体格式为：</p>
+<blockquote>
+<p>name = value</p>
+</blockquote>
+<p>name表示变量名；value表示值，也就是要存储的数据。注意，变量是标识符的一种，它的名字不能随便起，要遵守Python标识符命名规范，还要避免和Python内置函数以及Python保留字重名。</p>
+<h2 id="Python变量的使用"><a href="#Python变量的使用" class="headerlink" title="Python变量的使用"></a>Python变量的使用</h2><p>使用 Python 变量时，只要知道变量的名字即可。几乎在Python代码的任何地方都能使用变量。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#将变量传递给函数</span>
+<span class="token number">10</span>
+<span class="token operator">>></span><span class="token operator">></span> m <span class="token operator">=</span> n <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> <span class="token number">5</span>  <span class="token comment" spellcheck="true">#将变量作为四则运算的一部分</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span>
+<span class="token number">105</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>m<span class="token number">-30</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#将由变量构成的表达式作为参数传递给函数</span>
+<span class="token number">75</span>
+<span class="token operator">>></span><span class="token operator">></span> m <span class="token operator">=</span> m <span class="token operator">*</span> <span class="token number">2</span>  <span class="token comment" spellcheck="true">#将变量本身的值翻倍</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span>
+<span class="token number">210</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Python是弱类型的语言"><a href="#Python是弱类型的语言" class="headerlink" title="Python是弱类型的语言"></a>Python是弱类型的语言</h2><p>C语言、C++、Java 是强类型语言的代表。和强类型语言相对应的是弱类型语言，Python、JavaScript、PHP 等脚本语言一般都是弱类型的。</p>
+<p>弱类型语言有两个特点：</p>
+<ul>
+<li>变量无须声明就可以直接赋值，对一个不存在的变量赋值就相当于定义了一个新变量。</li>
+<li>变量的数据类型可以随时改变，比如，同一个变量可以一会儿被赋值为整数，一会儿被赋值为字符串。<h1 id="Python整数类型-int-详解"><a href="#Python整数类型-int-详解" class="headerlink" title="Python整数类型(int)详解"></a>Python整数类型(int)详解</h1>整数就是没有小数部分的数字，Python中的整数包括正整数、0和负整数。</li>
+</ul>
+<p>有些强类型的编程语言会提供多种整数类型，每种类型的长度都不同，能容纳的整数的大小也不同，开发者要根据实际数字的大小选用不同的类型。例如C语言提供了short、int、long、long long四种类型的整数，它们的长度依次递增，初学者在选择整数类型时往往比较迷惑，有时候还会导致数值溢出。</p>
+<p>而Python则不同，它的整数不分类型，或者说它只有一种类型的整数。Python整数的取值范围是无限的，不管多大或者多小的数字，Python 都能轻松处理。</p>
+<blockquote>
+<p>当所用数值超过计算机自身的计算能力时，Python 会自动转用高精度计算（大数计算）。</p>
+</blockquote>
+<h2 id="整数的不同进制"><a href="#整数的不同进制" class="headerlink" title="整数的不同进制"></a>整数的不同进制</h2><ul>
+<li>十进制形式：使用十进制形式的整数不能以 0 作为开头，除非这个数值本身就是 0。</li>
+<li>二进制形式：由0和1两个数字组成，书写时以0b或0B开头。例如，101对应十进制数是5。</li>
+<li>八进制：八进制整数由0~7共八个数字组成，以0o或0O开头。注意，第一个符号是数字 0，第二个符号是大写或小写的字母 O。</li>
+<li>十六进制形式：由 0<del>9 十个数字以及 A</del>F（或 a~f）六个字母组成，书写时以0x或0X开头。<h2 id="数字分隔符"><a href="#数字分隔符" class="headerlink" title="数字分隔符"></a>数字分隔符</h2>Python 3.x 允许使用下划线_作为数字（包括整数和小数）的分隔符。通常每隔三个数字添加一个下划线，类似于英文数字中的逗号。下划线不会影响数字本身的值。</li>
+</ul>
+<h1 id="Python小数／浮点数-float-类型详解"><a href="#Python小数／浮点数-float-类型详解" class="headerlink" title="Python小数／浮点数(float)类型详解"></a>Python小数／浮点数(float)类型详解</h1><p>小数通常以浮点数的形式存储。浮点数和定点数是相对的：小数在存储过程中如果小数点发生移动，就称为浮点数；如果小数点不动，就称为定点数。Python中的小数有两种书写形式：</p>
+<ul>
+<li>十进制形式：平时看到的小数形式，例如 34.6、346.0、0.346。书写小数时必须包含一个小数点，否则会被Python当作整数处理。</li>
+<li>指数形式：小数的指数形式为aEn或aen，a为尾数部分，是一个十进制数；n为指数部分，是一个十进制整数；E或e是固定的字符，用于分割尾数部分和指数部分。整个表达式等价于$a×10^{n}$。举例：2.1E5=2.1×105，其中2.1是尾数，5是指数。3.7E-2 = 3.7×10-2，其中3.7是尾数，-2是指数。0.5E7=0.5×107，其中 0.5是尾数，7是指数。</li>
+</ul>
+<blockquote>
+<p>Python 只有一种小数类型，就是 float。C语言有两种小数类型，分别是 float 和 double：float 能容纳的小数范围比较小，double 能容纳的小数范围比较大。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span> f1 <span class="token operator">=</span> <span class="token number">12.5</span>
+<span class="token operator">>></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'f1Value:'</span><span class="token punctuation">,</span> f1<span class="token punctuation">)</span>
+f1Value<span class="token punctuation">:</span> <span class="token number">12.5</span>
+<span class="token operator">>></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'f1Type:'</span><span class="token punctuation">,</span> type<span class="token punctuation">(</span>f1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+f1Type<span class="token punctuation">:</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'float'</span><span class="token operator">></span>
+<span class="token operator">>></span> f5 <span class="token operator">=</span> <span class="token number">12e4</span>
+<span class="token operator">>></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"f5Value: "</span><span class="token punctuation">,</span> f5<span class="token punctuation">)</span>
+f5Value<span class="token punctuation">:</span>  <span class="token number">120000.0</span>
+<span class="token operator">>></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"f5Type: "</span><span class="token punctuation">,</span> type<span class="token punctuation">(</span>f5<span class="token punctuation">)</span><span class="token punctuation">)</span>
+f5Type<span class="token punctuation">:</span>  <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'float'</span><span class="token operator">></span>
+<span class="token operator">>></span> f6 <span class="token operator">=</span> <span class="token number">12.3</span> <span class="token operator">*</span> <span class="token number">0.1</span>
+<span class="token operator">>></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"f6Value: "</span><span class="token punctuation">,</span> f6<span class="token punctuation">)</span>
+f6Value<span class="token punctuation">:</span>  <span class="token number">1.2300000000000002</span>
+<span class="token operator">>></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"f6Type: "</span><span class="token punctuation">,</span> type<span class="token punctuation">(</span>f6<span class="token punctuation">)</span><span class="token punctuation">)</span>
+f6Type<span class="token punctuation">:</span>  <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'float'</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h1 id="为什么Python浮点类型存在误差"><a href="#为什么Python浮点类型存在误差" class="headerlink" title="为什么Python浮点类型存在误差"></a>为什么Python浮点类型存在误差</h1><p>主要还是因浮点数在计算机中实际是以二进制保存的，有些数不精确。<br>比如说: 0.1是十进制，转化为二进制后它是个无限循环的数：<br>0.00011001100110011001100110011001100110011001100110011001100<br>而python是以双精度(64)位来保存浮点数，多余的位会被截掉，所以看到的是0.1，但在电脑上实际保存的已不是精确的0.1，参与运算后，也就有可能点误差。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 解决方法 </span>
+<span class="token keyword">from</span> decimal <span class="token keyword">import</span> <span class="token operator">*</span>
+a <span class="token operator">=</span> Decimal<span class="token punctuation">(</span><span class="token string">'4.2'</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> Decimal<span class="token punctuation">(</span><span class="token string">'2.1'</span><span class="token punctuation">)</span>
+c <span class="token operator">=</span> a <span class="token operator">*</span> b <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="Python复数类型-complex-详解"><a href="#Python复数类型-complex-详解" class="headerlink" title="Python复数类型(complex)详解"></a>Python复数类型(complex)详解</h1><p>复数由实部（real）和虚部（imag）构成，在Python中，复数的虚部以j或者J作为后缀，具体格式为：</p>
+<blockquote>
+<p>a + bj # a表示实部，b表示虚部。</p>
+</blockquote>
+<h1 id="Python字符串详解（包含长字符串和原始字符串）"><a href="#Python字符串详解（包含长字符串和原始字符串）" class="headerlink" title="Python字符串详解（包含长字符串和原始字符串）"></a>Python字符串详解（包含长字符串和原始字符串）</h1><p>字符串必须由双引号” “或者单引号’ ‘包围，具体格式为：</p>
+<blockquote>
+<p>“字符串内容”<br>‘字符串内容’</p>
+</blockquote>
+<p>字符串的内容可以包含字母、标点、特殊符号、中文、日文等全世界的所有文字。字符串中的双引号和单引号没有任何区别，而有些编程语言的双引号字符串可以解析变量，单引号字符串一律原样输出。</p>
+<h2 id="处理字符串中的引号"><a href="#处理字符串中的引号" class="headerlink" title="处理字符串中的引号"></a>处理字符串中的引号</h2><p>当字符串内容中出现引号时，我们需要进行特殊处理，否则Python会解析出错，处理方案如下：</p>
+<p><strong>1.对引号进行转义</strong></p>
+<p>在引号前面添加反斜杠\就可以对引号进行转义，让 Python 把它作为普通文本对待，例如：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> str1 <span class="token operator">=</span> <span class="token string">'I\'m a great Person'</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>str1<span class="token punctuation">)</span>
+I'm a great Person
+<span class="token operator">>></span><span class="token operator">></span> str2 <span class="token operator">=</span> <span class="token string">"引文双引号是\",中文双引号是"</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>str2<span class="token punctuation">)</span>
+引文双引号是"<span class="token punctuation">,</span>中文双引号是<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>2.使用不同的引号包围字符串</strong></p>
+<p>字符串内容中出现了单引号，那么我们可以使用双引号包围字符串，反之亦然。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> str1 <span class="token operator">=</span> <span class="token string">"I'm a great coder!"</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>str1<span class="token punctuation">)</span>
+I'm a great coder!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="字符串的换行"><a href="#字符串的换行" class="headerlink" title="字符串的换行"></a>字符串的换行</h2><p>Python 不是格式自由的语言，它对程序的换行、缩进都有严格的语法要求。要想换行书写一个比较长的字符串，必须在行尾添加反斜杠\，ｐｙｔｈｏｎ也支持表达式的换行。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> s2 <span class="token operator">=</span> "It took six months to writer \
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> Please give me more support<span class="token punctuation">.</span> \
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> I will keep !"
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>s2<span class="token punctuation">)</span>
+It took six months to writer Please give me more support<span class="token punctuation">.</span> I will keep !<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Python原始字符串"><a href="#Python原始字符串" class="headerlink" title="Python原始字符串"></a>Python原始字符串</h2><p>为了解决转义字符的问题，Python 支持原始字符串。在原始字符串中，\不会被当作转义字符，所有的内容都保持“原汁原味”的样子。在普通字符串或者长字符串的开头加上r前缀，就变成了原始字符串，具体格式为：</p>
+<blockquote>
+<p>str1 = r’原始字符串内容’<br>str2 = r”””原始字符串内容”””</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span> str1 <span class="token operator">=</span> r<span class="token string">'I\'m a great coder!'</span>
+<span class="token operator">>></span> <span class="token keyword">print</span><span class="token punctuation">(</span>str1<span class="token punctuation">)</span>
+I\'m a great coder!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Python 原始字符串中的反斜杠仍然会对引号进行转义，因此原始字符串的结尾处不能是反斜杠，否则字符串结尾处的引号会被转义，导致字符串不能正确结束。</p>
+</blockquote>
+<p>在 Python 中有两种方式解决这个问题：一种方式是改用长字符串的写法，不要使用原始字符串；另一种方式是单独书写反斜杠。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> str1 <span class="token operator">=</span> r<span class="token string">'D:\Program Files\Python 3.8'</span> <span class="token string">'\\'</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>str1<span class="token punctuation">)</span>
+D<span class="token punctuation">:</span>\Program Files\Python <span class="token number">3.8</span>\<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h1 id="编码格式"><a href="#编码格式" class="headerlink" title="编码格式"></a>编码格式</h1><p>ASCII码，全称为美国信息交换标准代码，是基于拉丁字母的一套字符编码，主要用于显示现代英语，因为万维网的出现，使得 ASCII码广为使用，其直到2007年12月才逐渐被Unicode取代。nicode字符集可以使用的编码方案有三种，分别是：</p>
+<ul>
+<li>UTF-8：一种变长的编码方案，使用1~6个字节来存储；</li>
+<li>UTF-32：一种固定长度的编码方案，不管字符编号大小，始终使用4个字节来存储；</li>
+<li>UTF-16：介于UTF-8和UTF-32之间，使用2个或者4个字节来存储，长度既固定又可变。<h2 id="Python使用的字符编码"><a href="#Python使用的字符编码" class="headerlink" title="Python使用的字符编码"></a>Python使用的字符编码</h2>Ｐython3.x中，字符串采用的是Unicode字符集，可以用如下代码来查看当前环境的编码格式：<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">import</span> sys
+<span class="token operator">>></span><span class="token operator">></span> sys<span class="token punctuation">.</span>getdefaultencoding<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token string">'utf-8'</span>
+<span class="token comment" spellcheck="true"># 使用ord()和chr()函数实现字符和编码数字之间的转换</span>
+<span class="token operator">>></span><span class="token operator">></span> ord<span class="token punctuation">(</span><span class="token string">'Q'</span><span class="token punctuation">)</span>
+<span class="token number">81</span>
+<span class="token operator">>></span><span class="token operator">></span> chr<span class="token punctuation">(</span><span class="token number">81</span><span class="token punctuation">)</span>
+<span class="token string">'Q'</span>
+<span class="token operator">>></span><span class="token operator">></span> ord<span class="token punctuation">(</span><span class="token string">"网"</span><span class="token punctuation">)</span>
+<span class="token number">32593</span>
+<span class="token operator">>></span><span class="token operator">></span> chr<span class="token punctuation">(</span><span class="token number">32593</span><span class="token punctuation">)</span>
+<span class="token string">'网'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+虽然Python默认采用UTF-8编码，但它也提供了encode()方法，可以轻松实现将Unicode编码格式的字符串转化为其它编码格式。<h1 id="Bytes类型及其用法"><a href="#Bytes类型及其用法" class="headerlink" title="Bytes类型及其用法"></a>Bytes类型及其用法</h1>字节串（bytes）和字符串（string）的对比：</li>
+<li>字符串由若干个字符组成，以字符为单位进行操作；字节串由若干个字节组成，以字节为单位进行操作。</li>
+<li>字节串和字符串除了操作的数据单元不同之外，它们支持的所有方法都基本相同。</li>
+<li>字节串和字符串都是不可变序列，不能随意增加和删除数据。</li>
+</ul>
+<p>bytes只负责以字节序列的形式（二进制形式）来存储数据，至于这些数据到底表示什么内容（字符串、数字、图片、音频等），完全由程序的解析方式决定。如果采用合适的字符编码方式（字符集），字节串可以恢复成字符串；反之亦然，字符串也可以转换成字节串。</p>
+<ul>
+<li>如果字符串的内容都是ASCII字符，那么直接在字符串前面添加b前缀就可以转换成 bytes。</li>
+<li>bytes是一个类，调用它的构造方法，也就是bytes()，可以将字符串按照指定的字符集转换成bytes；如果不指定字符集，那么默认采用UTF-8。</li>
+<li>字符串本身有一个encode()方法，该方法专门用来将字符串按照指定的字符集转换成对应的字节串；如果不指定字符集，那么默认采用 UTF-8。<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> b5 <span class="token operator">=</span> <span class="token string">"个人博客"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'UTF-8'</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>b5<span class="token punctuation">)</span>
+b<span class="token string">'\xe4\xb8\xaa\xe4\xba\xba\xe5\x8d\x9a\xe5\xae\xa2'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h1 id="Python-bool布尔类型"><a href="#Python-bool布尔类型" class="headerlink" title="Python bool布尔类型"></a>Python bool布尔类型</h1>Python提供了bool 类型来表示真（对）或假（错），比如常见的5&gt;3比较算式，这个是正确的，在程序世界里称之为真（对），Python 使用 True 来代表；再比如4 &gt; 20比较算式，这个是错误的，在程序世界里称之为假（错），Python 使用 False 来代表。<h1 id="Python的缓存重用机制"><a href="#Python的缓存重用机制" class="headerlink" title="Python的缓存重用机制"></a>Python的缓存重用机制</h1>Python 缓冲机制是为提高程序执行的效率服务的，实际上就是在 Python 解释器启动时从内存空间中开辟出一小部分，用来存储高频使用的数据，这样可以大大减少高频使用的数据创建时申请内存和销毁时撤销内存的开销。Python 在存储数据时，会根据数据的读取频繁程度以及内存占用情况来考虑，是否按照一定的规则将数据存储缓存中。那么问题来了，内存重用机制适用于哪些基本数据类型呢？<table>
+  <tr>
+      <td>数据类型</td>
+      <td>是否可以重用</td>
+      <td>生效范围</td>
+  </tr>
+  <tr>
+      <td>范围在[-5,256]之间的小整数</td>
+      <td rowspan="3">如果之前在程序中创建过，就直接存入缓存，后续不再创建。</td>
+      <td rowspan="3">全局</td>
+  </tr>
+  <tr>
+      <td>bool类型</td>
+  </tr>
+  <tr>
+      <td>字符串类型数据</td>
+  </tr>
+  <tr>
+  <td>大于 256 的整数</td>
+      <td rowspan="2">只要在本代码块内创建过，就直接缓存，后续不再创建。</td>
+      <td rowspan="2">本代码块</td>
+  </tr>
+  <tr>
+      <td>大于0的浮点型小数</td>
+  </tr>
+  <td>小于0的浮点型小数</td>
+      <td rowspan="2">不进行缓存，每次都需要额外创建。</td>
+      <td rowspan="2"></td>
+  
+  <tr>
+      <td>小于 -5 的整数</td>
+  </tr>
+</table>
+
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token comment" spellcheck="true">#范围在 [-5, 256] 之间的小整数</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> int1 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">5</span>
+<span class="token operator">>></span><span class="token operator">></span> int2 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">5</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"[-5, 256] 情况下的两个变量："</span><span class="token punctuation">,</span> id<span class="token punctuation">(</span>int1<span class="token punctuation">)</span><span class="token punctuation">,</span> id<span class="token punctuation">(</span>int2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">]</span> 情况下的两个变量： <span class="token number">10914304</span> <span class="token number">10914304</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token comment" spellcheck="true">#bool类型</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> bool1 <span class="token operator">=</span> <span class="token boolean">True</span>
+<span class="token operator">>></span><span class="token operator">></span> bool2 <span class="token operator">=</span> <span class="token boolean">True</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"bool类型情况下的两个变量："</span><span class="token punctuation">,</span>id<span class="token punctuation">(</span>bool1<span class="token punctuation">)</span><span class="token punctuation">,</span>id<span class="token punctuation">(</span>bool2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+bool类型情况下的两个变量： <span class="token number">10302848</span> <span class="token number">10302848</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="Python-input-函数：获取用户输入的字符串"><a href="#Python-input-函数：获取用户输入的字符串" class="headerlink" title="Python input()函数：获取用户输入的字符串"></a>Python input()函数：获取用户输入的字符串</h1><p>input() 函数的用法为：</p>
+<blockquote>
+<p>str = input(tipmsg)</p>
+</blockquote>
+<p>说明：</p>
+<ul>
+<li>str 表示一个字符串类型的变量，input 会将读取到的字符串放入 str 中。</li>
+<li>tipmsg 表示提示信息，它会显示在控制台上，告诉用户应该输入什么样的内容；如果不写 tipmsg，就不会有任何提示信息。</li>
+</ul>
+<p>可以使用 Python 内置函数将字符串转换成想要的类型，比如：</p>
+<ul>
+<li>int(string) 将字符串转换成 int 类型；</li>
+<li>float(string) 将字符串转换成 float 类型；</li>
+<li>bool(string) 将字符串转换成 bool 类型。<h1 id="Print-函数的高级用法"><a href="#Print-函数的高级用法" class="headerlink" title="Print()函数的高级用法"></a>Print()函数的高级用法</h1>使用 print() 函数时，都只输出了一个变量，但实际上 print() 函数完全可以同时输出多个变量，而且它具有更多丰富的功能。详细语法格式如下：<blockquote>
+<p>print (value,…,sep=’’,end=’\n’,file=sys.stdout,flush=False)</p>
+</blockquote>
+</li>
+</ul>
+<p>value 参数可以接受任意多个变量或值，因此 print() 函数完全可以输出多个值。例如如下代码：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> user_name<span class="token operator">=</span><span class="token string">'Charlie'</span>
+<span class="token operator">>></span><span class="token operator">></span> user_age <span class="token operator">=</span> <span class="token number">8</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"读者名："</span><span class="token punctuation">,</span>user_name<span class="token punctuation">,</span><span class="token string">"年龄："</span><span class="token punctuation">,</span>user_age<span class="token punctuation">)</span>
+读者名： Charlie 年龄： <span class="token number">8</span>
+<span class="token comment" spellcheck="true"># 指定分隔符</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"读者名："</span><span class="token punctuation">,</span>user_name<span class="token punctuation">,</span><span class="token string">"年龄："</span><span class="token punctuation">,</span>user_age<span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">'|'</span><span class="token punctuation">)</span>
+读者名：<span class="token operator">|</span>Charlie<span class="token operator">|</span>年龄：<span class="token operator">|</span><span class="token number">8</span>
+<span class="token comment" spellcheck="true">#设置end 参数，指定输出之后不再换行</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">,</span><span class="token string">'\t'</span><span class="token punctuation">,</span>end<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>
+<span class="token number">40</span>     <span class="token operator">>></span><span class="token operator">></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>file 参数指定 print() 函数的输出目标，file 参数的默认值为 sys.stdout，该默认值代表了系统标准输出，也就是屏幕，因此 print() 函数默认输出到屏幕。</p>
+<pre class="line-numbers language-python"><code class="language-python">f <span class="token operator">=</span> open<span class="token punctuation">(</span><span class="token string">"./demo.txt"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'沧海月明珠有泪'</span><span class="token punctuation">,</span> file<span class="token operator">=</span>f<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'蓝回日暖玉生烟'</span><span class="token punctuation">,</span> file<span class="token operator">=</span>f<span class="token punctuation">)</span>
+f<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="Python格式化字符串"><a href="#Python格式化字符串" class="headerlink" title="Python格式化字符串"></a>Python格式化字符串</h1><p>print() 函数使用以%开头的转换说明符对各种类型的数据进行格式化输出。<br>| 转换说明符 | 解释                                   |<br>| ———- | ————————————– |<br>| %d、%i     | 转换为带符号的十进制整数               |<br>| %o         | 转换为带符号的八进制整数               |<br>| %x、%X     | 转换为带符号的十六进制整数             |<br>| %e         | 转化为科学计数法表示的浮点数（e 小写） |<br>| %E         | 转化为科学计数法表示的浮点数（E 大写） |<br>| %f、%F     | 转化为十进制浮点数                     |<br>| %g         | 智能选择使用 %f 或 %e 格式             |<br>| %G         | 智能选择使用 %F 或 %E 格式             |<br>| %c         | 格式化字符及其 ASCII 码                |<br>| %r         | 使用 repr() 函数将表达式转换为字符串   |<br>| %s         | 使用 str() 函数将表达式转换为字符串    |</p>
+<h2 id="指定最小输出宽度"><a href="#指定最小输出宽度" class="headerlink" title="指定最小输出宽度"></a>指定最小输出宽度</h2><p>当使用表1中的转换说明符时，可以使用下面的格式指定最小输出宽度（至少占用多少个字符的位置）：</p>
+<ul>
+<li>%10d 表示输出的整数宽度至少为 10；</li>
+<li>%20s 表示输出的字符串宽度至少为 20。<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> n <span class="token operator">=</span> <span class="token number">1234567</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"n(10):%10d."</span> <span class="token operator">%</span> n<span class="token punctuation">)</span>
+n<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>   <span class="token number">1234567</span><span class="token punctuation">.</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"n(5):%5d."</span> <span class="token operator">%</span> n<span class="token punctuation">)</span>
+n<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token number">1234567</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="指定对齐方式"><a href="#指定对齐方式" class="headerlink" title="指定对齐方式"></a>指定对齐方式</h2>默认情况下，print()输出的数据总是右对齐的。也就是说，当数据不够宽时，数据总是靠右边输出，而在左边补充空格以达到指定的宽度。Python 允许在最小宽度之前增加一个标志来改变对齐方式，Python 支持的标志如下：<table>
+<thead>
+<tr>
+<th>标志</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-</td>
+<td>指定左对齐</td>
+</tr>
+<tr>
+<td>+</td>
+<td>表示输出的数字总要带着符号；整数带+，负数带-。</td>
+</tr>
+<tr>
+<td>0</td>
+<td>表示宽度不足时补充 0，而不是补充空格。</td>
+</tr>
+<tr>
+<td>说明：</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+<li>对于整数，指定左对齐时，在右边补0是没有效果的，因为这样会改变整数的值。</li>
+<li>对于小数，以上三个标志可以同时存在。</li>
+<li>对于字符串，只能使用-标志，因为符号对于字符串没有意义，而补0会改变字符串的值。<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> n <span class="token operator">=</span> <span class="token number">123456</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"n(09):%09d"</span> <span class="token operator">%</span> n<span class="token punctuation">)</span>
+n<span class="token punctuation">(</span><span class="token number">09</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token number">000123456</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"n(+9):%+9d"</span> <span class="token operator">%</span> n<span class="token punctuation">)</span>
+n<span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token operator">+</span><span class="token number">123456</span>
+<span class="token operator">>></span><span class="token operator">></span> f <span class="token operator">=</span> <span class="token number">140.5</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"f(-+0):%-+010f"</span> <span class="token operator">%</span> f<span class="token punctuation">)</span>
+f<span class="token punctuation">(</span><span class="token operator">-</span><span class="token operator">+</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token operator">+</span><span class="token number">140.500000</span>
+<span class="token operator">>></span><span class="token operator">></span> s <span class="token operator">=</span> <span class="token string">"Hello"</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"s(-10):%-10s."</span> <span class="token operator">%</span> s<span class="token punctuation">)</span>
+s<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>Hello     <span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="指定小数精度"><a href="#指定小数精度" class="headerlink" title="指定小数精度"></a>指定小数精度</h2>对于小数（浮点数），print() 还允许指定小数点后的数字位数，也即指定小数的输出精度。精度值需要放在最小宽度之后，中间用点号.隔开；也可以不写最小宽度，只写精度。具体格式如下：<blockquote>
+<p>%m.nf %.nf  # m表示最小宽度，n表示输出精度，.是必须存在的。<br>```python</p>
+<blockquote>
+<blockquote>
+<p>f = 3.141592653<br>print(“%8.3f” % f)<br> 3.142<br>print(“%08.3f” % f)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<p>0003.142</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>print(“%+08.3f” % f)<br>+003.142</p>
+<pre><code></code></pre></blockquote>
+</blockquote>
+</blockquote>
+<h1 id="转义字符及用法"><a href="#转义字符及用法" class="headerlink" title="转义字符及用法"></a>转义字符及用法</h1><p>ASCII 编码，0~31（十进制）范围内的字符为控制字符，它们都是看不见的，不能在显示器上显示，甚至无法从键盘输入，只能用转义字符的形式来表示。不过，直接使用ASCII 码记忆不方便，也不容易理解，所以，针对常用的控制字符，C语言又定义了简写方式，完整的列表如下。<br>| 转义字符 | 说明                                                 |<br>| ——– | —————————————————- |<br>| \n       | 换行符，将光标位置移到下一行开头                     |<br>| \r       | 回车符，将光标位置移到本行开头                       |<br>| \t       | 水平制表符，Tab键，相当于四个空格                    |<br>| \b       | 退格（Backspace），将光标位置移到前一列              |<br>| \       | 反斜线                                               |<br>| &#39;       | 单引号                                               |<br>| &quot;       | 双引号                                               |<br>| \        | 在字符串行尾的续行符，即一行未完，转到下一行继续写。 |</p>
+<h1 id="Python数据类型转换"><a href="#Python数据类型转换" class="headerlink" title="Python数据类型转换"></a>Python数据类型转换</h1><p>Python 已经为我们提供了多种可实现数据类型转换的函数，如下表：<br>| 函数                    | 作用                                               |<br>| ———————– | ————————————————– |<br>| int(x)                  | 将x转换成整数类型                                  |<br>| float(x)                | 将x转换成浮点数类型                                |<br>| complex(real, [,image]) | 创建一个复数                                       |<br>| str(x)                  | 将x转换成字符串                                    |<br>| repr(x)                 | 将x转换为表达式字符串                              |<br>| eval(str)               | 计算在字符串中的有效 Python 表达式，并返回一个对象 |<br>| chr(x)                  | 将整数x转换为一个字符                              |<br>| ord(x)                  | 将一个字符x转换为它对应的整数值                    |<br>| hex(x)                  | 将一个整数x转换为一个十六进制字符串                |<br>| oct(x)                  | 将一个整数 x 转换为一个八进制的字符串              |</p>
+<h1 id="Python算术运算符及用法详解"><a href="#Python算术运算符及用法详解" class="headerlink" title="Python算术运算符及用法详解"></a>Python算术运算符及用法详解</h1><p>算术运算符也即数学运算符，用来对数字进行数学运算，比如加减乘除。下表列出了 Python 支持所有基本算术运算符。<br>| 运算符 | 说明                                | 实例      | 结果          |<br>| —— | ———————————– | ——— | ————- |<br>| +      | 加                                  | 12.45+15  | 27.45         |<br>| -      | 减                                  | 4.56-0.26 | 4.3           |<br>| *      | 乘                                  | 5<em>3.6     | 18.0          |<br>| /      | 除法                                | 7/2       | 3.5           |<br>| //     | 整除                                | 7//2      | 3             |<br>| %      | 取余                                | 7%2       | 1             |<br>| *</em>     | 幂运算/次方运算，即返回 x 的 y 次方 | 2**4      | 16，即$2^{4}$ |</p>
+<h1 id="Python赋值运算符"><a href="#Python赋值运算符" class="headerlink" title="Python赋值运算符"></a>Python赋值运算符</h1><p>赋值运算符用来把右侧的值传递给左侧的变量（或者常量）；可以直接将右侧的值交给左侧的变量，也可以进行某些运算后再交给左侧的变量，比如加减乘除、函数调用、逻辑运算等。</p>
+<p><font color="red">= 和 == 是两个不同的运算符，= 用来赋值，而 == 用来判断两边的值是否相等，千万不要混淆。</font></p>
+<p>Python扩展赋值运算符如下表：</p>
+<div align="center"><img src="/images/运算符.png" width="400"></div>
+
+<h1 id="Python位运算符"><a href="#Python位运算符" class="headerlink" title="Python位运算符"></a>Python位运算符</h1><p>Python 位运算按照数据在内存中的二进制位（Bit）进行操作，它一般用于底层开发（算法设计、驱动、图像处理、单片机等），在应用层开发（Web 开发、Linux 运维等）中并不常见。Python 支持的位运算符如下表所示。<br>| 位运算符 | 说明     | 使用形式 | 举例                             |<br>| ——– | ——– | ——– | ——————————– |<br>| &amp;        | 按位与   | a&amp;b      | 4&amp;5                              |<br>| |       | 按位或   | a|b     | 4|5                             |<br>| ^        | 按位异或 | a^b      | 4^5                              |<br>| ~        | 按位取反 | ~a       | ~4                               |<br>| &lt;&lt;       | 按位左移 | a&lt;&lt;b     | 4&lt;&lt;2表示整数4按位左移2位         |<br>| &gt;&gt;       | 按位右移 | a&gt;&gt;b     | 4 &gt;&gt; 2，表示整数 4 按位右移 2 位 |</p>
+<h1 id="Python比较运算符"><a href="#Python比较运算符" class="headerlink" title="Python比较运算符"></a>Python比较运算符</h1><p>比较运算符，也称关系运算符，用于对常量、变量或表达式的结果进行大小比较。如果这种比较是成立的，则返回True（真），反之则返回False（假）。支持的比较运算符如表所示：<br>比较运算符    说明<br>| &gt;      | 大于，如果&gt;前面的值大于后面的值，则返回 True，否则返回 False。                                  |<br>| —— | ———————————————————————————————– |<br>| &lt;      | 小于，如果&lt;前面的值小于后面的值，则返回 True，否则返回 False。                                  |<br>| ==     | 等于，如果==两边的值相等，则返回 True，否则返回 False。                                         |<br>| &gt;=     | 大于等于（等价于数学中的 ≥），如果&gt;=前面的值大于或者等于后面的值，则返回 True，否则返回 False。 |<br>| &lt;=     | 小于等于（等价于数学中的 ≤），如果&lt;=前面的值小于或者等于后面的值，则返回 True，否则返回 False。 |<br>| !=     | 不等于（等价于数学中的 ≠），如果!=两边的值不相等，则返回 True，否则返回 False。                 |<br>| is     | 判断两个变量所引用的对象是否相同，如果相同则返回 True，否则返回 False。                         |<br>| is not | 判断两个变量所引用的对象是否不相同，如果不相同则返回 True，否则返回 False。                     |</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> time  <span class="token comment" spellcheck="true">#引入time模块</span>
+t1 <span class="token operator">=</span> time<span class="token punctuation">.</span>gmtime<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># gmtime()用来获取当前时间</span>
+t2 <span class="token operator">=</span>  time<span class="token punctuation">.</span>gmtime<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>t1 <span class="token operator">==</span> t2<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#输出True</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>t1 <span class="token keyword">is</span> t2<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#输出False</span>
+<span class="token comment" spellcheck="true"># t1与t2值相等，但是两个不同的对象</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="Python的逻辑运算符及其用法"><a href="#Python的逻辑运算符及其用法" class="headerlink" title="Python的逻辑运算符及其用法"></a>Python的逻辑运算符及其用法</h1><p>常用逻辑运算符及功能如下：<br>| 逻辑运算符 | 含义                           | 基本格式 | 说明                                                                                      |<br>| ———- | —————————— | ——– | —————————————————————————————– |<br>| and        | 逻辑与运算，等价于数学中的“且” | a and b  | 当 a 和 b 两个表达式都为假时，a or b 的结果才是假，否则为真。                             |<br>| or         | 逻辑或运算，等价于数学中的“或” | a or b   | 当 a 和 b 两个表达式都为假时，a or b 的结果才是假，否则为真。                             |<br>| not        | 逻辑非运算，等价于数学中的“非” | not a    | 如果 a 为真，那么 not a 的结果为假；如果 a 为假，那么 not a 的结果为真。相当于对 a 取反。 |<br>Python 逻辑运算符用于操作 bool 类型的表达式，执行结果也是 bool 类型，这两点其实都是错误的！实例如下：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">100</span> <span class="token operator">and</span> <span class="token number">200</span><span class="token punctuation">)</span>
+<span class="token number">200</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">45</span> <span class="token operator">and</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token number">0</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">""</span> <span class="token operator">or</span> <span class="token string">"http://forwardpeng.club/"</span><span class="token punctuation">)</span>
+http<span class="token punctuation">:</span><span class="token operator">//</span>forwardpeng<span class="token punctuation">.</span>club<span class="token operator">/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="逻辑运算符本质"><a href="#逻辑运算符本质" class="headerlink" title="逻辑运算符本质"></a>逻辑运算符本质</h2><p><font color="red">在Python中，and 和or不一定会计算右边表达式的值，有时候只计算左边表达式的值就能得到最终结果。另外，and和or运算符会将其中一个表达式的值作为最终结果，而不是将 True 或者 False 作为最终结果。<br></font><br>对于 and 运算符，两边的值都为真时最终结果才为真，但是只要其中有一个值为假，那么最终结果就是假，所以 Python 按照下面的规则执行 and 运算：</p>
+<ul>
+<li>如果左边表达式的值为假，那么就不用计算右边表达式的值了，因为不管右边表达式的值是什么，都不会影响最终结果，最终结果都是假，此时 and 会把左边表达式的值作为最终结果。</li>
+<li>如果左边表达式的值为真，那么最终值是不能确定的，and 会继续计算右边表达式的值，并将右边表达式的值作为最终结果。</li>
+</ul>
+<p>对于 or 运算符，情况是类似的，两边的值都为假时最终结果才为假，只要其中有一个值为真，那么最终结果就是真，所以 Python 按照下面的规则执行 or 运算：</p>
+<ul>
+<li>如果左边表达式的值为真，那么就不用计算右边表达式的值了，因为不管右边表达式的值是什么，都不会影响最终结果，最终结果都是真，此时 or 会把左边表达式的值作为最终结果。</li>
+<li>如果左边表达式的值为假，那么最终值是不能确定的，or 会继续计算右边表达式的值，并将右边表达式的值作为最终结果。<h1 id="Python-三目运算符用法详解"><a href="#Python-三目运算符用法详解" class="headerlink" title="Python 三目运算符用法详解"></a>Python 三目运算符用法详解</h1>if else 实现三目运算符（条件运算符）的格式如下：<blockquote>
+<p>exp1 if contion else exp2</p>
+</blockquote>
+</li>
+</ul>
+<p>Python三目运算符支持嵌套，如此可以构成更加复杂的表达式。在嵌套时需要注意 if和else的配对，如下：</p>
+<blockquote>
+<p>a if a&gt;b else c if c&gt;d else d</p>
+</blockquote>
+<h1 id="Python运算符优先级和结合性"><a href="#Python运算符优先级和结合性" class="headerlink" title="Python运算符优先级和结合性"></a>Python运算符优先级和结合性</h1><p>Python 支持几十种运算符，被划分成将近二十个优先级，有的运算符优先级不同，有的运算符优先级相同，请看下表。</p>
+<div align="center"><img src="/images/运算符优先级.png" width="400"></div>
+
+<p>虽然 Python 运算符存在优先级的关系，但不推荐过度依赖运算符的优先级，建议：</p>
+<ul>
+<li>不要把一个表达式写得过于复杂，如果一个表达式过于复杂，可以尝试把它拆分来书写。</li>
+<li>不要过多地依赖运算符的优先级来控制表达式的执行顺序，这样可读性太差，应尽量使用( )来控制表达式的执行顺序。<h2 id="运算符结合性"><a href="#运算符结合性" class="headerlink" title="运算符结合性"></a>运算符结合性</h2>结合性，就是当一个表达式中出现多个优先级相同的运算符时，先执行哪个运算符：先执行左边的叫左结合性，先执行右边的叫右结合性。如：100 / 25 * 16，/和*都具有左结合性，因此先执行左边的除法，再执行右边的乘法，最终结果是64。</li>
+</ul>
+<p>Python中大部分运算符都具有左结合性，也就是从左到右执行；只有单目运算符（例如 not 逻辑非运算符）、赋值运算符和三目运算符例外，它们具有右结合性，也就是从右向左执行。表 1 中列出了所有 Python 运算符的结合性。</p>
+
+            </div>
+            <hr />
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">感谢您的支持，我会继续努力的!</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechatpay.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《Python-变量类型和运算符》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/04/24/bian-cheng-yu-yan/python/python-bian-liang-lei-xing-he-yun-suan-fu/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                ForwardPeng
+            </a> 采用
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '查教程获取',
+        clientSecret: '查教程获取',
+        repo: 'https://forwardpeng.github.io/',
+        owner: 'forwardpeng',
+        admin: "forwardpeng",
+        id: '2020/04/24/bian-cheng-yu-yan/python/python-bian-liang-lei-xing-he-yun-suan-fu/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+    <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<!-- <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script> -->
+
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: '查教程获取',
+        appKey: '查教程获取',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'false' === 'true',
+        avatar: 'wavatar',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '如果你没有GitHub账号，还可以在这里评论啦！'
+    });
+</script>
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/04/25/bian-cheng-yu-yan/python/python-lie-biao-yuan-zu-zi-dian-ji-he/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Python-列表元组字典集合">
+                        
+                        <span class="card-title">Python-列表元组字典集合</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            介绍Python 序列（Sequence）是指按特定顺序依次排列的一组数据，它们可以占用一块连续的内存，也可以分散到多块内存中。Python 中的序列类型包括列表（list）、元组（tuple）、字典（dict）和集合（set）。
+在Pyt
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/计算机基础/" class="post-category" target="_blank">
+                                    计算机基础
+                                </a>
+                            
+                            <a href="/categories/计算机基础/Python/" class="post-category" target="_blank">
+                                    Python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/" target="_blank">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/04/24/bian-cheng-yu-yan/python/python-ji-chu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Python-基础">
+                        
+                        <span class="card-title">Python-基础</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Python注释Python 支持两种类型的注释，分别是单行注释和多行注释。
+Python单行注释Python使用井号#作为单行注释的符号，语法格式为：
+
+#注释内容
+
+从井号#开始，直到这行结束为止的所有内容都是注释。Python 解释器
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/计算机基础/" class="post-category" target="_blank">
+                                    计算机基础
+                                </a>
+                            
+                            <a href="/categories/计算机基础/Python/" class="post-category" target="_blank">
+                                    Python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/" target="_blank">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Peng's Blog<br />'
+            + '作者: ForwardPeng<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () { bodyElement.removeChild(newdiv); }, 200);
+    });
+</script>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2022-2035 ForwordPeng. 版权所有
+
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">133.1k</span>
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+            <br>
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <i class="fa fa-heart-o"></i>
+                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                人次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+            </span>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/ForwardPeng" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:penghe6666@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://zhihu.com/people/ForwardPeng" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-inverse">知</i>
+    </a>
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=2313977059&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/ForwardPeng" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+    $(document).ready(function () {
+
+        var int = setInterval(fixCount, 50);
+        var pvcountOffset = 80000;
+        var uvcountOffset = 20000;
+
+        function fixCount() {
+            if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+                clearInterval(int);
+            }
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                clearInterval(int);
+            }
+        }
+    });
+</script>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2022, 12, 04, 00, 00, 00); //北京时间2022-12-04 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <script type="text/javascript"> var OriginTitile = document.title, st; document.addEventListener("visibilitychange", function () { document.hidden ? (document.title = "Peng's Blog", clearTimeout(st)) : (document.title = "Peng's Blog", st = setTimeout(function () { document.title = OriginTitile }, 3e3)) })
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=查教程获取"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '查教程获取');
+</script>
+
+
+
+    
+    <script src="/libs/others/clicklove.js"></script>
+    
+
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    <!-- 雪花特效 -->
+    
+
+</body>
+
+</html>
