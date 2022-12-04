@@ -4,14 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="机器学习实战, 模式识别、机器学习、运筹优化、数据挖掘">
+    <meta name="keywords" content="外卖首页列表排序介绍, 模式识别、机器学习、运筹优化、数据挖掘">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="外卖首页列表排序介绍一、产品形态与技术架构1. 外卖首页列表产品形态旧首页（2021.4以前）分为商家模式和菜品模式，新首页（2021.6以后）是混排瀑布流
+    <meta name="description" content="一、产品形态与技术架构1. 外卖首页列表产品形态旧首页（2021.4以前）分为商家模式和菜品模式，新首页（2021.6以后）是混排瀑布流
 
 目标
-流量目标：UV_RPM（千人展示成交额）、UV_CXR（用户维度-转化率）">
+流量目标：UV_RPM（千人展示成交额）、UV_CXR（用户维度-转化率）、PV_CTR（卡片">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>机器学习实战 | Peng&#39;s Blog</title>
+    <title>外卖首页列表排序介绍 | Peng&#39;s Blog</title>
     <link rel="icon" type="image/jpeg" href="/medias/logo.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -332,13 +332,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        机器学习实战
+                        外卖首页列表排序介绍
                     </div>
                 </div>
             </div>
@@ -449,8 +449,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/推荐排序/" target="_blank">
-                            <span class="chip bg-color">推荐排序</span>
+                        <a href="/tags/搜索推荐/" target="_blank">
+                            <span class="chip bg-color">搜索推荐</span>
                         </a>
                         
                     </div>
@@ -461,11 +461,11 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/大数据/" class="post-category" target="_blank">
-                            大数据
+                        <a href="/categories/数据挖掘/" class="post-category" target="_blank">
+                            数据挖掘
                         </a>
                         
-                        <a href="/categories/大数据/机器学习/" class="post-category" target="_blank">
+                        <a href="/categories/数据挖掘/机器学习/" class="post-category" target="_blank">
                             机器学习
                         </a>
                         
@@ -514,7 +514,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="外卖首页列表排序介绍"><a href="#外卖首页列表排序介绍" class="headerlink" title="外卖首页列表排序介绍"></a>外卖首页列表排序介绍</h1><h2 id="一、产品形态与技术架构"><a href="#一、产品形态与技术架构" class="headerlink" title="一、产品形态与技术架构"></a>一、产品形态与技术架构</h2><h3 id="1-外卖首页列表产品形态"><a href="#1-外卖首页列表产品形态" class="headerlink" title="1. 外卖首页列表产品形态"></a>1. 外卖首页列表产品形态</h3><p>旧首页（2021.4以前）分为商家模式和菜品模式，新首页（2021.6以后）是混排瀑布流</p>
+                <h2 id="一、产品形态与技术架构"><a href="#一、产品形态与技术架构" class="headerlink" title="一、产品形态与技术架构"></a>一、产品形态与技术架构</h2><h3 id="1-外卖首页列表产品形态"><a href="#1-外卖首页列表产品形态" class="headerlink" title="1. 外卖首页列表产品形态"></a>1. 外卖首页列表产品形态</h3><p>旧首页（2021.4以前）分为商家模式和菜品模式，新首页（2021.6以后）是混排瀑布流</p>
 <ul>
 <li>目标<ul>
 <li>流量目标：UV_RPM（千人展示成交额）、UV_CXR（用户维度-转化率）、PV_CTR（卡片维度-点击率）</li>
@@ -528,10 +528,10 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-混排服务架构"><a href="#2-混排服务架构" class="headerlink" title="2.混排服务架构"></a>2.混排服务架构</h3><div align="center"><img src="/image/混排.png" width="800"></div>
+<h3 id="2-混排服务架构"><a href="#2-混排服务架构" class="headerlink" title="2.混排服务架构"></a>2.混排服务架构</h3><div align="center"><img src="/images/混排.png" width="800"></div>
 <center>混排服务</center>
 
-<h3 id="3-商家排序服务架构"><a href="#3-商家排序服务架构" class="headerlink" title="3. 商家排序服务架构"></a>3. 商家排序服务架构</h3><div align="center"><img src="/image/商家排序服务架构.png" width="800"></div>
+<h3 id="3-商家排序服务架构"><a href="#3-商家排序服务架构" class="headerlink" title="3. 商家排序服务架构"></a>3. 商家排序服务架构</h3><div align="center"><img src="/images/商家排序服务架构.png" width="800"></div>
 <center>商家排序服务</center>
 
 <h2 id="二、商家排序预估模型"><a href="#二、商家排序预估模型" class="headerlink" title="二、商家排序预估模型"></a>二、商家排序预估模型</h2><h3 id="1-召回策略"><a href="#1-召回策略" class="headerlink" title="1. 召回策略"></a>1. 召回策略</h3><ul>
@@ -554,7 +554,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-精排模型演进路径"><a href="#2-精排模型演进路径" class="headerlink" title="2. 精排模型演进路径"></a>2. 精排模型演进路径</h3><div align="center"><img src="/image/精排模型演进路径.png" width="800"></div>
+<h3 id="2-精排模型演进路径"><a href="#2-精排模型演进路径" class="headerlink" title="2. 精排模型演进路径"></a>2. 精排模型演进路径</h3><div align="center"><img src="/images/精排模型演进路径.png" width="800"></div>
 <center>精排模型演进</center>
 
 <h3 id="3-精排策略：行为序列模型"><a href="#3-精排策略：行为序列模型" class="headerlink" title="3. 精排策略：行为序列模型"></a>3. 精排策略：行为序列模型</h3><ul>
@@ -568,7 +568,7 @@
 <li>重点方向：<ul>
 <li>商家表示</li>
 <li>上下文信息</li>
-<li>序列抽取（长序列）<div align="center"><img src="/image/行为序列模型.png" width="800"></div>
+<li>序列抽取（长序列）<div align="center"><img src="/images/行为序列模型.png" width="800"></div>
 <center>行为序列模型</center>
 
 </li>
@@ -585,7 +585,7 @@
 <li>线上收益：PV_CTR+0.72%、UV_RPM+1.38%</li>
 <li>收益来源：<ul>
 <li>多目标</li>
-<li>多任务<div align="center"><img src="/image/多任务学习.png" width="800"></div>
+<li>多任务<div align="center"><img src="/images/多任务学习.png" width="800"></div>
 <center>多任务学习</center>   
 
 </li>
@@ -618,7 +618,7 @@
 <li><p>2个月训练数据</p>
 </li>
 </ul>
-<h2 id="三、机制层排序公式"><a href="#三、机制层排序公式" class="headerlink" title="三、机制层排序公式"></a>三、机制层排序公式</h2><h3 id="1-机制层整体迭代路径"><a href="#1-机制层整体迭代路径" class="headerlink" title="1.机制层整体迭代路径"></a>1.机制层整体迭代路径</h3><div align="center"><img src="/image/机制层整体迭代路径.png" width="800"></div>
+<h2 id="三、机制层排序公式"><a href="#三、机制层排序公式" class="headerlink" title="三、机制层排序公式"></a>三、机制层排序公式</h2><h3 id="1-机制层整体迭代路径"><a href="#1-机制层整体迭代路径" class="headerlink" title="1.机制层整体迭代路径"></a>1.机制层整体迭代路径</h3><div align="center"><img src="/images/机制层整体迭代路径.png" width="800"></div>
 <center>机制层整体迭代路径</center>
 
 <ul>
@@ -971,7 +971,7 @@ b. 公式pCTR*pCXR：两次请求都选择候选2，pCTR总收益4.2，pCXR总�
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《机器学习实战》
+                    《外卖首页列表排序介绍》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2022/11/29/ji-qi-xue-xi/sou-guang-tui/wai-mai-shou-ye-lie-biao-pai-xu-jie-shao/" property="cc:attributionName"
                rel="cc:attributionURL">

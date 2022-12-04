@@ -46,11 +46,11 @@
   </entry>
   
   <entry>
-    <title>机器学习实战</title>
+    <title>外卖首页列表排序介绍</title>
     <link href="http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/wai-mai-shou-ye-lie-biao-pai-xu-jie-shao/"/>
     <id>http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/wai-mai-shou-ye-lie-biao-pai-xu-jie-shao/</id>
     <published>2022-11-29T01:07:40.000Z</published>
-    <updated>2022-11-29T07:25:46.296Z</updated>
+    <updated>2022-12-04T14:14:46.280Z</updated>
     
     <summary type="html">
     
@@ -58,18 +58,18 @@
       
         
         
-          &lt;h1 id=&quot;外卖首页列表排序介绍&quot;&gt;&lt;a href=&quot;#外卖首页列表排序介绍&quot; class=&quot;headerlink&quot; title=&quot;外卖首页列表排序介绍&quot;&gt;&lt;/a&gt;外卖首页列表排序介绍&lt;/h1&gt;&lt;h2 id=&quot;一、产品形态与技术架构&quot;&gt;&lt;a
+          &lt;h2 id=&quot;一、产品形态与技术架构&quot;&gt;&lt;a href=&quot;#一、产品形态与技术架构&quot; class=&quot;headerlink&quot; title=&quot;一、产品形态与技术架构&quot;&gt;&lt;/a&gt;一、产品形态与技术架构&lt;/h2&gt;&lt;h3 id=&quot;1-外卖首页列表产品形态&quot;&gt;&lt;a
         
       
     
     </summary>
     
-      <category term="大数据" scheme="http://forwardpeng.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="数据挖掘" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
     
-      <category term="机器学习" scheme="http://forwardpeng.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="机器学习" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="推荐排序" scheme="http://forwardpeng.github.io/tags/%E6%8E%A8%E8%8D%90%E6%8E%92%E5%BA%8F/"/>
+      <category term="搜索推荐" scheme="http://forwardpeng.github.io/tags/%E6%90%9C%E7%B4%A2%E6%8E%A8%E8%8D%90/"/>
     
   </entry>
   
@@ -106,7 +106,7 @@
     <link href="http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/tui-jian-pai-xu-ji-zhi-zai-pin-lei-xin-ke-you-hua-shang-de-tan-suo/"/>
     <id>http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/tui-jian-pai-xu-ji-zhi-zai-pin-lei-xin-ke-you-hua-shang-de-tan-suo/</id>
     <published>2022-11-29T01:07:40.000Z</published>
-    <updated>2022-12-04T13:50:06.227Z</updated>
+    <updated>2022-12-04T14:14:48.087Z</updated>
     
     <summary type="html">
     
@@ -120,9 +120,9 @@
     
     </summary>
     
-      <category term="大数据" scheme="http://forwardpeng.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="数据挖掘" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
     
-      <category term="机器学习" scheme="http://forwardpeng.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="机器学习" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
       <category term="搜索推荐" scheme="http://forwardpeng.github.io/tags/%E6%90%9C%E7%B4%A2%E6%8E%A8%E8%8D%90/"/>
@@ -134,7 +134,7 @@
     <link href="http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/yong-hu-xing-wei-xu-lie-zai-sou-suo-guang-gao-ctr-yu-gu-chang-jing-zhong-de-tan-suo-yu-shi-jian/"/>
     <id>http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/yong-hu-xing-wei-xu-lie-zai-sou-suo-guang-gao-ctr-yu-gu-chang-jing-zhong-de-tan-suo-yu-shi-jian/</id>
     <published>2022-11-29T01:07:40.000Z</published>
-    <updated>2022-12-04T13:50:54.381Z</updated>
+    <updated>2022-12-04T14:14:54.200Z</updated>
     
     <summary type="html">
     
