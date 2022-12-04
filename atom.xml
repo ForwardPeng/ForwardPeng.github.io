@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://forwardpeng.github.io/"/>
-  <updated>2022-12-04T10:08:34.148Z</updated>
+  <updated>2022-12-04T12:05:15.119Z</updated>
   <id>http://forwardpeng.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>动态内存管理机制</title>
     <link href="http://forwardpeng.github.io/2022/12/04/cao-zuo-xi-tong/dong-tai-nei-cun-guan-li/"/>
     <id>http://forwardpeng.github.io/2022/12/04/cao-zuo-xi-tong/dong-tai-nei-cun-guan-li/</id>
     <published>2022-12-04T07:27:31.000Z</published>
-    <updated>2022-12-04T10:08:34.148Z</updated>
+    <updated>2022-12-04T12:05:15.119Z</updated>
     
     <summary type="html">
     
@@ -30,7 +30,7 @@
         
         
           &lt;hr&gt;
-&lt;h1 id=&quot;动态内存管理机制&quot;&gt;&lt;a href=&quot;#动态内存管理机制&quot; class=&quot;headerlink&quot; title=&quot;动态内存管理机制&quot;&gt;&lt;/a&gt;动态内存管理机制&lt;/h1&gt;&lt;h2 id=&quot;占用块和空闲块&quot;&gt;&lt;a href=&quot;#占用块和空闲块&quot;
+&lt;h1 id=&quot;占用块和空闲块&quot;&gt;&lt;a href=&quot;#占用块和空闲块&quot; class=&quot;headerlink&quot;
         
       
     

@@ -4,13 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="模式识别、机器学习、运筹优化、数据挖掘">
+    <meta name="keywords" content="动态内存管理机制, 模式识别、机器学习、运筹优化、数据挖掘">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
     <meta name="description" content="
-动态内存管理机制占用块和空闲块对于计算机中的内存来说，称已经分配给用户的的内存区统称为“占用块”；还未分配出去的内存区统称为“空闲块”或者“可利用空间块”。
-系统的内存管理对于初始状态下的内存来说，整个空间都是一个空闲块（在编译程序中称为">
+占用块和空闲块对于计算机中的内存来说，称已经分配给用户的的内存区统称为“占用块”；还未分配出去的内存区统称为“空闲块”或者“可利用空间块”。
+系统的内存管理对于初始状态下的内存来说，整个空间都是一个空闲块（在编译程序中称为“堆”）。但是随">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Peng&#39;s Blog</title>
+    <title>动态内存管理机制 | Peng&#39;s Blog</title>
     <link rel="icon" type="image/jpeg" href="/medias/logo.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -331,13 +331,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        
+                        动态内存管理机制
                     </div>
                 </div>
             </div>
@@ -514,14 +514,14 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <hr>
-<h1 id="动态内存管理机制"><a href="#动态内存管理机制" class="headerlink" title="动态内存管理机制"></a>动态内存管理机制</h1><h2 id="占用块和空闲块"><a href="#占用块和空闲块" class="headerlink" title="占用块和空闲块"></a>占用块和空闲块</h2><p>对于计算机中的内存来说，称已经分配给用户的的内存区统称为“占用块”；还未分配出去的内存区统称为“空闲块”或者“可利用空间块”。</p>
-<h2 id="系统的内存管理"><a href="#系统的内存管理" class="headerlink" title="系统的内存管理"></a>系统的内存管理</h2><p>对于初始状态下的内存来说，整个空间都是一个空闲块（在编译程序中称为“堆”）。但是随着不同的用户不断地提出存储请求，系统依次分配。</p>
-<p>整个内存区就会分割成两个大部分：低地址区域会产生很多占用块；高地址区域还是空闲块。<br> <div align="center"><img src="/images/动态分配.png" width="800"></div><br> <center>图1 动态分配过程中的内存状态</center></p>
-<p> 当某些用户运行结束，所占用的内存区域就变成了空闲块，如图2：<br>  <div align="center"><img src="/images/内存变化.png" width="800"></div><br> <center>图2 动态分配过程中的内存变化</center></p>
+<h1 id="占用块和空闲块"><a href="#占用块和空闲块" class="headerlink" title="占用块和空闲块"></a>占用块和空闲块</h1><p>对于计算机中的内存来说，称已经分配给用户的的内存区统称为“占用块”；还未分配出去的内存区统称为“空闲块”或者“可利用空间块”。</p>
+<h1 id="系统的内存管理"><a href="#系统的内存管理" class="headerlink" title="系统的内存管理"></a>系统的内存管理</h1><p>对于初始状态下的内存来说，整个空间都是一个空闲块（在编译程序中称为“堆”）。但是随着不同的用户不断地提出存储请求，系统依次分配。</p>
+<p>整个内存区就会分割成两个大部分：低地址区域会产生很多占用块；高地址区域还是空闲块。<br> <div align="center"><img src="../images/动态分配.png" width="800"></div><br> <center>图1 动态分配过程中的内存状态</center></p>
+<p> 当某些用户运行结束，所占用的内存区域就变成了空闲块，如图2：<br>  <div align="center"><img src="../images/内存变化.png" width="800"></div><br> <center>图2 动态分配过程中的内存变化</center></p>
 <p> 时，就形成了占用块和空闲块犬牙交错的状态。当后续用户请求分配内存时，系统有两种分配方式：</p>
 <ul>
 <li>系统继续利用高地址区域的连续空闲块分配给用户，不去理会之前分配给用户的内存区域的状态。直到分配无法进行，也就是高地址的空闲块不能满足用户的需求时，系统才会去回收之前的空闲块，重新组织继续分配；</li>
-<li>当用户运行一结束，系统马上将其所占空间进行回收。当有新的用户请求分配内存时，系统遍历所有的空闲块，从中找出一个合适的空闲块分配给用户。<h2 id="可利用空间表"><a href="#可利用空间表" class="headerlink" title="可利用空间表"></a>可利用空间表</h2>系统需要建立一张记录所有空闲块信息的表。表的形式有两种：目录表和链表。各自的结构如图3所示：<div align="center"><img src="/images/目录表和链表.png" width="800"></div>
+<li>当用户运行一结束，系统马上将其所占空间进行回收。当有新的用户请求分配内存时，系统遍历所有的空闲块，从中找出一个合适的空闲块分配给用户。<h1 id="可利用空间表"><a href="#可利用空间表" class="headerlink" title="可利用空间表"></a>可利用空间表</h1>系统需要建立一张记录所有空闲块信息的表。表的形式有两种：目录表和链表。各自的结构如图3所示：<div align="center"><img src="../images/目录表和链表.png" width="800"></div>
 <center>图3 目录表和链表</center>
 
 </li>
@@ -545,7 +545,7 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="分配存储空间的方式"><a href="#分配存储空间的方式" class="headerlink" title="分配存储空间的方式"></a>分配存储空间的方式</h2><p>通常情况下系统中的可利用空间表是第 3 种情况。如图 3(C) 所示。由于链表中各结点的大小不一，在用户申请内存空间时，就需要从可利用空间表中找出一个合适的结点，有三种查找的方法：</p>
+<h1 id="分配存储空间的方式"><a href="#分配存储空间的方式" class="headerlink" title="分配存储空间的方式"></a>分配存储空间的方式</h1><p>通常情况下系统中的可利用空间表是第 3 种情况。如图 3(C) 所示。由于链表中各结点的大小不一，在用户申请内存空间时，就需要从可利用空间表中找出一个合适的结点，有三种查找的方法：</p>
 <ul>
 <li>首次拟合法：在可利用空间表中从头开始依次遍历，将找到的第一个内存不小于用户申请空间的结点分配给用户，剩余空间仍留在链表中；回收时只要将释放的空闲块插入在链表的表头即可。</li>
 <li>最佳拟合法：和首次拟合法不同，最佳拟合法是选择一块内存空间不小于用户申请空间，但是却最接近的一个结点分配给用户。为了实现这个方法，首先要将链表中的各个结点按照存储空间的大小进行从小到大排序，由此，在遍历的过程中只需要找到第一块大于用户申请空间的结点即可进行分配；用户运行完成后，需要将空闲块根据其自身的大小插入到链表的相应位置。</li>
@@ -555,7 +555,7 @@
 <ul>
 <li>最佳拟合法由于每次分配相差不大的结点给用户使用，所以会生成很多存储空间特别小的结点，以至于根本无法使用，使用过程中，链表中的结点存储大小发生两极分化，大的很大，小的很小。该方法适用于申请内存大小范围较广的系统</li>
 <li>最差拟合法，由于每次都是从存储空间最大的结点中分配给用户空间，所以链表中的结点大小不会起伏太大。依次适用于申请分配内存空间较窄的系统。</li>
-<li>首次拟合法每次都是随机分配。在不清楚用户申请空间大小的情况下，使用该方法分配空间。<h1 id="边界标识法管理动态内存"><a href="#边界标识法管理动态内存" class="headerlink" title="边界标识法管理动态内存"></a>边界标识法管理动态内存</h1>使用边界标识法的系统管理内存时，可利用空间表中的结点的构成如图 4：<div align="center"><img src="/images/结构构成.png" width="800"></div>
+<li>首次拟合法每次都是随机分配。在不清楚用户申请空间大小的情况下，使用该方法分配空间。<h1 id="边界标识法管理动态内存"><a href="#边界标识法管理动态内存" class="headerlink" title="边界标识法管理动态内存"></a>边界标识法管理动态内存</h1>使用边界标识法的系统管理内存时，可利用空间表中的结点的构成如图 4：<div align="center"><img src="../images/结构构成.png" width="800"></div>
 <center>图4 结构构成</center>
 
 </li>
@@ -580,7 +580,7 @@
     <span class="token keyword">struct</span> WORD <span class="token operator">*</span>rlink<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//指向直接后继</span>
     OtherType other<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//内存块可能包含的其它的部分</span>
 <span class="token punctuation">}</span>WORD<span class="token punctuation">,</span>head<span class="token punctuation">,</span>foot<span class="token punctuation">,</span><span class="token operator">*</span>Space<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="分配算法"><a href="#分配算法" class="headerlink" title="分配算法"></a>分配算法</h2><blockquote>
+<h1 id="分配算法"><a href="#分配算法" class="headerlink" title="分配算法"></a>分配算法</h1><blockquote>
 <p>3 种分配方法分别为：首部拟合法、最佳拟合法和最差拟合法。</p>
 <ul>
 <li>选定一个常量e，每次分配空间时，判断当前内存块向用户分配空间后，如果剩余部分的容量比e小，则将整个内存块全部分配给用户。</li>
@@ -639,7 +639,7 @@
         <span class="token keyword">return</span> p<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="回收算法"><a href="#回收算法" class="headerlink" title="回收算法"></a>回收算法</h2><p>系统需要立即回收被用户占用的存储空间，以备新的用户使用。回收算法中需要解决的问题是：在若干次分配操作后，可利用空间块中会产生很多存储空间很小以致无法使用的空闲块。但是经过回收用户释放的空间后，可利用空间表中可能含有地址相邻的空闲块，回收算法需要将这些地址相邻的空闲块合并为大的空闲块供新的用户使用。合并空闲块有3种情况：</p>
+<h1 id="回收算法"><a href="#回收算法" class="headerlink" title="回收算法"></a>回收算法</h1><p>系统需要立即回收被用户占用的存储空间，以备新的用户使用。回收算法中需要解决的问题是：在若干次分配操作后，可利用空间块中会产生很多存储空间很小以致无法使用的空闲块。但是经过回收用户释放的空间后，可利用空间表中可能含有地址相邻的空闲块，回收算法需要将这些地址相邻的空闲块合并为大的空闲块供新的用户使用。合并空闲块有3种情况：</p>
 <ul>
 <li>该空闲块的左边有相邻的空闲块可以进行合并；</li>
 <li>该空闲块的右边用相邻的空闲块可以进行合并；</li>
@@ -667,7 +667,7 @@ f<span class="token operator">-></span>tag<span class="token operator">=</span><
     pav<span class="token operator">=</span>p<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>该空闲块的左侧相邻的块为空闲块，右侧为占用块，处理的方法是：只需要更改左侧空闲块中的size的大小，并重新设置左侧空闲块的foot 域即可（如图2）。</p>
-<div align="center"><img src="/images/空闲块合并.png" width="800"></div>
+<div align="center"><img src="../images/空闲块合并.png" width="800"></div>
  <center>图5 空闲块合并（当前块，左侧内存块）</center>
 
 <p> 实现代码：</p>
@@ -696,7 +696,7 @@ f<span class="token operator">-></span>uplink<span class="token operator">=</spa
 <blockquote>
 <p>字是一种计量单位，由若干个字节构成，不同位数的机器，字所包含的字节数不同。例如，8 位机中一个字由 1 个字节组成；16 位机器一个字由 2 个字节组成。</p>
 </blockquote>
-<h2 id="可利用空间表中结点构成"><a href="#可利用空间表中结点构成" class="headerlink" title="可利用空间表中结点构成"></a>可利用空间表中结点构成</h2><div align="center"><img src="/images/结点构成.png" width="800"></div>
+<h2 id="可利用空间表中结点构成"><a href="#可利用空间表中结点构成" class="headerlink" title="可利用空间表中结点构成"></a>可利用空间表中结点构成</h2><div align="center"><img src="../images/结点构成.png" width="800"></div>
  <center>图6 结点构成</center>
 
 <p>header 域表示为头部结点，由 4 部分构成：</p>
@@ -715,7 +715,7 @@ f<span class="token operator">-></span>uplink<span class="token operator">=</spa
   OtherType other<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//记录结点的其它信息</span>
 <span class="token punctuation">}</span>WORD_b<span class="token punctuation">,</span>head<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在伙伴系统中，由于系统会不断地接受用户的内存申请的请求，所以会产生很多大小不同但是都是容量为$2^{m}$的内存块，所以为了在分配的时候查找方便，系统采用将大小相同的各自建立一个链表。对于初始容量为 $2^{m}$的一整块存储空间来说，形成的链表就有可能有m+1个，为了更好的对这些链表进行管理，系统将这m+1个链表的表头存储在数组中，就类似于邻接表的结构，如图7。</p>
-<div align="center"><img src="/images/伙伴系统的初始状态.png" width="800"></div>
+<div align="center"><img src="../images/伙伴系统的初始状态.png" width="800"></div>
 <center>图7 伙伴系统的初始状态</center>
 
 <p>可利用空间表的代码表示为：</p>
@@ -724,7 +724,7 @@ f<span class="token operator">-></span>uplink<span class="token operator">=</spa
   <span class="token keyword">int</span> nodesize<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//记录该链表中存储的空闲块的大小</span>
   WORD_b <span class="token operator">*</span> first<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//相当于链表中的next指针的作用</span>
 <span class="token punctuation">}</span>FreeList<span class="token punctuation">[</span>m<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//一维数组</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="分配算法-1"><a href="#分配算法-1" class="headerlink" title="分配算法"></a>分配算法</h2><p>伙伴系统的分配算法很简单。假设用户向系统申请大小为 n 的存储空间，若$2^{k-1} &lt; n &lt;= 2^{k}$，此时就需要查看可利用空间表中大小为$2^{k}$ 的链表中有没有可利用的空间结点：</p>
+<h1 id="分配算法-1"><a href="#分配算法-1" class="headerlink" title="分配算法"></a>分配算法</h1><p>伙伴系统的分配算法很简单。假设用户向系统申请大小为 n 的存储空间，若$2^{k-1} &lt; n &lt;= 2^{k}$，此时就需要查看可利用空间表中大小为$2^{k}$ 的链表中有没有可利用的空间结点：</p>
 </li>
 <li><p>如果该链表不为NULL，可以直接采用头插法从头部取出一个结点，提供给用户使用；</p>
 </li>
@@ -736,19 +736,19 @@ f<span class="token operator">-></span>uplink<span class="token operator">=</spa
 <li><p>如果有，则从该链表中摘除一个结点，直接分配给用户使用；</p>
 </li>
 <li><p>如果没有，则需依次查看比$2^{3}$大的各个链表中是否有空闲结点。假设，在大小$2^{4}$的链表中有空闲块，则摘除该空闲块，分配给用户$2^{3}$个字的空间，剩余$2^{3}$个字，该剩余的空闲块添加到大小为$2^{3}$的链表中。</p>
-<div align="center"><img src="/images/分配过程.png" width="800"></div>
+<div align="center"><img src="../images/分配过程.png" width="800"></div>
 <center>图8 伙伴系统分配过程</center>
 
-<h2 id="回收算法-1"><a href="#回收算法-1" class="headerlink" title="回收算法"></a>回收算法</h2><p>无论使用什么内存管理机制，在内存回收的问题上都会面临一个共同的问题：如何把回收的内存进行有效地整合，伙伴系统也不例外。</p>
+<h1 id="回收算法-1"><a href="#回收算法-1" class="headerlink" title="回收算法"></a>回收算法</h1><p>无论使用什么内存管理机制，在内存回收的问题上都会面临一个共同的问题：如何把回收的内存进行有效地整合，伙伴系统也不例外。</p>
 </li>
 </ul>
 <p>当用户申请的内存块不再使用时，系统需要将这部分存储块回收，回收时需要判断是否可以和其它的空闲块进行合并。</p>
 <p>在寻找合并对象时，伙伴系统和边界标识法不同，在伙伴系统中每一个存储块都有各自的“伙伴”，当用户释放存储块时只需要判断该内存块的伙伴是否为空闲块，如果是则将其合并，然后合并的新的空闲块还需要同其伙伴进行判断整合。反之直接将存储块根据大小插入到可利用空间表中即可。</p>
 <p>判断一个存储块的伙伴的位置时，采用的方法为：如果该存储块的起始地址为 p，大小为$2^{k}$，则其伙伴所在的起始地址为：</p>
-<div align="center"><img src="/images/公式1.png" width="800"></div>
+<div align="center"><img src="../images/公式1.png" width="800"></div>
 
 <p>例如，当大小为$2^{8}$ ，起始地址为512的伙伴块的起始地址的计算方式为：由于512 MOD $2^{9}$=0，所以，$512+2^{8}=768$，及如果该存储块回收时，只需要查看起始地址为 768 的存储块的状态，如果是空闲块则两者合并，反之直接将回收的释放块链接到大小为$2^{8}$的链表中。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>使用伙伴系统进行存储空间的管理过程中，在用户申请空间时，由于大小不同的空闲块处于不同的链表中，所以分配完成的速度会更快，算法相对简单。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>使用伙伴系统进行存储空间的管理过程中，在用户申请空间时，由于大小不同的空闲块处于不同的链表中，所以分配完成的速度会更快，算法相对简单。</p>
 <p>回收存储空间时，对于空闲块的合并，不是取决于该空闲块的相邻位置的块的状态；而是完全取决于其伙伴块。所以即使其相邻位置的存储块时空闲块，但是由于两者不是伙伴的关系，所以也不会合并。这也就是该系统的缺点之一：由于在合并时只考虑伙伴，所以容易产生存储的碎片。</p>
 <h1 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h1><p>当用户发出申请空间的请求后，系统向用户分配内存；用户运行结束释放存储空间后，系统回收内存。这两部操作都是在用户给出明确的指令后，系统对存储空间进行有效地分配和回收。</p>
 <p>但是在实际使用过程中，有时会因为用户申请了空间，但是在使用完成后没有向系统发出释放的指令，导致存储空间既没有被使用也没有被回收，变为了无用单元或者会产生悬挂访问的问题。</p>
@@ -769,13 +769,15 @@ f<span class="token operator">-></span>uplink<span class="token operator">=</spa
 <ul>
 <li>从当前正在工作的指针变量开始，采用递归算法依次将所有表中的存储结点中的标志域全部设置为 1；</li>
 <li>第一种方法中使用递归算法实现的遍历。而递归底层使用的栈的存储结构，所以也可以直接使用栈的方式进行遍历；</li>
-<li>以上两种方法都是使用栈结构来记录遍历时指针所走的路径，便于在后期可以沿原路返回。所以第三种方式就是使用其他的方法代替栈的作用。<h1 id="内存紧缩-内存碎片化处理"><a href="#内存紧缩-内存碎片化处理" class="headerlink" title="内存紧缩(内存碎片化处理)"></a>内存紧缩(内存碎片化处理)</h1>这些地址连续的未被占用的存储区在编译程序中称为堆。<h2 id="分配内存空间"><a href="#分配内存空间" class="headerlink" title="分配内存空间"></a>分配内存空间</h2>在分配内存空间时，每次都从可利用空间中选择最低（或者最高）的地址进行分配。具体的实现办法为：设置一个指针（称为堆指针），每次用户申请存储空间时，都是堆的最低（或者最高）地址进行分配。假设当用户申请 N 个单位的存储空间时，堆指针向高地址（或者低地址）移动 N 个存储单位，这 N 个存储单位即为分配给用户使用的空闲块，空闲块的起始地址为堆指针移动之前所在的地址。</li>
+<li>以上两种方法都是使用栈结构来记录遍历时指针所走的路径，便于在后期可以沿原路返回。所以第三种方式就是使用其他的方法代替栈的作用。</li>
 </ul>
+<h1 id="内存紧缩-内存碎片化处理"><a href="#内存紧缩-内存碎片化处理" class="headerlink" title="内存紧缩(内存碎片化处理)"></a>内存紧缩(内存碎片化处理)</h1><p>这些地址连续的未被占用的存储区在编译程序中称为堆。</p>
+<h1 id="分配内存空间"><a href="#分配内存空间" class="headerlink" title="分配内存空间"></a>分配内存空间</h1><p>在分配内存空间时，每次都从可利用空间中选择最低（或者最高）的地址进行分配。具体的实现办法为：设置一个指针（称为堆指针），每次用户申请存储空间时，都是堆的最低（或者最高）地址进行分配。假设当用户申请 N 个单位的存储空间时，堆指针向高地址（或者低地址）移动 N 个存储单位，这 N 个存储单位即为分配给用户使用的空闲块，空闲块的起始地址为堆指针移动之前所在的地址。</p>
 <p>例如，某一时间段有四个用户（A、B、C、D）分别申请 12 个单位、6 个单位、10 个单位和 8 个单位的存储空间，假设此时堆指针的初值为 0。则分配后存储空间的效果为：</p>
-<div align="center"><img src="/images/内存空间分配.png" width="800"></div>
+<div align="center"><img src="../images/内存空间分配.png" width="800"></div>
  <center>图9 内存空间分配</center>
 
-<h2 id="回收算法-2"><a href="#回收算法-2" class="headerlink" title="回收算法"></a>回收算法</h2><p>由于系统中的可利用空间始终都是一个连续的存储空间，所以回收时必须将用户释放的存储块合并到这个堆上才能够重新使用。存储紧缩有两种做法：其一是一旦用户释放所占空间就立即进行回收紧缩；另外一种是在程序执行过程中不立即回收用户释放的存储块，而是等到可利用空间不够分配或者堆指针指向了可利用存储区的最高地址时才进行存储紧缩。</p>
+<h1 id="回收算法-2"><a href="#回收算法-2" class="headerlink" title="回收算法"></a>回收算法</h1><p>由于系统中的可利用空间始终都是一个连续的存储空间，所以回收时必须将用户释放的存储块合并到这个堆上才能够重新使用。存储紧缩有两种做法：其一是一旦用户释放所占空间就立即进行回收紧缩；另外一种是在程序执行过程中不立即回收用户释放的存储块，而是等到可利用空间不够分配或者堆指针指向了可利用存储区的最高地址时才进行存储紧缩。</p>
 <p>具体的实现过程是：</p>
 <ul>
 <li>计算占用块的新地址。设立两个指针随巡查向前移动，分别用于指示占用块在紧缩之前和之后的原地址和新地址。因此，在每个占用块的第一个存储单位中，除了存储该占用块的大小和标志域之外，还需要新增一个新地址域，用于存储占用块在紧缩后应有的新地址，即建立一张新、旧地址的对照表。</li>
@@ -942,7 +944,7 @@ f<span class="token operator">-></span>uplink<span class="token operator">=</spa
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《》
+                    《动态内存管理机制》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2022/12/04/cao-zuo-xi-tong/dong-tai-nei-cun-guan-li/" property="cc:attributionName"
                rel="cc:attributionURL">
@@ -1277,17 +1279,17 @@ f<span class="token operator">-></span>uplink<span class="token operator">=</spa
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="动态内存管理机制">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">动态内存管理机制</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
-动态内存管理机制占用块和空闲块对于计算机中的内存来说，称已经分配给用户的的内存区统称为“占用块”；还未分配出去的内存区统称为“空闲块”或者“可利用空间块”。
-系统的内存管理对于初始状态下的内存来说，整个空间都是一个空闲块（在编译程序中称为
+占用块和空闲块对于计算机中的内存来说，称已经分配给用户的的内存区统称为“占用块”；还未分配出去的内存区统称为“空闲块”或者“可利用空间块”。
+系统的内存管理对于初始状态下的内存来说，整个空间都是一个空闲块（在编译程序中称为“堆”）。但是随
                         
                     </div>
                     <div class="publish-info">
@@ -1333,17 +1335,17 @@ f<span class="token operator">-></span>uplink<span class="token operator">=</spa
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="动态内存管理机制">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">动态内存管理机制</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
-动态内存管理机制占用块和空闲块对于计算机中的内存来说，称已经分配给用户的的内存区统称为“占用块”；还未分配出去的内存区统称为“空闲块”或者“可利用空间块”。
-系统的内存管理对于初始状态下的内存来说，整个空间都是一个空闲块（在编译程序中称为
+占用块和空闲块对于计算机中的内存来说，称已经分配给用户的的内存区统称为“占用块”；还未分配出去的内存区统称为“空闲块”或者“可利用空间块”。
+系统的内存管理对于初始状态下的内存来说，整个空间都是一个空闲块（在编译程序中称为“堆”）。但是随
                         
                     </div>
                     <div class="publish-info">
