@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://forwardpeng.github.io/"/>
-  <updated>2022-12-04T12:45:30.684Z</updated>
+  <updated>2022-12-04T12:54:17.026Z</updated>
   <id>http://forwardpeng.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://forwardpeng.github.io/2022/12/04/cao-zuo-xi-tong/dong-tai-nei-cun-guan-li/"/>
     <id>http://forwardpeng.github.io/2022/12/04/cao-zuo-xi-tong/dong-tai-nei-cun-guan-li/</id>
     <published>2022-12-04T07:27:31.000Z</published>
-    <updated>2022-12-04T12:45:30.684Z</updated>
+    <updated>2022-12-04T12:54:17.026Z</updated>
     
     <summary type="html">
     
@@ -42,6 +42,32 @@
     
     
       <category term="数据结构" scheme="http://forwardpeng.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习实战</title>
+    <link href="http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/suan-fa-shi-jian/ji-qi-xue-xi-shi-zhan/"/>
+    <id>http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/suan-fa-shi-jian/ji-qi-xue-xi-shi-zhan/</id>
+    <published>2022-11-29T01:07:40.000Z</published>
+    <updated>2022-12-04T13:28:12.383Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;机器学习实战笔记&quot;&gt;&lt;a href=&quot;#机器学习实战笔记&quot; class=&quot;headerlink&quot; title=&quot;机器学习实战笔记&quot;&gt;&lt;/a&gt;机器学习实战笔记&lt;/h1&gt;&lt;h2 id=&quot;内容提要&quot;&gt;&lt;a href=&quot;#内容提要&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="机器学习" scheme="http://forwardpeng.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="工程实践" scheme="http://forwardpeng.github.io/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/"/>
     
   </entry>
   

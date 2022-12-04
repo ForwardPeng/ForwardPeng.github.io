@@ -771,7 +771,7 @@ f<span class="token operator">-></span>uplink<span class="token operator">=</spa
 <li>第一种方法中使用递归算法实现的遍历。而递归底层使用的栈的存储结构，所以也可以直接使用栈的方式进行遍历；</li>
 <li>以上两种方法都是使用栈结构来记录遍历时指针所走的路径，便于在后期可以沿原路返回。所以第三种方式就是使用其他的方法代替栈的作用。</li>
 </ul>
-<h1 id="内存紧缩-内存碎片化处理"><a href="#内存紧缩-内存碎片化处理" class="headerlink" title="内存紧缩(内存碎片化处理)"></a>内存紧缩(内存碎片化处理)</h1><p>这些地址连续的未被占用的存储区在编译程序中称为堆。</p>
+<h1 id="内存碎片化处理"><a href="#内存碎片化处理" class="headerlink" title="内存碎片化处理"></a>内存碎片化处理</h1><p>这些地址连续的未被占用的存储区在编译程序中称为堆。</p>
 <h1 id="分配内存空间"><a href="#分配内存空间" class="headerlink" title="分配内存空间"></a>分配内存空间</h1><p>在分配内存空间时，每次都从可利用空间中选择最低（或者最高）的地址进行分配。具体的实现办法为：设置一个指针（称为堆指针），每次用户申请存储空间时，都是堆的最低（或者最高）地址进行分配。假设当用户申请 N 个单位的存储空间时，堆指针向高地址（或者低地址）移动 N 个存储单位，这 N 个存储单位即为分配给用户使用的空闲块，空闲块的起始地址为堆指针移动之前所在的地址。</p>
 <p>例如，某一时间段有四个用户（A、B、C、D）分别申请 12 个单位、6 个单位、10 个单位和 8 个单位的存储空间，假设此时堆指针的初值为 0。则分配后存储空间的效果为：</p>
 <div align="center"><img src="/images/内存空间分配.png" width="800"></div>
@@ -1328,52 +1328,49 @@ f<span class="token operator">-></span>uplink<span class="token operator">=</spa
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/12/04/cao-zuo-xi-tong/dong-tai-nei-cun-guan-li/">
+                <a href="/2022/11/29/ji-qi-xue-xi/suan-fa-shi-jian/ji-qi-xue-xi-shi-zhan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="动态内存管理机制">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="机器学习实战">
                         
-                        <span class="card-title">动态内存管理机制</span>
+                        <span class="card-title">机器学习实战</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-占用块和空闲块对于计算机中的内存来说，称已经分配给用户的的内存区统称为“占用块”；还未分配出去的内存区统称为“空闲块”或者“可利用空间块”。
-系统的内存管理对于初始状态下的内存来说，整个空间都是一个空闲块（在编译程序中称为“堆”）。但是随
+                            机器学习实战笔记内容提要
+聚焦监督学习，以结构化数据的预测问题为主
+监督学习：y=f(x)，gbdt，nn都是不同类型的f，深度学习就是其中的一类f，y叫label，x叫特征
+分类问题：y是离散的，回归问题：y是连续的
+结构化数据：每个数都
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-12-04
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-11-29
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/计算机基础/" class="post-category" target="_blank">
-                                    计算机基础
-                                </a>
-                            
-                            <a href="/categories/计算机基础/操作系统/" class="post-category" target="_blank">
-                                    操作系统
+                            <a href="/categories/机器学习/" class="post-category" target="_blank">
+                                    机器学习
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/数据结构/" target="_blank">
-                        <span class="chip bg-color">数据结构</span>
+                    <a href="/tags/工程实践/" target="_blank">
+                        <span class="chip bg-color">工程实践</span>
                     </a>
                     
                 </div>
@@ -1547,7 +1544,7 @@ f<span class="token operator">-></span>uplink<span class="token operator">=</spa
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">6.9k</span>
+            <span class="white-color">10.7k</span>
             
 
             <br>
