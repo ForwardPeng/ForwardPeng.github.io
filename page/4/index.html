@@ -424,11 +424,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                             
                             参考链接
 怎样才能写出 Pythonic 的代码？
-Python优美代码的一些方法内置函数enumerate类from __future__ import print_function
+Python优美代码的一些方法内置函数enumerate类```pythonfrom future import print_function
 
-
-
-L = [i*i for i in range(
+L = [i*i for i in ran
                             
                         </div>
                         <div class="publish-info">
@@ -698,9 +696,8 @@ name
                             Python注释Python 支持两种类型的注释，分别是单行注释和多行注释。
 Python单行注释Python使用井号#作为单行注释的符号，语法格式为：
 
-#注释内容
-
-从井号#开始，直到这行结束为止的所有内容都是注释。Python 解释器
+注释内容
+从井号#开始，直到这行结束为止的所有内容都是注释。Python 解释器遇到
                             
                         </div>
                         <div class="publish-info">
@@ -832,7 +829,7 @@ Python单行注释Python使用井号#作为单行注释的符号，语法格式�
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1013,6 +1010,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

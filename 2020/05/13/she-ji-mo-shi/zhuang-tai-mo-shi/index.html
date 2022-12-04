@@ -526,237 +526,238 @@
 <li>具体状态（Concrete    State）角色：实现抽象状态所对应的行为。</li>
 </ul>
 <p>代码实现如下：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StatePatternClient</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>       
-        Context context<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Context</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//创建环境       </span>
-        context<span class="token punctuation">.</span><span class="token function">Handle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//处理请求</span>
-        context<span class="token punctuation">.</span><span class="token function">Handle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        context<span class="token punctuation">.</span><span class="token function">Handle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        context<span class="token punctuation">.</span><span class="token function">Handle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//环境类</span>
-<span class="token keyword">class</span> <span class="token class-name">Context</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> State state<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//定义环境类的初始状态</span>
-    <span class="token keyword">public</span> <span class="token function">Context</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ConcreteStateA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//设置新状态</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setState</span><span class="token punctuation">(</span>State state<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token operator">=</span>state<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//读取状态</span>
-    <span class="token keyword">public</span> State <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//对请求做处理</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">Handle</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        state<span class="token punctuation">.</span><span class="token function">Handle</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象状态类</span>
-<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">State</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">Handle</span><span class="token punctuation">(</span>Context context<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体状态A类</span>
-<span class="token keyword">class</span> <span class="token class-name">ConcreteStateA</span> <span class="token keyword">extends</span> <span class="token class-name">State</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">Handle</span><span class="token punctuation">(</span>Context context<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前状态是 A."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        context<span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ConcreteStateB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体状态B类</span>
-<span class="token keyword">class</span> <span class="token class-name">ConcreteStateB</span> <span class="token keyword">extends</span> <span class="token class-name">State</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">Handle</span><span class="token punctuation">(</span>Context context<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前状态是 B."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        context<span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ConcreteStateA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">public class StatePatternClient
+{
+    public static void main(String[] args)
+    {       
+        Context context=new Context();    //创建环境       
+        context.Handle();    //处理请求
+        context.Handle();
+        context.Handle();
+        context.Handle();
+    }
+}
+//环境类
+class Context
+{
+    private State state;
+    //定义环境类的初始状态
+    public Context()
+    {
+        this.state=new ConcreteStateA();
+    }
+    //设置新状态
+    public void setState(State state)
+    {
+        this.state=state;
+    }
+    //读取状态
+    public State getState()
+    {
+        return(state);
+    }
+    //对请求做处理
+    public void Handle()
+    {
+        state.Handle(this);
+    }
+}
+//抽象状态类
+abstract class State
+{
+    public abstract void Handle(Context context);
+}
+//具体状态A类
+class ConcreteStateA extends State
+{
+    public void Handle(Context context)
+    {
+        System.out.println("当前状态是 A.");
+        context.setState(new ConcreteStateB());
+    }
+}
+//具体状态B类
+class ConcreteStateB extends State
+{
+    public void Handle(Context context)
+    {
+        System.out.println("当前状态是 B.");
+        context.setState(new ConcreteStateA());
+    }
+}
+/**
 *当前状态是 A.
 当前状态是 B.
 当前状态是 A.
 当前状态是 B.
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><p>用“状态模式”设计一个多线程的状态转换程序。分析：多线程存在5种状态，分别为新建状态、就绪状态、运行状态、阻塞状态和死亡状态，各个状态当遇到相关方法调用或事件触发时会转换到其他状态，其状态转换规律如下图所示。</p>
 <div align="center"><img src="/images/stateConv.png" width="400"></div>
 
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> Design_Pattern<span class="token punctuation">.</span>state<span class="token punctuation">;</span>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">package Design_Pattern.state;
 
-<span class="token comment" spellcheck="true">/**
+/**
  * @author peng
  * @date 20-5-13 下午10:44
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ThreadStateTest</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        ThreadContext context <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ThreadContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        context<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        context<span class="token punctuation">.</span><span class="token function">getCPU</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        context<span class="token punctuation">.</span><span class="token function">suspend</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        context<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        context<span class="token punctuation">.</span><span class="token function">getCPU</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        context<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//环境类</span>
-<span class="token keyword">class</span> <span class="token class-name">ThreadContext</span><span class="token punctuation">{</span>
-    <span class="token keyword">private</span> ThreadState state<span class="token punctuation">;</span>
-    <span class="token function">ThreadContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        state<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setState</span><span class="token punctuation">(</span>ThreadState state<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token operator">=</span>state<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> ThreadState <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> state<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token punctuation">(</span><span class="token punctuation">(</span>New<span class="token punctuation">)</span> state<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getCPU</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token punctuation">(</span><span class="token punctuation">(</span>Runnable<span class="token punctuation">)</span> state<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getCPU</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">suspend</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token punctuation">(</span><span class="token punctuation">(</span>Running<span class="token punctuation">)</span> state<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">suspend</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token punctuation">(</span><span class="token punctuation">(</span>Running<span class="token punctuation">)</span> state<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">resume</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token punctuation">(</span><span class="token punctuation">(</span>Blocked<span class="token punctuation">)</span> state<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象状态类：线程状态</span>
-<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">ThreadState</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">protected</span> String stateName<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//状态名</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体状态类：新建状态</span>
-<span class="token keyword">class</span> <span class="token class-name">New</span> <span class="token keyword">extends</span> <span class="token class-name">ThreadState</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        stateName<span class="token operator">=</span><span class="token string">"新建状态"</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前线程处于：新建状态."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span>ThreadContext hj<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"调用start()方法-->"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>stateName<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"新建状态"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            hj<span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-        <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前线程不是新建状态，不能调用start()方法."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体状态类：就绪状态</span>
-<span class="token keyword">class</span> <span class="token class-name">Runnable</span> <span class="token keyword">extends</span> <span class="token class-name">ThreadState</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token function">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        stateName<span class="token operator">=</span><span class="token string">"就绪状态"</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前线程处于：就绪状态."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getCPU</span><span class="token punctuation">(</span>ThreadContext hj<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"获得CPU时间-->"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>stateName<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"就绪状态"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            hj<span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Running</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-        <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前线程不是就绪状态，不能获取CPU."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体状态类：运行状态</span>
-<span class="token keyword">class</span> <span class="token class-name">Running</span> <span class="token keyword">extends</span> <span class="token class-name">ThreadState</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token function">Running</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        stateName<span class="token operator">=</span><span class="token string">"运行状态"</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前线程处于：运行状态."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">suspend</span><span class="token punctuation">(</span>ThreadContext hj<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"调用suspend()方法-->"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>stateName<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"运行状态"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            hj<span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Blocked</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-        <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前线程不是运行状态，不能调用suspend()方法."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">stop</span><span class="token punctuation">(</span>ThreadContext hj<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"调用stop()方法-->"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>stateName<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"运行状态"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            hj<span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Dead</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-        <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前线程不是运行状态，不能调用stop()方法."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体状态类：阻塞状态</span>
-<span class="token keyword">class</span> <span class="token class-name">Blocked</span> <span class="token keyword">extends</span> <span class="token class-name">ThreadState</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token function">Blocked</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        stateName<span class="token operator">=</span><span class="token string">"阻塞状态"</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前线程处于：阻塞状态."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">resume</span><span class="token punctuation">(</span>ThreadContext hj<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"调用resume()方法-->"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>stateName<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"阻塞状态"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            hj<span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-        <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前线程不是阻塞状态，不能调用resume()方法."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体状态类：死亡状态</span>
-<span class="token keyword">class</span> <span class="token class-name">Dead</span> <span class="token keyword">extends</span> <span class="token class-name">ThreadState</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token function">Dead</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        stateName<span class="token operator">=</span><span class="token string">"死亡状态"</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"当前线程处于：死亡状态."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/**
+ */
+public class ThreadStateTest {
+    public static void main(String[] args) {
+        ThreadContext context = new ThreadContext();
+        context.start();
+        context.getCPU();
+        context.suspend();
+        context.resume();
+        context.getCPU();
+        context.stop();
+    }
+}
+//环境类
+class ThreadContext{
+    private ThreadState state;
+    ThreadContext(){
+        state=new New();
+    }
+    public void setState(ThreadState state)
+    {
+        this.state=state;
+    }
+    public ThreadState getState()
+    {
+        return state;
+    }
+    public void start()
+    {
+        ((New) state).start(this);
+    }
+    public void getCPU()
+    {
+        ((Runnable) state).getCPU(this);
+    }
+    public void suspend()
+    {
+        ((Running) state).suspend(this);
+    }
+    public void stop()
+    {
+        ((Running) state).stop(this);
+    }
+    public void resume()
+    {
+        ((Blocked) state).resume(this);
+    }
+}
+//抽象状态类：线程状态
+abstract class ThreadState
+{
+    protected String stateName; //状态名
+}
+//具体状态类：新建状态
+class New extends ThreadState
+{
+    public New()
+    {
+        stateName="新建状态";
+        System.out.println("当前线程处于：新建状态.");
+    }
+    public void start(ThreadContext hj)
+    {
+        System.out.print("调用start()方法-->");
+        if(stateName.equals("新建状态"))
+        {
+            hj.setState(new Runnable());
+        }
+        else
+        {
+            System.out.println("当前线程不是新建状态，不能调用start()方法.");
+        }
+    }
+}
+//具体状态类：就绪状态
+class Runnable extends ThreadState
+{
+    public Runnable()
+    {
+        stateName="就绪状态";
+        System.out.println("当前线程处于：就绪状态.");
+    }
+    public void getCPU(ThreadContext hj)
+    {
+        System.out.print("获得CPU时间-->");
+        if(stateName.equals("就绪状态"))
+        {
+            hj.setState(new Running());
+        }
+        else
+        {
+            System.out.println("当前线程不是就绪状态，不能获取CPU.");
+        }
+    }
+}
+//具体状态类：运行状态
+class Running extends ThreadState
+{
+    public Running()
+    {
+        stateName="运行状态";
+        System.out.println("当前线程处于：运行状态.");
+    }
+    public void suspend(ThreadContext hj)
+    {
+        System.out.print("调用suspend()方法-->");
+        if(stateName.equals("运行状态"))
+        {
+            hj.setState(new Blocked());
+        }
+        else
+        {
+            System.out.println("当前线程不是运行状态，不能调用suspend()方法.");
+        }
+    }
+    public void stop(ThreadContext hj)
+    {
+        System.out.print("调用stop()方法-->");
+        if(stateName.equals("运行状态"))
+        {
+            hj.setState(new Dead());
+        }
+        else
+        {
+            System.out.println("当前线程不是运行状态，不能调用stop()方法.");
+        }
+    }
+}
+//具体状态类：阻塞状态
+class Blocked extends ThreadState
+{
+    public Blocked()
+    {
+        stateName="阻塞状态";
+        System.out.println("当前线程处于：阻塞状态.");
+    }
+    public void resume(ThreadContext hj)
+    {
+        System.out.print("调用resume()方法-->");
+        if(stateName.equals("阻塞状态"))
+        {
+            hj.setState(new Runnable());
+        }
+        else
+        {
+            System.out.println("当前线程不是阻塞状态，不能调用resume()方法.");
+        }
+    }
+}
+//具体状态类：死亡状态
+class Dead extends ThreadState
+{
+    public Dead()
+    {
+        stateName="死亡状态";
+        System.out.println("当前线程处于：死亡状态.");
+    }
+}
+/**
 当前线程处于：新建状态.
 调用start()方法-->当前线程处于：就绪状态.
 获得CPU时间-->当前线程处于：运行状态.
@@ -764,7 +765,8 @@
 调用resume()方法-->当前线程处于：就绪状态.
 获得CPU时间-->当前线程处于：运行状态.
 调用stop()方法-->当前线程处于：死亡状态.
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>通常在以下情况下可以考虑使用状态模式。</p>
 <ul>
 <li>当一个对象的行为取决于它的状态，并且它必须在运行时根据状态改变它的行为时，就可以考虑使用状态模式。</li>
@@ -1498,7 +1500,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1679,6 +1681,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

@@ -527,107 +527,109 @@
 <li>具体策略（Concrete Strategy）类：实现了抽象策略定义的接口，提供具体的算法实现。</li>
 <li>环境（Context）类：持有一个策略类的引用，最终给客户端调用。</li>
 </ul>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> strategy<span class="token punctuation">;</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StrategyPattern</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        Context c<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Context</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Strategy s<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ConcreteStrategyA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        c<span class="token punctuation">.</span><span class="token function">setStrategy</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        c<span class="token punctuation">.</span><span class="token function">strategyMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-----------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        s<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ConcreteStrategyB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        c<span class="token punctuation">.</span><span class="token function">setStrategy</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        c<span class="token punctuation">.</span><span class="token function">strategyMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象策略类</span>
-<span class="token keyword">interface</span> <span class="token class-name">Strategy</span>
-<span class="token punctuation">{</span>   
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">strategyMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//策略方法</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体策略类A</span>
-<span class="token keyword">class</span> <span class="token class-name">ConcreteStrategyA</span> <span class="token keyword">implements</span> <span class="token class-name">Strategy</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">strategyMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"具体策略A的策略方法被访问！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体策略类B</span>
-<span class="token keyword">class</span> <span class="token class-name">ConcreteStrategyB</span> <span class="token keyword">implements</span> <span class="token class-name">Strategy</span>
-<span class="token punctuation">{</span>
-  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">strategyMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"具体策略B的策略方法被访问！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//环境类</span>
-<span class="token keyword">class</span> <span class="token class-name">Context</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> Strategy strategy<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> Strategy <span class="token function">getStrategy</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> strategy<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setStrategy</span><span class="token punctuation">(</span>Strategy strategy<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>strategy<span class="token operator">=</span>strategy<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">strategyMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        strategy<span class="token punctuation">.</span><span class="token function">strategyMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/**
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre class="line-numbers language-lang-java"><code class="language-lang-java">package strategy;
+public class StrategyPattern
+{
+    public static void main(String[] args)
+    {
+        Context c=new Context();
+        Strategy s=new ConcreteStrategyA();
+        c.setStrategy(s);
+        c.strategyMethod();
+        System.out.println("-----------------");
+        s=new ConcreteStrategyB();
+        c.setStrategy(s);
+        c.strategyMethod();
+    }
+}
+//抽象策略类
+interface Strategy
+{   
+    public void strategyMethod();    //策略方法
+}
+//具体策略类A
+class ConcreteStrategyA implements Strategy
+{
+    public void strategyMethod()
+    {
+        System.out.println("具体策略A的策略方法被访问！");
+    }
+}
+//具体策略类B
+class ConcreteStrategyB implements Strategy
+{
+  public void strategyMethod()
+  {
+      System.out.println("具体策略B的策略方法被访问！");
+  }
+}
+//环境类
+class Context
+{
+    private Strategy strategy;
+    public Strategy getStrategy()
+    {
+        return strategy;
+    }
+    public void setStrategy(Strategy strategy)
+    {
+        this.strategy=strategy;
+    }
+    public void strategyMethod()
+    {
+        strategy.strategyMethod();
+    }
+}
+/**
 *具体策略A的策略方法被访问！
 -----------------
 具体策略B的策略方法被访问！
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><p>策略模式在“大闸蟹”做菜中的应用</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//抽象策略类：大闸蟹加工类</span>
-<span class="token keyword">interface</span> <span class="token class-name">CrabCooking</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">CookingMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//做菜方法</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体策略类：清蒸大闸蟹</span>
-<span class="token keyword">class</span> <span class="token class-name">SteamedCrabs</span> <span class="token keyword">extends</span> <span class="token class-name">JLabel</span> <span class="token keyword">implements</span> <span class="token class-name">CrabCooking</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID<span class="token operator">=</span>1L<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">CookingMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-          <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setIcon</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ImageIcon</span><span class="token punctuation">(</span><span class="token string">"src/strategy/SteamedCrabs.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-          <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setHorizontalAlignment</span><span class="token punctuation">(</span>CENTER<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体策略类：红烧大闸蟹</span>
-<span class="token keyword">class</span> <span class="token class-name">BraisedCrabs</span> <span class="token keyword">extends</span> <span class="token class-name">JLabel</span> <span class="token keyword">implements</span> <span class="token class-name">CrabCooking</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID<span class="token operator">=</span>1L<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">CookingMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setIcon</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ImageIcon</span><span class="token punctuation">(</span><span class="token string">"src/strategy/BraisedCrabs.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setHorizontalAlignment</span><span class="token punctuation">(</span>CENTER<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//环境类：厨房</span>
-<span class="token keyword">class</span> <span class="token class-name">Kitchen</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> CrabCooking strategy<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//抽象策略</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setStrategy</span><span class="token punctuation">(</span>CrabCooking strategy<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>strategy<span class="token operator">=</span>strategy<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> CrabCooking <span class="token function">getStrategy</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> strategy<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">CookingMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        strategy<span class="token punctuation">.</span><span class="token function">CookingMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//做菜   </span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">//抽象策略类：大闸蟹加工类
+interface CrabCooking
+{
+    public void CookingMethod();    //做菜方法
+}
+//具体策略类：清蒸大闸蟹
+class SteamedCrabs extends JLabel implements CrabCooking
+{
+    private static final long serialVersionUID=1L;
+    public void CookingMethod()
+    {
+          this.setIcon(new ImageIcon("src/strategy/SteamedCrabs.jpg"));
+          this.setHorizontalAlignment(CENTER);
+    }
+}
+//具体策略类：红烧大闸蟹
+class BraisedCrabs extends JLabel implements CrabCooking
+{
+    private static final long serialVersionUID=1L;
+    public void CookingMethod()
+    {
+        this.setIcon(new ImageIcon("src/strategy/BraisedCrabs.jpg"));
+        this.setHorizontalAlignment(CENTER);
+    }
+}
+//环境类：厨房
+class Kitchen
+{
+    private CrabCooking strategy;    //抽象策略
+    public void setStrategy(CrabCooking strategy)
+    {
+        this.strategy=strategy;
+    }
+    public CrabCooking getStrategy()
+    {
+        return strategy;
+    }
+    public void CookingMethod()
+    {
+        strategy.CookingMethod();    //做菜   
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>策略模式在很多地方用到，如 Java SE 中的容器布局管理就是一个典型的实例，Java SE 中的每个容器都存在多种布局供用户选择。在程序设计中，通常在以下几种情况中使用策略模式较多。</p>
 <ul>
 <li>一个系统需要动态地在几种算法中选择一种时，可将每个算法封装到策略类中。</li>
@@ -1351,7 +1353,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1532,6 +1534,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

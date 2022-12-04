@@ -484,14 +484,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    4 分
                 </div>
                 
                 
@@ -520,184 +520,186 @@
 <li>客户类（Client）角色：创建处理链，并向链头的具体处理者对象提交请求，它不关心处理细节和请求的传递过程。</li>
 </ul>
 <p>代码实现如下：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ChainOfResponsibilityPattern</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//组装责任链 </span>
-        Handler handler1<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ConcreteHandler1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-        Handler handler2<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ConcreteHandler2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-        handler1<span class="token punctuation">.</span><span class="token function">setNext</span><span class="token punctuation">(</span>handler2<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-        <span class="token comment" spellcheck="true">//提交请求 </span>
-        handler1<span class="token punctuation">.</span><span class="token function">handleRequest</span><span class="token punctuation">(</span><span class="token string">"two"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象处理者角色</span>
-<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Handler</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> Handler next<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setNext</span><span class="token punctuation">(</span>Handler next<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>next<span class="token operator">=</span>next<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> Handler <span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span> 
-        <span class="token keyword">return</span> next<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>   
-    <span class="token comment" spellcheck="true">//处理请求的方法</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">handleRequest</span><span class="token punctuation">(</span>String request<span class="token punctuation">)</span><span class="token punctuation">;</span>       
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体处理者角色1</span>
-<span class="token keyword">class</span> <span class="token class-name">ConcreteHandler1</span> <span class="token keyword">extends</span> <span class="token class-name">Handler</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">handleRequest</span><span class="token punctuation">(</span>String request<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"one"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
-        <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"具体处理者1负责处理该请求！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!=</span>null<span class="token punctuation">)</span> 
-            <span class="token punctuation">{</span>
-                <span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">handleRequest</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>             
-            <span class="token punctuation">}</span>
-            <span class="token keyword">else</span>
-            <span class="token punctuation">{</span>
-                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"没有人处理该请求！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span> 
-    <span class="token punctuation">}</span> 
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体处理者角色2</span>
-<span class="token keyword">class</span> <span class="token class-name">ConcreteHandler2</span> <span class="token keyword">extends</span> <span class="token class-name">Handler</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">handleRequest</span><span class="token punctuation">(</span>String request<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"two"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
-        <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"具体处理者2负责处理该请求！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!=</span>null<span class="token punctuation">)</span> 
-            <span class="token punctuation">{</span>
-                <span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">handleRequest</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>             
-            <span class="token punctuation">}</span>
-            <span class="token keyword">else</span>
-            <span class="token punctuation">{</span>
-                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"没有人处理该请求！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span> 
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">public class ChainOfResponsibilityPattern
+{
+    public static void main(String[] args)
+    {
+        //组装责任链 
+        Handler handler1=new ConcreteHandler1(); 
+        Handler handler2=new ConcreteHandler2(); 
+        handler1.setNext(handler2); 
+        //提交请求 
+        handler1.handleRequest("two");
+    }
+}
+//抽象处理者角色
+abstract class Handler
+{
+    private Handler next;
+    public void setNext(Handler next)
+    {
+        this.next=next; 
+    }
+    public Handler getNext()
+    { 
+        return next; 
+    }   
+    //处理请求的方法
+    public abstract void handleRequest(String request);       
+}
+//具体处理者角色1
+class ConcreteHandler1 extends Handler
+{
+    public void handleRequest(String request)
+    {
+        if(request.equals("one")) 
+        {
+            System.out.println("具体处理者1负责处理该请求！");       
+        }
+        else
+        {
+            if(getNext()!=null) 
+            {
+                getNext().handleRequest(request);             
+            }
+            else
+            {
+                System.out.println("没有人处理该请求！");
+            }
+        } 
+    } 
+}
+//具体处理者角色2
+class ConcreteHandler2 extends Handler
+{
+    public void handleRequest(String request)
+    {
+        if(request.equals("two")) 
+        {
+            System.out.println("具体处理者2负责处理该请求！");       
+        }
+        else
+        {
+            if(getNext()!=null) 
+            {
+                getNext().handleRequest(request);             
+            }
+            else
+            {
+                System.out.println("没有人处理该请求！");
+            }
+        } 
+    }
+}
+/**
 *具体处理者2负责处理该请求！
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><p>用责任链模式设计一个请假条审批模块。分析：假如规定学生请假小于或等于 2 天，班主任可以批准；小于或等于 7 天，系主任可以批准；小于或等于 10 天，院长可以批准；其他情况不予批准；这个实例适合使用职责链模式实现</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//抽象处理者：领导类</span>
-<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Leader</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> Leader next<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setNext</span><span class="token punctuation">(</span>Leader next<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>next<span class="token operator">=</span>next<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> Leader <span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span> 
-        <span class="token keyword">return</span> next<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>   
-    <span class="token comment" spellcheck="true">//处理请求的方法</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">handleRequest</span><span class="token punctuation">(</span><span class="token keyword">int</span> LeaveDays<span class="token punctuation">)</span><span class="token punctuation">;</span>       
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体处理者1：班主任类</span>
-<span class="token keyword">class</span> <span class="token class-name">ClassAdviser</span> <span class="token keyword">extends</span> <span class="token class-name">Leader</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">handleRequest</span><span class="token punctuation">(</span><span class="token keyword">int</span> LeaveDays<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>LeaveDays<span class="token operator">&lt;=</span><span class="token number">2</span><span class="token punctuation">)</span> 
-        <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"班主任批准您请假"</span> <span class="token operator">+</span> LeaveDays <span class="token operator">+</span> <span class="token string">"天。"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> 
-            <span class="token punctuation">{</span>
-                <span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">handleRequest</span><span class="token punctuation">(</span>LeaveDays<span class="token punctuation">)</span><span class="token punctuation">;</span>             
-            <span class="token punctuation">}</span>
-            <span class="token keyword">else</span>
-            <span class="token punctuation">{</span>
-                  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"请假天数太多，没有人批准该假条！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span> 
-    <span class="token punctuation">}</span> 
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体处理者2：系主任类</span>
-<span class="token keyword">class</span> <span class="token class-name">DepartmentHead</span> <span class="token keyword">extends</span> <span class="token class-name">Leader</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">handleRequest</span><span class="token punctuation">(</span><span class="token keyword">int</span> LeaveDays<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>LeaveDays<span class="token operator">&lt;=</span><span class="token number">7</span><span class="token punctuation">)</span> 
-        <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"系主任批准您请假"</span> <span class="token operator">+</span> LeaveDays <span class="token operator">+</span> <span class="token string">"天。"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> 
-            <span class="token punctuation">{</span>
-                  <span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">handleRequest</span><span class="token punctuation">(</span>LeaveDays<span class="token punctuation">)</span><span class="token punctuation">;</span>             
-            <span class="token punctuation">}</span>
-            <span class="token keyword">else</span>
-            <span class="token punctuation">{</span>
-                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"请假天数太多，没有人批准该假条！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-           <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span> 
-    <span class="token punctuation">}</span> 
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体处理者3：院长类</span>
-<span class="token keyword">class</span> <span class="token class-name">Dean</span> <span class="token keyword">extends</span> <span class="token class-name">Leader</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">handleRequest</span><span class="token punctuation">(</span><span class="token keyword">int</span> LeaveDays<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>LeaveDays<span class="token operator">&lt;=</span><span class="token number">10</span><span class="token punctuation">)</span> 
-        <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"院长批准您请假"</span> <span class="token operator">+</span> LeaveDays <span class="token operator">+</span> <span class="token string">"天。"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-        <span class="token punctuation">{</span>
-              <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> 
-            <span class="token punctuation">{</span>
-                <span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">handleRequest</span><span class="token punctuation">(</span>LeaveDays<span class="token punctuation">)</span><span class="token punctuation">;</span>             
-            <span class="token punctuation">}</span>
-            <span class="token keyword">else</span>
-            <span class="token punctuation">{</span>
-                  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"请假天数太多，没有人批准该假条！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span> 
-    <span class="token punctuation">}</span> 
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体处理者4：教务处长类</span>
-<span class="token keyword">class</span> <span class="token class-name">DeanOfStudies</span> <span class="token keyword">extends</span> <span class="token class-name">Leader</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">handleRequest</span><span class="token punctuation">(</span><span class="token keyword">int</span> LeaveDays<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>LeaveDays<span class="token operator">&lt;=</span><span class="token number">20</span><span class="token punctuation">)</span> 
-        <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"教务处长批准您请假"</span><span class="token operator">+</span>LeaveDays<span class="token operator">+</span><span class="token string">"天。"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-        <span class="token punctuation">{</span>
-              <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!=</span>null<span class="token punctuation">)</span> 
-            <span class="token punctuation">{</span>
-                <span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">handleRequest</span><span class="token punctuation">(</span>LeaveDays<span class="token punctuation">)</span><span class="token punctuation">;</span>          
-            <span class="token punctuation">}</span>
-            <span class="token keyword">else</span>
-            <span class="token punctuation">{</span>
-                  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"请假天数太多，没有人批准该假条！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span> 
-    <span class="token punctuation">}</span> 
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">//抽象处理者：领导类
+abstract class Leader
+{
+    private Leader next;
+    public void setNext(Leader next)
+    {
+        this.next=next; 
+    }
+    public Leader getNext()
+    { 
+        return next; 
+    }   
+    //处理请求的方法
+    public abstract void handleRequest(int LeaveDays);       
+}
+//具体处理者1：班主任类
+class ClassAdviser extends Leader
+{
+    public void handleRequest(int LeaveDays)
+    {
+        if(LeaveDays<=2) 
+        {
+            System.out.println("班主任批准您请假" + LeaveDays + "天。");       
+        }
+        else
+        {
+            if(getNext() != null) 
+            {
+                getNext().handleRequest(LeaveDays);             
+            }
+            else
+            {
+                  System.out.println("请假天数太多，没有人批准该假条！");
+            }
+        } 
+    } 
+}
+//具体处理者2：系主任类
+class DepartmentHead extends Leader
+{
+    public void handleRequest(int LeaveDays)
+    {
+        if(LeaveDays<=7) 
+        {
+            System.out.println("系主任批准您请假" + LeaveDays + "天。");       
+        }
+        else
+        {
+            if(getNext() != null) 
+            {
+                  getNext().handleRequest(LeaveDays);             
+            }
+            else
+            {
+                System.out.println("请假天数太多，没有人批准该假条！");
+           }
+        } 
+    } 
+}
+//具体处理者3：院长类
+class Dean extends Leader
+{
+    public void handleRequest(int LeaveDays)
+    {
+        if(LeaveDays<=10) 
+        {
+            System.out.println("院长批准您请假" + LeaveDays + "天。");       
+        }
+        else
+        {
+              if(getNext() != null) 
+            {
+                getNext().handleRequest(LeaveDays);             
+            }
+            else
+            {
+                  System.out.println("请假天数太多，没有人批准该假条！");
+            }
+        } 
+    } 
+}
+//具体处理者4：教务处长类
+class DeanOfStudies extends Leader
+{
+    public void handleRequest(int LeaveDays)
+    {
+        if(LeaveDays<=20) 
+        {
+            System.out.println("教务处长批准您请假"+LeaveDays+"天。");       
+        }
+        else
+        {
+              if(getNext()!=null) 
+            {
+                getNext().handleRequest(LeaveDays);          
+            }
+            else
+            {
+                  System.out.println("请假天数太多，没有人批准该假条！");
+            }
+        } 
+    } 
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>责任链模式通常在以下几种情况使用。</p>
 <ul>
 <li>有多个对象可以处理一个请求，哪个对象处理该请求由运行时刻自动确定。</li>
@@ -1417,7 +1419,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1598,6 +1600,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

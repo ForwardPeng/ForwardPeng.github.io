@@ -528,10 +528,10 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-混排服务架构"><a href="#2-混排服务架构" class="headerlink" title="2.混排服务架构"></a>2.混排服务架构</h3><div align="center"><img src="/images/混排.png" width="800"></div>
+<h3 id="2-混排服务架构"><a href="#2-混排服务架构" class="headerlink" title="2.混排服务架构"></a>2.混排服务架构</h3><p><div align="center"><img src="/images/混排.png" width="800"></div></p>
 <center>混排服务</center>
 
-<h3 id="3-商家排序服务架构"><a href="#3-商家排序服务架构" class="headerlink" title="3. 商家排序服务架构"></a>3. 商家排序服务架构</h3><div align="center"><img src="/images/商家排序服务架构.png" width="800"></div>
+<h3 id="3-商家排序服务架构"><a href="#3-商家排序服务架构" class="headerlink" title="3. 商家排序服务架构"></a>3. 商家排序服务架构</h3><p><div align="center"><img src="/images/商家排序服务架构.png" width="800"></div></p>
 <center>商家排序服务</center>
 
 <h2 id="二、商家排序预估模型"><a href="#二、商家排序预估模型" class="headerlink" title="二、商家排序预估模型"></a>二、商家排序预估模型</h2><h3 id="1-召回策略"><a href="#1-召回策略" class="headerlink" title="1. 召回策略"></a>1. 召回策略</h3><ul>
@@ -554,7 +554,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-精排模型演进路径"><a href="#2-精排模型演进路径" class="headerlink" title="2. 精排模型演进路径"></a>2. 精排模型演进路径</h3><div align="center"><img src="/images/精排模型演进路径.png" width="800"></div>
+<h3 id="2-精排模型演进路径"><a href="#2-精排模型演进路径" class="headerlink" title="2. 精排模型演进路径"></a>2. 精排模型演进路径</h3><p><div align="center"><img src="/images/精排模型演进路径.png" width="800"></div></p>
 <center>精排模型演进</center>
 
 <h3 id="3-精排策略：行为序列模型"><a href="#3-精排策略：行为序列模型" class="headerlink" title="3. 精排策略：行为序列模型"></a>3. 精排策略：行为序列模型</h3><ul>
@@ -568,8 +568,7 @@
 <li>重点方向：<ul>
 <li>商家表示</li>
 <li>上下文信息</li>
-<li>序列抽取（长序列）<div align="center"><img src="/images/行为序列模型.png" width="800"></div>
-<center>行为序列模型</center>
+<li>序列抽取（长序列）<br><div align="center"><img src="/images/行为序列模型.png" width="800"></div><center>行为序列模型</center>
 
 </li>
 </ul>
@@ -585,8 +584,7 @@
 <li>线上收益：PV_CTR+0.72%、UV_RPM+1.38%</li>
 <li>收益来源：<ul>
 <li>多目标</li>
-<li>多任务<div align="center"><img src="/images/多任务学习.png" width="800"></div>
-<center>多任务学习</center>   
+<li>多任务<br><div align="center"><img src="/images/多任务学习.png" width="800"></div><center>多任务学习</center>   
 
 </li>
 </ul>
@@ -604,27 +602,24 @@
 <li>购买/点击/搜索的文本分词</li>
 </ul>
 </li>
-<li><p>用户-商家交叉特征</p>
-<ul>
+<li>用户-商家交叉特征<ul>
 <li>用户：购买/点击Top n商家品类、购买/点击top n商品类</li>
 <li>商家：商家品类、主要商品品类</li>
 </ul>
 </li>
-<li><p>场景-商家交叉特征</p>
-<ul>
+<li>场景-商家交叉特征<ul>
 <li>场景：城市、小区/楼宇、地址类型、geohash、时段</li>
 </ul>
 </li>
-<li><p>2个月训练数据</p>
-</li>
+<li>2个月训练数据</li>
 </ul>
-<h2 id="三、机制层排序公式"><a href="#三、机制层排序公式" class="headerlink" title="三、机制层排序公式"></a>三、机制层排序公式</h2><h3 id="1-机制层整体迭代路径"><a href="#1-机制层整体迭代路径" class="headerlink" title="1.机制层整体迭代路径"></a>1.机制层整体迭代路径</h3><div align="center"><img src="/images/机制层整体迭代路径.png" width="800"></div>
+<h2 id="三、机制层排序公式"><a href="#三、机制层排序公式" class="headerlink" title="三、机制层排序公式"></a>三、机制层排序公式</h2><h3 id="1-机制层整体迭代路径"><a href="#1-机制层整体迭代路径" class="headerlink" title="1.机制层整体迭代路径"></a>1.机制层整体迭代路径</h3><p><div align="center"><img src="/images/机制层整体迭代路径.png" width="800"></div></p>
 <center>机制层整体迭代路径</center>
 
 <ul>
 <li>混排模型<ul>
 <li>输入精排预估的pCTR、pCXR以及其他相关特征，回归价值函数</li>
-<li>价值函数：a * click + b * pay + c * 是否扶持</li>
+<li>价值函数：a <em> click + b </em> pay + c * 是否扶持</li>
 </ul>
 </li>
 <li>为什么从混排模型迁移到排序公式<ul>
@@ -645,12 +640,12 @@
 <li>保证扶持对象的订单量：如KA商家，保证重要客户的单量</li>
 </ul>
 </li>
-<li>问题建模<br>$$\max_{x_{ij}} \sum_{i \in I} \sum_{j \in J(i)} (x_{ij} * CXR_{ij}) $$<br>$$s.t.$$<br>$$\sum_{i \in I} \sum_{j \in J(i)} (x_{ij} * ISKA_{ij} * CXR_{ij}) \ge C^{ka}<em>{order}$$<br>$$\sum</em>{j \in J(i)}(x_{ij}) = 1, \forall i \in I$$<br>$$x_{ij} \in {0,1}, \forall j \in J(i), \forall i \in I$$<br>其中i:第i个曝光位，I：全部曝光位集合；j：第j个候选，J(i)：第i个曝光位下全部候选集合；$x_{ij}$：第i个曝光位是否曝光第j个候选，0-1变量；$C^{ka}_{order}$：KA的最少成单量。</li>
+<li>问题建模<script type="math/tex; mode=display">\max_{x_{ij}} \sum_{i \in I} \sum_{j \in J(i)} (x_{ij} * CXR_{ij})</script><script type="math/tex; mode=display">s.t.</script><script type="math/tex; mode=display">\sum_{i \in I} \sum_{j \in J(i)} (x_{ij} * ISKA_{ij} * CXR_{ij}) \ge C^{ka}_{order}</script><script type="math/tex; mode=display">\sum_{j \in J(i)}(x_{ij}) = 1, \forall i \in I</script><script type="math/tex; mode=display">x_{ij} \in {0,1}, \forall j \in J(i), \forall i \in I</script>其中i:第i个曝光位，I：全部曝光位集合；j：第j个候选，J(i)：第i个曝光位下全部候选集合；$x_{ij}$：第i个曝光位是否曝光第j个候选，0-1变量；$C^{ka}_{order}$：KA的最少成单量。</li>
 </ul>
 <h3 id="3-排序公式：如何做流量扶持"><a href="#3-排序公式：如何做流量扶持" class="headerlink" title="3.排序公式：如何做流量扶持"></a>3.排序公式：如何做流量扶持</h3><ul>
 <li><p>结论：</p>
 <ul>
-<li>保订单的扶持：常规商家公式$pCXR$，KA商家公式$（1 + a * ISKA）* pCXR$</li>
+<li>保订单的扶持：常规商家公式$pCXR$，KA商家公式$（1 + a <em> ISKA）</em> pCXR$</li>
 <li>保曝光的扶持：常规商家公式$pCXR$，KA商家公式$pCXR+a*ISKA$</li>
 </ul>
 </li>
@@ -658,77 +653,49 @@
 <p>共2条请求，假设需要保证KA商家曝光（要求2条请求中至少一条曝光KA商家）</p>
 </li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center">请求1</th>
-<th align="center">请求2</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">请求1</th>
+<th style="text-align:center">请求2</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">KA</td>
-<td align="center">10</td>
-<td align="center">5</td>
+<tbody>
+<tr>
+<td style="text-align:center">KA</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">5</td>
 </tr>
 <tr>
-<td align="center">非KA</td>
-<td align="center">18</td>
-<td align="center">10</td>
+<td style="text-align:center">非KA</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">10</td>
 </tr>
-<tr>
-<td align="center">a. 公式(1 + a * ISKA) * pCXR：调节系数到a=1.9即可曝光1次KA，总收益10+10</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">b. 公式pCXR+a* ISKA：调节系数到a=6即可曝光1次KA，总收益18+5</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">* 看待排序公式的视角：如何用最小的成本置换</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">* 单词请求视角：两种公式都是将KA的序往前提，不影响每种商家内部的序</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">* 全局视角：公式的形式会决定哪些请求适合曝光KA，或者将KA的曝光/订单需求分配到哪些请求</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">* 线上效果：目标是扶持曝光，曝光扶持公式 vs 订单扶持公式UV_CXR+0.66%，PV_CTR+0.17%</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">### 4.排序公式：多目标</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">* 加法公式 vs 乘法公式</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">* 举例：均衡PVCTR、PVCXR两个目标的时候，以下两个公式哪个好？排序公式1：$a<em>pCTR + b * pCXR$；排序公式2：$pCTR^{a}</em>pCXR^{b}$</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>目标分解到每个曝光位<br>$$PVCTR = \frac{click_count}{expose_count} = \frac{\sum(pCTR)}{expose_count}， PVCXR=\frac{order_count}{expose_count} = \frac{\sum(pCXR)}{expose_count}（假设曝光次数恒定）$$</p>
+</tbody>
+</table>
+</div>
+<pre><code>a. 公式(1 + a * ISKA) * pCXR：调节系数到a=1.9即可曝光1次KA，总收益10+10
+b. 公式pCXR+a* ISKA：调节系数到a=6即可曝光1次KA，总收益18+5
+</code></pre><ul>
+<li>看待排序公式的视角：如何用最小的成本置换<ul>
+<li>单词请求视角：两种公式都是将KA的序往前提，不影响每种商家内部的序</li>
+<li>全局视角：公式的形式会决定哪些请求适合曝光KA，或者将KA的曝光/订单需求分配到哪些请求</li>
+</ul>
 </li>
+<li>线上效果：目标是扶持曝光，曝光扶持公式 vs 订单扶持公式UV_CXR+0.66%，PV_CTR+0.17%<h3 id="4-排序公式：多目标"><a href="#4-排序公式：多目标" class="headerlink" title="4.排序公式：多目标"></a>4.排序公式：多目标</h3></li>
+<li><p>加法公式 vs 乘法公式</p>
+<ul>
+<li>举例：均衡PVCTR、PVCXR两个目标的时候，以下两个公式哪个好？排序公式1：$a<em>pCTR + b </em> pCXR$；排序公式2：$pCTR^{a}*pCXR^{b}$</li>
+</ul>
+</li>
+<li><p>目标分解到每个曝光位</p>
+<script type="math/tex; mode=display">PVCTR = \frac{click_count}{expose_count} = \frac{\sum(pCTR)}{expose_count}， PVCXR=\frac{order_count}{expose_count} = \frac{\sum(pCXR)}{expose_count}（假设曝光次数恒定）</script></li>
 <li><p>什么样的目标是帕累托最优？</p>
 <ul>
-<li>两个目标相加是帕累托最优：$a * PVCTR + b * PVCXR = a * \sum(pCTR) + b * \sum(pCXR) = \sum(a * pCTR + b * pCXR)$</li>
-<li>两个目标相乘帕累托最优：$PVCTR^{a} * PVCXR^{b} = [\sum(pCTR)]^{a} * [\sum(pCXR)]^b$，乘法目标的情况下不可进一步分解。</li>
+<li>两个目标相加是帕累托最优：$a <em> PVCTR + b </em> PVCXR = a <em> \sum(pCTR) + b </em> \sum(pCXR) = \sum(a <em> pCTR + b </em> pCXR)$</li>
+<li>两个目标相乘帕累托最优：$PVCTR^{a} <em> PVCXR^{b} = [\sum(pCTR)]^{a} </em> [\sum(pCXR)]^b$，乘法目标的情况下不可进一步分解。</li>
 </ul>
 </li>
 <li><p>分场景个性化调节系数a,b是否有空间？</p>
@@ -772,8 +739,9 @@
 </table>
 
 <pre><code>a. 公式pCTR + pCXR：两次请求都选择候选1，pCTR总收益5，pCXR总收益为5
-b. 公式pCTR*pCXR：两次请求都选择候选2，pCTR总收益4.2，pCXR总收益为4.2</code></pre><ul>
-<li><p>模拟实验：画图（alpha * metricA + metricB 优于 power(metricA, alpha) * metricB）</p>
+b. 公式pCTR*pCXR：两次请求都选择候选2，pCTR总收益4.2，pCXR总收益为4.2
+</code></pre><ul>
+<li><p>模拟实验：画图（alpha <em> metricA + metricB 优于 power(metricA, alpha) </em> metricB）</p>
 </li>
 <li><p>线上收益：加法 vs 乘法，UV_CXR+0.60%，PV_CTR+0.15%</p>
 </li>
@@ -1356,24 +1324,19 @@ b. 公式pCTR*pCXR：两次请求都选择候选2，pCTR总收益4.2，pCXR总�
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/11/29/ji-qi-xue-xi/sou-guang-tui/guang-gao-shen-du-yu-gu-ji-zhu-zai-mei-tuan-dao-dian-de-tu-po/">
+                <a href="/2022/11/29/ji-qi-xue-xi/sou-guang-tui/tui-jian-pai-xu-ji-zhi-zai-pin-lei-xin-ke-you-hua-shang-de-tan-suo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="广告深度预估技术在到店场景下的突破">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="推荐排序机制在品类新客优化上的探索与实践">
                         
-                        <span class="card-title">广告深度预估技术在到店场景下的突破</span>
+                        <span class="card-title">推荐排序机制在品类新客优化上的探索与实践</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一、背景1.1 背景
-点击率/转化率/交易额预估问题，是广告、推荐领域的核心，预估值准确性与广告/推荐平台的营收和发展直接相关。
-1.2 业务特征与挑战
-O2O业务的模型整体建模设计有一下空间和时间维度两方面的挑战：
-
-LBS空间距离约束：
+                            一、引言&emsp;基于算法的推荐系统存在一个被广为诟病的特性就是“信息茧房”效应：算法通常根据用户在平台的历史行为建模用户兴趣，并在此基础上给用户推荐新的内容，而新推荐的内容又影响到用户接下来的行为。在这种机制上，推荐系统不断强化之前观察
                         
                     </div>
                     <div class="publish-info">
@@ -1548,6 +1511,26 @@ LBS空间距离约束：
 </main>
 
 
+<script src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<!-- 代码语言 -->
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+<!-- 代码块复制 -->
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/clipboard.min.js"></script>
+<!-- 代码块收缩 -->
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script> 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<!-- 代码块折行 -->
+<style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style>
+
+
     <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
@@ -1555,7 +1538,7 @@ LBS空间距离约束：
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1736,6 +1719,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

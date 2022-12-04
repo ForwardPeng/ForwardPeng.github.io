@@ -512,58 +512,59 @@
 <li>调用者/请求者（Invoker）角色：是请求的发送者，它通常拥有很多的命令对象，并通过访问命令对象来执行相关请求，它不直接访问接收者。</li>
 </ul>
 <p>命令模式的代码实现如下：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> Design_Pattern<span class="token punctuation">.</span>command<span class="token punctuation">;</span>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">package Design_Pattern.command;
 
-<span class="token comment" spellcheck="true">/**
+/**
  * @author peng
  * @date 20-5-13 下午9:36
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CommandPattern</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Command cmd <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcreteCommand</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Invoker ir <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Invoker</span><span class="token punctuation">(</span>cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"客户访问调用者的call()方法..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        ir<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//调用者</span>
-<span class="token keyword">class</span> <span class="token class-name">Invoker</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> Command command<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">Invoker</span><span class="token punctuation">(</span>Command command<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>command <span class="token operator">=</span> command<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"调用者执行命令command..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        command<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象命令</span>
-<span class="token keyword">interface</span> <span class="token class-name">Command</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体命令</span>
-<span class="token keyword">class</span> <span class="token class-name">ConcreteCommand</span> <span class="token keyword">implements</span> <span class="token class-name">Command</span><span class="token punctuation">{</span>
-    <span class="token keyword">private</span> Receiver receiver<span class="token punctuation">;</span>
-    <span class="token function">ConcreteCommand</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        receiver <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Receiver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        receiver<span class="token punctuation">.</span><span class="token function">action</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//接收者</span>
-<span class="token keyword">class</span> <span class="token class-name">Receiver</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">action</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"接收者的action()方法被调用..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/**
+ */
+public class CommandPattern {
+    public static void main(String[] args) {
+        Command cmd = new ConcreteCommand();
+        Invoker ir = new Invoker(cmd);
+        System.out.println("客户访问调用者的call()方法...");
+        ir.call();
+    }
+}
+//调用者
+class Invoker
+{
+    private Command command;
+    public Invoker(Command command){
+        this.command = command;
+    }
+    public void call(){
+        System.out.println("调用者执行命令command...");
+        command.execute();
+    }
+}
+//抽象命令
+interface Command{
+    public abstract void execute();
+}
+//具体命令
+class ConcreteCommand implements Command{
+    private Receiver receiver;
+    ConcreteCommand(){
+        receiver = new Receiver();
+    }
+    public void execute(){
+        receiver.action();
+    }
+}
+//接收者
+class Receiver
+{
+    public void action(){
+        System.out.println("接收者的action()方法被调用...");
+    }
+}
+/**
 *客户访问调用者的call()方法...
 调用者执行命令command...
 接收者的action()方法被调用...
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>命令模式通常适用于以下场景。</p>
 <ul>
 <li>当系统需要将请求调用者与请求接收者解耦时，命令模式使得调用者和接收者不直接交互。</li>
@@ -1299,7 +1300,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1480,6 +1481,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

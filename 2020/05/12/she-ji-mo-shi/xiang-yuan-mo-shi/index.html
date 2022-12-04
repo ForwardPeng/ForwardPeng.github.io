@@ -523,91 +523,92 @@
 <li>非享元（Unsharable Flyweight)角色：是不可以共享的外部状态，它以参数的形式注入具体享元的相关方法中。</li>
 <li>享元工厂（Flyweight Factory）角色：负责创建和管理享元角色。当客户对象请求一个享元对象时，享元工厂检査系统中是否存在符合要求的享元对象，如果存在则提供给客户；如果不存在的话，则创建一个新的享元对象。</li>
 </ul>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> Design_Pattern<span class="token punctuation">.</span>Flyweight<span class="token punctuation">;</span>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre class="line-numbers language-lang-java"><code class="language-lang-java">package Design_Pattern.Flyweight;
 
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>HashMap<span class="token punctuation">;</span>
+import java.util.HashMap;
 
-<span class="token comment" spellcheck="true">/**
+/**
  * @author peng
  * @date 20-5-12 下午11:57
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FlyweightPattern</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        FlyweightFactory factory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FlyweightFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Flyweight f01 <span class="token operator">=</span> factory<span class="token punctuation">.</span><span class="token function">getFlyweight</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Flyweight f02<span class="token operator">=</span>factory<span class="token punctuation">.</span><span class="token function">getFlyweight</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Flyweight f11<span class="token operator">=</span>factory<span class="token punctuation">.</span><span class="token function">getFlyweight</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Flyweight f12<span class="token operator">=</span>factory<span class="token punctuation">.</span><span class="token function">getFlyweight</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        f01<span class="token punctuation">.</span><span class="token function">operation</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UnsharedConcreteFlyweight</span><span class="token punctuation">(</span><span class="token string">"第1次调用a。"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        f02<span class="token punctuation">.</span><span class="token function">operation</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UnsharedConcreteFlyweight</span><span class="token punctuation">(</span><span class="token string">"第2次调用a。"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        f11<span class="token punctuation">.</span><span class="token function">operation</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UnsharedConcreteFlyweight</span><span class="token punctuation">(</span><span class="token string">"第1次调用b。"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        f12<span class="token punctuation">.</span><span class="token function">operation</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UnsharedConcreteFlyweight</span><span class="token punctuation">(</span><span class="token string">"第2次调用b。"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//非享元角色</span>
-<span class="token keyword">class</span> <span class="token class-name">UnsharedConcreteFlyweight</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> String info<span class="token punctuation">;</span>
-    <span class="token function">UnsharedConcreteFlyweight</span><span class="token punctuation">(</span>String info<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>info<span class="token operator">=</span>info<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> String <span class="token function">getInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> info<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setInfo</span><span class="token punctuation">(</span>String info<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>info<span class="token operator">=</span>info<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象享元角色</span>
-<span class="token keyword">interface</span> <span class="token class-name">Flyweight</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">operation</span><span class="token punctuation">(</span>UnsharedConcreteFlyweight state<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体享元角色</span>
-<span class="token keyword">class</span> <span class="token class-name">ConcreteFlyweight</span> <span class="token keyword">implements</span> <span class="token class-name">Flyweight</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> String key<span class="token punctuation">;</span>
-    <span class="token function">ConcreteFlyweight</span><span class="token punctuation">(</span>String key<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>key<span class="token operator">=</span>key<span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"具体享元"</span><span class="token operator">+</span>key<span class="token operator">+</span><span class="token string">"被创建！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">operation</span><span class="token punctuation">(</span>UnsharedConcreteFlyweight outState<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"具体享元"</span><span class="token operator">+</span>key<span class="token operator">+</span><span class="token string">"被调用，"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"非享元信息是:"</span><span class="token operator">+</span>outState<span class="token punctuation">.</span><span class="token function">getInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//享元工厂角色</span>
-<span class="token keyword">class</span> <span class="token class-name">FlyweightFactory</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> HashMap<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Flyweight<span class="token operator">></span> flyweights<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Flyweight<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> Flyweight <span class="token function">getFlyweight</span><span class="token punctuation">(</span>String key<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        Flyweight flyweight<span class="token operator">=</span><span class="token punctuation">(</span>Flyweight<span class="token punctuation">)</span>flyweights<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>flyweight<span class="token operator">!=</span>null<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"具体享元"</span><span class="token operator">+</span>key<span class="token operator">+</span><span class="token string">"已经存在，被成功获取！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-        <span class="token punctuation">{</span>
-            flyweight<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ConcreteFlyweight</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            flyweights<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> flyweight<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> flyweight<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/**
+ */
+public class FlyweightPattern {
+    public static void main(String[] args) {
+        FlyweightFactory factory = new FlyweightFactory();
+        Flyweight f01 = factory.getFlyweight("a");
+        Flyweight f02=factory.getFlyweight("a");
+        Flyweight f11=factory.getFlyweight("b");
+        Flyweight f12=factory.getFlyweight("b");
+        f01.operation(new UnsharedConcreteFlyweight("第1次调用a。"));
+        f02.operation(new UnsharedConcreteFlyweight("第2次调用a。"));
+        f11.operation(new UnsharedConcreteFlyweight("第1次调用b。"));
+        f12.operation(new UnsharedConcreteFlyweight("第2次调用b。"));
+    }
+}
+//非享元角色
+class UnsharedConcreteFlyweight
+{
+    private String info;
+    UnsharedConcreteFlyweight(String info)
+    {
+        this.info=info;
+    }
+    public String getInfo()
+    {
+        return info;
+    }
+    public void setInfo(String info)
+    {
+        this.info=info;
+    }
+}
+//抽象享元角色
+interface Flyweight
+{
+    public void operation(UnsharedConcreteFlyweight state);
+}
+//具体享元角色
+class ConcreteFlyweight implements Flyweight
+{
+    private String key;
+    ConcreteFlyweight(String key)
+    {
+        this.key=key;
+        System.out.println("具体享元"+key+"被创建！");
+    }
+    public void operation(UnsharedConcreteFlyweight outState)
+    {
+        System.out.print("具体享元"+key+"被调用，");
+        System.out.println("非享元信息是:"+outState.getInfo());
+    }
+}
+//享元工厂角色
+class FlyweightFactory
+{
+    private HashMap<String, Flyweight> flyweights=new HashMap<String, Flyweight>();
+    public Flyweight getFlyweight(String key)
+    {
+        Flyweight flyweight=(Flyweight)flyweights.get(key);
+        if(flyweight!=null)
+        {
+            System.out.println("具体享元"+key+"已经存在，被成功获取！");
+        }
+        else
+        {
+            flyweight=new ConcreteFlyweight(key);
+            flyweights.put(key, flyweight);
+        }
+        return flyweight;
+    }
+}
+/**
 *具体享元b被创建！
 具体享元b已经存在，被成功获取！
 具体享元a被调用，非享元信息是:第1次调用a。
 具体享元a被调用，非享元信息是:第2次调用a。
 具体享元b被调用，非享元信息是:第1次调用b。
 具体享元b被调用，非享元信息是:第2次调用b。
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>享元模式是通过减少内存中对象的数量来节省内存空间的，所以以下几种情形适合采用享元模式。</p>
 <ul>
 <li>系统中存在大量相同或相似的对象，这些对象耗费大量的内存资源。</li>
@@ -1341,7 +1342,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1522,6 +1523,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

@@ -527,21 +527,24 @@
 <ul>
 <li>抽象主题（Subject）类：通过接口或抽象类声明真实主题和代理对象实现的业务方法。</li>
 <li>真实主题（Real Subject）类：实现了抽象主题中的具体业务，是代理对象所代表的真实对象，是最终要引用的对象。</li>
-<li>代理（Proxy）类：提供了与真实主题相同的接口，其内部含有对真实主题的引用，它可以访问、控制或扩展真实主题的功能。<h2 id="模式的实现"><a href="#模式的实现" class="headerlink" title="模式的实现"></a>模式的实现</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> Design_Pattern<span class="token punctuation">.</span>proxy<span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
+<li>代理（Proxy）类：提供了与真实主题相同的接口，其内部含有对真实主题的引用，它可以访问、控制或扩展真实主题的功能。<h2 id="模式的实现"><a href="#模式的实现" class="headerlink" title="模式的实现"></a>模式的实现</h2>```java<br>package Design_Pattern.proxy;</li>
 </ul>
 <p>/**</p>
 <ul>
 <li>@author peng</li>
-<li>@date 20-5-12 上午11:26</li>
-<li>/<br>public class ProxyTest {<br>  public static void main(String[] args) {<pre><code>  Proxy proxy = new Proxy();
-  proxy.Request();</code></pre>  }<br>}<br>//抽象主题<br>interface Subject{<br>  void Request();<br>}<br>//真实主题<br>class RealSubject implements Subject{<br>  public void Request(){<pre><code>  System.out.println(&quot;访问真实主题方法...&quot;);</code></pre>  }<br>}<br>//代理<br>class Proxy implements Subject{<br>  private RealSubject realSubject;<br>  public void Request(){<pre><code>  if(realSubject == null){
-      realSubject = new RealSubject();
-  }
-  preRequest();
-  realSubject.Request();
-  postRequest();</code></pre>  }<br>  public void preRequest(){<pre><code>  System.out.println(&quot;访问真实主题之前的预处理&quot;);</code></pre>  }<br>  public void postRequest(){<pre><code>  System.out.println(&quot;访问真实主题之后的后续处理.&quot;);</code></pre>  }<br>}<br>/**访问真实主题之前的预处理<br>访问真实主题方法…<br>访问真实主题之后的后续处理.<br>*/<br>```<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1>前面分析了代理模式的结构与特点，现在来分析以下的应用场景。<ul>
+<li>@date 20-5-12 上午11:26<br>*/<br>public class ProxyTest {<br> public static void main(String[] args) {<pre><code> Proxy proxy = new Proxy();
+ proxy.Request();
+</code></pre> }<br>}<br>//抽象主题<br>interface Subject{<br> void Request();<br>}<br>//真实主题<br>class RealSubject implements Subject{<br> public void Request(){<pre><code> System.out.println(&quot;访问真实主题方法...&quot;);
+</code></pre> }<br>}<br>//代理<br>class Proxy implements Subject{<br> private RealSubject realSubject;<br> public void Request(){<pre><code> if(realSubject == null){
+     realSubject = new RealSubject();
+ }
+ preRequest();
+ realSubject.Request();
+ postRequest();
+</code></pre> }<br> public void preRequest(){<pre><code> System.out.println(&quot;访问真实主题之前的预处理&quot;);
+</code></pre> }<br> public void postRequest(){<pre><code> System.out.println(&quot;访问真实主题之后的后续处理.&quot;);
+</code></pre> }<br>}<br>/<em>*访问真实主题之前的预处理<br>访问真实主题方法…<br>访问真实主题之后的后续处理.
+</em>/<br>```<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1>前面分析了代理模式的结构与特点，现在来分析以下的应用场景。<ul>
 <li>远程代理，这种方式通常是为了隐藏目标对象存在于不同地址空间的事实，方便客户端访问。例如，用户申请某些网盘空间时，会在用户的文件系统中建立一个虚拟的硬盘，用户访问虚拟硬盘时实际访问的是网盘空间。</li>
 <li>虚拟代理，这种方式通常用于要创建的目标对象开销很大时。例如，下载一幅很大的图像需要很长时间，因某种计算比较复杂而短时间无法完成，这时可以先用小比例的虚拟代理替换真实的对象，消除用户对服务器慢的感觉。</li>
 <li>安全代理，这种方式通常用于控制不同种类客户对真实对象的访问权限。</li>
@@ -1277,7 +1280,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1458,6 +1461,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

@@ -50,7 +50,7 @@
     <link href="http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/wai-mai-shou-ye-lie-biao-pai-xu-jie-shao/"/>
     <id>http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/wai-mai-shou-ye-lie-biao-pai-xu-jie-shao/</id>
     <published>2022-11-29T01:07:40.000Z</published>
-    <updated>2022-12-04T14:17:29.151Z</updated>
+    <updated>2022-12-04T15:32:23.161Z</updated>
     
     <summary type="html">
     
@@ -59,34 +59,6 @@
         
         
           &lt;h2 id=&quot;一、产品形态与技术架构&quot;&gt;&lt;a href=&quot;#一、产品形态与技术架构&quot; class=&quot;headerlink&quot; title=&quot;一、产品形态与技术架构&quot;&gt;&lt;/a&gt;一、产品形态与技术架构&lt;/h2&gt;&lt;h3 id=&quot;1-外卖首页列表产品形态&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="数据挖掘" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
-    
-      <category term="机器学习" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="搜索推荐" scheme="http://forwardpeng.github.io/tags/%E6%90%9C%E7%B4%A2%E6%8E%A8%E8%8D%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>广告深度预估技术在到店场景下的突破</title>
-    <link href="http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/guang-gao-shen-du-yu-gu-ji-zhu-zai-mei-tuan-dao-dian-de-tu-po/"/>
-    <id>http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/guang-gao-shen-du-yu-gu-ji-zhu-zai-mei-tuan-dao-dian-de-tu-po/</id>
-    <published>2022-11-29T01:07:40.000Z</published>
-    <updated>2022-12-04T13:54:03.988Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot; title=&quot;一、背景&quot;&gt;&lt;/a&gt;一、背景&lt;/h2&gt;&lt;h3 id=&quot;1-1-背景&quot;&gt;&lt;a href=&quot;#1-1-背景&quot; class=&quot;headerlink&quot; title=&quot;1.1
         
       
     
@@ -182,6 +154,34 @@
     
     
       <category term="工程实践" scheme="http://forwardpeng.github.io/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>广告深度预估技术在到店场景下的突破</title>
+    <link href="http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/guang-gao-shen-du-yu-gu-ji-zhu-zai-mei-tuan-dao-dian-de-tu-po/"/>
+    <id>http://forwardpeng.github.io/2022/11/29/ji-qi-xue-xi/sou-guang-tui/guang-gao-shen-du-yu-gu-ji-zhu-zai-mei-tuan-dao-dian-de-tu-po/</id>
+    <published>2022-11-29T01:07:40.000Z</published>
+    <updated>2022-12-04T13:54:03.988Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot; title=&quot;一、背景&quot;&gt;&lt;/a&gt;一、背景&lt;/h2&gt;&lt;h3 id=&quot;1-1-背景&quot;&gt;&lt;a href=&quot;#1-1-背景&quot; class=&quot;headerlink&quot; title=&quot;1.1
+        
+      
+    
+    </summary>
+    
+      <category term="数据挖掘" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+      <category term="机器学习" scheme="http://forwardpeng.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="搜索推荐" scheme="http://forwardpeng.github.io/tags/%E6%90%9C%E7%B4%A2%E6%8E%A8%E8%8D%90/"/>
     
   </entry>
   

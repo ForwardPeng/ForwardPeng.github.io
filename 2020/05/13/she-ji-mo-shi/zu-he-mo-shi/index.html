@@ -528,145 +528,147 @@
 <div align="center"><img src="/images/jihe.png" width="400"></div>
 
 <p>透明式组合模式代码：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> Design_Pattern<span class="token punctuation">.</span>composite<span class="token punctuation">;</span>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">package Design_Pattern.composite;
 
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
+import java.util.ArrayList;
 
-<span class="token comment" spellcheck="true">/**
+/**
  * @author peng
  * @date 20-5-13 上午10:24
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CompositePattern</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Component c0 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Composite</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Component c1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Composite</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Component leaf1<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Leaf</span><span class="token punctuation">(</span><span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Component leaf2<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Leaf</span><span class="token punctuation">(</span><span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Component leaf3<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Leaf</span><span class="token punctuation">(</span><span class="token string">"3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        c0<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>leaf1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        c0<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>c1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        c1<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>leaf2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        c1<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>leaf3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        c0<span class="token punctuation">.</span><span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象构件</span>
-<span class="token keyword">interface</span> <span class="token class-name">Component</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Component c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span>Component c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> Component <span class="token function">getChild</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//树叶构件</span>
-<span class="token keyword">class</span> <span class="token class-name">Leaf</span> <span class="token keyword">implements</span> <span class="token class-name">Component</span><span class="token punctuation">{</span>
-    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">Leaf</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Component c<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ */
+public class CompositePattern {
+    public static void main(String[] args) {
+        Component c0 = new Composite();
+        Component c1 = new Composite();
+        Component leaf1=new Leaf("1");
+        Component leaf2=new Leaf("2");
+        Component leaf3=new Leaf("3");
+        c0.add(leaf1);
+        c0.add(c1);
+        c1.add(leaf2);
+        c1.add(leaf3);
+        c0.operation();
+    }
+}
+//抽象构件
+interface Component{
+    public void add(Component c);
+    public void remove(Component c);
+    public Component getChild(int i);
+    public void operation();
+}
+//树叶构件
+class Leaf implements Component{
+    private String name;
+    public Leaf(String name){
+        this.name = name;
+    }
+    public void add(Component c) {
 
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span>Component c<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-    <span class="token keyword">public</span> Component <span class="token function">getChild</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"树叶"</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">":被访问！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//树枝构件</span>
-<span class="token keyword">class</span> <span class="token class-name">Composite</span> <span class="token keyword">implements</span> <span class="token class-name">Component</span><span class="token punctuation">{</span>
-    <span class="token keyword">private</span> ArrayList<span class="token operator">&lt;</span>Component<span class="token operator">></span> children <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Component<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Component c<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        children<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span>Component c<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        children<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> Component <span class="token function">getChild</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> children<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span>Object obj<span class="token operator">:</span>children<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token punctuation">(</span><span class="token punctuation">(</span>Component<span class="token punctuation">)</span>obj<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/**
+    }
+    public void remove(Component c){}
+    public Component getChild(int i){
+        return null;
+    }
+    public void operation(){
+        System.out.println("树叶" + name + ":被访问！");
+    }
+}
+//树枝构件
+class Composite implements Component{
+    private ArrayList<Component> children = new ArrayList<Component>();
+    public void add(Component c){
+        children.add(c);
+    }
+    public void remove(Component c)
+    {
+        children.remove(c);
+    }
+    public Component getChild(int i)
+    {
+        return children.get(i);
+    }
+    public void operation(){
+        for(Object obj:children)
+        {
+            ((Component)obj).operation();
+        }
+    }
+}
+/**
 树叶1:被访问！
 树叶2:被访问！
 树叶3:被访问！
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><p>用组合模式实现当用户在商店购物后，显示其所选商品信息，并计算所选商品总价的功能。</p>
 <p>说明：假如李先生到韶关“天街e角”生活用品店购物，用 1 个红色小袋子装了 2 包婺源特产（单价 7.9 元）、1 张婺源地图（单价 9.9 元）；用 1 个白色小袋子装了 2 包韶关香藉（单价 68 元）和 3 包韶关红茶（单价 180 元）；用 1 个中袋子装了前面的红色小袋子和 1 个景德镇瓷器（单价 380 元）；用 1 个大袋子装了前面的中袋子、白色小袋子和 1 双李宁牌运动鞋（单价 198 元）。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//抽象构件：物品</span>
-<span class="token keyword">interface</span> <span class="token class-name">Articles</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">float</span> <span class="token function">calculation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//计算</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//树叶构件：商品</span>
-<span class="token keyword">class</span> <span class="token class-name">Goods</span> <span class="token keyword">implements</span> <span class="token class-name">Articles</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//名字</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> quantity<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//数量</span>
-    <span class="token keyword">private</span> <span class="token keyword">float</span> unitPrice<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//单价</span>
-    <span class="token keyword">public</span> <span class="token function">Goods</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span><span class="token keyword">int</span> quantity<span class="token punctuation">,</span><span class="token keyword">float</span> unitPrice<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token operator">=</span>name<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>quantity<span class="token operator">=</span>quantity<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>unitPrice<span class="token operator">=</span>unitPrice<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>   
-    <span class="token keyword">public</span> <span class="token keyword">float</span> <span class="token function">calculation</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> quantity<span class="token operator">*</span>unitPrice<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token operator">+</span><span class="token string">"(数量："</span><span class="token operator">+</span>quantity<span class="token operator">+</span><span class="token string">"，单价："</span><span class="token operator">+</span>unitPrice<span class="token operator">+</span><span class="token string">"元)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//树枝构件：袋子</span>
-<span class="token keyword">class</span> <span class="token class-name">Bags</span> <span class="token keyword">implements</span> <span class="token class-name">Articles</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//名字   </span>
-    <span class="token keyword">private</span> ArrayList<span class="token operator">&lt;</span>Articles<span class="token operator">></span> bags<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Articles<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
-    <span class="token keyword">public</span> <span class="token function">Bags</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token operator">=</span>name<span class="token punctuation">;</span>       
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Articles c<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        bags<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>   
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span>Articles c<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        bags<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>   
-    <span class="token keyword">public</span> Articles <span class="token function">getChild</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> bags<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>   
-    <span class="token keyword">public</span> <span class="token keyword">float</span> <span class="token function">calculation</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">float</span> s<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span>Object obj<span class="token operator">:</span>bags<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            s<span class="token operator">+=</span><span class="token punctuation">(</span><span class="token punctuation">(</span>Articles<span class="token punctuation">)</span>obj<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">calculation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> s<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span>Object obj<span class="token operator">:</span>bags<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token punctuation">(</span><span class="token punctuation">(</span>Articles<span class="token punctuation">)</span>obj<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">//抽象构件：物品
+interface Articles
+{
+    public float calculation(); //计算
+    public void show();
+}
+//树叶构件：商品
+class Goods implements Articles
+{
+    private String name;     //名字
+    private int quantity;    //数量
+    private float unitPrice; //单价
+    public Goods(String name,int quantity,float unitPrice)
+    {
+        this.name=name;
+        this.quantity=quantity;
+        this.unitPrice=unitPrice;
+    }   
+    public float calculation()
+    {
+        return quantity*unitPrice; 
+    }
+    public void show()
+    {
+        System.out.println(name+"(数量："+quantity+"，单价："+unitPrice+"元)");
+    }
+}
+//树枝构件：袋子
+class Bags implements Articles
+{
+    private String name;     //名字   
+    private ArrayList<Articles> bags=new ArrayList<Articles>();   
+    public Bags(String name)
+    {
+        this.name=name;       
+    }
+    public void add(Articles c)
+    {
+        bags.add(c);
+    }   
+    public void remove(Articles c)
+    {
+        bags.remove(c);
+    }   
+    public Articles getChild(int i)
+    {
+        return bags.get(i);
+    }   
+    public float calculation()
+    {
+        float s=0;
+        for(Object obj:bags)
+        {
+            s+=((Articles)obj).calculation();
+        }
+        return s;
+    }
+    public void show()
+    {
+        for(Object obj:bags)
+        {
+            ((Articles)obj).show();
+        }
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><ul>
 <li>在需要表示一个对象整体与部分的层次结构的场合。</li>
 <li>要求对用户隐藏组合对象与单个对象的不同，用户可以用统一的接口使用组合结构中的所有对象的场合。</li>
@@ -1400,7 +1402,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1581,6 +1583,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

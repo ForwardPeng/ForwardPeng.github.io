@@ -520,58 +520,61 @@
 <li>访问类：使用单例的类</li>
 </ul>
 <p>结构如图所示：</p>
-<div align="center"><img src="/images/Singleton.png" width="400"></div>
+<p><div align="center"><img src="/images/Singleton.png" width="400"></div></p>
 <center>图1 单例模式的结构图</center>
 
 <h2 id="单例模式的实现"><a href="#单例模式的实现" class="headerlink" title="单例模式的实现"></a>单例模式的实现</h2><p><strong>1.懒汉式单例</strong></p>
 <p>该模式的特点是类加载时没有生成单例，只有当一次调用get_instance方法时才创建这个单例，代码实现如下：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    __instance <span class="token operator">=</span> None
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token operator">not</span> self<span class="token punctuation">.</span>__instance<span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"调用__init__, 实例未创建"</span><span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"调用__init__，实例已经创建："</span><span class="token punctuation">,</span> __instance<span class="token punctuation">)</span>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">class Singleton(object):
+    __instance = None
+    def __init__(self):
+        if not self.__instance:
+            print("调用__init__, 实例未创建")
+        else:
+            print("调用__init__，实例已经创建：", __instance)
     @classmethod
-    <span class="token keyword">def</span> <span class="token function">get_instance</span><span class="token punctuation">(</span>cls<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token operator">not</span> cls<span class="token punctuation">.</span>__instance<span class="token punctuation">:</span>
-            cls<span class="token punctuation">.</span>__instance <span class="token operator">=</span> Singleton<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span> cls<span class="token punctuation">.</span>__instance<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    def get_instance(cls):
+        if not cls.__instance:
+            cls.__instance = Singleton()
+        return cls.__instance
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>优点：资源利用合理，不调用get_instance方法不创建单例对象。缺点：线程不安全，多线程时可能会获取到不同单例对象的情况。解决办法是加互斥锁，但会降低效率<br>线程安全的单例</p>
 </blockquote>
 <p><strong>2.饿汉式单例</strong></p>
 <p>该模式的特点是类一旦加载就创建一个单例，保证在调用getinstance方法之前单例已经存在了，实现代码如下：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__new__</span><span class="token punctuation">(</span>cls<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token operator">not</span> hasattr<span class="token punctuation">(</span>cls<span class="token punctuation">,</span> <span class="token string">'instance'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            cls<span class="token punctuation">.</span>instance <span class="token operator">=</span> super<span class="token punctuation">(</span>Singleton<span class="token punctuation">,</span> cls<span class="token punctuation">)</span><span class="token punctuation">.</span>__new__<span class="token punctuation">(</span>cls<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> cls<span class="token punctuation">.</span>instance<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">class Singleton(object):
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(Singleton, cls).__new__(cls)
+        return cls.instance
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>优点：线程安全；在类实例化前创建好一个静态对象，调用时反应速度快；直接执行其他方法和静态方法，单例实例不会初始化。缺点：不管使用与否，实例化前就初始化静态对象，资源浪费</p>
 </blockquote>
 <p><strong>3.线程安全的单例</strong></p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> threading
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">import threading
 
-<span class="token keyword">def</span> <span class="token function">synchronized</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    func<span class="token punctuation">.</span>__lock__ <span class="token operator">=</span> threading<span class="token punctuation">.</span>Lock<span class="token punctuation">(</span><span class="token punctuation">)</span>
+def synchronized(func):
+    func.__lock__ = threading.Lock()
 
-    <span class="token keyword">def</span> <span class="token function">lock_func</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">with</span> func<span class="token punctuation">.</span>__lock__<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> func<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> lock_func
+    def lock_func(*args, **kwargs):
+        with func.__lock__:
+            return func(*args, **kwargs)
+    return lock_func
 
-<span class="token keyword">class</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    instance <span class="token operator">=</span> None
+class Singleton(object):
+    instance = None
 
     @synchronized
-    <span class="token keyword">def</span> <span class="token function">__new__</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-       <span class="token keyword">if</span> cls<span class="token punctuation">.</span>instance <span class="token keyword">is</span> None<span class="token punctuation">:</span>
-           cls<span class="token punctuation">.</span>instance <span class="token operator">=</span> super<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__new__<span class="token punctuation">(</span>cls<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> cls<span class="token punctuation">.</span>instance
+    def __new__(cls, *args, **kwargs):
+       if cls.instance is None:
+           cls.instance = super().__new__(cls)
+        return cls.instance
 
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>a <span class="token operator">=</span> num <span class="token operator">+</span> <span class="token number">5</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    def __init__(self, num):
+        self.a = num + 5
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="单例模式的应用场景"><a href="#单例模式的应用场景" class="headerlink" title="单例模式的应用场景"></a>单例模式的应用场景</h1><p>前面分析了单例模式的结构与特点，以下是它通常适用的场景的特点。</p>
 <ul>
 <li>在应用场景中，某类只要求生成一个对象的时候，如一个班中的班长、每个人的身份证号等。</li>
@@ -1318,7 +1321,7 @@ import numpy as np
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1499,6 +1502,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

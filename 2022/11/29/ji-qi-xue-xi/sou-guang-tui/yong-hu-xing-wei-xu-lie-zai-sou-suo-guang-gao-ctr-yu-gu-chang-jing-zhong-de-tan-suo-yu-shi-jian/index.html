@@ -518,7 +518,7 @@
 <li>相关性权重：在不同建模阶段引入注意力机制（Attention）来学习序列行为的表达权重。例如，在用户序列中加入了与候选广告的attention权重来自适应地学习用户兴趣在不同场景的表达；与借鉴于NLP场景中的self-attention思想来区分不同行为的权重；结合了RNN以及attention机制在自身业务场景上进行了不同形式的创新。主要包括模型建模、实验评估以及性能优化等部分。</li>
 </ul>
 <h2 id="二、模型建模"><a href="#二、模型建模" class="headerlink" title="二、模型建模"></a>二、模型建模</h2><p>&emsp;在进行行为序列模型迭代之前，美团搜索广告场景的预估模型主要基于WDL结构，part_1主要对离散型特征及部分离散化后的连续型特征进行低维稠密的向量化映射，并在之后使用适当的pooling方式进行聚合；part_2主要针对连续型特征，直接与part_1的最后一层拼接在一起做信息融合，随后输入到part_3（MLP）；part_4是模型的“Wide”部分，主要包括曝光位置等记忆性较强的特征。</p>
-<div align="center"><img src="/images/WDL网络结构图.png" width="800"></div>
+<p><div align="center"><img src="/images/WDL网络结构图.png" width="800"></div></p>
 <center>搜索广告CTR预估模型WDL网络结构图</center>
 
 <p>&emsp;针对用户行为序列特征建模的迭代，美团搜索广告场景的探索迭代路线为：Pre-trained Cont.Feature -&gt; E2E + Avg Pooling DIN -&gt; Transformer-based WDL DIEN  -&gt; Session-based WDL。最初采用预训练的方式，选取Word2Vec模型单独对用户行为序列进行建模，生成行为的embedding表示，并将其加入到模型part_2部分，这次迭代带来了超过基线1.4%的离线AUC和线上CTR的提升。然而，采用预训练的方式虽然能够将复杂的序列建模从CTR预估模型里抽离出来进而提高线上预估效率，但后续在序列模型的迭代和更新方面引入一系列难题。于是我们将迭代重心转为端到端的训练方式，在美团点评双侧先后探索DIN、DIEN以及基于Transformer等模型的预估效果。这三个模型的比较总结如下：</p>
@@ -580,8 +580,8 @@
 </table>
 
 <p>&emsp;建模时，我们将用户的原始行为序列表示为$B = [b_{1};b_{2};…,b_{i},…,b_{T}]$，序列中每个节点$b_{i}$为一个行为结构体。在选取行为结构体中的实体属性时，尽可能在各方面来表达一个用户的点击行为（图3，灰色部分），除了场景POI品类和地理位置等属性外，受BST模型启发，我们把当前请求和历史行为发生的时间差作为一个行为的属性实体来表达时序信息（Positional Encoding），获得显著成效。目前来看，对行为结构体属性的刻画仍是一个可以继续深耕的方向。整个原始行为序列B首先经过Embedding Layer映射为$E_{B} = [b_{e_{1}};b_{e_{2}};…,b_{e_{i}};…,b_{e_{T}}] \in R^{Q*k}$，如图2，随后输入到Session Pooling Layer，基于事先划分好的session结构进行原始行为表征聚合。聚合的方式比较灵活，考虑到session内部数据同质性强的特点，采用average pooling方式不会造成过多信息丢失，同时能降低计算复杂度。</p>
-<p>&emsp;Pooling聚合后的行为序列与Session Bias Encoding进行拼接得到完整的Session序列特征。Session Bias包含session在序列中的相对位置、session所处的时间段/日期、原始行为个数、原始行为是否包含候选广告的地理位置、原始行为是否包含候选广告类目、原始行为是否包含候选广告ID本身等，这些属性是在session粒度上独有的表征，一方面加强了每个session行为的表达能力；从另一方面思考，额外增加的session粒度的信息还能够填补pooling时信息损耗。最终得到session序列表达形式为：<br>$$E_{s} = Concat(E_{p},E_{c}),$$<br>$$E_{p} = [s_{e_{1}};s_{e_{2}};…,s_{e_{i}};…,s_{e_{T^{‘}}}] \in R^{Q<em>K}$$<br>$$E_{c} = [c_{e_{1}};c_{e_{2}};…,c_{e_{i}};…,c_{e_{T^{‘}}}] \in R^{Q</em>K}$$<br>$$s_{e_{1}} = Pooling([b_{e_{1}};…;b_{e_{N_{s1}}})$$<br>$$s.t. N_{s_{1}} \leq L, T \leq P, T \leq T$$</p>
-<p>其中Q为原始序列行为结构体的属性实体个数，Q为bias个数，k为embedding大小，$N_{s_{1}}$为第一个session内部的原始行为序列个数，T为原始行为序列长度，T为session序列长度。</p>
+<p>&emsp;Pooling聚合后的行为序列与Session Bias Encoding进行拼接得到完整的Session序列特征。Session Bias包含session在序列中的相对位置、session所处的时间段/日期、原始行为个数、原始行为是否包含候选广告的地理位置、原始行为是否包含候选广告类目、原始行为是否包含候选广告ID本身等，这些属性是在session粒度上独有的表征，一方面加强了每个session行为的表达能力；从另一方面思考，额外增加的session粒度的信息还能够填补pooling时信息损耗。最终得到session序列表达形式为：</p>
+<script type="math/tex; mode=display">E_{s} = Concat(E_{p},E_{c}),</script><script type="math/tex; mode=display">E_{p} = [s_{e_{1}};s_{e_{2}};...,s_{e_{i}};...,s_{e_{T^{'}}}] \in R^{Q*K}</script><script type="math/tex; mode=display">E_{c} = [c_{e_{1}};c_{e_{2}};...,c_{e_{i}};...,c_{e_{T^{'}}}] \in R^{Q*K}</script><script type="math/tex; mode=display">s_{e_{1}} = Pooling([b_{e_{1}};...;b_{e_{N_{s1}}})</script><script type="math/tex; mode=display">s.t. N_{s_{1}} \leq L, T \leq P, T \leq T</script><p>其中Q为原始序列行为结构体的属性实体个数，Q为bias个数，k为embedding大小，$N_{s_{1}}$为第一个session内部的原始行为序列个数，T为原始行为序列长度，T为session序列长度。</p>
 <p>&emsp;拼接好的session序列$E_{S}$接下来会进行多级attention激活，同时输入到三个不同注意力单元（Attention Unit1 &amp; 2 &amp; 3）进行加权，其结构图如下：</p>
 <ul>
 <li>Attention Unit1：使用候选广告对用户历史行为进行反向激活，表达用户兴趣的多样性。</li>
@@ -591,7 +591,7 @@
 </ul>
 </li>
 </ul>
-<p>&emsp;基于三个注意力单元，Session-based WDL模型在序列建模方面增加的参数量远远低于DIEN和BST，为：$O(Q * K * (ff_{attention1} + ff_{attention2} + ff_{attention3}))$，总的来说，Session-based WDL模型在序列建模的优势在于更高效地应用长序列行为特征进行建模，并且根据业务场景提炼出session结构化后独有的特征来进一步提高模型预估效果。目前，美团点评双侧的主要业务流量都已陆续将此模型全量。</p>
+<p>&emsp;基于三个注意力单元，Session-based WDL模型在序列建模方面增加的参数量远远低于DIEN和BST，为：$O(Q <em> K </em> (ff_{attention1} + ff_{attention2} + ff_{attention3}))$，总的来说，Session-based WDL模型在序列建模的优势在于更高效地应用长序列行为特征进行建模，并且根据业务场景提炼出session结构化后独有的特征来进一步提高模型预估效果。目前，美团点评双侧的主要业务流量都已陆续将此模型全量。</p>
 <h2 id="三、实验与评估"><a href="#三、实验与评估" class="headerlink" title="三、实验与评估"></a>三、实验与评估</h2><p>&emsp;由于不同的序列模型在各个业务线上的效果有所差异，本章节的对比实验室以点评APP到餐和到综的筛选列表页为例进行分析</p>
 <h3 id="1-实验设置"><a href="#1-实验设置" class="headerlink" title="1. 实验设置"></a>1. 实验设置</h3><h4 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h4><p>美团点评双侧都采用全APP的实时数据流，从中获取用户从请求当前截止到最近90天的原始点击行为序列，随后按照上述规则进行切分后得到session结构化序列。</p>
 <h4 id="实验超参"><a href="#实验超参" class="headerlink" title="实验超参"></a>实验超参</h4><table>
@@ -1535,7 +1535,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1716,6 +1716,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

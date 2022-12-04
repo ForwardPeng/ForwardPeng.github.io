@@ -535,7 +535,7 @@
 <ul>
 <li>使用threading模块中Thread类的构造器创建线程。即直接对类 threading.Thread进行实例化创建线程，并调用实例化对象的start()方法启动线程。</li>
 <li>继承 threading 模块中的 Thread 类创建线程类。即用 threading.Thread派生出一个新的子类，将新建类实例化创建线程，并调用其start()方法启动线程。<h2 id="调用Thread类的构造器创建线程"><a href="#调用Thread类的构造器创建线程" class="headerlink" title="调用Thread类的构造器创建线程"></a>调用Thread类的构造器创建线程</h2>Thread 类提供了如下的 <strong>init</strong>() 构造器，可以用来创建线程：<blockquote>
-<p>_<em>init_</em>(self, group=None, target=None, name=None, args=(), kwargs=None, *,daemon=None)</p>
+<p>__init__(self, group=None, target=None, name=None, args=(), kwargs=None, *,daemon=None)</p>
 </blockquote>
 </li>
 </ul>
@@ -547,69 +547,69 @@
 <li>kwargs：以字典的方式，为target指定的方法传递参数；</li>
 <li>daemon：指定所创建的线程是否为后代线程。</li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Thread类的构造函数创建一个线程</span>
-<span class="token keyword">import</span> threading
-<span class="token comment" spellcheck="true"># 定义线程要调用的方法，*add可接受多个非关键字方式传入的参数</span>
-<span class="token keyword">def</span> <span class="token function">action</span><span class="token punctuation">(</span><span class="token operator">*</span>add<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">for</span> arc <span class="token keyword">in</span> add<span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># 调用getname()方法获取线程名</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>getName<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> arc<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 定义为线程方法传入的参数</span>
-my_tuple <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"the test1"</span><span class="token punctuation">,</span>\
-        <span class="token string">"the test2"</span><span class="token punctuation">,</span>\
-        <span class="token string">"the test3"</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 创建线程</span>
-thread <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target <span class="token operator">=</span> action<span class="token punctuation">,</span> args<span class="token operator">=</span>my_tuple<span class="token punctuation">)</span>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># Thread类的构造函数创建一个线程
+import threading
+# 定义线程要调用的方法，*add可接受多个非关键字方式传入的参数
+def action(*add):
+    for arc in add:
+        # 调用getname()方法获取线程名
+        print(threading.current_thread().getName() + " " + arc)
+# 定义为线程方法传入的参数
+my_tuple = ("the test1",\
+        "the test2",\
+        "the test3")
+# 创建线程
+thread = threading.Thread(target = action, args=my_tuple)
 
-<span class="token comment" spellcheck="true"># threading模块提供start()方法启动线程</span>
-thread<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+# threading模块提供start()方法启动线程
+thread.start()
 
-<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>getName<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token triple-quoted-string string">'''
+for i in range(2):
+    print(threading.current_thread().getName())
+'''
 Thread-1 the test1
 Thread-1 the test2
 Thread-1 the test3
 MainThread
 MainThread
-'''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+'''
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>默认情况下，主线程的名字为 MainThread，用户启动的多个线程的名字依次为 Thread-1、Thread-2、Thread-3、…、Thread-n等。如果程序中不显式创建任何线程，则所有程序的执行，都将由主线程 MainThread 完成，程序就只能按照顺序依次执行。</p>
 </blockquote>
 <p>当前程序中有2个线程，分别为主线程 MainThread 和子线程 Thread-1，它们以并发方式执行，即 Thread-1 执行一段时间，然后 MainThread 执行一段时间。通过轮流获得CPU执行一段时间的方式，程序的执行在多个线程之间切换，从而给用户一种错觉，即多个线程似乎同时在执行。</p>
 <h2 id="继承Thread类创建线程类"><a href="#继承Thread类创建线程类" class="headerlink" title="继承Thread类创建线程类"></a>继承Thread类创建线程类</h2><p>通过继承 Thread 类，我们可以自定义一个线程类，从而实例化该类对象，获得子线程。需要注意的是，在创建 Thread类的子类时，必须重写从父类继承得到的run()方法。因为该方法即为要创建的子线程执行的方法，其功能如同第一种创建方法中的action()自定义函数。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> threading
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">import threading
 
-<span class="token comment" spellcheck="true"># 创建子线程</span>
-<span class="token keyword">class</span> <span class="token class-name">my_thread</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>Thread<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> add<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        threading<span class="token punctuation">.</span>Thread<span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>add <span class="token operator">=</span> add
-    <span class="token comment" spellcheck="true"># 重写run()方法</span>
-    <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">for</span> arc <span class="token keyword">in</span> self<span class="token punctuation">.</span>add<span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># 调用getName()方法获取当前执行该程序的线程名</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>getName<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> arc<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 定义run()方法的参数</span>
-my_tuple <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"The test1"</span><span class="token punctuation">,</span> <span class="token string">"The test2"</span><span class="token punctuation">,</span> <span class="token string">"The test3"</span><span class="token punctuation">)</span>
+# 创建子线程
+class my_thread(threading.Thread):
+    def __init__(self, add):
+        threading.Thread.__init__(self)
+        self.add = add
+    # 重写run()方法
+    def run(self):
+        for arc in self.add:
+            # 调用getName()方法获取当前执行该程序的线程名
+            print(threading.current_thread().getName() + " " + arc)
+# 定义run()方法的参数
+my_tuple = ("The test1", "The test2", "The test3")
 
-mythread <span class="token operator">=</span> my_thread<span class="token punctuation">(</span>my_tuple<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 启动</span>
-mythread<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 主线程</span>
-<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>getName<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token triple-quoted-string string">'''
+mythread = my_thread(my_tuple)
+# 启动
+mythread.start()
+# 主线程
+for i in range(2):
+    print(threading.current_thread().getName())
+'''
 Thread-1 The test1
 Thread-1 The test2
 Thread-1 The test3
 MainThread
 MainThread
-'''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+'''
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="线程的生命周期-新建、就绪、运行、阻塞和死亡"><a href="#线程的生命周期-新建、就绪、运行、阻塞和死亡" class="headerlink" title="线程的生命周期(新建、就绪、运行、阻塞和死亡)"></a>线程的生命周期(新建、就绪、运行、阻塞和死亡)</h1><p>CPU 在轮换执行线程过程中，线程都经历了什么呢？线程从创建到消亡的整个过程，可能会历经 5 种状态，分别是新建、就绪、运行、阻塞和死亡，如图 1 所示。</p>
-<div align="center"><img src="/images/xiancheng.png" width="400"></div>
- <center>图 1 线程状态转换图</center>
-
+<p><div align="center"><img src="/images/xiancheng.png" width="400"></div><br> <center>图 1 线程状态转换图</center></p>
 <h2 id="线程的新建和就绪状态"><a href="#线程的新建和就绪状态" class="headerlink" title="线程的新建和就绪状态"></a>线程的新建和就绪状态</h2><p> 所谓就绪，就是告诉 CPU，该线程已经可以执行了，但是具体什么时候执行，取决于 CPU 什么时候调度它。换句话说，如果一个线程处于就绪状态，只能说明此线程已经做好了准备，随时等待 CPU 调度执行，并不是说执行了 start() 方法此线程就会立即被执行。</p>
 <blockquote>
 <p>一方面 Python解释器会将它们看做是普通的函数调用和类方法调用。另一方面，由于新建的线程属于新建状态而不是就绪状态，因此不会得到 CPU 的调度。</p>
@@ -659,41 +659,42 @@ MainThread
 <li>系统判断账户余额是否大于取款金额。</li>
 <li>如果余额大于取款金额，则取款成功；如果余额小于取款金额，则取款失败。</li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 模拟银行取钱</span>
-<span class="token keyword">class</span> <span class="token class-name">Account</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># 定义构造器</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> account_no<span class="token punctuation">,</span> balance<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>account_no <span class="token operator">=</span> account_no
-        self<span class="token punctuation">.</span>balance <span class="token operator">=</span> balance
-<span class="token comment" spellcheck="true"># 启动两个线程取钱</span>
-<span class="token keyword">import</span> threading
-<span class="token keyword">import</span> time
-<span class="token keyword">import</span> Account
-<span class="token comment" spellcheck="true"># 定义一个函数来模拟取钱操作</span>
-<span class="token keyword">def</span> <span class="token function">draw</span><span class="token punctuation">(</span>account<span class="token punctuation">,</span> draw_amount<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># 账户余额大于取钱数目</span>
-    <span class="token keyword">if</span> account<span class="token punctuation">.</span>balance <span class="token operator">>=</span> draw_amount<span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># 吐出钞票</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name\
-            <span class="token operator">+</span> <span class="token string">"取钱成功！吐出钞票:"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>draw_amount<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">#        time.sleep(0.001)</span>
-        <span class="token comment" spellcheck="true"># 修改余额</span>
-        account<span class="token punctuation">.</span>balance <span class="token operator">-=</span> draw_amount
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"\t余额为: "</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>account<span class="token punctuation">.</span>balance<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token keyword">else</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name\
-            <span class="token operator">+</span> <span class="token string">"取钱失败！余额不足！"</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 创建一个账户</span>
-acct <span class="token operator">=</span> Account<span class="token punctuation">.</span>Account<span class="token punctuation">(</span><span class="token string">"1234567"</span> <span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 模拟两个线程对同一个账户取钱</span>
-threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'甲'</span><span class="token punctuation">,</span> target<span class="token operator">=</span>draw <span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>acct <span class="token punctuation">,</span> <span class="token number">800</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'乙'</span><span class="token punctuation">,</span> target<span class="token operator">=</span>draw <span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>acct <span class="token punctuation">,</span> <span class="token number">800</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token triple-quoted-string string">'''
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># 模拟银行取钱
+class Account:
+    # 定义构造器
+    def __init__(self, account_no, balance):
+        self.account_no = account_no
+        self.balance = balance
+# 启动两个线程取钱
+import threading
+import time
+import Account
+# 定义一个函数来模拟取钱操作
+def draw(account, draw_amount):
+    # 账户余额大于取钱数目
+    if account.balance >= draw_amount:
+        # 吐出钞票
+        print(threading.current_thread().name\
+            + "取钱成功！吐出钞票:" + str(draw_amount))
+#        time.sleep(0.001)
+        # 修改余额
+        account.balance -= draw_amount
+        print("\t余额为: " + str(account.balance))
+    else:
+        print(threading.current_thread().name\
+            + "取钱失败！余额不足！")
+# 创建一个账户
+acct = Account.Account("1234567" , 1000)
+# 模拟两个线程对同一个账户取钱
+threading.Thread(name='甲', target=draw , args=(acct , 800)).start()
+threading.Thread(name='乙', target=draw , args=(acct , 800)).start()
+'''
 甲取钱成功！吐出钞票:800
 乙取钱成功！吐出钞票:800
         余额为: 200
         余额为: -600
-'''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+'''
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>账户余额只有1000元时取出了 1600 元，而且账户余额出现了负值，远不是银行所期望的结果。虽然上面程序是人为地使用 time.sleep(0.001) 来强制线程调度切换，但这种切换也是完全可能发生的（100000 次操作只要有 1 次出现了错误，那就是由编程错误引起的）。</p>
 <h2 id="Python互斥锁同步线程"><a href="#Python互斥锁同步线程" class="headerlink" title="Python互斥锁同步线程"></a>Python互斥锁同步线程</h2><p>run()方法的方法体不具有线程安全性，程序中有两个并发线程在修改Account对象，而且系统恰好在注释代码处执行线程切换，切换到另一个修改Account对象的线程，所以就出现了问题。为了解决这个问题，Python 的threading模块引入了互斥锁（Lock）。threading 模块提供了Lock和RLoc 两个类，它们都提供了如下两个方法来加互斥锁和释放互斥锁：</p>
 <ul>
@@ -707,18 +708,19 @@ threading<span class="token punctuation">.</span>Thread<span class="token punctu
 </ul>
 <p>RLock锁具有可重入性。也就是说，同一个线程可以对已被加锁的RLock锁再次加锁，RLock对象会维持一个计数器来追踪acquire()方法的嵌套调用，线程在每次调用acquire()加锁后，都必须显式调用release()方法来释放锁。所以，一段被锁保护的方法可以调用另一个被相同锁保护的方法。</p>
 <p>Lock是控制多个线程对共享资源进行访问的工具。通常，锁提供了对共享资源的独占访问，每次只能有一个线程对Lock对象加锁，线程在开始访问共享资源之前应先请求获得Lock对象。当对共享资源访问完成后，程序释放对Lock对象的锁定。RLock代码格式如下：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">X</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># 保证线程安全</span>
-    <span class="token keyword">def</span> <span class="token function">m</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># 加锁</span>
-        self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># 需要保证线程安全的代码</span>
-            <span class="token comment" spellcheck="true">#...方法体</span>
-        <span class="token comment" spellcheck="true"># finally块保证释放锁</span>
-        <span class="token keyword">finally</span><span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># 修改完成，释放锁</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">class X:
+    # 保证线程安全
+    def m():
+        # 加锁
+        self.lock.acquire()
+        try:
+            # 需要保证线程安全的代码
+            #...方法体
+        # finally块保证释放锁
+        finally:
+            # 修改完成，释放锁
+            self.lock.release()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>使用RLock对象来控制线程安全，当加锁和释放锁出现在不同的作用范围内时，通常建议使用finally块来确保在必要时释放锁。通过使用 Lock 对象可以非常方便地实现线程安全的类，线程安全的类具有如下特征：</p>
 <ul>
 <li>该类的对象可以被多个线程安全地访问。</li>
@@ -726,58 +728,59 @@ threading<span class="token punctuation">.</span>Thread<span class="token punctu
 <li>每个线程在调用该对象的任意方法之后，该对象都依然保持合理的状态。</li>
 </ul>
 <p>总的来说，不可变类总是线程安全的，因为它的对象状态不可改变；但可变对象需要额外的方法来保证其线程安全。例如，上面的 Account 就是一个可变类，它的self.account_no和self._balance（为了更好地封装，将 balance改名为_balance）两个成员变量都可以被改变，当两个钱程同时修改Account对象的self._balance成员变量的值时，程序就出现了异常。下面将Account类对self.balance的访问设置成线程安全的，那么只需对修改self.balance的方法增加线程安全的控制即可。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 启动两个线程取钱</span>
-<span class="token keyword">import</span> threading
-<span class="token keyword">import</span> time
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># 启动两个线程取钱
+import threading
+import time
 
 
-<span class="token keyword">class</span> <span class="token class-name">account</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># 定义构造器</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> account_no<span class="token punctuation">,</span> balance<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>account_no <span class="token operator">=</span> account_no
-        self<span class="token punctuation">.</span>_balance <span class="token operator">=</span> balance
-        self<span class="token punctuation">.</span>lock <span class="token operator">=</span> threading<span class="token punctuation">.</span>RLock<span class="token punctuation">(</span><span class="token punctuation">)</span>
+class account:
+    # 定义构造器
+    def __init__(self, account_no, balance):
+        self.account_no = account_no
+        self._balance = balance
+        self.lock = threading.RLock()
 
-    <span class="token keyword">def</span> <span class="token function">getBalance</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_balance
+    def getBalance(self):
+        return self._balance
 
-    <span class="token comment" spellcheck="true"># 定义一个函数来模拟取钱操作</span>
-    <span class="token keyword">def</span> <span class="token function">draw</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> draw_amount<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># 加锁</span>
-        self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># 账户余额大于取钱数目</span>
-            <span class="token keyword">if</span> self<span class="token punctuation">.</span>_balance <span class="token operator">>=</span> draw_amount<span class="token punctuation">:</span>
-                <span class="token comment" spellcheck="true"># 吐出钞票</span>
-                <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name\
-                    <span class="token operator">+</span> <span class="token string">"取钱成功！吐出钞票:"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>draw_amount<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0.001</span><span class="token punctuation">)</span>
-                <span class="token comment" spellcheck="true"># 修改余额</span>
-                self<span class="token punctuation">.</span>_balance <span class="token operator">-=</span> draw_amount
-                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"\t余额为: "</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_balance<span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token keyword">else</span><span class="token punctuation">:</span>
-                <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name\
-                    <span class="token operator">+</span> <span class="token string">"取钱失败！余额不足！"</span><span class="token punctuation">)</span>
-        <span class="token keyword">finally</span><span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># 修改完成，释放锁</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">def</span> <span class="token function">draw</span><span class="token punctuation">(</span>account<span class="token punctuation">,</span> draw_amount<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># 直接调用account对象的draw()方法来执行取钱操作</span>
-    account<span class="token punctuation">.</span>draw<span class="token punctuation">(</span>draw_amount<span class="token punctuation">)</span>
+    # 定义一个函数来模拟取钱操作
+    def draw(self, draw_amount):
+        # 加锁
+        self.lock.acquire()
+        try:
+            # 账户余额大于取钱数目
+            if self._balance >= draw_amount:
+                # 吐出钞票
+                print(threading.current_thread().name\
+                    + "取钱成功！吐出钞票:" + str(draw_amount))
+                time.sleep(0.001)
+                # 修改余额
+                self._balance -= draw_amount
+                print("\t余额为: " + str(self._balance))
+            else:
+                print(threading.current_thread().name\
+                    + "取钱失败！余额不足！")
+        finally:
+            # 修改完成，释放锁
+            self.lock.release()
 
 
-<span class="token comment" spellcheck="true"># 创建一个账户</span>
-acct <span class="token operator">=</span> account<span class="token punctuation">(</span><span class="token string">"1234567"</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 模拟两个线程对同一个账户取钱</span>
-threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'甲'</span><span class="token punctuation">,</span> target<span class="token operator">=</span>draw<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>acct<span class="token punctuation">,</span> <span class="token number">800</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'乙'</span><span class="token punctuation">,</span> target<span class="token operator">=</span>draw<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>acct<span class="token punctuation">,</span> <span class="token number">800</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token triple-quoted-string string">'''
+def draw(account, draw_amount):
+    # 直接调用account对象的draw()方法来执行取钱操作
+    account.draw(draw_amount)
+
+
+# 创建一个账户
+acct = account("1234567", 1000)
+# 模拟两个线程对同一个账户取钱
+threading.Thread(name='甲', target=draw, args=(acct, 800)).start()
+threading.Thread(name='乙', target=draw, args=(acct, 800)).start()
+'''
 甲取钱成功！吐出钞票:800                    
         余额为: 200
 乙取钱失败！余额不足！
-'''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+'''
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>可变类的线程安全是以降低程序的运行效率作为代价的，为了减少线程安全所带来的负面影响，程序可以采用如下策略：</p>
 <ul>
 <li>不要对线程安全类的所有方法都进行同步，只对那些会改变竞争资源（竞争资源也就是共享资源）的方法进行同步。例如，上面Account类中的account_no实例变量就无须同步，所以程序只对draw()方法进行了同步控制。</li>
@@ -788,64 +791,65 @@ threading<span class="token punctuation">.</span>Thread<span class="token punctu
 <p>一旦出现死锁，整个程序既不会发生任何异常，也不会给出任何提示，只是所有线程都处于阻塞状态，无法继续。</p>
 </blockquote>
 <p>在系统中出现多个同步监视器，容易出现死锁：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> threading
-<span class="token keyword">import</span> time
-<span class="token keyword">class</span> <span class="token class-name">A</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>lock <span class="token operator">=</span> threading<span class="token punctuation">.</span>RLock<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">def</span> <span class="token function">foo</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"当前线程名: "</span> <span class="token operator">+</span> threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name\
-                <span class="token operator">+</span> <span class="token string">" 进入了A实例的foo()方法"</span> <span class="token punctuation">)</span>     <span class="token comment" spellcheck="true"># ①</span>
-            time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">)</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"当前线程名: "</span> <span class="token operator">+</span> threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name\
-                <span class="token operator">+</span> <span class="token string">" 企图调用B实例的last()方法"</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true"># ③</span>
-            b<span class="token punctuation">.</span>last<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">finally</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">def</span> <span class="token function">last</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"进入了A类的last()方法内部"</span><span class="token punctuation">)</span>
-        <span class="token keyword">finally</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">class</span> <span class="token class-name">B</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>lock <span class="token operator">=</span> threading<span class="token punctuation">.</span>RLock<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">def</span> <span class="token function">bar</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"当前线程名: "</span> <span class="token operator">+</span> threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name\
-                <span class="token operator">+</span> <span class="token string">" 进入了B实例的bar()方法"</span> <span class="token punctuation">)</span>   <span class="token comment" spellcheck="true"># ②</span>
-            time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">)</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"当前线程名: "</span> <span class="token operator">+</span> threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name\
-                <span class="token operator">+</span> <span class="token string">" 企图调用A实例的last()方法"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># ④</span>
-            a<span class="token punctuation">.</span>last<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">finally</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">def</span> <span class="token function">last</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"进入了B类的last()方法内部"</span><span class="token punctuation">)</span>
-        <span class="token keyword">finally</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
-a <span class="token operator">=</span> A<span class="token punctuation">(</span><span class="token punctuation">)</span>
-b <span class="token operator">=</span> B<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"主线程"</span>
-    <span class="token comment" spellcheck="true"># 调用a对象的foo()方法</span>
-    a<span class="token punctuation">.</span>foo<span class="token punctuation">(</span>b<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"进入了主线程之后"</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">action</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"副线程"</span>
-    <span class="token comment" spellcheck="true"># 调用b对象的bar()方法</span>
-    b<span class="token punctuation">.</span>bar<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"进入了副线程之后"</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 以action为target启动新线程</span>
-threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>action<span class="token punctuation">)</span><span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 调用init()函数</span>
-init<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">import threading
+import time
+class A:
+    def __init__(self):
+        self.lock = threading.RLock()
+    def foo(self, b):
+        try:
+            self.lock.acquire()
+            print("当前线程名: " + threading.current_thread().name\
+                + " 进入了A实例的foo()方法" )     # ①
+            time.sleep(0.2)
+            print("当前线程名: " + threading.current_thread().name\
+                + " 企图调用B实例的last()方法")   # ③
+            b.last()
+        finally:
+            self.lock.release()
+    def last(self):
+        try:
+            self.lock.acquire()
+            print("进入了A类的last()方法内部")
+        finally:
+            self.lock.release()
+class B:
+    def __init__(self):
+        self.lock = threading.RLock()
+    def bar(self, a):
+        try:
+            self.lock.acquire()
+            print("当前线程名: " + threading.current_thread().name\
+                + " 进入了B实例的bar()方法" )   # ②
+            time.sleep(0.2)
+            print("当前线程名: " + threading.current_thread().name\
+                + " 企图调用A实例的last()方法")  # ④
+            a.last()
+        finally:
+            self.lock.release()
+    def last(self):
+        try:
+            self.lock.acquire()
+            print("进入了B类的last()方法内部")
+        finally:
+            self.lock.release()
+a = A()
+b = B()
+def init():
+    threading.current_thread().name = "主线程"
+    # 调用a对象的foo()方法
+    a.foo(b)
+    print("进入了主线程之后")
+def action():
+    threading.current_thread().name = "副线程"
+    # 调用b对象的bar()方法
+    b.bar(a)
+    print("进入了副线程之后")
+# 以action为target启动新线程
+threading.Thread(target=action).start()
+# 调用init()函数
+init()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>程序中 A 对象和 B 对象的方法都是线程安全的方法。程序中有两个线程执行，副线程的线程执行体是 action() 函数，主线程的线程执行体是 init() 函数（主程序调用了 init() 函数）。其中在 action() 函数中让 B 对象调用 bar() 方法，而在 init() 函数中让 A 对象调用 foo() 方法。</p>
 <p>图 1 显示 action() 函数先执行，调用了 B 对象的 bar() 方法，在进入 bar() 方法之前，该线程对 B 对象的 Lock 加锁（当程序执行到 ② 号代码时，副线程暂停 0.2s）；CPU 切换到执行另一个线程，让 A 对象执行 foo() 方法，所以看到主线程开始执行 A 实例的 foo() 方法，在进入 foo() 方法之前，该线程对 A 对象的 Lock 加锁（当程序执行到 ① 号代码时，主线程也暂停 0.2s）。</p>
 <p>接下来副线程会先醒过来，继续向下执行，直到执行到 ④ 号代码处希望调用 A 对象的 last() 方法（在执行该方法之前，必须先对 A 对象的 Lock 加锁），但此时主线程正保持着 A 对象的 Lock 的锁定，所以副线程被阻塞。</p>
@@ -859,7 +863,8 @@ init<span class="token punctuation">(</span><span class="token punctuation">)</s
 <li>死锁检测。死锁检测是一种依靠算法机制来实现的死锁预防机制，它主要是针对那些不可能实现按序加锁，也不能使用定时锁的场景的。</li>
 </ul>
 <h1 id="condition实现线程通信"><a href="#condition实现线程通信" class="headerlink" title="condition实现线程通信"></a>condition实现线程通信</h1><p>线程的调度具有一定的透明性，通常程序无法准确控制线程的轮换执行，如果有需要，Python可通过线程通信来保证线程协调运行。<br>假设系统中有两个线程，这两个线程分别代表存款者和取钱者，现在假设系统有一种特殊的要求，即要求存款者和取钱者不断地重复存款、取钱的动作，而且要求每当存款者将钱存入指定账户后，取钱者就立即取出该笔钱。不允许存款者连续两次存钱，也不允许取钱者连续两次取钱。</p>
-<p><font color="red">为了实现这种功能，可以借助于 Condition 对象来保持协调。使用 Condition 可以让那些己经得到 Lock 对象却无法继续执行的线程释放 Lock 对象，Condition 对象也可以唤醒其他处于等待状态的线程。</font></p>
+<font color="red">为了实现这种功能，可以借助于 Condition 对象来保持协调。使用 Condition 可以让那些己经得到 Lock 对象却无法继续执行的线程释放 Lock 对象，Condition 对象也可以唤醒其他处于等待状态的线程。</font>
+
 <p>将Condition对象与Lock对象组合使用，可以为每个对象提供多个等待集（wait-set）。因此，Condition对象总是需要有对应的Lock对象。从Condition的构造器 <strong>init</strong>(self, lock=None) 可以看出，程序在创建 Condition 时可通过 lock 参数传入要绑定的 Lock 对象；如果不指定 lock 参数，在创建 Condition 时它会自动创建一个与之绑定的 Lock 对象。Condition类提供了如下方法：</p>
 <ul>
 <li>acquire([timeout])/release()：调用 Condition 关联的 Lock 的 acquire() 或 release() 方法。</li>
@@ -883,52 +888,54 @@ init<span class="token punctuation">(</span><span class="token punctuation">)</s
 <li>Queue.get(item, block=True, timeout=None)：从队列中取出元素（消费元素）。如果队列已满，且 block 参数为 True（阻塞），当前线程被阻塞，timeout 指定阻塞时间，如果将 timeout 设置为 None，则代表一直阻塞，直到有元素被放入队列中； 如果队列己空，且 block 参数为 False（不阻塞），则直接引发 queue.EMPTY 异常。</li>
 <li>Queue.get_nowait(item)：从队列中取出元素，不阻塞。相当于在上一个方法中将block参数设置为False。</li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> queue
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">import queue
 
-bq <span class="token operator">=</span> queue<span class="token punctuation">.</span>Queue<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 长度为2的阻塞队列</span>
-bq<span class="token punctuation">.</span>put<span class="token punctuation">(</span><span class="token string">"Python"</span><span class="token punctuation">)</span>
-bq<span class="token punctuation">.</span>put<span class="token punctuation">(</span><span class="token string">"Python"</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"1111111111"</span><span class="token punctuation">)</span>
-bq<span class="token punctuation">.</span>put<span class="token punctuation">(</span><span class="token string">"Python"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># ① 阻塞线程</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"2222222222"</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 当程序试图放入第三个元素时，如果使用 put() 方法尝试放入元素将会阻塞线程</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+bq = queue.Queue(2)  # 长度为2的阻塞队列
+bq.put("Python")
+bq.put("Python")
+print("1111111111")
+bq.put("Python")  # ① 阻塞线程
+print("2222222222")
+# 当程序试图放入第三个元素时，如果使用 put() 方法尝试放入元素将会阻塞线程
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在下面程序中就可以利用Queue来实现线程通信了。如下：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> threading
-<span class="token keyword">import</span> time
-<span class="token keyword">import</span> queue
-<span class="token keyword">def</span> <span class="token function">product</span><span class="token punctuation">(</span>bq<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    str_tuple <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"Python"</span><span class="token punctuation">,</span> <span class="token string">"Kotlin"</span><span class="token punctuation">,</span> <span class="token string">"Swift"</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">99999</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">"生产者准备生产元组元素！"</span><span class="token punctuation">)</span>
-        time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true"># 尝试放入元素，如果队列已满，则线程被阻塞</span>
-        bq<span class="token punctuation">.</span>put<span class="token punctuation">(</span>str_tuple<span class="token punctuation">[</span>i <span class="token operator">%</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name \
-            <span class="token operator">+</span> <span class="token string">"生产者生产元组元素完成！"</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">consume</span><span class="token punctuation">(</span>bq<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">"消费者准备消费元组元素！"</span><span class="token punctuation">)</span>
-        time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># 尝试取出元素，如果队列已空，则线程被阻塞</span>
-        t <span class="token operator">=</span> bq<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name \
-            <span class="token operator">+</span> <span class="token string">"消费者消费[ %s ]元素完成！"</span> <span class="token operator">%</span> t<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 创建一个容量为1的Queue</span>
-bq <span class="token operator">=</span> queue<span class="token punctuation">.</span>Queue<span class="token punctuation">(</span>maxsize<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 启动3个生产者线程</span>
-threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>product<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>bq<span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>product<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>bq<span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>product<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>bq<span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 启动一个消费者线程</span>
-threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>consume<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>bq<span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token triple-quoted-string string">'''
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">import threading
+import time
+import queue
+def product(bq):
+    str_tuple = ("Python", "Kotlin", "Swift")
+    for i in range(99999):
+        print(threading.current_thread().name + "生产者准备生产元组元素！")
+        time.sleep(0.2);
+        # 尝试放入元素，如果队列已满，则线程被阻塞
+        bq.put(str_tuple[i % 3])
+        print(threading.current_thread().name \
+            + "生产者生产元组元素完成！")
+def consume(bq):
+    while True:
+        print(threading.current_thread().name + "消费者准备消费元组元素！")
+        time.sleep(0.2)
+        # 尝试取出元素，如果队列已空，则线程被阻塞
+        t = bq.get()
+        print(threading.current_thread().name \
+            + "消费者消费[ %s ]元素完成！" % t)
+# 创建一个容量为1的Queue
+bq = queue.Queue(maxsize=1)
+# 启动3个生产者线程
+threading.Thread(target=product, args=(bq, )).start()
+threading.Thread(target=product, args=(bq, )).start()
+threading.Thread(target=product, args=(bq, )).start()
+# 启动一个消费者线程
+threading.Thread(target=consume, args=(bq, )).start()
+'''
 Thread-4消费者消费[ Kotlin ]元素完成！
 Thread-2生产者生产元组元素完成！
 Thread-2生产者准备生产元组元素！
 Thread-4消费者准备消费元组元素！
 Thread-4消费者消费[ Python ]元素完成！
 Thread-1生产者生产元组元素完成！
-'''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+'''
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="Event实现线程通信"><a href="#Event实现线程通信" class="headerlink" title="Event实现线程通信"></a>Event实现线程通信</h1><p>Event 本身管理一个内部旗标，程序可以通过 Event 的 set() 方法将该旗标设置为 True，也可以调用 clear() 方法将该旗标设置为 False。程序可以调用 wait() 方法来阻塞当前线程，直到 Event 的内部旗标被设置为 True。Event提供了如下方法：</p>
 <ul>
 <li>is_set()：该方法返回 Event 的内部旗标是否为True。</li>
@@ -937,62 +944,63 @@ Thread-1生产者生产元组元素完成！
 <li>wait(timeout=None)：该方法会阻塞当前线程。</li>
 </ul>
 <p>结合Event的内部旗标，同样可实现前面的Account的生产者-消费者效果：存钱线程（生产者）存钱之后，必须等取钱线程（消费者）取钱之后才能继续向下执行。Event实际上优点类似于Condition和旗标的结合体，但Event本身并不带Lock对象，因此如果要实现线程同步，还需要额外的Lock对象。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 取钱存钱的Event实现</span>
-<span class="token keyword">import</span> threading
-<span class="token keyword">class</span> <span class="token class-name">Account</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># 定义构造器</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> account_no<span class="token punctuation">,</span> balance<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># 封装账户编号、账户余额的两个成员变量</span>
-        self<span class="token punctuation">.</span>account_no <span class="token operator">=</span> account_no
-        self<span class="token punctuation">.</span>_balance <span class="token operator">=</span> balance
-        self<span class="token punctuation">.</span>lock <span class="token operator">=</span> threading<span class="token punctuation">.</span>Lock<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>event <span class="token operator">=</span> threading<span class="token punctuation">.</span>Event<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 因为账户余额不允许随便修改，所以只为self._balance提供getter方法</span>
-    <span class="token keyword">def</span> <span class="token function">getBalance</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_balance
-    <span class="token comment" spellcheck="true"># 提供一个线程安全的draw()方法来完成取钱操作</span>
-    <span class="token keyword">def</span> <span class="token function">draw</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> draw_amount<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># 加锁</span>
-        self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># 如果Event内部旗标为True，表明账户中已有人存钱进去</span>
-        <span class="token keyword">if</span> self<span class="token punctuation">.</span>event<span class="token punctuation">.</span>is_set<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># 执行取钱操作</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name
-                <span class="token operator">+</span> <span class="token string">" 取钱:"</span> <span class="token operator">+</span>  str<span class="token punctuation">(</span>draw_amount<span class="token punctuation">)</span><span class="token punctuation">)</span>
-            self<span class="token punctuation">.</span>_balance <span class="token operator">-=</span> draw_amount
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"账户余额为："</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_balance<span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true"># 将Event内部旗标设为False</span>
-            self<span class="token punctuation">.</span>event<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true"># 释放加锁</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true"># 阻塞当前线程阻塞</span>
-            self<span class="token punctuation">.</span>event<span class="token punctuation">.</span>wait<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># 释放加锁</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true"># 阻塞当前线程阻塞</span>
-            self<span class="token punctuation">.</span>event<span class="token punctuation">.</span>wait<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">def</span> <span class="token function">deposit</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> deposit_amount<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># 加锁</span>
-        self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>acquire<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># 如果Event内部旗标为False，表明账户中还没有人存钱进去</span>
-        <span class="token keyword">if</span> <span class="token operator">not</span> self<span class="token punctuation">.</span>event<span class="token punctuation">.</span>is_set<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># 执行存款操作</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>threading<span class="token punctuation">.</span>current_thread<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name\
-                <span class="token operator">+</span> <span class="token string">" 存款:"</span> <span class="token operator">+</span>  str<span class="token punctuation">(</span>deposit_amount<span class="token punctuation">)</span><span class="token punctuation">)</span>
-            self<span class="token punctuation">.</span>_balance <span class="token operator">+=</span> deposit_amount
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"账户余额为："</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_balance<span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true"># 将Event内部旗标设为True</span>
-            self<span class="token punctuation">.</span>event<span class="token punctuation">.</span>set<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true"># 释放加锁</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true"># 阻塞当前线程阻塞</span>
-            self<span class="token punctuation">.</span>event<span class="token punctuation">.</span>wait<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># 释放加锁</span>
-            self<span class="token punctuation">.</span>lock<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true"># 阻塞当前线程阻塞</span>
-            self<span class="token punctuation">.</span>event<span class="token punctuation">.</span>wait<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># 取钱存钱的Event实现
+import threading
+class Account:
+    # 定义构造器
+    def __init__(self, account_no, balance):
+        # 封装账户编号、账户余额的两个成员变量
+        self.account_no = account_no
+        self._balance = balance
+        self.lock = threading.Lock()
+        self.event = threading.Event()
+    # 因为账户余额不允许随便修改，所以只为self._balance提供getter方法
+    def getBalance(self):
+        return self._balance
+    # 提供一个线程安全的draw()方法来完成取钱操作
+    def draw(self, draw_amount):
+        # 加锁
+        self.lock.acquire()
+        # 如果Event内部旗标为True，表明账户中已有人存钱进去
+        if self.event.is_set():
+            # 执行取钱操作
+            print(threading.current_thread().name
+                + " 取钱:" +  str(draw_amount))
+            self._balance -= draw_amount
+            print("账户余额为：" + str(self._balance))
+            # 将Event内部旗标设为False
+            self.event.clear()
+            # 释放加锁
+            self.lock.release()
+            # 阻塞当前线程阻塞
+            self.event.wait()
+        else:
+            # 释放加锁
+            self.lock.release()
+            # 阻塞当前线程阻塞
+            self.event.wait()
+    def deposit(self, deposit_amount):
+        # 加锁
+        self.lock.acquire()
+        # 如果Event内部旗标为False，表明账户中还没有人存钱进去
+        if not self.event.is_set():
+            # 执行存款操作
+            print(threading.current_thread().name\
+                + " 存款:" +  str(deposit_amount))
+            self._balance += deposit_amount
+            print("账户余额为：" + str(self._balance))
+            # 将Event内部旗标设为True
+            self.event.set()
+            # 释放加锁
+            self.lock.release()
+            # 阻塞当前线程阻塞
+            self.event.wait()
+        else:
+            # 释放加锁
+            self.lock.release()
+            # 阻塞当前线程阻塞
+            self.event.wait()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -1737,7 +1745,7 @@ Thread-1生产者生产元组元素完成！
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1918,6 +1926,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

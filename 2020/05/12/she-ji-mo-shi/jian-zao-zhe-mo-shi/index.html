@@ -528,174 +528,180 @@
 <li>指挥者（Director）：它调用建造者对象中的部件构造与装配方法完成复杂对象的创建，在指挥者中不涉及具体产品的信息。</li>
 </ul>
 <h2 id="模式的实现"><a href="#模式的实现" class="headerlink" title="模式的实现"></a>模式的实现</h2><p>1.产品角色：包含多个组成部件的复杂对象。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Product</span><span class="token punctuation">{</span>
-    <span class="token keyword">private</span> String partA<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> String partB<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> String partC<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setPartA</span><span class="token punctuation">(</span>String partA<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>partA <span class="token operator">=</span> partA<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setPartB</span><span class="token punctuation">(</span>String partB<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>partB<span class="token operator">=</span>partB<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setPartC</span><span class="token punctuation">(</span>String partC<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>partC<span class="token operator">=</span>partC<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//显示产品的特性</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">class Product{
+    private String partA;
+    private String partB;
+    private String partC;
+    public void setPartA(String partA){
+        this.partA = partA;
+    }
+    public void setPartB(String partB)
+    {
+        this.partB=partB;
+    }
+    public void setPartC(String partC)
+    {
+        this.partC=partC;
+    }
+    public void show()
+    {
+        //显示产品的特性
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>2.抽象建造者：包含创建产品各个子部件的抽象方法</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Builder</span><span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//创建产品对象</span>
-    <span class="token keyword">protected</span> Product product <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Product</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">buildPartA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">buildPartB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">buildPartC</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//返回产品对象</span>
-    <span class="token keyword">public</span> Product <span class="token function">getResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> product<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">abstract class Builder{
+    //创建产品对象
+    protected Product product = new Product();
+    public abstract void buildPartA();
+    public abstract void buildPartB();
+    public abstract void buildPartC();
+    //返回产品对象
+    public Product getResult()
+    {
+        return product;
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>3.具体建造者：实现抽象建造者接口</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConcreteBuilder</span> <span class="token keyword">extends</span> <span class="token class-name">Builder</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">buildPartA</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        product<span class="token punctuation">.</span><span class="token function">setPartA</span><span class="token punctuation">(</span><span class="token string">"建造 PartA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">buildPartB</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        product<span class="token punctuation">.</span><span class="token function">setPartA</span><span class="token punctuation">(</span><span class="token string">"建造 PartB"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">buildPartC</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        product<span class="token punctuation">.</span><span class="token function">setPartA</span><span class="token punctuation">(</span><span class="token string">"建造 PartC"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">public class ConcreteBuilder extends Builder
+{
+    public void buildPartA()
+    {
+        product.setPartA("建造 PartA");
+    }
+    public void buildPartB()
+    {
+        product.setPartA("建造 PartB");
+    }
+    public void buildPartC()
+    {
+        product.setPartA("建造 PartC");
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>4.指挥者：调用建造者中的方法完成复杂对象的创建</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Director</span><span class="token punctuation">{</span>
-    <span class="token keyword">private</span> Builder builder<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">Director</span><span class="token punctuation">(</span>Builder builder<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>builder <span class="token operator">=</span> builder<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//产品构建与组装方法</span>
-    <span class="token keyword">public</span> Product <span class="token function">construct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        builder<span class="token punctuation">.</span><span class="token function">buildPartA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        builder<span class="token punctuation">.</span><span class="token function">buildPartB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        builder<span class="token punctuation">.</span><span class="token function">buildPartC</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> builder<span class="token punctuation">.</span><span class="token function">getResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">class Director{
+    private Builder builder;
+    public Director(Builder builder){
+        this.builder = builder;
+    }
+    //产品构建与组装方法
+    public Product construct(){
+        builder.buildPartA();
+        builder.buildPartB();
+        builder.buildPartC();
+        return builder.getResult();
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>5.客户类</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        BUilder builder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcreteBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Director director <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Director</span><span class="token punctuation">(</span>builder<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Product product <span class="token operator">=</span> director<span class="token punctuation">.</span><span class="token function">construct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        product<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">public class Client{
+    public static void main(String[] args){
+        BUilder builder = new ConcreteBuilder();
+        Director director = new Director(builder);
+        Product product = director.construct();
+        product.show();
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><p>用建造者（Builder）模式描述客厅装修。分析：客厅装修是一个复杂的过程，它包含墙体的装修、电视机的选择、沙发的购买与布局等。客户把装修要求告诉项目经理，项目经理指挥装修工人一步步装修，最后完成整个客厅的装修与布局，所以本实例用建造者模式实现比较适合。结构图如下：</p>
-<div align="center"><img src="/image/Bulider.png" width="400"></div>
+<p><div align="center"><img src="/image/Bulider.png" width="400"></div></p>
 <center>图1 客厅装修的结构图</center>
 
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//产品：客厅</span>
-<span class="token keyword">class</span> <span class="token class-name">Parlour</span><span class="token punctuation">{</span>
-    <span class="token keyword">private</span> String wall<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//墙</span>
-    <span class="token keyword">private</span> String TV<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//电视</span>
-    <span class="token keyword">private</span> String sofa<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//沙发</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setWall</span><span class="token punctuation">(</span>String wall<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>wall <span class="token operator">=</span> wall<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setTV</span><span class="token punctuation">(</span>String TV<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>TV<span class="token operator">=</span>TV<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setSofa</span><span class="token punctuation">(</span>String sofa<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>sofa<span class="token operator">=</span>sofa<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>   
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        JFrame jf<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">JFrame</span><span class="token punctuation">(</span><span class="token string">"建造者模式测试"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Container contentPane<span class="token operator">=</span>jf<span class="token punctuation">.</span><span class="token function">getContentPane</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        JPanel p<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">JPanel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
-        JScrollPane sp<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">JScrollPane</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>  
-        String parlour<span class="token operator">=</span>wall<span class="token operator">+</span>TV<span class="token operator">+</span>sofa<span class="token punctuation">;</span>
-        JLabel l<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">JLabel</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ImageIcon</span><span class="token punctuation">(</span><span class="token string">"src/"</span><span class="token operator">+</span>parlour<span class="token operator">+</span><span class="token string">".jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        p<span class="token punctuation">.</span><span class="token function">setLayout</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">GridLayout</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        p<span class="token punctuation">.</span><span class="token function">setBorder</span><span class="token punctuation">(</span>BorderFactory<span class="token punctuation">.</span><span class="token function">createTitledBorder</span><span class="token punctuation">(</span><span class="token string">"客厅"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        p<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        contentPane<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>sp<span class="token punctuation">,</span>BorderLayout<span class="token punctuation">.</span>CENTER<span class="token punctuation">)</span><span class="token punctuation">;</span>       
-        jf<span class="token punctuation">.</span><span class="token function">pack</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-        jf<span class="token punctuation">.</span><span class="token function">setVisible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        jf<span class="token punctuation">.</span><span class="token function">setDefaultCloseOperation</span><span class="token punctuation">(</span>JFrame<span class="token punctuation">.</span>EXIT_ON_CLOSE<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>   
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象建造者：装修工人</span>
-<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Decorator</span><span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//创建产品对象</span>
-    <span class="token keyword">protected</span> Parlour product <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Parlour</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">buildWall</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">buildTV</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">buildSofa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//产品对象</span>
-    <span class="token keyword">public</span> Parlour <span class="token function">getResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">return</span> product<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体建造者：具体装修工人</span>
-<span class="token keyword">class</span> <span class="token class-name">ConcreteDecorator1</span> <span class="token keyword">extends</span> <span class="token class-name">Decorator</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">buildWall</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        product<span class="token punctuation">.</span><span class="token function">setWall</span><span class="token punctuation">(</span><span class="token string">"w1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">buildTV</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        product<span class="token punctuation">.</span><span class="token function">setTV</span><span class="token punctuation">(</span><span class="token string">"TV1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">buildSofa</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        product<span class="token punctuation">.</span><span class="token function">setSofa</span><span class="token punctuation">(</span><span class="token string">"sf1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体建造者：具体装修工人2</span>
-<span class="token keyword">class</span> <span class="token class-name">ConcreteDecorator2</span> <span class="token keyword">extends</span> <span class="token class-name">Decorator</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">buildWall</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        product<span class="token punctuation">.</span><span class="token function">setWall</span><span class="token punctuation">(</span><span class="token string">"w2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-      <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">buildTV</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-      <span class="token punctuation">{</span>
-          product<span class="token punctuation">.</span><span class="token function">setTV</span><span class="token punctuation">(</span><span class="token string">"TV2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-      <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">buildSofa</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-      <span class="token punctuation">{</span>
-          product<span class="token punctuation">.</span><span class="token function">setSofa</span><span class="token punctuation">(</span><span class="token string">"sf2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//指挥者：项目经理</span>
-<span class="token keyword">class</span> <span class="token class-name">ProjectManager</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> Decorator builder<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">ProjectManager</span><span class="token punctuation">(</span>Decorator builder<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-          <span class="token keyword">this</span><span class="token punctuation">.</span>builder<span class="token operator">=</span>builder<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//产品构建与组装方法</span>
-    <span class="token keyword">public</span> Parlour <span class="token function">decorate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-          builder<span class="token punctuation">.</span><span class="token function">buildWall</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        builder<span class="token punctuation">.</span><span class="token function">buildTV</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        builder<span class="token punctuation">.</span><span class="token function">buildSofa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> builder<span class="token punctuation">.</span><span class="token function">getResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">//产品：客厅
+class Parlour{
+    private String wall;  //墙
+    private String TV;  //电视
+    private String sofa;  //沙发
+    public void setWall(String wall){
+        this.wall = wall;
+    }
+    public void setTV(String TV)
+    {
+        this.TV=TV;
+    }
+    public void setSofa(String sofa)
+    {
+        this.sofa=sofa;
+    }   
+    public void show()
+    {
+        JFrame jf=new JFrame("建造者模式测试");
+        Container contentPane=jf.getContentPane();
+        JPanel p=new JPanel();   
+        JScrollPane sp=new JScrollPane(p);  
+        String parlour=wall+TV+sofa;
+        JLabel l=new JLabel(new ImageIcon("src/"+parlour+".jpg"));
+        p.setLayout(new GridLayout(1,1));
+        p.setBorder(BorderFactory.createTitledBorder("客厅"));
+        p.add(l);
+        contentPane.add(sp,BorderLayout.CENTER);       
+        jf.pack();  
+        jf.setVisible(true);
+        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }   
+}
+//抽象建造者：装修工人
+abstract class Decorator{
+    //创建产品对象
+    protected Parlour product = new Parlour();
+    public abstract void buildWall();
+    public abstract void buildTV();
+    public abstract void buildSofa();
+    //产品对象
+    public Parlour getResult(){
+        return product;
+    }
+}
+//具体建造者：具体装修工人
+class ConcreteDecorator1 extends Decorator{
+    public void buildWall(){
+        product.setWall("w1");
+    }
+    public void buildTV()
+    {
+        product.setTV("TV1");
+    }
+    public void buildSofa()
+    {
+        product.setSofa("sf1");
+    }
+}
+//具体建造者：具体装修工人2
+class ConcreteDecorator2 extends Decorator
+{
+    public void buildWall()
+    {
+        product.setWall("w2");
+      }
+      public void buildTV()
+      {
+          product.setTV("TV2");
+      }
+      public void buildSofa()
+      {
+          product.setSofa("sf2");
+      }
+}
+//指挥者：项目经理
+class ProjectManager
+{
+    private Decorator builder;
+    public ProjectManager(Decorator builder)
+    {
+          this.builder=builder;
+    }
+    //产品构建与组装方法
+    public Parlour decorate()
+    {
+          builder.buildWall();
+        builder.buildTV();
+        builder.buildSofa();
+        return builder.getResult();
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>建造者(Builder)模式创建的是复杂对象，其产品的各个部分经常面临着剧烈的变化，但将它们组合在一起的算法却相对稳定，所以它通常在以下场合使用。</p>
 <ul>
 <li>创建的对象较复杂，由多个部件构成，各部件面临着复杂的变化，但构件间的建造顺序是稳定的。</li>
@@ -1431,7 +1437,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1612,6 +1618,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

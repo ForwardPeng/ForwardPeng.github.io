@@ -496,14 +496,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.1k
+                    4.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    27 分
+                    18 分
                 </div>
                 
                 
@@ -526,10 +526,8 @@
 </ul>
 <h3 id="前驱和后继"><a href="#前驱和后继" class="headerlink" title="前驱和后继"></a>前驱和后继</h3><p>数据结构中，一组数据中的每个个体被称为“数据元素”。</p>
 <ul>
-<li><p>某一元素的左侧相邻元素称为“直接前驱”，位于此元素左侧的所有元素都统称为“前驱元素”；</p>
-</li>
-<li><p>某一元素的右侧相邻元素称为“直接后继”，位于此元素右侧的所有元素都统称为“后继元素”；</p>
-<div align="center"><img src="/images/prev.png" width="400"></div>
+<li>某一元素的左侧相邻元素称为“直接前驱”，位于此元素左侧的所有元素都统称为“前驱元素”；</li>
+<li><p>某一元素的右侧相邻元素称为“直接后继”，位于此元素右侧的所有元素都统称为“后继元素”；<br><div align="center"><img src="/images/prev.png" width="400"></div></p>
 <center>图1 前驱和后继</center>
 
 <h1 id="顺序表-顺序存储结构-及初始化"><a href="#顺序表-顺序存储结构-及初始化" class="headerlink" title="顺序表(顺序存储结构)及初始化"></a>顺序表(顺序存储结构)及初始化</h1><p>顺序表存储数据时，会提前申请一整块足够大小的物理空间，然后将数据依次存储起来，存储时做到数据元素之间不留一丝缝隙。顺序表存储数据使用的是数组。</p>
@@ -540,190 +538,196 @@
 <li>顺序表申请的存储容量</li>
 <li>顺序表的长度，元素的个数</li>
 </ul>
-<p><font color="red">正常状态下，顺序表申请的存储容量要大于顺序表的长度。</font></p>
+<font color="red">正常状态下，顺序表申请的存储容量要大于顺序表的长度。</font>
+
 <p>自定义顺序表的结构体：C语言实现：</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> Table
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span><span class="token operator">*</span> head<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//动态数组</span>
-    <span class="token keyword">int</span> length<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//顺序表的长度</span>
-    <span class="token keyword">int</span> size<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//顺序表分配的存储容量</span>
-<span class="token punctuation">}</span>table<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-c"><code class="language-lang-c">typedef struct Table
+{
+    int* head;  //动态数组
+    int length; //顺序表的长度
+    int size; //顺序表分配的存储容量
+}table;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>建立顺序表需要做如下工作：</p>
 <ul>
 <li>给head动态数据申请足够大小的物理空间；</li>
-<li>给size和length赋初值；<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">define</span> Size 5</span>
-<span class="token keyword">typedef</span> <span class="token keyword">struct</span> Table<span class="token punctuation">{</span>
-  <span class="token keyword">int</span> <span class="token operator">*</span> head<span class="token punctuation">;</span>
-  <span class="token keyword">int</span> length<span class="token punctuation">;</span>
-  <span class="token keyword">int</span> size<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>table<span class="token punctuation">;</span>
-table <span class="token function">initTable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-  table t<span class="token punctuation">;</span>
-  t<span class="token punctuation">.</span>head<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>Size<span class="token operator">*</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//构造一个空的顺序表，动态申请存储空间</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>t<span class="token punctuation">.</span>head<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//如果申请失败，作出提示并直接退出程序</span>
-  <span class="token punctuation">{</span>
-      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"初始化失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  t<span class="token punctuation">.</span>length<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//长度为0</span>
-  t<span class="token punctuation">.</span>size<span class="token operator">=</span>Size<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//存储空间为Size</span>
-  <span class="token keyword">return</span> t<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//输出顺序表中元素的函数</span>
-<span class="token keyword">void</span> <span class="token function">displayTable</span><span class="token punctuation">(</span>table t<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>t<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span>t<span class="token punctuation">.</span>head<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-  table t<span class="token operator">=</span><span class="token function">initTable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//向顺序表中添加元素</span>
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>Size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      t<span class="token punctuation">.</span>head<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
-      t<span class="token punctuation">.</span>length<span class="token operator">++</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"顺序表中存储的元素分别是：\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">displayTable</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<li>给size和length赋初值；<pre class="line-numbers language-lang-c"><code class="language-lang-c">#include <stdio.h>
+#include <stdlib.h>
+#define Size 5
+typedef struct Table{
+  int * head;
+  int length;
+  int size;
+}table;
+table initTable(){
+  table t;
+  t.head=(int*)malloc(Size*sizeof(int));  //构造一个空的顺序表，动态申请存储空间
+  if (!t.head) //如果申请失败，作出提示并直接退出程序
+  {
+      printf("初始化失败");
+      exit(0);
+  }
+  t.length=0;  //长度为0
+  t.size=Size;  //存储空间为Size
+  return t;
+}
+//输出顺序表中元素的函数
+void displayTable(table t){
+  for (int i=0;i<t.length;i++) {
+      printf("%d ",t.head[i]);
+  }
+  printf("\n");
+}
+int main(){
+  table t=initTable();
+  //向顺序表中添加元素
+  for (int i=1; i<=Size; i++) {
+      t.head[i-1]=i;
+      t.length++;
+  }
+  printf("顺序表中存储的元素分别是：\n");
+  displayTable(t);
+  return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="顺序表插入元素"><a href="#顺序表插入元素" class="headerlink" title="顺序表插入元素"></a>顺序表插入元素</h2>虽然数据元素插入顺序表中的位置有所不同，但是都使用的是同一种方式去解决，即：通过遍历，找到数据元素要插入的位置，然后做如下两步工作：</li>
 <li>将要插入位置元素以及后续的元素整体向后移动一个位置；</li>
-<li>将元素放到腾出来的位置上；<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//插入函数，其中，elem为插入的元素，add为插入到顺序表的位置</span>
-table <span class="token function">addTable</span><span class="token punctuation">(</span>table t<span class="token punctuation">,</span> <span class="token keyword">int</span> elem<span class="token punctuation">,</span> <span class="token keyword">int</span> add<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  <span class="token comment" spellcheck="true">//判断插入本身是否存在问题（如果插入元素位置比整张表的长度+1还大（如果相等，是尾随的情况），或者插入的位置本身不存在，程序作为提示并自动退出）</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>add <span class="token operator">></span> t<span class="token punctuation">.</span>length <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">||</span> add <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"插入位置有问题\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token keyword">return</span> t<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token comment" spellcheck="true">//做插入操作时，首先需要看顺序表是否有多余的存储空间提供给插入的元素，如果没有，需要申请</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>t<span class="token punctuation">.</span>length <span class="token operator">==</span> t<span class="token punctuation">.</span>size<span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-      t<span class="token punctuation">.</span>head <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">realloc</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>head<span class="token punctuation">,</span> <span class="token punctuation">(</span>t<span class="token punctuation">.</span>size <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>t<span class="token punctuation">.</span>head<span class="token punctuation">)</span>
-      <span class="token punctuation">{</span>
-          <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"存储分配失败\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-          <span class="token keyword">return</span> t<span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-      t<span class="token punctuation">.</span>size <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token comment" spellcheck="true">//插入操作，需要将从插入位置开始的后续元素，逐个后移</span>
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> t<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> add <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-      t<span class="token punctuation">.</span>head<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> t<span class="token punctuation">.</span>head<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token comment" spellcheck="true">//后移完成后，直接将所需插入元素，添加到顺序表的相应位置</span>
-  t<span class="token punctuation">.</span>head<span class="token punctuation">[</span>add <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> elem<span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//由于添加了元素，所以长度+1</span>
-  t<span class="token punctuation">.</span>length<span class="token operator">++</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> t<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<font color="red">注意，动态数组额外申请更多物理空间使用的是 realloc 函数。并且，在实现后续元素整体后移的过程，目标位置其实是有数据的，还是 3，只是下一步新插入元素时会把旧元素直接覆盖。</font></li>
+<li>将元素放到腾出来的位置上；<pre class="line-numbers language-lang-c"><code class="language-lang-c">//插入函数，其中，elem为插入的元素，add为插入到顺序表的位置
+table addTable(table t, int elem, int add)
+{
+  //判断插入本身是否存在问题（如果插入元素位置比整张表的长度+1还大（如果相等，是尾随的情况），或者插入的位置本身不存在，程序作为提示并自动退出）
+  if (add > t.length + 1 || add < 1)
+  {
+      printf("插入位置有问题\n");
+      return t;
+  }
+  //做插入操作时，首先需要看顺序表是否有多余的存储空间提供给插入的元素，如果没有，需要申请
+  if (t.length == t.size)
+  {
+      t.head = (int *)realloc(t.head, (t.size + 1) * sizeof(int));
+      if (!t.head)
+      {
+          printf("存储分配失败\n");
+          return t;
+      }
+      t.size += 1;
+  }
+  //插入操作，需要将从插入位置开始的后续元素，逐个后移
+  for (int i = t.length - 1; i >= add - 1; i--)
+  {
+      t.head[i + 1] = t.head[i];
+  }
+  //后移完成后，直接将所需插入元素，添加到顺序表的相应位置
+  t.head[add - 1] = elem;
+  //由于添加了元素，所以长度+1
+  t.length++;
+  return t;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<font color="red">注意，动态数组额外申请更多物理空间使用的是 realloc 函数。并且，在实现后续元素整体后移的过程，目标位置其实是有数据的，还是 3，只是下一步新插入元素时会把旧元素直接覆盖。</font>
+
+</li>
 </ul>
 <h2 id="顺序表删除元素"><a href="#顺序表删除元素" class="headerlink" title="顺序表删除元素"></a>顺序表删除元素</h2><p>从顺序表中删除指定元素，实现起来非常简单，只需找到目标元素，并将其后续所有元素整体前移 1 个位置即可。</p>
-<pre class="line-numbers language-c"><code class="language-c">table <span class="token function">delTable</span><span class="token punctuation">(</span>table t<span class="token punctuation">,</span> <span class="token keyword">int</span> add<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"被删除元素的位置有误\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> t<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//删除操作</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>add<span class="token punctuation">;</span> i<span class="token operator">&lt;</span>t<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        t<span class="token punctuation">.</span>head<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">=</span>t<span class="token punctuation">.</span>head<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    t<span class="token punctuation">.</span>length<span class="token operator">--</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> t<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-c"><code class="language-lang-c">table delTable(table t, int add)
+{
+    printf("被删除元素的位置有误\n");
+        return t;
+    }
+    //删除操作
+    for (int i=add; i<t.length; i++) {
+        t.head[i-1]=t.head[i];
+    }
+    t.length--;
+    return t;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="顺序表查找元素"><a href="#顺序表查找元素" class="headerlink" title="顺序表查找元素"></a>顺序表查找元素</h2><p>顺序表中查找目标元素，可以使用多种查找算法实现，比如说二分查找算法、顺序查找等</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//顺序查找</span>
-<span class="token keyword">int</span> <span class="token function">selectTable</span><span class="token punctuation">(</span>table t<span class="token punctuation">,</span><span class="token keyword">int</span> elem<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>t<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>t<span class="token punctuation">.</span>head<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>elem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//如果查找失败，返回-1</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-c"><code class="language-lang-c">//顺序查找
+int selectTable(table t,int elem){
+    for (int i=0; i<t.length; i++) {
+        if (t.head[i]==elem) {
+            return i+1;
+        }
+    }
+    return -1;//如果查找失败，返回-1
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="更改元素"><a href="#更改元素" class="headerlink" title="更改元素"></a>更改元素</h2><p>顺序表更改元素的实现过程是：</p>
 <ul>
-<li><p>找到目标元素；</p>
-</li>
-<li><p>直接修改该元素的值；</p>
-<pre class="line-numbers language-c"><code class="language-c">table <span class="token function">amendTable</span><span class="token punctuation">(</span>table t<span class="token punctuation">,</span><span class="token keyword">int</span> elem<span class="token punctuation">,</span><span class="token keyword">int</span> newElem<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  <span class="token keyword">int</span> add<span class="token operator">=</span><span class="token function">selectTable</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> elem<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  t<span class="token punctuation">.</span>head<span class="token punctuation">[</span>add<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">=</span>newElem<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//由于返回的是元素在顺序表中的位置，所以-1就是该元素在数组中的下标</span>
-  <span class="token keyword">return</span> t<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h1><p>与顺序表不同，链表不限制数据的物理存储状态，换句话说，使用链表存储的数据元素，其物理存储位置是随机的。<font color="red">通过指针表示数据之间逻辑关系的存储结构就是链式存储结构。</font></p>
-<h2 id="链表的节点"><a href="#链表的节点" class="headerlink" title="链表的节点"></a>链表的节点</h2><p>链表中每个数据的存储都由以下两部分组成：</p>
-</li>
-<li><p>数据元素本身，其所在的区域称为数据域；</p>
-</li>
-<li><p>指向直接后继元素的指针，所在的区域称为指针域；</p>
-<div align="center"><img src="/images/节点结构.png" width="400"></div>
+<li>找到目标元素；</li>
+<li>直接修改该元素的值；<pre class="line-numbers language-lang-c"><code class="language-lang-c">table amendTable(table t,int elem,int newElem){
+  int add=selectTable(t, elem);
+  t.head[add-1]=newElem;//由于返回的是元素在顺序表中的位置，所以-1就是该元素在数组中的下标
+  return t;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h1>与顺序表不同，链表不限制数据的物理存储状态，换句话说，使用链表存储的数据元素，其物理存储位置是随机的。<font color="red">通过指针表示数据之间逻辑关系的存储结构就是链式存储结构。</font><h2 id="链表的节点"><a href="#链表的节点" class="headerlink" title="链表的节点"></a>链表的节点</h2>链表中每个数据的存储都由以下两部分组成：</li>
+<li>数据元素本身，其所在的区域称为数据域；</li>
+<li><p>指向直接后继元素的指针，所在的区域称为指针域；<br><div align="center"><img src="/images/节点结构.png" width="400"></div></p>
 <center>图2 节点结构</center>
 
 <p>链表中每个节点的结构体实现c代码：</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> Link<span class="token punctuation">{</span>
-  <span class="token keyword">char</span> elem<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//代表数据域</span>
-  <span class="token keyword">struct</span> Link <span class="token operator">*</span> next<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//代表指针域，指向直接后继元素</span>
-<span class="token punctuation">}</span>link<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//link为节点名，每个节点都是一个 link 结构体</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-c"><code class="language-lang-c">typedef struct Link{
+  char elem; //代表数据域
+  struct Link * next; //代表指针域，指向直接后继元素
+}link; //link为节点名，每个节点都是一个 link 结构体
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="头节点、头指针和首元节点"><a href="#头节点、头指针和首元节点" class="headerlink" title="头节点、头指针和首元节点"></a>头节点、头指针和首元节点</h2><p>一个完整的链表需要由以下几部分构成：</p>
 <ul>
 <li>头指针：一个普通的指针，它的特点是永远指向链表第一个节点的位置。很明显，头指针用于指明链表的位置，便于后期找到链表并使用表中的数据；</li>
 <li>头节点：其实就是一个不存任何数据的空节点，通常作为链表的第一个节点。对于链表来说，头节点不是必须的，它的作用只是为了方便解决某些实际问题；</li>
 </ul>
 </li>
-<li><p>首元节点：由于头节点（也就是空节点）的缘故，链表中称第一个存有数据的节点为首元节点。首元节点只是对链表中第一个存有数据节点的一个称谓，没有实际意义；</p>
-</li>
-<li><p>其他节点：链表中其他的节点；</p>
-</li>
+<li>首元节点：由于头节点（也就是空节点）的缘故，链表中称第一个存有数据的节点为首元节点。首元节点只是对链表中第一个存有数据节点的一个称谓，没有实际意义；</li>
+<li>其他节点：链表中其他的节点；</li>
 </ul>
-<p><font color="red">注意：链表中有头节点时，头指针指向头节点；反之，若链表中没有头节点，则头指针指向首元节点。</font></p>
+<font color="red">注意：链表中有头节点时，头指针指向头节点；反之，若链表中没有头节点，则头指针指向首元节点。</font>
+
 <h2 id="链表的创建-初始化"><a href="#链表的创建-初始化" class="headerlink" title="链表的创建(初始化)"></a>链表的创建(初始化)</h2><p>创建一个链表步骤如下：</p>
 <ul>
 <li>声明一个头指针（如果有必要，可以声明一个头节点）；</li>
-<li>创建多个存储数据的节点，在创建的过程中，要随时与其前驱节点建立逻辑关系；<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//创建一个存储 {1,2,3,4} 且含头节点的链表</span>
-link <span class="token operator">*</span> <span class="token function">initLink</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-  link <span class="token operator">*</span> p<span class="token operator">=</span><span class="token punctuation">(</span>link<span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>link<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//创建一个头结点</span>
-  link <span class="token operator">*</span> temp<span class="token operator">=</span>p<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//声明一个指针指向头结点，</span>
-  <span class="token comment" spellcheck="true">//生成链表</span>
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      link <span class="token operator">*</span>a<span class="token operator">=</span><span class="token punctuation">(</span>link<span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>link<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      a<span class="token operator">-></span>elem<span class="token operator">=</span>i<span class="token punctuation">;</span>
-      a<span class="token operator">-></span>next<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-      temp<span class="token operator">-></span>next<span class="token operator">=</span>a<span class="token punctuation">;</span>
-      temp<span class="token operator">=</span>temp<span class="token operator">-></span>next<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">return</span> p<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<li>创建多个存储数据的节点，在创建的过程中，要随时与其前驱节点建立逻辑关系；<pre class="line-numbers language-lang-c"><code class="language-lang-c">//创建一个存储 {1,2,3,4} 且含头节点的链表
+link * initLink(){
+  link * p=(link*)malloc(sizeof(link));//创建一个头结点
+  link * temp=p;//声明一个指针指向头结点，
+  //生成链表
+  for (int i=1; i<5; i++) {
+      link *a=(link*)malloc(sizeof(link));
+      a->elem=i;
+      a->next=NULL;
+      temp->next=a;
+      temp=temp->next;
+  }
+  return p;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="链表插入元素"><a href="#链表插入元素" class="headerlink" title="链表插入元素"></a>链表插入元素</h2>虽然新元素的插入位置不固定，但是链表插入元素的思想是固定的，只需做以下两步操作，即可将新元素插入到指定的位置：</li>
 <li>将新结点的 next 指针指向插入位置后的结点；</li>
 <li>将插入位置前结点的 next 指针指向插入结点；</li>
 </ul>
-<p><font color="red">注意：链表插入元素的操作必须是先步骤 1，再步骤 2；反之，若先执行步骤 2，除非再添加一个指针，作为插入位置后续链表的头指针，否则会导致插入位置后的这部分链表丢失，无法再实现步骤 1。</font></p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//p为原链表，elem表示新数据元素，add表示新元素要插入的位置</span>
-link <span class="token operator">*</span> <span class="token function">insertElem</span><span class="token punctuation">(</span>link <span class="token operator">*</span> p<span class="token punctuation">,</span> <span class="token keyword">int</span> elem<span class="token punctuation">,</span> <span class="token keyword">int</span> add<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    link <span class="token operator">*</span> temp <span class="token operator">=</span> p<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//创建临时结点temp</span>
-    <span class="token comment" spellcheck="true">//首先找到要插入位置的上一个结点</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> add<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        temp <span class="token operator">=</span> temp<span class="token operator">-></span>next<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>temp <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"插入位置无效\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> p<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//创建插入结点c</span>
-    link <span class="token operator">*</span> c <span class="token operator">=</span> <span class="token punctuation">(</span>link<span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>link<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    c<span class="token operator">-></span>elem <span class="token operator">=</span> elem<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//向链表中插入结点</span>
-    c<span class="token operator">-></span>next <span class="token operator">=</span> temp<span class="token operator">-></span>next<span class="token punctuation">;</span>
-    temp<span class="token operator">-></span>next <span class="token operator">=</span> c<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> p<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<font color="red">注意：链表插入元素的操作必须是先步骤 1，再步骤 2；反之，若先执行步骤 2，除非再添加一个指针，作为插入位置后续链表的头指针，否则会导致插入位置后的这部分链表丢失，无法再实现步骤 1。</font>
+
+<pre class="line-numbers language-lang-c"><code class="language-lang-c">//p为原链表，elem表示新数据元素，add表示新元素要插入的位置
+link * insertElem(link * p, int elem, int add) {
+    link * temp = p;//创建临时结点temp
+    //首先找到要插入位置的上一个结点
+    for (int i = 1; i < add; i++) {
+        temp = temp->next;
+        if (temp == NULL) {
+            printf("插入位置无效\n");
+            return p;
+        }
+    }
+    //创建插入结点c
+    link * c = (link*)malloc(sizeof(link));
+    c->elem = elem;
+    //向链表中插入结点
+    c->next = temp->next;
+    temp->next = c;
+    return p;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="链表删除元素"><a href="#链表删除元素" class="headerlink" title="链表删除元素"></a>链表删除元素</h2><p>从链表中删除数据元素需要进行以下 2步操作：</p>
 <ul>
 <li>将结点从链表中摘下来;</li>
@@ -733,51 +737,54 @@ link <span class="token operator">*</span> <span class="token function">insertEl
 </li>
 </ul>
 <p>执行效果如图3所示：<br> <div align="center"><img src="/images/链表删除元素.png" width="400"></div><br> <center>图3 链表删除元素</center></p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//p为原链表，add为要删除元素的值</span>
-link <span class="token operator">*</span> <span class="token function">delElem</span><span class="token punctuation">(</span>link <span class="token operator">*</span> p<span class="token punctuation">,</span> <span class="token keyword">int</span> add<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    link <span class="token operator">*</span> temp <span class="token operator">=</span> p<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//遍历到被删除结点的上一个结点</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> add<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        temp <span class="token operator">=</span> temp<span class="token operator">-></span>next<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>temp<span class="token operator">-></span>next <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"没有该结点\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> p<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    link <span class="token operator">*</span> del <span class="token operator">=</span> temp<span class="token operator">-></span>next<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//单独设置一个指针指向被删除结点，以防丢失</span>
-    temp<span class="token operator">-></span>next <span class="token operator">=</span> temp<span class="token operator">-></span>next<span class="token operator">-></span>next<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//删除某个结点的方法就是更改前一个结点的指针域</span>
-    <span class="token function">free</span><span class="token punctuation">(</span>del<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//手动释放该结点，防止内存泄漏</span>
-    <span class="token keyword">return</span> p<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-c"><code class="language-lang-c">//p为原链表，add为要删除元素的值
+link * delElem(link * p, int add) {
+    link * temp = p;
+    //遍历到被删除结点的上一个结点
+    for (int i = 1; i < add; i++) {
+        temp = temp->next;
+        if (temp->next == NULL) {
+            printf("没有该结点\n");
+            return p;
+        }
+    }
+    link * del = temp->next;//单独设置一个指针指向被删除结点，以防丢失
+    temp->next = temp->next->next;//删除某个结点的方法就是更改前一个结点的指针域
+    free(del);//手动释放该结点，防止内存泄漏
+    return p;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="链表查找元素"><a href="#链表查找元素" class="headerlink" title="链表查找元素"></a>链表查找元素</h2><p>从表头依次遍历表中节点，用被查找元素与各节点数据域中存储的数据元素进行比对，直至比对成功或遍历至链表最末端的 NULL（比对失败的标志）。</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//p为原链表，elem表示被查找元素、</span>
-<span class="token keyword">int</span> <span class="token function">selectElem</span><span class="token punctuation">(</span>link <span class="token operator">*</span> p<span class="token punctuation">,</span><span class="token keyword">int</span> elem<span class="token punctuation">)</span><span class="token punctuation">{</span>
-<span class="token comment" spellcheck="true">//新建一个指针t，初始化为头指针 p</span>
-    link <span class="token operator">*</span> t<span class="token operator">=</span>p<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//由于头节点的存在，因此while中的判断为t->next</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span>t<span class="token operator">-></span>next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        t<span class="token operator">=</span>t<span class="token operator">-></span>next<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>t<span class="token operator">-></span>elem<span class="token operator">==</span>elem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> i<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        i<span class="token operator">++</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//程序执行至此处，表示查找失败</span>
-    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-c"><code class="language-lang-c">//p为原链表，elem表示被查找元素、
+int selectElem(link * p,int elem){
+//新建一个指针t，初始化为头指针 p
+    link * t=p;
+    int i=1;
+    //由于头节点的存在，因此while中的判断为t->next
+    while (t->next) {
+        t=t->next;
+        if (t->elem==elem) {
+            return i;
+        }
+        i++;
+    }
+    //程序执行至此处，表示查找失败
+    return -1;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="链表更新元素"><a href="#链表更新元素" class="headerlink" title="链表更新元素"></a>链表更新元素</h2><p>更新链表中的元素，只需通过遍历找到存储此元素的节点，对节点中的数据域做更改操作即可。</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//更新函数，其中，add 表示更改结点在链表中的位置，newElem 为新的数据域的值</span>
-link <span class="token operator">*</span><span class="token function">amendElem</span><span class="token punctuation">(</span>link <span class="token operator">*</span> p<span class="token punctuation">,</span><span class="token keyword">int</span> add<span class="token punctuation">,</span><span class="token keyword">int</span> newElem<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    link <span class="token operator">*</span> temp<span class="token operator">=</span>p<span class="token punctuation">;</span>
-    temp<span class="token operator">=</span>temp<span class="token operator">-></span>next<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//在遍历之前，temp指向首元结点</span>
-    <span class="token comment" spellcheck="true">//遍历到待更新结点</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>add<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        temp<span class="token operator">=</span>temp<span class="token operator">-></span>next<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    temp<span class="token operator">-></span>elem<span class="token operator">=</span>newElem<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> p<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-c"><code class="language-lang-c">//更新函数，其中，add 表示更改结点在链表中的位置，newElem 为新的数据域的值
+link *amendElem(link * p,int add,int newElem){
+    link * temp=p;
+    temp=temp->next;//在遍历之前，temp指向首元结点
+    //遍历到待更新结点
+    for (int i=1; i<add; i++) {
+        temp=temp->next;
+    }
+    temp->elem=newElem;
+    return p;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="顺序表和链表的优缺点-区别、特点"><a href="#顺序表和链表的优缺点-区别、特点" class="headerlink" title="顺序表和链表的优缺点(区别、特点)"></a>顺序表和链表的优缺点(区别、特点)</h1><ul>
 <li>顺序表存储数据，需预先申请一整块足够大的存储空间，然后将数据按照次序逐一存储，数据之间紧密贴合，不留一丝空隙，如图4a)所示；</li>
 <li>链表的存储方式与顺序表截然相反，什么时候存储数据，什么时候才申请存储空间，数据之间的逻辑关系依靠每个数据元素携带的指针维持，如图4b)所示；</li>
@@ -803,10 +810,11 @@ link <span class="token operator">*</span><span class="token function">amendElem
 <li>游标：其实就是数组下标，表示直接后继元素所在数组中的位置</li>
 </ul>
 <p>静态链表中节点构成的C语言实现：</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> data<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//数据域</span>
-    <span class="token keyword">int</span> cur<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//游标</span>
-<span class="token punctuation">}</span>component<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-c"><code class="language-lang-c">typedef struct {
+    int data;//数据域
+    int cur;//游标
+}component;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="备用链表"><a href="#备用链表" class="headerlink" title="备用链表"></a>备用链表</h2><p>备用链表的作用是回收数组中未使用或之前使用过（目前未使用）的存储空间，留待后期使用。也就是说，静态链表使用数组申请的物理空间中，存有两个链表，一条连接数据，另一条连接数组中未使用的空间</p>
 <blockquote>
 <p>通常，备用链表的表头位于数组下标为 0（a[0]） 的位置，而数据链表的表头位于数组下标为 1（a[1]）的位置。</p>
@@ -815,143 +823,149 @@ link <span class="token operator">*</span><span class="token function">amendElem
 <li>在数据链表未初始化之前，数组中所有位置都处于空闲状态，都被链接到备用链表上。</li>
 <li>向静态链表添加数据时，需提前从备用链表中摘除节点，供新数据使用。</li>
 </ul>
-<p><font color="red">备用链表摘除节点最简单的方法是摘除 a[0] 的直接后继节点；同样，向备用链表中添加空闲节点也是添加作为 a[0] 新的直接后继节点。因为 a[0] 是备用链表的第一个节点，我们知道它的位置，操作它的直接后继节点相对容易，无需遍历备用链表，耗费的时间复杂度为 O(1)。</font></p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">define</span> maxSize 6</span>
-<span class="token keyword">typedef</span> <span class="token keyword">struct</span>
-<span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/* data */</span>
-    <span class="token keyword">int</span> data<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> cur<span class="token punctuation">;</span>
-<span class="token punctuation">}</span> component<span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//将结构体数组中所有分量链接到备用链表</span>
-<span class="token keyword">void</span> <span class="token function">reserveArr</span><span class="token punctuation">(</span>component <span class="token operator">*</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//初始化静态链表</span>
-<span class="token keyword">int</span> <span class="token function">initArr</span><span class="token punctuation">(</span>component <span class="token operator">*</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//输出函数</span>
-<span class="token keyword">void</span> <span class="token function">displayArr</span><span class="token punctuation">(</span>component <span class="token operator">*</span>array<span class="token punctuation">,</span> <span class="token keyword">int</span> body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<font color="red">备用链表摘除节点最简单的方法是摘除 a[0] 的直接后继节点；同样，向备用链表中添加空闲节点也是添加作为 a[0] 新的直接后继节点。因为 a[0] 是备用链表的第一个节点，我们知道它的位置，操作它的直接后继节点相对容易，无需遍历备用链表，耗费的时间复杂度为 O(1)。</font>
 
-<span class="token comment" spellcheck="true">//从备用链表上摘下空闲节点</span>
-<span class="token keyword">int</span> <span class="token function">mallocArr</span><span class="token punctuation">(</span>component <span class="token operator">*</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    component array<span class="token punctuation">[</span>maxSize<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> body <span class="token operator">=</span> <span class="token function">initArr</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"静态链表：\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">displayArr</span><span class="token punctuation">(</span>array<span class="token punctuation">,</span> body<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//创建备用链表</span>
-<span class="token keyword">void</span> <span class="token function">reserveArr</span><span class="token punctuation">(</span>component <span class="token operator">*</span>array<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> maxSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>cur <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//将每个数组分量链接到一起</span>
-        array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    array<span class="token punctuation">[</span>maxSize <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cur <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//链表最后一个节点的游标为0</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//提前分配空间</span>
-<span class="token keyword">int</span> <span class="token function">mallocArr</span><span class="token punctuation">(</span>component <span class="token operator">*</span>array<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> i <span class="token operator">=</span> array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cur <span class="token operator">=</span> array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> i<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//初始化静态链表</span>
-<span class="token keyword">int</span> <span class="token function">initArr</span><span class="token punctuation">(</span>component <span class="token operator">*</span>array<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token function">reserveArr</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> body <span class="token operator">=</span> <span class="token function">mallocArr</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//声明一个变量，把它当指针使，指向链表的最后的一个结点，因为链表为空，所以和头结点重合</span>
-    <span class="token keyword">int</span> tempBody <span class="token operator">=</span> body<span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token function">mallocArr</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//从备用链表中拿出空闲的分量</span>
-        array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur <span class="token operator">=</span> j<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//将申请的空闲分量链接在链表的最后一个结点后面</span>
-        array<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>data <span class="token operator">=</span> i<span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//给新申请的分量的数据域初始化</span>
-        tempBody <span class="token operator">=</span> j<span class="token punctuation">;</span>             <span class="token comment" spellcheck="true">//将指向链表最后一个结点的指针后移</span>
-    <span class="token punctuation">}</span>
-    array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//新的链表最后一个结点的指针设置为0</span>
-    <span class="token keyword">return</span> body<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">void</span> <span class="token function">displayArr</span><span class="token punctuation">(</span>component <span class="token operator">*</span>array<span class="token punctuation">,</span> <span class="token keyword">int</span> body<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> tempBody <span class="token operator">=</span> body<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//tempBody准备做遍历使用</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span>array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d,%d "</span><span class="token punctuation">,</span> array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>data<span class="token punctuation">,</span> array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        tempBody <span class="token operator">=</span> array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d,%d\n"</span><span class="token punctuation">,</span> array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>data<span class="token punctuation">,</span> array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-c"><code class="language-lang-c">#include <stdio.h>
+#define maxSize 6
+typedef struct
+{
+    /* data */
+    int data;
+    int cur;
+} component;
+//将结构体数组中所有分量链接到备用链表
+void reserveArr(component *array);
+//初始化静态链表
+int initArr(component *array);
+//输出函数
+void displayArr(component *array, int body);
+
+//从备用链表上摘下空闲节点
+int mallocArr(component *array);
+int main()
+{
+    component array[maxSize];
+    int body = initArr(array);
+    printf("静态链表：\n");
+    displayArr(array, body);
+    return 0;
+}
+//创建备用链表
+void reserveArr(component *array)
+{
+    for (int i = 0; i < maxSize; i++)
+    {
+        array[i].cur = i + 1; //将每个数组分量链接到一起
+        array[i].data = -1;
+    }
+    array[maxSize - 1].cur = 0; //链表最后一个节点的游标为0
+}
+//提前分配空间
+int mallocArr(component *array)
+{
+    int i = array[0].cur;
+    if (array[0].cur)
+    {
+        array[0].cur = array[i].cur;
+    }
+    return i;
+}
+//初始化静态链表
+int initArr(component *array)
+{
+    reserveArr(array);
+    int body = mallocArr(array); //声明一个变量，把它当指针使，指向链表的最后的一个结点，因为链表为空，所以和头结点重合
+    int tempBody = body;
+    for (int i = 1; i < 4; i++)
+    {
+        int j = mallocArr(array); //从备用链表中拿出空闲的分量
+        array[tempBody].cur = j;  //将申请的空闲分量链接在链表的最后一个结点后面
+        array[j].data = i;        //给新申请的分量的数据域初始化
+        tempBody = j;             //将指向链表最后一个结点的指针后移
+    }
+    array[tempBody].cur = 0; //新的链表最后一个结点的指针设置为0
+    return body;
+}
+void displayArr(component *array, int body)
+{
+    int tempBody = body; //tempBody准备做遍历使用
+    while (array[tempBody].cur)
+    {
+        printf("%d,%d ", array[tempBody].data, array[tempBody].cur);
+        tempBody = array[tempBody].cur;
+    }
+    printf("%d,%d\n", array[tempBody].data, array[tempBody].cur);
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="静态链表的基本操作"><a href="#静态链表的基本操作" class="headerlink" title="静态链表的基本操作"></a>静态链表的基本操作</h2><h3 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h3><p>将元素4添加到静态链表中的第3个位置上，实现过程如下：</p>
 <ul>
 <li>从备用链表中摘除一个节点，用于存储元素 4；</li>
 <li>找到表中第 2 个节点（添加位置的前一个节点，这里是数据元素 2），将元素 2 的游标赋值给新元素 4；</li>
-<li>将元素 4 所在数组中的下标赋值给元素 2 的游标；<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">insertArr</span><span class="token punctuation">(</span>component <span class="token operator">*</span> array<span class="token punctuation">,</span><span class="token keyword">int</span> body<span class="token punctuation">,</span><span class="token keyword">int</span> add<span class="token punctuation">,</span><span class="token keyword">char</span> a<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  <span class="token keyword">int</span> tempBody<span class="token operator">=</span>body<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//tempBody做遍历结构体数组使用</span>
-  <span class="token comment" spellcheck="true">//找到要插入位置的上一个结点在数组中的位置</span>
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>add<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      tempBody<span class="token operator">=</span>array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">int</span> insert<span class="token operator">=</span><span class="token function">mallocArr</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//申请空间，准备插入</span>
-  array<span class="token punctuation">[</span>insert<span class="token punctuation">]</span><span class="token punctuation">.</span>data<span class="token operator">=</span>a<span class="token punctuation">;</span>
-  array<span class="token punctuation">[</span>insert<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token operator">=</span>array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//新插入结点的游标等于其直接前驱结点的游标</span>
-  array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token operator">=</span>insert<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//直接前驱结点的游标等于新插入结点所在数组中的下标</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<li>将元素 4 所在数组中的下标赋值给元素 2 的游标；<pre class="line-numbers language-lang-c"><code class="language-lang-c">void insertArr(component * array,int body,int add,char a){
+  int tempBody=body;//tempBody做遍历结构体数组使用
+  //找到要插入位置的上一个结点在数组中的位置
+  for (int i=1; i<add; i++) {
+      tempBody=array[tempBody].cur;
+  }
+  int insert=mallocArr(array);//申请空间，准备插入
+  array[insert].data=a;
+  array[insert].cur=array[tempBody].cur;//新插入结点的游标等于其直接前驱结点的游标
+  array[tempBody].cur=insert;//直接前驱结点的游标等于新插入结点所在数组中的下标
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h3>静态链表中删除指定元素，只需实现以下 2 步操作：</li>
 <li>将存有目标元素的节点从数据链表中摘除；</li>
-<li>将摘除节点添加到备用链表，以便下次再用；<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//备用链表回收空间的函数，其中array为存储数据的数组，k表示未使用节点所在数组的下标</span>
-<span class="token keyword">void</span> <span class="token function">freeArr</span><span class="token punctuation">(</span>component <span class="token operator">*</span> array<span class="token punctuation">,</span><span class="token keyword">int</span> k<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  array<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token operator">=</span>array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">;</span>
-  array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token operator">=</span>k<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//删除结点函数，a 表示被删除结点中数据域存放的数据</span>
-<span class="token keyword">void</span> <span class="token function">deletArr</span><span class="token punctuation">(</span>component <span class="token operator">*</span> array<span class="token punctuation">,</span><span class="token keyword">int</span> body<span class="token punctuation">,</span><span class="token keyword">char</span> a<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  <span class="token keyword">int</span> tempBody<span class="token operator">=</span>body<span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//找到被删除结点的位置</span>
-  <span class="token keyword">while</span> <span class="token punctuation">(</span>array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>data<span class="token operator">!=</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      tempBody<span class="token operator">=</span>array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">;</span>
-      <span class="token comment" spellcheck="true">//当tempBody为0时，表示链表遍历结束，说明链表中没有存储该数据的结点</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>tempBody<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"链表中没有此数据"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-          <span class="token keyword">return</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-  <span class="token comment" spellcheck="true">//运行到此，证明有该结点</span>
-  <span class="token keyword">int</span> del<span class="token operator">=</span>tempBody<span class="token punctuation">;</span>
-  tempBody<span class="token operator">=</span>body<span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//找到该结点的上一个结点，做删除操作</span>
-  <span class="token keyword">while</span> <span class="token punctuation">(</span>array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token operator">!=</span>del<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      tempBody<span class="token operator">=</span>array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token comment" spellcheck="true">//将被删除结点的游标直接给被删除结点的上一个结点</span>
-  array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token operator">=</span>array<span class="token punctuation">[</span>del<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//回收被摘除节点的空间</span>
-  <span class="token function">freeArr</span><span class="token punctuation">(</span>array<span class="token punctuation">,</span> del<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="查找元素"><a href="#查找元素" class="headerlink" title="查找元素"></a>查找元素</h3>静态链表查找指定元素，由于我们只知道静态链表第一个元素所在数组中的位置，因此只能通过逐个遍历静态链表的方式，查找存有指定数据元素的节点。<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">selectElem</span><span class="token punctuation">(</span>component <span class="token operator">*</span> array<span class="token punctuation">,</span><span class="token keyword">int</span> body<span class="token punctuation">,</span><span class="token keyword">char</span> elem<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  <span class="token keyword">int</span> tempBody<span class="token operator">=</span>body<span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//当游标值为0时，表示链表结束</span>
-  <span class="token keyword">while</span> <span class="token punctuation">(</span>array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token operator">!=</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>data<span class="token operator">==</span>elem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          <span class="token keyword">return</span> tempBody<span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-      tempBody<span class="token operator">=</span>array<span class="token punctuation">[</span>tempBody<span class="token punctuation">]</span><span class="token punctuation">.</span>cur<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//返回-1，表示在链表中没有找到该元素</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="更改数据"><a href="#更改数据" class="headerlink" title="更改数据"></a>更改数据</h3>找到目标元素所在的节点，直接更改节点中的数据域即可。<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">amendElem</span><span class="token punctuation">(</span>component <span class="token operator">*</span> array<span class="token punctuation">,</span><span class="token keyword">int</span> body<span class="token punctuation">,</span><span class="token keyword">char</span> oldElem<span class="token punctuation">,</span><span class="token keyword">char</span> newElem<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  <span class="token keyword">int</span> add<span class="token operator">=</span><span class="token function">selectElem</span><span class="token punctuation">(</span>array<span class="token punctuation">,</span> body<span class="token punctuation">,</span> oldElem<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>add<span class="token operator">==</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"无更改元素"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token keyword">return</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  array<span class="token punctuation">[</span>add<span class="token punctuation">]</span><span class="token punctuation">.</span>data<span class="token operator">=</span>newElem<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<li>将摘除节点添加到备用链表，以便下次再用；<pre class="line-numbers language-lang-c"><code class="language-lang-c">//备用链表回收空间的函数，其中array为存储数据的数组，k表示未使用节点所在数组的下标
+void freeArr(component * array,int k){
+  array[k].cur=array[0].cur;
+  array[0].cur=k;
+}
+//删除结点函数，a 表示被删除结点中数据域存放的数据
+void deletArr(component * array,int body,char a){
+  int tempBody=body;
+  //找到被删除结点的位置
+  while (array[tempBody].data!=a) {
+      tempBody=array[tempBody].cur;
+      //当tempBody为0时，表示链表遍历结束，说明链表中没有存储该数据的结点
+      if (tempBody==0) {
+          printf("链表中没有此数据");
+          return;
+      }
+  }
+  //运行到此，证明有该结点
+  int del=tempBody;
+  tempBody=body;
+  //找到该结点的上一个结点，做删除操作
+  while (array[tempBody].cur!=del) {
+      tempBody=array[tempBody].cur;
+  }
+  //将被删除结点的游标直接给被删除结点的上一个结点
+  array[tempBody].cur=array[del].cur;
+  //回收被摘除节点的空间
+  freeArr(array, del);
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="查找元素"><a href="#查找元素" class="headerlink" title="查找元素"></a>查找元素</h3>静态链表查找指定元素，由于我们只知道静态链表第一个元素所在数组中的位置，因此只能通过逐个遍历静态链表的方式，查找存有指定数据元素的节点。<pre class="line-numbers language-lang-c"><code class="language-lang-c">int selectElem(component * array,int body,char elem){
+  int tempBody=body;
+  //当游标值为0时，表示链表结束
+  while (array[tempBody].cur!=0) {
+      if (array[tempBody].data==elem) {
+          return tempBody;
+      }
+      tempBody=array[tempBody].cur;
+  }
+  return -1;//返回-1，表示在链表中没有找到该元素
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="更改数据"><a href="#更改数据" class="headerlink" title="更改数据"></a>更改数据</h3>找到目标元素所在的节点，直接更改节点中的数据域即可。<pre class="line-numbers language-lang-c"><code class="language-lang-c">void amendElem(component * array,int body,char oldElem,char newElem){
+  int add=selectElem(array, body, oldElem);
+  if (add==-1) {
+      printf("无更改元素");
+      return;
+  }
+  array[add].data=newElem;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="静态链表和动态链表区别"><a href="#静态链表和动态链表区别" class="headerlink" title="静态链表和动态链表区别"></a>静态链表和动态链表区别</h1><h2 id="静态链表"><a href="#静态链表" class="headerlink" title="静态链表"></a>静态链表</h2>使用静态链表存储数据，需要预先申请足够大的一整块内存空间，也就是说，静态链表存储数据元素的个数从其创建的那一刻就已经确定，后期无法更改。</li>
 </ul>
 <p>比如，如果创建静态链表时只申请存储10个数据元素的空间，那么在使用静态链表时，数据的存储个数就不能超过10个，否则程序就会发生错误。</p>
@@ -959,7 +973,8 @@ link <span class="token operator">*</span><span class="token function">amendElem
 <p>这意味着，如果你选择使用静态链表存储数据，你需要通过操控两条链表，一条是存储数据，另一条是记录空闲空间的位置。</p>
 <h2 id="动态链表"><a href="#动态链表" class="headerlink" title="动态链表"></a>动态链表</h2><p>使用动态链表存储数据，不需要预先申请内存空间，而是在需要的时候才向内存申请。也就是说，动态链表存储数据元素的个数是不限的，想存多少就存多少。</p>
 <p>同时，使用动态链表的整个过程，你也只需操控一条存储数据的链表。当表中添加或删除数据元素时，你只需要通过 malloc 或 free 函数来申请或释放空间即可，实现起来比较简单。</p>
-<h1 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h1><p><font color="red">双向，指的是各节点之间的逻辑关系是双向的，但通常头指针只设置一个，除非实际情况需要</font></p>
+<h1 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h1><font color="red">双向，指的是各节点之间的逻辑关系是双向的，但通常头指针只设置一个，除非实际情况需要</font>
+
 <p>双向链表中各节点包含以下3部分信息：</p>
 <ul>
 <li>指针域：用于指向当前节点的直接前驱节点；</li>
@@ -967,135 +982,122 @@ link <span class="token operator">*</span><span class="token function">amendElem
 <li>指针域：用于指向当前节点的直接后继节点；</li>
 </ul>
 <p>双链表的节点结构的Ｃ语言实现：</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> line<span class="token punctuation">{</span>
-    <span class="token keyword">struct</span> line <span class="token operator">*</span> prior<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//指向直接前趋</span>
-    <span class="token keyword">int</span> data<span class="token punctuation">;</span>
-    <span class="token keyword">struct</span> line <span class="token operator">*</span> next<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//指向直接后继</span>
-<span class="token punctuation">}</span>line<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-c"><code class="language-lang-c">typedef struct line{
+    struct line * prior; //指向直接前趋
+    int data;
+    struct line * next; //指向直接后继
+}line;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="双向链表的创建"><a href="#双向链表的创建" class="headerlink" title="双向链表的创建"></a>双向链表的创建</h2><p>与单链表不同，双链表创建过程中，每创建一个新节点，都要与其前驱节点建立两次联系，分别是：</p>
 <ul>
-<li><p>将新节点的 prior 指针指向直接前驱节点；</p>
-</li>
+<li>将新节点的 prior 指针指向直接前驱节点；</li>
 <li><p>将直接前驱节点的 next 指针指向新节点；</p>
-<pre class="line-numbers language-c"><code class="language-c">line<span class="token operator">*</span> <span class="token function">initLine</span><span class="token punctuation">(</span>line <span class="token operator">*</span> head<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  head<span class="token operator">=</span><span class="token punctuation">(</span>line<span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>line<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//创建链表第一个结点（首元结点）</span>
-  head<span class="token operator">-></span>prior<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-  head<span class="token operator">-></span>next<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-  head<span class="token operator">-></span>data<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-  line <span class="token operator">*</span> list<span class="token operator">=</span>head<span class="token punctuation">;</span>
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token comment" spellcheck="true">//创建并初始化一个新结点</span>
-      line <span class="token operator">*</span> body<span class="token operator">=</span><span class="token punctuation">(</span>line<span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>line<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      body<span class="token operator">-></span>prior<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-      body<span class="token operator">-></span>next<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-      body<span class="token operator">-></span>data<span class="token operator">=</span>i<span class="token punctuation">;</span>
+<pre class="line-numbers language-lang-c"><code class="language-lang-c">line* initLine(line * head){
+  head=(line*)malloc(sizeof(line));//创建链表第一个结点（首元结点）
+  head->prior=NULL;
+  head->next=NULL;
+  head->data=1;
+  line * list=head;
+  for (int i=2; i<=3; i++) {
+      //创建并初始化一个新结点
+      line * body=(line*)malloc(sizeof(line));
+      body->prior=NULL;
+      body->next=NULL;
+      body->data=i;
 
-      list<span class="token operator">-></span>next<span class="token operator">=</span>body<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//直接前趋结点的next指针指向新结点</span>
-      body<span class="token operator">-></span>prior<span class="token operator">=</span>list<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//新结点指向直接前趋结点</span>
-      list<span class="token operator">=</span>list<span class="token operator">-></span>next<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">return</span> head<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="添加节点"><a href="#添加节点" class="headerlink" title="添加节点"></a>添加节点</h2><pre class="line-numbers language-c"><code class="language-c">line <span class="token operator">*</span> <span class="token function">insertLine</span><span class="token punctuation">(</span>line <span class="token operator">*</span> head<span class="token punctuation">,</span><span class="token keyword">int</span> data<span class="token punctuation">,</span><span class="token keyword">int</span> add<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  <span class="token comment" spellcheck="true">//新建数据域为data的结点</span>
-  line <span class="token operator">*</span> temp<span class="token operator">=</span><span class="token punctuation">(</span>line<span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>line<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  temp<span class="token operator">-></span>data<span class="token operator">=</span>data<span class="token punctuation">;</span>
-  temp<span class="token operator">-></span>prior<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-  temp<span class="token operator">-></span>next<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//插入到链表头，要特殊考虑</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>add<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      temp<span class="token operator">-></span>next<span class="token operator">=</span>head<span class="token punctuation">;</span>
-      head<span class="token operator">-></span>prior<span class="token operator">=</span>temp<span class="token punctuation">;</span>
-      head<span class="token operator">=</span>temp<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-      line <span class="token operator">*</span> body<span class="token operator">=</span>head<span class="token punctuation">;</span>
-      <span class="token comment" spellcheck="true">//找到要插入位置的前一个结点</span>
-      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>add<span class="token number">-1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          body<span class="token operator">=</span>body<span class="token operator">-></span>next<span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-      <span class="token comment" spellcheck="true">//判断条件为真，说明插入位置为链表尾</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>body<span class="token operator">-></span>next<span class="token operator">==</span><span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          body<span class="token operator">-></span>next<span class="token operator">=</span>temp<span class="token punctuation">;</span>
-          temp<span class="token operator">-></span>prior<span class="token operator">=</span>body<span class="token punctuation">;</span>
-      <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-          body<span class="token operator">-></span>next<span class="token operator">-></span>prior<span class="token operator">=</span>temp<span class="token punctuation">;</span>
-          temp<span class="token operator">-></span>next<span class="token operator">=</span>body<span class="token operator">-></span>next<span class="token punctuation">;</span>
-          body<span class="token operator">-></span>next<span class="token operator">=</span>temp<span class="token punctuation">;</span>
-          temp<span class="token operator">-></span>prior<span class="token operator">=</span>body<span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">return</span> head<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h2><pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//删除结点的函数，data为要删除结点的数据域的值</span>
-line <span class="token operator">*</span> <span class="token function">delLine</span><span class="token punctuation">(</span>line <span class="token operator">*</span> head<span class="token punctuation">,</span><span class="token keyword">int</span> data<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  line <span class="token operator">*</span> temp<span class="token operator">=</span>head<span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//遍历链表</span>
-  <span class="token keyword">while</span> <span class="token punctuation">(</span>temp<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token comment" spellcheck="true">//判断当前结点中数据域和data是否相等，若相等，摘除该结点</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>temp<span class="token operator">-></span>data<span class="token operator">==</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          temp<span class="token operator">-></span>prior<span class="token operator">-></span>next<span class="token operator">=</span>temp<span class="token operator">-></span>next<span class="token punctuation">;</span>
-          temp<span class="token operator">-></span>next<span class="token operator">-></span>prior<span class="token operator">=</span>temp<span class="token operator">-></span>prior<span class="token punctuation">;</span>
-          <span class="token function">free</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-          <span class="token keyword">return</span> head<span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-      temp<span class="token operator">=</span>temp<span class="token operator">-></span>next<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"链表中无该数据元素"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> head<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="查找节点"><a href="#查找节点" class="headerlink" title="查找节点"></a>查找节点</h2><pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//双链表查找指定元素的实现同单链表类似，都是从表头依次遍历表中元素。</span>
-<span class="token comment" spellcheck="true">//head为原双链表，elem表示被查找元素</span>
-<span class="token keyword">int</span> <span class="token function">selectElem</span><span class="token punctuation">(</span>line <span class="token operator">*</span> head<span class="token punctuation">,</span><span class="token keyword">int</span> elem<span class="token punctuation">)</span><span class="token punctuation">{</span>
-<span class="token comment" spellcheck="true">//新建一个指针t，初始化为头指针 head</span>
-  line <span class="token operator">*</span> t<span class="token operator">=</span>head<span class="token punctuation">;</span>
-  <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-  <span class="token keyword">while</span> <span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>t<span class="token operator">-></span>data<span class="token operator">==</span>elem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          <span class="token keyword">return</span> i<span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-      i<span class="token operator">++</span><span class="token punctuation">;</span>
-      t<span class="token operator">=</span>t<span class="token operator">-></span>next<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token comment" spellcheck="true">//程序执行至此处，表示查找失败</span>
-  <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="更改节点"><a href="#更改节点" class="headerlink" title="更改节点"></a>更改节点</h2><pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//更新函数，其中，add 表示更改结点在双链表中的位置，newElem 为新数据的值</span>
-line <span class="token operator">*</span><span class="token function">amendElem</span><span class="token punctuation">(</span>line <span class="token operator">*</span> p<span class="token punctuation">,</span><span class="token keyword">int</span> add<span class="token punctuation">,</span><span class="token keyword">int</span> newElem<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  line <span class="token operator">*</span> temp<span class="token operator">=</span>p<span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//遍历到被删除结点</span>
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>add<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      temp<span class="token operator">=</span>temp<span class="token operator">-></span>next<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  temp<span class="token operator">-></span>data<span class="token operator">=</span>newElem<span class="token punctuation">;</span>
-  <span class="token keyword">return</span> p<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+      list->next=body;//直接前趋结点的next指针指向新结点
+      body->prior=list;//新结点指向直接前趋结点
+      list=list->next;
+  }
+  return head;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="添加节点"><a href="#添加节点" class="headerlink" title="添加节点"></a>添加节点</h2><pre class="line-numbers language-lang-c"><code class="language-lang-c">line * insertLine(line * head,int data,int add){
+  //新建数据域为data的结点
+  line * temp=(line*)malloc(sizeof(line));
+  temp->data=data;
+  temp->prior=NULL;
+  temp->next=NULL;
+  //插入到链表头，要特殊考虑
+  if (add==1) {
+      temp->next=head;
+      head->prior=temp;
+      head=temp;
+  }else{
+      line * body=head;
+      //找到要插入位置的前一个结点
+      for (int i=1; i<add-1; i++) {
+          body=body->next;
+      }
+      //判断条件为真，说明插入位置为链表尾
+      if (body->next==NULL) {
+          body->next=temp;
+          temp->prior=body;
+      }else{
+          body->next->prior=temp;
+          temp->next=body->next;
+          body->next=temp;
+          temp->prior=body;
+      }
+  }
+  return head;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h2><pre class="line-numbers language-lang-c"><code class="language-lang-c">//删除结点的函数，data为要删除结点的数据域的值
+line * delLine(line * head,int data){
+  line * temp=head;
+  //遍历链表
+  while (temp) {
+      //判断当前结点中数据域和data是否相等，若相等，摘除该结点
+      if (temp->data==data) {
+          temp->prior->next=temp->next;
+          temp->next->prior=temp->prior;
+          free(temp);
+          return head;
+      }
+      temp=temp->next;
+  }
+  printf("链表中无该数据元素");
+  return head;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="查找节点"><a href="#查找节点" class="headerlink" title="查找节点"></a>查找节点</h2><pre class="line-numbers language-lang-c"><code class="language-lang-c">//双链表查找指定元素的实现同单链表类似，都是从表头依次遍历表中元素。
+//head为原双链表，elem表示被查找元素
+int selectElem(line * head,int elem){
+//新建一个指针t，初始化为头指针 head
+  line * t=head;
+  int i=1;
+  while (t) {
+      if (t->data==elem) {
+          return i;
+      }
+      i++;
+      t=t->next;
+  }
+  //程序执行至此处，表示查找失败
+  return -1;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="更改节点"><a href="#更改节点" class="headerlink" title="更改节点"></a>更改节点</h2><pre class="line-numbers language-lang-c"><code class="language-lang-c">//更新函数，其中，add 表示更改结点在双链表中的位置，newElem 为新数据的值
+line *amendElem(line * p,int add,int newElem){
+  line * temp=p;
+  //遍历到被删除结点
+  for (int i=1; i<add; i++) {
+      temp=temp->next;
+  }
+  temp->data=newElem;
+  return p;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h1><p>将表中最后一个结点的指针指向头结点，虽然循环链表成环状，但本质上还是链表，因此在循环链表中，依然能够找到头指针和首元节点等。循环链表和普通链表相比，唯一的不同就是循环链表首尾相连，其他都完全一样。</p>
-<h2 id="约瑟夫环"><a href="#约瑟夫环" class="headerlink" title="约瑟夫环"></a>约瑟夫环</h2><p>已知 n 个人（分别用编号 1，2，3，…，n 表示）围坐在一张圆桌周围，从编号为 k 的人开始顺时针报数，数到 m 的那个人出列；他的下一个人又从 1 开始，还是顺时针开始报数，数到 m 的那个人又出列；依次重复下去，直到圆桌上剩余一个人。</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
-<span class="token keyword">typedef</span> <span class="token keyword">struct</span> node
-<span class="token punctuation">{</span>
-  <span class="token keyword">int</span> number<span class="token punctuation">;</span>
-  <span class="token keyword">struct</span> node <span class="token operator">*</span>next<span class="token punctuation">;</span>
-<span class="token punctuation">}</span> person<span class="token punctuation">;</span>
-person <span class="token operator">*</span><span class="token function">initLink</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  person <span class="token operator">*</span>head <span class="token operator">=</span> <span class="token punctuation">(</span>person <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  head<span class="token operator">-></span>number <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-  head<span class="token operator">-></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-  person <span class="token operator">*</span>cyclic <span class="token operator">=</span> head<span class="token punctuation">;</span>
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-      person <span class="token operator">*</span>body <span class="token operator">=</span> <span class="token punctuation">(</span>person <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      body<span class="token operator">-></span>number <span class="token operator">=</span> i<span class="token punctuation">;</span>
-      body<span class="token operator">-></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-      cyclic<span class="token operator">-></span>next <span class="token operator">=</span> body<span class="token punctuation">;</span>
-      cyclic <span class="token operator">=</span> cyclic<span class="token operator">-></span>next<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  cyclic<span class="token operator">-></span>next <span class="token operator">=</span> head<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//首尾相连</span>
-  <span class="token keyword">return</span> head<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="约瑟夫环"><a href="#约瑟夫环" class="headerlink" title="约瑟夫环"></a>约瑟夫环</h2><p>已知 n 个人（分别用编号 1，2，3，…，n 表示）围坐在一张圆桌周围，从编号为 k 的人开始顺时针报数，数到 m 的那个人出列；他的下一个人又从 1 开始，还是顺时针开始报数，数到 m 的那个人又出列；依次重复下去，直到圆桌上剩余一个人。<br>```c</p>
+<h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <stdio.h></stdio.h></h1><h1 id="include-1"><a href="#include-1" class="headerlink" title="include "></a>include <stdlib.h></stdlib.h></h1><p>typedef struct node<br>{<br>  int number;<br>  struct node <em>next;<br>} person;<br>person </em>initLink(int n)<br>{<br>  person <em>head = (person </em>)malloc(sizeof(person));<br>  head-&gt;number = 1;<br>  head-&gt;next = NULL;<br>  person *cyclic = head;<br>  for (int i = 2; i &lt;= n; i++)<br>  {</p>
+<pre><code>  person *body = (person *)malloc(sizeof(person));
+  body-&gt;number = i;
+  body-&gt;next = NULL;
+  cyclic-&gt;next = body;
+  cyclic = cyclic-&gt;next;
+</code></pre><p>  }<br>  cyclic-&gt;next = head; //首尾相连<br>  return head;<br>}</p>
 </li>
 </ul>
 <p>void findAndKillK(person *head, int k, int m)<br>{</p>
@@ -1127,7 +1129,8 @@ while (p-&gt;next != p)
     p = tail-&gt;next; //继续使用p指针指向出列编号的下一个编号，游戏继续
 }
 printf(&quot;出列人的编号为:%d\n&quot;, p-&gt;number);
-free(p);</code></pre><p>}</p>
+free(p);
+</code></pre><p>}</p>
 <p>int main()<br>{<br>    printf(“输入圆桌上的人数n:”);<br>    int n;<br>    scanf(“%d”, &amp;n);<br>    person *head = initLink(n);<br>    printf(“从第k人开始报数(k&gt;1且k&lt;%d)：”, n);<br>    int k;<br>    scanf(“%d”, &amp;k);<br>    printf(“数到m的人出列：”);<br>    int m;<br>    scanf(“%d”, &amp;m);<br>    findAndKillK(head, k, m);<br>    return 0;<br>}<br>```</p>
 
             </div>
@@ -1632,9 +1635,8 @@ free(p);</code></pre><p>}</p>
                             Python注释Python 支持两种类型的注释，分别是单行注释和多行注释。
 Python单行注释Python使用井号#作为单行注释的符号，语法格式为：
 
-#注释内容
-
-从井号#开始，直到这行结束为止的所有内容都是注释。Python 解释器
+注释内容
+从井号#开始，直到这行结束为止的所有内容都是注释。Python 解释器遇到
                         
                     </div>
                     <div class="publish-info">
@@ -1878,7 +1880,7 @@ Python单行注释Python使用井号#作为单行注释的符号，语法格式�
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -2059,6 +2061,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

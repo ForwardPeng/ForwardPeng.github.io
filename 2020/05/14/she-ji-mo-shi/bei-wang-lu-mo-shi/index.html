@@ -522,78 +522,79 @@
 <li>管理者（Caretaker）角色：对备忘录进行管理，提供保存与获取备忘录的功能，但其不能对备忘录的内容进行访问与修改。</li>
 </ul>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>备忘录模式的代码实现如下：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> memento<span class="token punctuation">;</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MementoPattern</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        Originator or<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Originator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Caretaker cr<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Caretaker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
-        or<span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token string">"S0"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"初始状态:"</span><span class="token operator">+</span>or<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           
-        cr<span class="token punctuation">.</span><span class="token function">setMemento</span><span class="token punctuation">(</span>or<span class="token punctuation">.</span><span class="token function">createMemento</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//保存状态      </span>
-        or<span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token string">"S1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"新的状态:"</span><span class="token operator">+</span>or<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        
-        or<span class="token punctuation">.</span><span class="token function">restoreMemento</span><span class="token punctuation">(</span>cr<span class="token punctuation">.</span><span class="token function">getMemento</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//恢复状态</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"恢复状态:"</span><span class="token operator">+</span>or<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//备忘录</span>
-<span class="token keyword">class</span> <span class="token class-name">Memento</span>
-<span class="token punctuation">{</span> 
-    <span class="token keyword">private</span> String state<span class="token punctuation">;</span> 
-    <span class="token keyword">public</span> <span class="token function">Memento</span><span class="token punctuation">(</span>String state<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span> 
-        <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token operator">=</span>state<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>     
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setState</span><span class="token punctuation">(</span>String state<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span> 
-        <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token operator">=</span>state<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> String <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span> 
-        <span class="token keyword">return</span> state<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//发起人</span>
-<span class="token keyword">class</span> <span class="token class-name">Originator</span>
-<span class="token punctuation">{</span> 
-    <span class="token keyword">private</span> String state<span class="token punctuation">;</span>     
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setState</span><span class="token punctuation">(</span>String state<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span> 
-        <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token operator">=</span>state<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> String <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span> 
-        <span class="token keyword">return</span> state<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> Memento <span class="token function">createMemento</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span> 
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Memento</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span> 
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">restoreMemento</span><span class="token punctuation">(</span>Memento m<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span> 
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span> 
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//管理者</span>
-<span class="token keyword">class</span> <span class="token class-name">Caretaker</span>
-<span class="token punctuation">{</span> 
-    <span class="token keyword">private</span> Memento memento<span class="token punctuation">;</span>       
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setMemento</span><span class="token punctuation">(</span>Memento m<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span> 
-        memento<span class="token operator">=</span>m<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> Memento <span class="token function">getMemento</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span> 
-        <span class="token keyword">return</span> memento<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/*
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">package memento;
+public class MementoPattern
+{
+    public static void main(String[] args)
+    {
+        Originator or=new Originator();
+        Caretaker cr=new Caretaker();       
+        or.setState("S0"); 
+        System.out.println("初始状态:"+or.getState());           
+        cr.setMemento(or.createMemento()); //保存状态      
+        or.setState("S1"); 
+        System.out.println("新的状态:"+or.getState());        
+        or.restoreMemento(cr.getMemento()); //恢复状态
+        System.out.println("恢复状态:"+or.getState());
+    }
+}
+//备忘录
+class Memento
+{ 
+    private String state; 
+    public Memento(String state)
+    { 
+        this.state=state; 
+    }     
+    public void setState(String state)
+    { 
+        this.state=state; 
+    }
+    public String getState()
+    { 
+        return state; 
+    }
+}
+//发起人
+class Originator
+{ 
+    private String state;     
+    public void setState(String state)
+    { 
+        this.state=state; 
+    }
+    public String getState()
+    { 
+        return state; 
+    }
+    public Memento createMemento()
+    { 
+        return new Memento(state); 
+    } 
+    public void restoreMemento(Memento m)
+    { 
+        this.setState(m.getState()); 
+    } 
+}
+//管理者
+class Caretaker
+{ 
+    private Memento memento;       
+    public void setMemento(Memento m)
+    { 
+        memento=m; 
+    }
+    public Memento getMemento()
+    { 
+        return memento; 
+    }
+}
+/*
 *初始状态:S0
 新的状态:S1
 恢复状态:S0
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><ul>
 <li>需要保存与恢复数据的场景，如玩游戏时的中间结果的存档功能。</li>
 <li>需要提供一个可回滚操作的场景，如 Word、记事本、Photoshop，Eclipse 等软件在编辑时按 Ctrl+Z 组合键，还有数据库中事务操作。</li>
@@ -1326,7 +1327,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1507,6 +1508,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

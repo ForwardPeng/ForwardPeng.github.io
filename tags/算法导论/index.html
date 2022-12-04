@@ -364,10 +364,19 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
+                <a href="/tags/设计模式/" title="设计模式: 22">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="设计模式" style="background-color: #F5EEF8;">设计模式
+                        <span class="tag-length">22</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/tags/算法导论/" title="算法导论: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
-                            data-tagname="算法导论" style="background-color: #F5EEF8;">算法导论
+                            data-tagname="算法导论" style="background-color: #D5F5E3;">算法导论
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -376,17 +385,8 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 <a href="/tags/线性表/" title="线性表: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="线性表" style="background-color: #D5F5E3;">线性表
+                            data-tagname="线性表" style="background-color: #E8F8F5;">线性表
                         <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/设计模式/" title="设计模式: 22">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="设计模式" style="background-color: #E8F8F5;">设计模式
-                        <span class="tag-length">22</span>
                     </span>
                 </a>
                 
@@ -418,19 +418,10 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/tags/Web框架/" title="Web框架: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Web框架" style="background-color: #D7BDE2;">Web框架
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/Python/" title="Python: 14">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="Python" style="background-color: #A3E4D7;">Python
+                            data-tagname="Python" style="background-color: #D7BDE2;">Python
                         <span class="tag-length">14</span>
                     </span>
                 </a>
@@ -439,7 +430,16 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 <a href="/tags/Numpy/" title="Numpy: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="Numpy" style="background-color: #85C1E9;">Numpy
+                            data-tagname="Numpy" style="background-color: #A3E4D7;">Numpy
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Web框架/" title="Web框架: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Web框架" style="background-color: #85C1E9;">Web框架
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -511,7 +511,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -692,6 +692,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

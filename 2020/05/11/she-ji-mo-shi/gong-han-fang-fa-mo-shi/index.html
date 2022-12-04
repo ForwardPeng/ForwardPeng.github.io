@@ -526,7 +526,7 @@
 <li>具体产品（ConcreteProduct）：实现了抽象产品角色所定义的接口，由具体工厂来创建，它同具体工厂之间一一对应。</li>
 </ul>
 <p><strong>2.模式的实现</strong></p>
-<pre class="line-numbers language-Java"><code class="language-Java">//AbstractFactoryTest.java
+<pre class="line-numbers language-lang-Java"><code class="language-lang-Java">//AbstractFactoryTest.java
 package Design_Pattern.FactoryMethod;
 
 /**
@@ -618,7 +618,8 @@ public class ReadXML1 {
 /**
  * Output: 具体工厂2生成-->具体产品2
 具体产品2
-*/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="模式的应用场景"><a href="#模式的应用场景" class="headerlink" title="模式的应用场景"></a>模式的应用场景</h1><p>工厂方法模式通常适用于以下场景。</p>
 <ul>
 <li>客户只知道创建产品的工厂名，而不知道具体的产品名。如 TCL 电视工厂、海信电视工厂等。</li>
@@ -626,33 +627,34 @@ public class ReadXML1 {
 <li>客户不关心创建产品的细节，只关心产品的品牌</li>
 </ul>
 <p>当需要生成的产品不多且不会增加，一个具体工厂类就可以完成任务时，可删除抽象工厂类。这时工厂方法模式将退化到简单工厂模式。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">TypeB</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">pass</span>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">class TypeB(object):
+    def __init__(self):
+        pass
 
-<span class="token keyword">class</span> <span class="token class-name">TypeA</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">pass</span>
+class TypeA(object):
+    def __init__(self):
+        pass
 
-<span class="token keyword">class</span> <span class="token class-name">AbstractFactory</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        super<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>type_a <span class="token operator">=</span> TypeA
-        self<span class="token punctuation">.</span>type_b <span class="token operator">=</span> TypeB
+class AbstractFactory(object):
+    def __init__(self):
+        super().__init__()
+        self.type_a = TypeA
+        self.type_b = TypeB
 
-    <span class="token keyword">def</span> <span class="token function">get_instance_type_a</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> self<span class="token punctuation">.</span>type_a<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    def get_instance_type_a(self):
+        return self.type_a()
 
-    <span class="token keyword">def</span> <span class="token function">get_instance_type_b</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> self<span class="token punctuation">.</span>type_b<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    def get_instance_type_b(self):
+        return self.type_b()
 
-<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    abstract_factory <span class="token operator">=</span> AbstractFactory<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    product_a <span class="token operator">=</span> abstract_factory<span class="token punctuation">.</span>get_instance_type_a<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    product_b <span class="token operator">=</span> abstract_factory<span class="token punctuation">.</span>get_instance_type_b<span class="token punctuation">(</span><span class="token punctuation">)</span>
+def main():
+    abstract_factory = AbstractFactory()
+    product_a = abstract_factory.get_instance_type_a()
+    product_b = abstract_factory.get_instance_type_b()
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-    main<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+if __name__ == '__main__':
+    main()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -1381,7 +1383,7 @@ public class ReadXML1 {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1562,6 +1564,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

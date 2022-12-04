@@ -512,38 +512,40 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="new-方法"><a href="#new-方法" class="headerlink" title="new()方法"></a><strong>new</strong>()方法</h1><p><strong>new</strong>() 是一种负责创建类实例的静态方法，它无需使用 staticmethod 装饰器修饰，且该方法会优先<strong>init</strong>() 初始化方法被调用。一般情况下，覆写<strong>new</strong>()的实现将会使用合适的参数调用其超类的 super().<strong>new</strong>()，并在返回之前修改实例。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">demoClass</span><span class="token punctuation">:</span>
-    instances_created <span class="token operator">=</span> <span class="token number">0</span>
-    <span class="token keyword">def</span> <span class="token function">__new__</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span><span class="token operator">*</span>args<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"__new__():"</span><span class="token punctuation">,</span>cls<span class="token punctuation">,</span>args<span class="token punctuation">,</span>kwargs<span class="token punctuation">)</span>
-        instance <span class="token operator">=</span> super<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__new__<span class="token punctuation">(</span>cls<span class="token punctuation">)</span>
-        instance<span class="token punctuation">.</span>number <span class="token operator">=</span> cls<span class="token punctuation">.</span>instances_created
-        cls<span class="token punctuation">.</span>instances_created <span class="token operator">+=</span> <span class="token number">1</span>
-        <span class="token keyword">return</span> instance
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>attribute<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"__init__():"</span><span class="token punctuation">,</span>self<span class="token punctuation">,</span>attribute<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>attribute <span class="token operator">=</span> attribute
-test1 <span class="token operator">=</span> demoClass<span class="token punctuation">(</span><span class="token string">"abc"</span><span class="token punctuation">)</span>
-test2 <span class="token operator">=</span> demoClass<span class="token punctuation">(</span><span class="token string">"xyz"</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>test1<span class="token punctuation">.</span>number<span class="token punctuation">,</span>test1<span class="token punctuation">.</span>instances_created<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>test2<span class="token punctuation">.</span>number<span class="token punctuation">,</span>test2<span class="token punctuation">.</span>instances_created<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 输出结果</span>
-<span class="token comment" spellcheck="true">#__new__(): &lt;class '__main__.demoClass'> ('abc',) {}</span>
-<span class="token comment" spellcheck="true">#__init__(): &lt;__main__.demoClass object at 0x0000026FC0DF8080> abc</span>
-<span class="token comment" spellcheck="true">#__new__(): &lt;class '__main__.demoClass'> ('xyz',) {}</span>
-<span class="token comment" spellcheck="true">#__init__(): &lt;__main__.demoClass object at 0x0000026FC0DED358> xyz</span>
-<span class="token comment" spellcheck="true">#0 2</span>
-<span class="token comment" spellcheck="true">#1 2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">class demoClass:
+    instances_created = 0
+    def __new__(cls,*args,**kwargs):
+        print("__new__():",cls,args,kwargs)
+        instance = super().__new__(cls)
+        instance.number = cls.instances_created
+        cls.instances_created += 1
+        return instance
+    def __init__(self,attribute):
+        print("__init__():",self,attribute)
+        self.attribute = attribute
+test1 = demoClass("abc")
+test2 = demoClass("xyz")
+print(test1.number,test1.instances_created)
+print(test2.number,test2.instances_created)
+# 输出结果
+#__new__(): <class '__main__.demoClass'> ('abc',) {}
+#__init__(): <__main__.demoClass object at 0x0000026FC0DF8080> abc
+#__new__(): <class '__main__.demoClass'> ('xyz',) {}
+#__init__(): <__main__.demoClass object at 0x0000026FC0DED358> xyz
+#0 2
+#1 2
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="repr-方法：显示属性"><a href="#repr-方法：显示属性" class="headerlink" title="repr()方法：显示属性"></a><strong>repr</strong>()方法：显示属性</h1><p><strong>repr</strong>() 会返回和调用者有关的 “类名+object at+内存地址”信息。当然，我们还可以通过在类中重写这个方法，从而实现当输出实例化对象时，输出我们想要的信息。实例：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">CLanguage</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"C语言中文网"</span>
-        self<span class="token punctuation">.</span>add <span class="token operator">=</span> <span class="token string">"http://c.biancheng.net"</span>
-    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> <span class="token string">"CLanguage[name="</span><span class="token operator">+</span> self<span class="token punctuation">.</span>name <span class="token operator">+</span><span class="token string">",add="</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>add <span class="token operator">+</span><span class="token string">"]"</span>
-clangs <span class="token operator">=</span> CLanguage<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>clangs<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># CLanguage[name=C语言中文网,add=http://c.biancheng.net]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">class CLanguage:
+    def __init__(self):
+        self.name = "C语言中文网"
+        self.add = "http://c.biancheng.net"
+    def __repr__(self):
+        return "CLanguage[name="+ self.name +",add=" + self.add +"]"
+clangs = CLanguage()
+print(clangs)
+# CLanguage[name=C语言中文网,add=http://c.biancheng.net]
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>repr</strong>() 方法是类的实例化对象用来做“自我介绍”的方法，默认情况下，它会返回当前对象的“类名+object at+内存地址”，而如果对该方法进行重写，可以为其制作自定义的自我描述信息。</p>
 <h1 id="dir-用法"><a href="#dir-用法" class="headerlink" title="dir()用法"></a><strong>dir</strong>()用法</h1><p>提到了dir() 函数，通过此函数可以某个对象拥有的所有的属性名和方法名，该函数会返回一个包含有所有属性名和方法名的有序列表。</p>
 <h1 id="dict属性：查看对象内部所有属性名和属性值组成的字典"><a href="#dict属性：查看对象内部所有属性名和属性值组成的字典" class="headerlink" title="dict属性：查看对象内部所有属性名和属性值组成的字典"></a><strong>dict</strong>属性：查看对象内部所有属性名和属性值组成的字典</h1><p>便用户查看类中包含哪些属性，Python 类提供了<strong>dict</strong>属性。需要注意的一点是，该属性可以用类名或者类的实例对象来调用，用类名直接调用 <strong>dict</strong>，会输出该由类中所有类属性组成的字典；而使用类的实例对象调用 <strong>dict</strong>，会输出由类中所有实例属性组成的字典。对于具有继承关系的父类和子类来说，父类有自己的<strong>dict</strong>，同样子类也有自己的<strong>dict</strong>，它不会包含父类的<strong>dict</strong></p>
@@ -560,54 +562,54 @@ clangs <span class="token operator">=</span> CLanguage<span class="token punctua
 <h2 id="setattr-函数"><a href="#setattr-函数" class="headerlink" title="setattr()函数"></a>setattr()函数</h2><p>setattr() 函数的功能相对比较复杂，它最基础的功能是修改类实例对象中的属性值。其次，它还可以实现为实例对象动态添加属性或者方法。setattr() 函数的语法格式如下：</p>
 <blockquote>
 <p>setattr(obj, name, value)</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">say</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"我正在学Python"</span><span class="token punctuation">)</span>
-<span class="token keyword">class</span> <span class="token class-name">CLanguage</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> __init__ <span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"C语言中文网"</span>
-        self<span class="token punctuation">.</span>add <span class="token operator">=</span> <span class="token string">"http://c.biancheng.net"</span>
-clangs <span class="token operator">=</span> CLanguage<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>clangs<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>clangs<span class="token punctuation">.</span>add<span class="token punctuation">)</span>
-setattr<span class="token punctuation">(</span>clangs<span class="token punctuation">,</span><span class="token string">"name"</span><span class="token punctuation">,</span>say<span class="token punctuation">)</span>
-clangs<span class="token punctuation">.</span>name<span class="token punctuation">(</span>clangs<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<p>#程序运行结果为：</p>
-<p>#C语言中文网</p>
-<p>#<a href="http://c.biancheng.net" target="_blank" rel="noopener">http://c.biancheng.net</a></p>
-<p>#我正在学Python</p>
-<pre><code># issubclass和isinstance函数：检查类型
-Python 提供了如下两个函数来检查类型：
-* issubclass(cls, class_or_tuple)：检查 cls 是否为后一个类或元组包含的多个类中任意类的子类。
-* isinstance(obj, class_or_tuple)：检查 obj 是否为后一个类或元组包含的多个类中任意类的对象。
-
-区别只是 issubclass() 的第一个参数是类名，而 isinstance() 的第一个参数是变量，这也与两个函数的意义对应：issubclass 用于判断是否为子类，而 isinstance() 用于判断是否为该类或子类的实例。
-
-Python为所有类都提供了一个 __bases__ 属性，通过该属性可以查看该类的所有直接父类，该属性返回所有直接父类组成的元组。
-
-# __call__()方法
-功能类似于在类中重载 () 运算符，使得类实例对象可以像调用普通函数那样，以“对象名()”的形式使用。
-&gt;Python 中，凡是可以将 () 直接应用到自身并执行，都称为可调用对象。可调用对象包括自定义的函数、Python 内置函数以及本节所讲的类实例对象。
-
-hasattr()的功能是查找类的实例对象中是否包含指定名称的属性或者方法，但该函数有一个缺陷，即它无法判断该指定的名称，到底是类属性还是类方法。
-```python
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">def say(self):
+    print("我正在学Python")
 class CLanguage:
     def __init__ (self):
-        self.name = &quot;C语言中文网&quot;
-        self.add = &quot;http://c.biancheng.net&quot;
-    def say(self):
-        print(&quot;我正在学Python&quot;)
+        self.name = "C语言中文网"
+        self.add = "http://c.biancheng.net"
 clangs = CLanguage()
-if hasattr(clangs,&quot;name&quot;):
-    print(hasattr(clangs.name,&quot;__call__&quot;))
-print(&quot;**********&quot;)
-if hasattr(clangs,&quot;say&quot;):
-    print(hasattr(clangs.say,&quot;__call__&quot;))
+print(clangs.name)
+print(clangs.add)
+setattr(clangs,"name",say)
+clangs.name(clangs)
+#程序运行结果为：
+#C语言中文网
+#http://c.biancheng.net
+#我正在学Python
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="issubclass和isinstance函数：检查类型"><a href="#issubclass和isinstance函数：检查类型" class="headerlink" title="issubclass和isinstance函数：检查类型"></a>issubclass和isinstance函数：检查类型</h1><p>Python 提供了如下两个函数来检查类型：</p>
+<ul>
+<li>issubclass(cls, class_or_tuple)：检查 cls 是否为后一个类或元组包含的多个类中任意类的子类。</li>
+<li>isinstance(obj, class_or_tuple)：检查 obj 是否为后一个类或元组包含的多个类中任意类的对象。</li>
+</ul>
+</blockquote>
+<p>区别只是 issubclass() 的第一个参数是类名，而 isinstance() 的第一个参数是变量，这也与两个函数的意义对应：issubclass 用于判断是否为子类，而 isinstance() 用于判断是否为该类或子类的实例。</p>
+<p>Python为所有类都提供了一个 <strong>bases</strong> 属性，通过该属性可以查看该类的所有直接父类，该属性返回所有直接父类组成的元组。</p>
+<h1 id="call-方法"><a href="#call-方法" class="headerlink" title="call()方法"></a><strong>call</strong>()方法</h1><p>功能类似于在类中重载 () 运算符，使得类实例对象可以像调用普通函数那样，以“对象名()”的形式使用。</p>
+<blockquote>
+<p>Python 中，凡是可以将 () 直接应用到自身并执行，都称为可调用对象。可调用对象包括自定义的函数、Python 内置函数以及本节所讲的类实例对象。</p>
+</blockquote>
+<p>hasattr()的功能是查找类的实例对象中是否包含指定名称的属性或者方法，但该函数有一个缺陷，即它无法判断该指定的名称，到底是类属性还是类方法。</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">class CLanguage:
+    def __init__ (self):
+        self.name = "C语言中文网"
+        self.add = "http://c.biancheng.net"
+    def say(self):
+        print("我正在学Python")
+clangs = CLanguage()
+if hasattr(clangs,"name"):
+    print(hasattr(clangs.name,"__call__"))
+print("**********")
+if hasattr(clangs,"say"):
+    print(hasattr(clangs.say,"__call__"))
 执行结果：
     False  
     *********
     True
-# 由于name是类属性，它没有以__call__为名的__call__()方法；而 say是类方法，它是可调用对象，因此它有__call__()方法。</code></pre><h1 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h1><p>Python 类支持对哪些方法进行重载呢？，列出了 Python 中常用的可重载的运算符，以及各自的含义。<br>| 重载运算符                                     | 含义                                                                                                                                                                          |<br>| ———————————————- | —————————————————————————————————————————————————————————– |<br>| <strong>new</strong>                                        | 创建类，在 <strong>init</strong> 之前创建对象                                                                                                                                              |<br>| <strong>init</strong>                                       | 类的构造函数，其功能是创建类对象时做初始化工作。                                                                                                                              |<br>| <strong>del</strong>                                        | 析构函数，其功能是销毁对象时进行回收资源的操作                                                                                                                                |<br>| <strong>add</strong>                                        | 加法运算符 +，当类对象 X 做例如 X+Y 或者 X+=Y 等操作，内部会调用此方法。但如果类中对 <strong>iadd</strong> 方法进行了重载，则类对象 X 在做 X+=Y 类似操作时，会优先选择调用 <strong>iadd</strong> 方法。 |<br>| <strong>radd</strong>                                       | 当类对象 X 做类似 Y+X 的运算时，会调用此方法。                                                                                                                                |<br>| <strong>iadd</strong>                                       | 重载 += 运算符，也就是说，当类对象 X 做类似 X+=Y 的操作时，会调用此方法。                                                                                                     |<br>| <strong>or</strong>                                         | “或”运算符                                                                                                                                                                    | ，如果没有重载 <strong>ior</strong>，则在类似 X | Y、X     | =Y 这样的语句中，“或”符号生效        |<br>| <strong>repr</strong>，<strong>str</strong>                              | 格式转换方法，分别对应函数 repr(X)、str(X)                                                                                                                                    |<br>| <strong>call</strong>                                       | 函数调用，类似于 X(<em>args, *</em>kwargs) 语句                                                                                                                                      |<br>| <strong>getattr</strong>                                    | 点号运算，用来获取类属性                                                                                                                                                      |<br>| <strong>setattr</strong>                                    | 属性赋值语句，类似于 X.any=value                                                                                                                                              |<br>| <strong>delattr</strong>                                    | 删除属性，类似于 del X.any                                                                                                                                                    |<br>| <strong>getattribute</strong>                               | 获取属性，类似于 X.any                                                                                                                                                        |<br>| <strong>getitem</strong>                                    | 索引运算，类似于 X[key]，X[i:j]                                                                                                                                               |<br>| <strong>setitem</strong>                                    | 索引赋值语句，类似于 X[key], X[i:j]=sequence                                                                                                                                  |<br>| <strong>delitem</strong>                                    | 索引和分片删除                                                                                                                                                                |<br>| <strong>get</strong>, <strong>set</strong>, <strong>delete</strong>                   | 描述符属性，类似于 X.attr，X.attr=value，del X.attr                                                                                                                           |<br>| <strong>len</strong>                                        | 计算长度，类似于 len(X)                                                                                                                                                       |<br>| <strong>lt</strong>，<strong>gt</strong>，<strong>le</strong>，<strong>ge</strong>，<strong>eq</strong>，<strong>ne</strong> | 比较，分别对应于 &lt;、&gt;、&lt;=、&gt;=、=、!= 运算符。                                                                                                                                 |<br>| <strong>iter</strong>，<strong>next</strong>                             | 迭代环境下，生成迭代器与取下一条，类似于 I=iter(X) 和 next()                                                                                                                  |<br>| <strong>contains</strong>                                   | 成员关系测试，类似于 item in X                                                                                                                                                |<br>| <strong>index</strong>                                      | 整数值，类似于 hex(X)，bin(X)，oct(X)                                                                                                                                         |<br>| <strong>enter</strong>，<strong>exit</strong>                            | 在对类对象执行类似 with obj as var 的操作之前，会先调用 <strong>enter</strong> 方法，其结果会传给 var；在最终结束该操作之前，会调用                                                        |                                    | <strong>exit</strong> | 方法（常用于做一些清理、扫尾的工作） |</p>
+# 由于name是类属性，它没有以__call__为名的__call__()方法；而 say是类方法，它是可调用对象，因此它有__call__()方法。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h1><p>Python 类支持对哪些方法进行重载呢？，列出了 Python 中常用的可重载的运算符，以及各自的含义。<br>| 重载运算符                                     | 含义                                                                                                                                                                          |<br>| ——————————————————————— | ——————————————————————————————————————————————————————————————————————————————————————- |<br>| <strong>new</strong>                                        | 创建类，在 <strong>init</strong> 之前创建对象                                                                                                                                              |<br>| <strong>init</strong>                                       | 类的构造函数，其功能是创建类对象时做初始化工作。                                                                                                                              |<br>| <strong>del</strong>                                        | 析构函数，其功能是销毁对象时进行回收资源的操作                                                                                                                                |<br>| <strong>add</strong>                                        | 加法运算符 +，当类对象 X 做例如 X+Y 或者 X+=Y 等操作，内部会调用此方法。但如果类中对 <strong>iadd</strong> 方法进行了重载，则类对象 X 在做 X+=Y 类似操作时，会优先选择调用 <strong>iadd</strong> 方法。 |<br>| <strong>radd</strong>                                       | 当类对象 X 做类似 Y+X 的运算时，会调用此方法。                                                                                                                                |<br>| <strong>iadd</strong>                                       | 重载 += 运算符，也就是说，当类对象 X 做类似 X+=Y 的操作时，会调用此方法。                                                                                                     |<br>| <strong>or</strong>                                         | “或”运算符                                                                                                                                                                    | ，如果没有重载 <strong>ior</strong>，则在类似 X | Y、X     | =Y 这样的语句中，“或”符号生效        |<br>| <strong>repr</strong>，<strong>str</strong>                              | 格式转换方法，分别对应函数 repr(X)、str(X)                                                                                                                                    |<br>| <strong>call</strong>                                       | 函数调用，类似于 X(<em>args, *</em>kwargs) 语句                                                                                                                                      |<br>| <strong>getattr</strong>                                    | 点号运算，用来获取类属性                                                                                                                                                      |<br>| <strong>setattr</strong>                                    | 属性赋值语句，类似于 X.any=value                                                                                                                                              |<br>| <strong>delattr</strong>                                    | 删除属性，类似于 del X.any                                                                                                                                                    |<br>| <strong>getattribute</strong>                               | 获取属性，类似于 X.any                                                                                                                                                        |<br>| <strong>getitem</strong>                                    | 索引运算，类似于 X[key]，X[i:j]                                                                                                                                               |<br>| <strong>setitem</strong>                                    | 索引赋值语句，类似于 X[key], X[i:j]=sequence                                                                                                                                  |<br>| <strong>delitem</strong>                                    | 索引和分片删除                                                                                                                                                                |<br>| <strong>get</strong>, <strong>set</strong>, <strong>delete</strong>                   | 描述符属性，类似于 X.attr，X.attr=value，del X.attr                                                                                                                           |<br>| <strong>len</strong>                                        | 计算长度，类似于 len(X)                                                                                                                                                       |<br>| <strong>lt</strong>，<strong>gt</strong>，<strong>le</strong>，<strong>ge</strong>，<strong>eq</strong>，<strong>ne</strong> | 比较，分别对应于 &lt;、&gt;、&lt;=、&gt;=、=、!= 运算符。                                                                                                                                 |<br>| <strong>iter</strong>，<strong>next</strong>                             | 迭代环境下，生成迭代器与取下一条，类似于 I=iter(X) 和 next()                                                                                                                  |<br>| <strong>contains</strong>                                   | 成员关系测试，类似于 item in X                                                                                                                                                |<br>| <strong>index</strong>                                      | 整数值，类似于 hex(X)，bin(X)，oct(X)                                                                                                                                         |<br>| <strong>enter</strong>，<strong>exit</strong>                            | 在对类对象执行类似 with obj as var 的操作之前，会先调用 <strong>enter</strong> 方法，其结果会传给 var；在最终结束该操作之前，会调用                                                        |                                    | <strong>exit</strong> | 方法（常用于做一些清理、扫尾的工作） |</p>
 <h1 id="Python迭代器"><a href="#Python迭代器" class="headerlink" title="Python迭代器"></a>Python迭代器</h1><p>迭代器指的就是支持迭代的容器，更确切的说，是支持迭代的容器类对象，这里的容器可以是列表、元组等这些 Python 提供的基础容器，也可以是自定义的容器类对象，只要该容器支持迭代即可。自定义实现一个迭代器，则类中必须实现如下2个方法：</p>
 <ul>
 <li><strong>next</strong>(self)：返回容器的下一个元素。</li>
@@ -623,21 +625,22 @@ if hasattr(clangs,&quot;say&quot;):
 </blockquote>
 <p> 1个参数的 iter()函数，通过传入一个可迭代的容器对象，我们可以获得一个迭代器，通过调用该迭代器中的<strong>next</strong>()方法即可实现迭代，使用next()内置函数来迭代，即next(myIter)，和<strong>next</strong>()方法是完全一样的。</p>
 <p> iter()函数第2个参数的作用，如果使用该参数，则要求第一个obj参数必须传入可调用对象（可以不支持迭代），这样当使用返回的迭代器调用<strong>next</strong>()方法时，它会通过执行obj()调用 <strong>call</strong>()方法，如果该方法的返回值和第 2 个参数值相同，则输出 StopInteration 异常；反之，则输出 <strong>call</strong>() 方法的返回值。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 迭代器实现字符串逆序</span>
-<span class="token keyword">class</span> <span class="token class-name">Reverse</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> string<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>__string <span class="token operator">=</span> string
-        self<span class="token punctuation">.</span>__index <span class="token operator">=</span> len<span class="token punctuation">(</span>string<span class="token punctuation">)</span>
-    <span class="token keyword">def</span> <span class="token function">__iter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> self
-    <span class="token keyword">def</span> <span class="token function">__next__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> self<span class="token punctuation">.</span>__index <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-            <span class="token keyword">raise</span><span class="token punctuation">(</span>StopIteration<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>__index <span class="token operator">-=</span> <span class="token number">1</span>
-        <span class="token keyword">return</span> self<span class="token punctuation">.</span>__string<span class="token punctuation">[</span>self<span class="token punctuation">.</span>__index<span class="token punctuation">]</span>
-revstr <span class="token operator">=</span> Reverse<span class="token punctuation">(</span><span class="token string">'Python'</span><span class="token punctuation">)</span>
-<span class="token keyword">for</span> c <span class="token keyword">in</span> revstr<span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span>end<span class="token operator">=</span><span class="token string">" "</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># 迭代器实现字符串逆序
+class Reverse:
+    def __init__(self, string):
+        self.__string = string
+        self.__index = len(string)
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.__index == 0:
+            raise(StopIteration)
+        self.__index -= 1
+        return self.__string[self.__index]
+revstr = Reverse('Python')
+for c in revstr:
+    print(c,end=" ")
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h1><p>生成器的创建方式也比迭代器简单很多，大体分为以下 2 步：</p>
 <ul>
 <li>定义一个以 yield 关键字标识返回值的函数；</li>
@@ -646,12 +649,13 @@ revstr <span class="token operator">=</span> Reverse<span class="token punctuati
 <p>和return相比，yield 除了可以返回相应的值，还有一个更重要的功能，即每当程序执行完该语句时，程序就会暂停执行。不仅如此，即便调用生成器函数，Python 解释器也不会执行函数中的代码，它只会返回一个生成器（对象）。</p>
 <blockquote>
 <p>相比迭代器，生成器最明显的优势就是节省内存空间，即它不会一次性生成所有的数据，而是什么时候需要，什么时候生成。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">intNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"开始执行"</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">yield</span> i
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"继续执行"</span><span class="token punctuation">)</span>
-num <span class="token operator">=</span> intNum<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">def intNum():
+    print("开始执行")
+    for i in range(5):
+        yield i
+        print("继续执行")
+num = intNum()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>即便调用生成器函数，Python 解释器也不会执行函数中的代码，它只会返回一个生成器（对象）。想要生成器函数执行，或者想使执行完 yield 语句立即暂停的程序得以继续执行，可以通过：</p>
 <ul>
 <li>通过生成器调用next()内置函数或者<strong>next</strong>()方法</li>
@@ -660,64 +664,67 @@ num <span class="token operator">=</span> intNum<span class="token punctuation">
 </blockquote>
 <h2 id="生成器send-方法"><a href="#生成器send-方法" class="headerlink" title="生成器send()方法"></a>生成器send()方法</h2><p>通过 send() 方法，还可以向生成器中传值。</p>
 <p>值得一提的是，send()方法可带一个参数，也可以不带任何参数（用 None 表示）。其中，当使用不带参数的send()方法时，它和next()函数的功能完全相同。例如：</p>
-<pre class="line-numbers language-python"><code class="language-python">ddef foo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    bar_a <span class="token operator">=</span> <span class="token keyword">yield</span> <span class="token string">"hello"</span>
-    bar_b <span class="token operator">=</span> <span class="token keyword">yield</span> bar_a
-    <span class="token keyword">yield</span> bar_b
-f <span class="token operator">=</span> foo<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span>send<span class="token punctuation">(</span>None<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"C语言中文网"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"http://c.biancheng.net"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">#hello</span>
-<span class="token comment" spellcheck="true">#C语言中文网</span>
-<span class="token comment" spellcheck="true">#http://c.biancheng.net</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">ddef foo():
+    bar_a = yield "hello"
+    bar_b = yield bar_a
+    yield bar_b
+f = foo()
+print(f.send(None))
+print(f.send("C语言中文网"))
+print(f.send("http://c.biancheng.net"))
+#hello
+#C语言中文网
+#http://c.biancheng.net
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="close-方法"><a href="#close-方法" class="headerlink" title="close()方法"></a>close()方法</h2><p>生成器函数中遇到yield语句暂停运行时，此时如果调用 close()方法，会阻止生成器函数继续执行，该函数会在程序停止运行的位置抛出 GeneratorExit 异常。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">try</span><span class="token punctuation">:</span>
-        <span class="token keyword">yield</span> <span class="token number">1</span>
-    <span class="token keyword">except</span> GeneratorExit<span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'捕获到 GeneratorExit'</span><span class="token punctuation">)</span>
-        <span class="token keyword">yield</span> <span class="token number">2</span> <span class="token comment" spellcheck="true">#抛出 RuntimeError 异常</span>
-f <span class="token operator">=</span> foo<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>next<span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">)</span>
-f<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token triple-quoted-string string">'''
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">def foo():
+    try:
+        yield 1
+    except GeneratorExit:
+        print('捕获到 GeneratorExit')
+        yield 2 #抛出 RuntimeError 异常
+f = foo()
+print(next(f))
+f.close()
+'''
 1
 捕获到 GeneratorExit Traceback (most recent call last):
-  File "D:\python3.6\1.py", line 10, in &lt;module>
+  File "D:\python3.6\1.py", line 10, in <module>
     f.close()
 RuntimeError: generator ignored GeneratorExit
-'''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+'''
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="生成器throw-方法"><a href="#生成器throw-方法" class="headerlink" title="生成器throw()方法"></a>生成器throw()方法</h2><p>生成器 throw() 方法的功能是，在生成器函数执行暂停处，抛出一个指定的异常，之后程序会继续执行生成器函数中后续的代码，直到遇到下一个yield语句。需要注意的是，如果到剩余代码执行完毕没有遇到下一个yield语句，则程序会抛出 StopIteration异常。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">try</span><span class="token punctuation">:</span>
-        <span class="token keyword">yield</span> <span class="token number">1</span>
-    <span class="token keyword">except</span> ValueError<span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'捕获到 ValueError'</span><span class="token punctuation">)</span>
-f <span class="token operator">=</span> foo<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>next<span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">)</span>
-f<span class="token punctuation">.</span>throw<span class="token punctuation">(</span>ValueError<span class="token punctuation">)</span>
-<span class="token triple-quoted-string string">'''
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">def foo():
+    try:
+        yield 1
+    except ValueError:
+        print('捕获到 ValueError')
+f = foo()
+print(next(f))
+f.throw(ValueError)
+'''
 运行结果：1
 捕获到 ValueError
 Traceback (most recent call last):
-  File "D:\python3.6\1.py", line 9, in &lt;module>
+  File "D:\python3.6\1.py", line 9, in <module>
     f.throw(ValueError)
 StopIteration
-'''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+'''
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>一开始生成器函数在yield 1处暂停执行，当执行throw()方法时，它会先抛出 ValueError异常，然后继续执行后续代码找到下一个 yield语句，该程序中由于后续不再有yield语句，因此程序执行到最后，会抛出一个 StopIteration异常。</p>
 <h1 id="函数装饰器及用法"><a href="#函数装饰器及用法" class="headerlink" title="函数装饰器及用法"></a>函数装饰器及用法</h1><p> Python 内置的 3 种函数装饰器，分别是 ＠staticmethod、＠classmethod 和 @property，其中 staticmethod()、classmethod()和 property()都是Python的内置函数。<br> 使用函数装饰器A()去装饰另一个函数B()，其底层执行了如下2步操作：</p>
 <ul>
 <li>将B作为参数传给A()函数；</li>
-<li>将A()函数执行完成的返回值反馈回B。<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">funA</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">:</span>
-  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"C语言中文网"</span><span class="token punctuation">)</span>
-  fn<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 执行传入的fn参数</span>
-  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"http://c.biancheng.net"</span><span class="token punctuation">)</span>
-  <span class="token keyword">return</span> <span class="token string">"装饰器函数的返回值"</span>
+<li>将A()函数执行完成的返回值反馈回B。<pre class="line-numbers language-lang-python"><code class="language-lang-python">def funA(fn):
+  print("C语言中文网")
+  fn() # 执行传入的fn参数
+  print("http://c.biancheng.net")
+  return "装饰器函数的返回值"
 @funA
-<span class="token keyword">def</span> <span class="token function">funB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"学习 Python"</span><span class="token punctuation">)</span>
-<span class="token triple-quoted-string string">'''
+def funB():
+  print("学习 Python")
+'''
 C语言中文网
 学习 Python
 http://c.biancheng.net
@@ -725,39 +732,36 @@ http://c.biancheng.net
 print(funB)
 其输出结果为：
 装饰器函数的返回值
-'''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+'''
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 如果装饰器函数的返回值为普通变量，那么被修饰的函数名就变成了变量名；同样，如果装饰器返回的是一个函数的名称，怎么被修饰的函数名依然表示一个函数。<blockquote>
 <p>函数装饰器，就是通过装饰器函数，在不修改原函数的前提下，来对函数的功能进行合理的扩充。</p>
-</blockquote>
-<h2 id="带参数的函数装饰器"><a href="#带参数的函数装饰器" class="headerlink" title="带参数的函数装饰器"></a>带参数的函数装饰器</h2>函数装饰器中嵌套一个函数，该函数带有的参数个数和被装饰器修饰的函数相同。例如：<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">funA</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">:</span>
-  <span class="token comment" spellcheck="true"># 定义一个嵌套函数</span>
-  <span class="token keyword">def</span> <span class="token function">say</span><span class="token punctuation">(</span>arc<span class="token punctuation">)</span><span class="token punctuation">:</span>
-      <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Python教程:"</span><span class="token punctuation">,</span>arc<span class="token punctuation">)</span>
-  <span class="token keyword">return</span> say
+<h2 id="带参数的函数装饰器"><a href="#带参数的函数装饰器" class="headerlink" title="带参数的函数装饰器"></a>带参数的函数装饰器</h2><p>函数装饰器中嵌套一个函数，该函数带有的参数个数和被装饰器修饰的函数相同。例如：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">def funA(fn):
+  # 定义一个嵌套函数
+  def say(arc):
+      print("Python教程:",arc)
+  return say
 @funA
-<span class="token keyword">def</span> <span class="token function">funB</span><span class="token punctuation">(</span>arc<span class="token punctuation">)</span><span class="token punctuation">:</span>
-  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"funB():"</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span>
-funB<span class="token punctuation">(</span><span class="token string">"http://c.biancheng.net/python"</span><span class="token punctuation">)</span>
-<span class="token triple-quoted-string string">'''
+def funB(arc):
+  print("funB():", a)
+funB("http://c.biancheng.net/python")
+'''
 程序执行结果为：
 Python教程: http://c.biancheng.net/python
-'''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="函数装饰器嵌套"><a href="#函数装饰器嵌套" class="headerlink" title="函数装饰器嵌套"></a>函数装饰器嵌套</h2>上面程序的执行顺序是里到外，所以它等效于下面这行代码：<blockquote>
-<p>fun = funA( funB ( funC (fun) ) )</p>
+'''
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="函数装饰器嵌套"><a href="#函数装饰器嵌套" class="headerlink" title="函数装饰器嵌套"></a>函数装饰器嵌套</h2><p>上面程序的执行顺序是里到外，所以它等效于下面这行代码：<br>fun = funA( funB ( funC (fun) ) )</p>
+<h1 id="装饰器的应用场景"><a href="#装饰器的应用场景" class="headerlink" title="装饰器的应用场景"></a>装饰器的应用场景</h1><h2 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h2><p>```python<br>import functools<br>def authenticate(func):<br>  @functools.wraps(func)<br>  def wrapper(<em>args, *</em>kwargs):</p>
+<pre><code>  request = args[0]
+  # 如果用户处于登录状态
+  if check_user_logged_in(request):
+      # 执行函数 post_comment()
+      return func(*args, **kwargs)  
+  else:
+      raise Exception(&#39;Authentication failed&#39;)
+</code></pre><p>  return wrapper</p>
 </blockquote>
-<h1 id="装饰器的应用场景"><a href="#装饰器的应用场景" class="headerlink" title="装饰器的应用场景"></a>装饰器的应用场景</h1><h2 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> functools
-<span class="token keyword">def</span> <span class="token function">authenticate</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
-  @functools<span class="token punctuation">.</span>wraps<span class="token punctuation">(</span>func<span class="token punctuation">)</span>
-  <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-      request <span class="token operator">=</span> args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-      <span class="token comment" spellcheck="true"># 如果用户处于登录状态</span>
-      <span class="token keyword">if</span> check_user_logged_in<span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-          <span class="token comment" spellcheck="true"># 执行函数 post_comment()</span>
-          <span class="token keyword">return</span> func<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>  
-      <span class="token keyword">else</span><span class="token punctuation">:</span>
-          <span class="token keyword">raise</span> Exception<span class="token punctuation">(</span><span class="token string">'Authentication failed'</span><span class="token punctuation">)</span>
-  <span class="token keyword">return</span> wrapper
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <p>@authenticate<br>def post_comment(request, …)<br>    …</p>
@@ -779,20 +783,23 @@ def log_execution_time(func):
 
 @log_execution_time
 def calculate_similarity(items):
-    ...</code></pre><p>装饰器 log_execution_time 记录某个函数的运行时间，并返回其执行结果。如果你想计算任何函数的执行时间，在这个函数上方加上@log_execution_time即可。</p>
+    ...
+</code></pre><p>装饰器 log_execution_time 记录某个函数的运行时间，并返回其执行结果。如果你想计算任何函数的执行时间，在这个函数上方加上@log_execution_time即可。</p>
 <h2 id="装饰器用于输入合理性检查"><a href="#装饰器用于输入合理性检查" class="headerlink" title="装饰器用于输入合理性检查"></a>装饰器用于输入合理性检查</h2><p>在大型公司的机器学习框架中，调用机器集群进行模型训练前，往往会用装饰器对其输入（往往是很长的 json 文件）进行合理性检查。这样就可以大大避免输入不正确对机器造成的巨大开销。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> functools
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">import functools
 
-<span class="token keyword">def</span> <span class="token function">validation_check</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    @functools<span class="token punctuation">.</span>wraps<span class="token punctuation">(</span>func<span class="token punctuation">)</span>
-    <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+def validation_check(input):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        ...
 @validation_check
-<span class="token keyword">def</span> <span class="token function">neural_network_training</span><span class="token punctuation">(</span>param1<span class="token punctuation">,</span> param2<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+def neural_network_training(param1, param2,...)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>很多情况下都会出现输入不合理的现象。因为我们调用的训练模型往往很复杂，输入的文件有成千上万行，很多时候确实也很难发现。</p>
 <h2 id="缓存装饰器"><a href="#缓存装饰器" class="headerlink" title="缓存装饰器"></a>缓存装饰器</h2><p>ython 中的表示形式是 @lru_cache。@lru_cache 会缓存进程中的函数参数和结果，当缓存满了以后，会删除最近最久未使用的数据。正确使用缓存装饰器，往往能极大地提高程序运行效率。</p>
-<pre class="line-numbers language-python"><code class="language-python">@lru_cache
-<span class="token keyword">def</span> <span class="token function">check</span><span class="token punctuation">(</span>param1<span class="token punctuation">,</span> param2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 检查用户设备类型、版本号</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">@lru_cache
+def check(param1, param2, ...)  # 检查用户设备类型、版本号
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -1296,15 +1303,17 @@ def calculate_similarity(items):
                             常见的异常类型
 
 
+
 异常类型
 含义
 实例
 
 
 
+
 AssertionError
 当 assert 关键字后的条件为假时，程序运行会停止并抛出 AssertionError 异常
-&gt;&gt;&gt; demo_list = [‘C语言中文
+&gt;&gt;&gt; demo_list = [‘C语言
                         
                     </div>
                     <div class="publish-info">
@@ -1541,7 +1550,7 @@ AssertionError
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1722,6 +1731,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

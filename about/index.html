@@ -616,7 +616,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         xAxis: [
             {
                 type: 'category',
-                data: ["设计模式","Python","搜索推荐","数据结构","多线程","算法导论","线性表","搜索广告","工程实践","Web框架"]
+                data: ["设计模式","Python","搜索推荐","数据结构","多线程","算法导论","线性表","搜索广告","工程实践","Numpy"]
             }
         ],
         yAxis: [
@@ -799,6 +799,12 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             
+            <a href="/tags/设计模式/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">设计模式</span>
+            </a>
+            
+            
+            
             <a href="/tags/算法导论/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">算法导论</span>
             </a>
@@ -807,12 +813,6 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <a href="/tags/线性表/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">线性表</span>
-            </a>
-            
-            
-            
-            <a href="/tags/设计模式/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">设计模式</span>
             </a>
             
             
@@ -835,16 +835,16 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             
-            <a href="/tags/Web框架/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">Web框架</span>
-            </a>
-            
-            
-            
             
             
             <a href="/tags/Numpy/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">Numpy</span>
+            </a>
+            
+            
+            
+            <a href="/tags/Web框架/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">Web框架</span>
             </a>
             
             
@@ -895,7 +895,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 <li><b>二等奖</b><br>校级ACM</li>
 </ul>
 <h2 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h2><ul>
-<li><b>电子邮箱</b><br><a href="mailto:penghe6666@gmail.com" target="_blank" rel="noopener">penghe6666@gmail.com</a><br><a href="mailto:2313977059@qq.com" target="_blank" rel="noopener">2313977059@qq.com</a></li>
+<li><b>电子邮箱</b><br>penghe6666@gmail.com<br>2313977059@qq.com</li>
 <li><b>地址</b><br>杭州市西湖区蒋村花园如意苑13幢</li>
 <li><b>微信</b><br>heoeng951104</li>
 </ul>
@@ -913,7 +913,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1094,6 +1094,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

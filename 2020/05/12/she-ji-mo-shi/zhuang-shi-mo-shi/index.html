@@ -523,151 +523,153 @@
 <li>具体装饰（ConcreteDecorator）角色：实现抽象装饰的相关方法，并给具体构件对象添加附加的责任。</li>
 </ul>
 <h2 id="模式的实现"><a href="#模式的实现" class="headerlink" title="模式的实现"></a>模式的实现</h2><p>装饰模式的实现代码如下：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> Design_Pattern<span class="token punctuation">.</span>DecoratorPattern<span class="token punctuation">;</span>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">package Design_Pattern.DecoratorPattern;
 
-<span class="token comment" spellcheck="true">/**
+/**
  * @author peng
  * @date 20-5-12 下午5:08
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Decorator_test</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Component p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcreteComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        p<span class="token punctuation">.</span><span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"---------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Component d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcreteDecorator</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        d<span class="token punctuation">.</span><span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象构建角色</span>
-<span class="token keyword">interface</span> <span class="token class-name">Component</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体构件角色</span>
-<span class="token keyword">class</span> <span class="token class-name">ConcreteComponent</span> <span class="token keyword">implements</span> <span class="token class-name">Component</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token function">ConcreteComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"创建具体构件角色"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"调用具体构件角色的方法operation()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象装饰角色</span>
-<span class="token keyword">class</span> <span class="token class-name">Decorator</span> <span class="token keyword">implements</span> <span class="token class-name">Component</span><span class="token punctuation">{</span>
-    <span class="token keyword">private</span> Component component<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">Decorator</span><span class="token punctuation">(</span>Component component<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>component <span class="token operator">=</span> component<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        component<span class="token punctuation">.</span><span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体装饰角色</span>
-<span class="token keyword">class</span> <span class="token class-name">ConcreteDecorator</span> <span class="token keyword">extends</span> <span class="token class-name">Decorator</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token function">ConcreteDecorator</span><span class="token punctuation">(</span>Component component<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">super</span><span class="token punctuation">(</span>component<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">addedFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addedFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"为具体构建角色增加额外的功能addedFunction()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/**
+ */
+public class Decorator_test {
+    public static void main(String[] args) {
+        Component p = new ConcreteComponent();
+        p.operation();
+        System.out.println("---------------------");
+        Component d = new ConcreteDecorator(p);
+        d.operation();
+    }
+}
+//抽象构建角色
+interface Component{
+    public void operation();
+}
+//具体构件角色
+class ConcreteComponent implements Component
+{
+    public ConcreteComponent()
+    {
+        System.out.println("创建具体构件角色");
+    }
+    public void operation()
+    {
+        System.out.println("调用具体构件角色的方法operation()");
+    }
+}
+//抽象装饰角色
+class Decorator implements Component{
+    private Component component;
+    public Decorator(Component component){
+        this.component = component;
+    }
+    public void operation(){
+        component.operation();
+    }
+}
+//具体装饰角色
+class ConcreteDecorator extends Decorator{
+    public ConcreteDecorator(Component component){
+        super(component);
+    }
+    public void operation(){
+        super.operation();
+        addedFunction();
+    }
+    public void addedFunction(){
+        System.out.println("为具体构建角色增加额外的功能addedFunction()");
+    }
+}
+/**
 *创建具体构件角色
 调用具体构件角色的方法operation()
 ---------------------
 调用具体构件角色的方法operation()
 为具体构建角色增加额外的功能addedFunction()
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><p>用装饰模式实现游戏角色“龙骑士”的变身。分析：在《Dota2》中，游戏角色“龙骑士”的原身是一个战士，但当他变身时，会变成龙形态，当有神杖会变身黑龙形态。这些都可用装饰模式来实现。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> Design_Pattern<span class="token punctuation">.</span>DecoratorPattern<span class="token punctuation">;</span>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">package Design_Pattern.DecoratorPattern;
 
-<span class="token keyword">import</span> javax<span class="token punctuation">.</span>swing<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>awt<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+import javax.swing.*;
+import java.awt.*;
 
-<span class="token comment" spellcheck="true">/**
+/**
  * @author peng
  * @date 20-5-12 下午5:32
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Dragon_knight</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Dragon d1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">original</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        d1<span class="token punctuation">.</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Dragon d2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dragonfrom</span><span class="token punctuation">(</span>d1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        d2<span class="token punctuation">.</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Dragon d3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Black_Dragon</span><span class="token punctuation">(</span>d1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        d3<span class="token punctuation">.</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+ */
+public class Dragon_knight {
+    public static void main(String[] args) {
+        Dragon d1 = new original();
+        d1.display();
+        Dragon d2 = new Dragonfrom(d1);
+        d2.display();
+        Dragon d3 = new Black_Dragon(d1);
+        d3.display();
+    }
 
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象构建角色：龙骑士</span>
-<span class="token keyword">interface</span> <span class="token class-name">Dragon</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体构件角色：原画</span>
-<span class="token keyword">class</span> <span class="token class-name">original</span> <span class="token keyword">extends</span> <span class="token class-name">JFrame</span> <span class="token keyword">implements</span> <span class="token class-name">Dragon</span><span class="token punctuation">{</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span>  <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 1L<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> String t <span class="token operator">=</span> <span class="token string">"qishi.jpg"</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">original</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token string">"《Dota2》中龙骑士"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setImage</span><span class="token punctuation">(</span>String t<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>t <span class="token operator">=</span> t<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setLayout</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FlowLayout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        JLabel l1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JLabel</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ImageIcon</span><span class="token punctuation">(</span><span class="token string">"/usr/local/github/algo_test/src/Design_Pattern/DecoratorPattern/"</span> <span class="token operator">+</span> t<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>l1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">pack</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setDefaultCloseOperation</span><span class="token punctuation">(</span>JFrame<span class="token punctuation">.</span>EXIT_ON_CLOSE<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setVisible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象装饰角色：变形</span>
-<span class="token keyword">class</span> <span class="token class-name">Changer</span> <span class="token keyword">implements</span> <span class="token class-name">Dragon</span><span class="token punctuation">{</span>
-    Dragon d<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">Changer</span><span class="token punctuation">(</span>Dragon d<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>d <span class="token operator">=</span> d<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        d<span class="token punctuation">.</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体装饰角色：龙形态</span>
-<span class="token keyword">class</span> <span class="token class-name">Dragonfrom</span> <span class="token keyword">extends</span> <span class="token class-name">Changer</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token function">Dragonfrom</span><span class="token punctuation">(</span>Dragon d<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">super</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token function">setChanger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setChanger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token punctuation">(</span><span class="token punctuation">(</span>original<span class="token punctuation">)</span> <span class="token keyword">super</span><span class="token punctuation">.</span>d<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setImage</span><span class="token punctuation">(</span><span class="token string">"long.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体装饰角色：黑龙</span>
-<span class="token keyword">class</span> <span class="token class-name">Black_Dragon</span> <span class="token keyword">extends</span> <span class="token class-name">Changer</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token function">Black_Dragon</span><span class="token punctuation">(</span>Dragon d<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">super</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">setChanger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setChanger</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token punctuation">(</span><span class="token punctuation">(</span>original<span class="token punctuation">)</span> <span class="token keyword">super</span><span class="token punctuation">.</span>d<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setImage</span><span class="token punctuation">(</span><span class="token string">"Along.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+//抽象构建角色：龙骑士
+interface Dragon{
+    public void display();
+}
+//具体构件角色：原画
+class original extends JFrame implements Dragon{
+    private static final  long serialVersionUID = 1L;
+    private String t = "qishi.jpg";
+    public original(){
+        super("《Dota2》中龙骑士");
+    }
+    public void setImage(String t){
+        this.t = t;
+    }
+    public void display(){
+        this.setLayout(new FlowLayout());
+        JLabel l1 = new JLabel(new ImageIcon("/usr/local/github/algo_test/src/Design_Pattern/DecoratorPattern/" + t));
+        this.add(l1);
+        this.pack();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+}
+//抽象装饰角色：变形
+class Changer implements Dragon{
+    Dragon d;
+    public Changer(Dragon d){
+        this.d = d;
+    }
+    public void display(){
+        d.display();
+    }
+}
+//具体装饰角色：龙形态
+class Dragonfrom extends Changer{
+    public Dragonfrom(Dragon d){
+        super(d);
+    }
+    public void display(){
+        setChanger();
+        super.display();
+    }
+    public void setChanger(){
+        ((original) super.d).setImage("long.jpg");
+    }
+}
+//具体装饰角色：黑龙
+class Black_Dragon extends Changer
+{
+    public Black_Dragon(Dragon d)
+    {
+        super(d);
+    }
+    public void display()
+    {
+        setChanger();
+        super.display();
+    }
+    public void setChanger()
+    {
+        ((original) super.d).setImage("Along.jpg");
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>程序运行结果如下图所示：</p>
 <div align="center"><img src="/images/Decorator_Dragon.png" width="400" height="200"></div>
 
@@ -1407,7 +1409,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1588,6 +1590,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

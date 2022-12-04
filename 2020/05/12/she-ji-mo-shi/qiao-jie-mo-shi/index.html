@@ -523,94 +523,96 @@
 <li>具体实现化（Concrete Implementor）角色：给出实现化角色接口的具体实现。</li>
 </ul>
 <h1 id="模式的实现"><a href="#模式的实现" class="headerlink" title="模式的实现"></a>模式的实现</h1><p>桥接模式代码如下：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> Design_Pattern<span class="token punctuation">.</span>bridge<span class="token punctuation">;</span>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">package Design_Pattern.bridge;
 
-<span class="token comment" spellcheck="true">/**
+/**
  * @author peng
  * @date 20-5-12 下午4:07
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BridgeTest</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Implementor imple <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcreteImplementorA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Abstraction abs <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RefineAbstraction</span><span class="token punctuation">(</span>imple<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        abs<span class="token punctuation">.</span><span class="token function">Operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//实现化角色</span>
-<span class="token keyword">interface</span> <span class="token class-name">Implementor</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">OperationImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体实现化角色</span>
-<span class="token keyword">class</span> <span class="token class-name">ConcreteImplementorA</span> <span class="token keyword">implements</span> <span class="token class-name">Implementor</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">OperationImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"具体实现化角色被访问"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象化角色</span>
-<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Abstraction</span><span class="token punctuation">{</span>
-    <span class="token keyword">protected</span> Implementor imple<span class="token punctuation">;</span>
-    <span class="token keyword">protected</span> <span class="token function">Abstraction</span><span class="token punctuation">(</span>Implementor imple<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>imple <span class="token operator">=</span> imple<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">Operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//扩展抽象化角色</span>
-<span class="token keyword">class</span> <span class="token class-name">RefineAbstraction</span> <span class="token keyword">extends</span> <span class="token class-name">Abstraction</span><span class="token punctuation">{</span>
-    <span class="token keyword">protected</span> <span class="token function">RefineAbstraction</span><span class="token punctuation">(</span>Implementor imple<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">super</span><span class="token punctuation">(</span>imple<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">Operation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"扩展抽象化角色被访问！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        imple<span class="token punctuation">.</span><span class="token function">OperationImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/**
+ */
+public class BridgeTest {
+    public static void main(String[] args) {
+        Implementor imple = new ConcreteImplementorA();
+        Abstraction abs = new RefineAbstraction(imple);
+        abs.Operation();
+    }
+}
+//实现化角色
+interface Implementor{
+    public void OperationImpl();
+}
+//具体实现化角色
+class ConcreteImplementorA implements Implementor{
+    public void OperationImpl(){
+        System.out.println("具体实现化角色被访问");
+    }
+}
+//抽象化角色
+abstract class Abstraction{
+    protected Implementor imple;
+    protected Abstraction(Implementor imple){
+        this.imple = imple;
+    }
+    public abstract void Operation();
+}
+//扩展抽象化角色
+class RefineAbstraction extends Abstraction{
+    protected RefineAbstraction(Implementor imple){
+        super(imple);
+    }
+    public void Operation(){
+        System.out.println("扩展抽象化角色被访问！");
+        imple.OperationImpl();
+    }
+}
+/**
 *扩展抽象化角色被访问！
 具体实现化角色被访问
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><p>用桥接（Bridge）模式模拟女士皮包的选购。分析：女士皮包有很多种，可以按用途分、按皮质分、按品牌分、按颜色分、按大小分等，存在多个维度的变化，所以采用桥接模式来实现女士皮包的选购比较合适。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//实现化角色：颜色</span>
-<span class="token keyword">interface</span> <span class="token class-name">Color</span><span class="token punctuation">{</span>
-    String <span class="token function">getColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体实现化角色：黄色</span>
-<span class="token keyword">class</span> <span class="token class-name">Yellow</span> <span class="token keyword">implements</span> <span class="token class-name">Color</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> String <span class="token function">getColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token string">"yellow"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//具体实现化角色：红色</span>
-<span class="token keyword">class</span> <span class="token class-name">Red</span> <span class="token keyword">implements</span> <span class="token class-name">Color</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> String <span class="token function">getColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token string">"red"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//抽象化角色：包</span>
-<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Bag</span><span class="token punctuation">{</span>
-    <span class="token keyword">protected</span> Color color<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setColor</span><span class="token punctuation">(</span>Color color<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>color <span class="token operator">=</span> color<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">abstract</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//扩展抽象化角色：挎包</span>
-<span class="token keyword">class</span> <span class="token class-name">HandBag</span> <span class="token keyword">extends</span> <span class="token class-name">Bag</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> color<span class="token punctuation">.</span><span class="token function">getColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"HandBag"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>   
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//扩展抽象化角色：钱包</span>
-<span class="token keyword">class</span> <span class="token class-name">Wallet</span> <span class="token keyword">extends</span> <span class="token class-name">Bag</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> color<span class="token punctuation">.</span><span class="token function">getColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"Wallet"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>   
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">//实现化角色：颜色
+interface Color{
+    String getColor();
+}
+//具体实现化角色：黄色
+class Yellow implements Color{
+    public String getColor(){
+        return "yellow";
+    }
+}
+//具体实现化角色：红色
+class Red implements Color
+{
+    public String getColor()
+    {
+        return "red";
+    }
+}
+//抽象化角色：包
+abstract class Bag{
+    protected Color color;
+    public void setColor(Color color){
+        this.color = color;
+    }
+    public abstract String getName();
+}
+//扩展抽象化角色：挎包
+class HandBag extends Bag
+{
+    public String getName()
+    {
+        return color.getColor()+"HandBag";
+    }   
+}
+//扩展抽象化角色：钱包
+class Wallet extends Bag
+{
+    public String getName()
+    {
+        return color.getColor()+"Wallet";
+    }   
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>接模式通常适用于以下场景。</p>
 <ul>
 <li>当一个类存在两个独立变化的维度，且这两个维度都需要进行扩展时。</li>
@@ -618,7 +620,7 @@
 <li>当一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性时。</li>
 <li>在软件开发中，有时桥接（Bridge）模式可与适配器模式联合使用。当桥接（Bridge）模式的实现化角色的接口与现有类的接口不一致时，可以在二者中间定义一个适配器将二者连接起来</li>
 </ul>
-<div align="center"><img src="/images/Bridge_Adapter.png" width="400"></div>
+<p><div align="center"><img src="/images/Bridge_Adapter.png" width="400"></div></p>
 <center>图1 桥接模式与适配器模式联用的结构图</center>
             </div>
             <hr />
@@ -1346,7 +1348,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1527,6 +1529,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

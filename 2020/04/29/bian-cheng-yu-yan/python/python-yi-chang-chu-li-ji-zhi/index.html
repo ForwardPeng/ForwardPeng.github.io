@@ -11,15 +11,17 @@
     <meta name="description" content="常见的异常类型
 
 
+
 异常类型
 含义
 实例
 
 
 
+
 AssertionError
 当 assert 关键字后的条件为假时，程序运行会停止并抛出 AssertionError 异常
-&amp;gt;&amp;gt;&amp;gt; demo_list = [‘C语言中文">
+&amp;gt;&amp;gt;&amp;gt; demo_list = [‘C语言">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -522,7 +524,8 @@ AssertionError
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="常见的异常类型"><a href="#常见的异常类型" class="headerlink" title="常见的异常类型"></a>常见的异常类型</h1><table>
+                <h1 id="常见的异常类型"><a href="#常见的异常类型" class="headerlink" title="常见的异常类型"></a>常见的异常类型</h1><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>异常类型</th>
@@ -530,53 +533,51 @@ AssertionError
 <th>实例</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>AssertionError</td>
 <td>当 assert 关键字后的条件为假时，程序运行会停止并抛出 AssertionError 异常</td>
-<td>&gt;&gt;&gt; demo_list = [‘C语言中文网’]&gt;&gt;&gt; assert len(demo_list) &gt; 0&gt;&gt;&gt; demo_list.pop()’C语言中文网’&gt;&gt;&gt; assert len(demo_list) &gt; 0 Traceback (most recent call last):File “&lt;pyshell#6&gt;”, line 1, in <module>assert len(demo_list) &gt; 0 AssertionError</module></td>
+<td>&gt;&gt;&gt; demo_list = [‘C语言中文网’]&gt;&gt;&gt; assert len(demo_list) &gt; 0&gt;&gt;&gt; demo_list.pop()’C语言中文网’&gt;&gt;&gt; assert len(demo_list) &gt; 0 Traceback (most recent call last):File “<pyshell#6>“, line 1, in <module>assert len(demo_list) &gt; 0 AssertionError</module></pyshell#6></td>
 </tr>
 <tr>
 <td>AttributeError</td>
 <td>当试图访问的对象属性不存在时抛出的异常</td>
-<td>&gt;&gt;&gt; demo_list = [‘C语言中文网’]&gt;&gt;&gt; demo_list.len Traceback (most recent call last): File “&lt;pyshell#10&gt;”, line 1, in <module> demo_list.len AttributeError: ‘list’ object has no attribute ‘len’</module></td>
+<td>&gt;&gt;&gt; demo_list = [‘C语言中文网’]&gt;&gt;&gt; demo_list.len Traceback (most recent call last): File “<pyshell#10>“, line 1, in <module> demo_list.len AttributeError: ‘list’ object has no attribute ‘len’</module></pyshell#10></td>
 </tr>
 <tr>
 <td>IndexError</td>
 <td>索引超出序列范围会引发此异常</td>
-<td>&gt;&gt;&gt; demo_list = [‘C语言中文网’] &gt;&gt;&gt; demo_list[3] Traceback (most recent call last): File “&lt;pyshell#8&gt;”, line 1, in <module> demo_list[3] IndexError: list index out of range</module></td>
+<td>&gt;&gt;&gt; demo_list = [‘C语言中文网’] &gt;&gt;&gt; demo_list[3] Traceback (most recent call last): File “<pyshell#8>“, line 1, in <module> demo_list[3] IndexError: list index out of range</module></pyshell#8></td>
 </tr>
 <tr>
 <td>KeyError</td>
 <td>字典中查找一个不存在的关键字时引发此异常</td>
-<td>&gt;&gt;&gt; demo_dict={‘C语言中文网’:”c.biancheng.net”} &gt;&gt;&gt; demo_dict[“C语言”] Traceback (most recent call last):File “&lt;pyshell#12&gt;”, line 1, in <module> demo_dict[“C语言”] KeyError: ‘C语言’</module></td>
+<td>&gt;&gt;&gt; demo_dict={‘C语言中文网’:”c.biancheng.net”} &gt;&gt;&gt; demo_dict[“C语言”] Traceback (most recent call last):File “<pyshell#12>“, line 1, in <module> demo_dict[“C语言”] KeyError: ‘C语言’</module></pyshell#12></td>
 </tr>
 <tr>
 <td>NameError</td>
 <td>尝试访问一个未声明的变量时，引发此异常</td>
-<td>&gt;&gt;&gt; C语言中文网 Traceback (most recent call last): File “&lt;pyshell#15&gt;”, line 1, in <module> C语言中文网NameError: name ‘C语言中文网’ is not defined</module></td>
+<td>&gt;&gt;&gt; C语言中文网 Traceback (most recent call last): File “<pyshell#15>“, line 1, in <module> C语言中文网NameError: name ‘C语言中文网’ is not defined</module></pyshell#15></td>
 </tr>
 <tr>
 <td>TypeError</td>
 <td>不同类型数据之间的无效操作</td>
-<td>&gt;&gt;&gt; 1+’C语言中文网’                                                 Traceback (most recent call last): File “&lt;pyshell#17&gt;”, line 1, in <module> 1+’C语言中文网’ TypeError: unsupported operand type(s) for +: ‘int’ and ‘str’</module></td>
+<td>&gt;&gt;&gt; 1+’C语言中文网’                                                 Traceback (most recent call last): File “<pyshell#17>“, line 1, in <module> 1+’C语言中文网’ TypeError: unsupported operand type(s) for +: ‘int’ and ‘str’</module></pyshell#17></td>
 </tr>
 <tr>
 <td>ZeroDivisionError</td>
 <td>除法运算中除数为 0 引发此异常</td>
-<td>&gt;&gt;&gt; a = 1/0 Traceback (most recent call last): File “&lt;pyshell#2&gt;”, line 1, in <module> a = 1/0 ZeroDivisionError: division by zero</module></td>
+<td>&gt;&gt;&gt; a = 1/0 Traceback (most recent call last): File “<pyshell#2>“, line 1, in <module> a = 1/0 ZeroDivisionError: division by zero</module></pyshell#2></td>
 </tr>
 <tr>
 <td></td>
-<td></td>
-<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <blockquote>
 <p>使用 Python 异常处理机制，可以让程序中的异常处理代码和正常业务代码分离，使得程序代码更加优雅，并可以提高程序的健壮性。</p>
-</blockquote>
-<h1 id="try-except异常处理"><a href="#try-except异常处理" class="headerlink" title="try except异常处理"></a>try except异常处理</h1><p>Python 中，用try except语句块捕获并处理异常，其基本语法结构如下所示：</p>
-<blockquote>
-<p>try:<br>    可能产生异常的代码块<br>except [ (Error1, Error2, … ) [as e] ]:<br>    处理异常的代码块1<br>except [ (Error3, Error4, … ) [as e] ]:<br>    处理异常的代码块2<br>except  [Exception]:<br>    处理其它异常</p>
+<h1 id="try-except异常处理"><a href="#try-except异常处理" class="headerlink" title="try except异常处理"></a>try except异常处理</h1><p>Python 中，用try except语句块捕获并处理异常，其基本语法结构如下所示：<br>try:<br>    可能产生异常的代码块<br>except [ (Error1, Error2, … ) [as e] ]:<br>    处理异常的代码块1<br>except [ (Error3, Error4, … ) [as e] ]:<br>    处理异常的代码块2<br>except  [Exception]:<br>    处理其它异常</p>
 </blockquote>
 <p>该格式中，[]括起来的部分可以使用，也可以省略。其中各部分的含义如下：</p>
 <ul>
@@ -584,21 +585,23 @@ AssertionError
 <li>[as e]：作为可选参数，表示给异常类型起一个别名 e，这样做的好处是方便在except块中调用异常类型（后续会用到）。</li>
 <li>[Exception]：作为可选参数，可以代指程序可能发生的所有异常情况，其通常用在最后一个except块。<blockquote>
 <p>当程序发生不同的意外情况时，会对应特定的异常类型，Python 解释器会根据该异常类型选择对应的 except 块来处理该异常。</p>
+<h2 id="获取特定异常"><a href="#获取特定异常" class="headerlink" title="获取特定异常"></a>获取特定异常</h2><p>每种异常类型都提供了如下几个属性和方法，通过调用它们，就可以获取当前处理异常类型的相关信息：</p>
 </blockquote>
-<h2 id="获取特定异常"><a href="#获取特定异常" class="headerlink" title="获取特定异常"></a>获取特定异常</h2>每种异常类型都提供了如下几个属性和方法，通过调用它们，就可以获取当前处理异常类型的相关信息：</li>
+</li>
 <li>args：返回异常的错误编号和描述字符串；</li>
 <li>str(e)：返回异常信息，但不包括异常信息的类型；</li>
-<li>repr(e)：返回较全的异常信息，包括异常信息的类型。<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
-  <span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span>
-<span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-  <span class="token comment" spellcheck="true"># 访问异常的错误编号和详细信息</span>
-  <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>args<span class="token punctuation">)</span>
-  <span class="token keyword">print</span><span class="token punctuation">(</span>str<span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">)</span>
-  <span class="token keyword">print</span><span class="token punctuation">(</span>repr<span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<li>repr(e)：返回较全的异常信息，包括异常信息的类型。<pre class="line-numbers language-lang-python"><code class="language-lang-python">try:
+  1/0
+except Exception as e:
+  # 访问异常的错误编号和详细信息
+  print(e.args)
+  print(str(e))
+  print(repr(e))
 Output：
-<span class="token punctuation">(</span><span class="token string">'division by zero'</span><span class="token punctuation">,</span><span class="token punctuation">)</span>
+('division by zero',)
 division by zero
-ZeroDivisionError<span class="token punctuation">(</span><span class="token string">'division by zero'</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ZeroDivisionError('division by zero',)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <h1 id="异常处理的底层实现"><a href="#异常处理的底层实现" class="headerlink" title="异常处理的底层实现"></a>异常处理的底层实现</h1><p>对于可以接收任何异常的 except 来说，其后可以跟Exception，也可以不跟任何参数，但表示的含义都是一样的。 Python 的常见异常类之间的继承关系如图 1：<br> <div align="center"><img src="/images/Exception.png" width="400"></div><br> <center>图1 Python 的常见异常类之间的继承关系</center></p>
@@ -612,32 +615,29 @@ ZeroDivisionError<span class="token punctuation">(</span><span class="token stri
 <blockquote>
 <p>Python垃圾回收机制，只能帮我们回收变量、类对象占用的内存，而无法自动完成类似关闭文件、数据库连接等这些的工作。</p>
 </blockquote>
-<h1 id="异常处理机制结构"><a href="#异常处理机制结构" class="headerlink" title="异常处理机制结构"></a>异常处理机制结构</h1><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 语法结构</span>
-<span class="token keyword">try</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true">#业务实现代码</span>
-<span class="token keyword">except</span> Exception1 <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true">#异常处理块1</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token keyword">except</span> Exception2 <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true">#异常处理块2</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token comment" spellcheck="true">#可以有多个 except</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token keyword">else</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true">#正常处理块</span>
-<span class="token keyword">finally</span> <span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true">#资源回收块</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="异常处理机制结构"><a href="#异常处理机制结构" class="headerlink" title="异常处理机制结构"></a>异常处理机制结构</h1><pre class="line-numbers language-lang-python"><code class="language-lang-python"># 语法结构
+try:
+    #业务实现代码
+except Exception1 as e:
+    #异常处理块1
+    ...
+except Exception2 as e:
+    #异常处理块2
+    ...
+#可以有多个 except
+...
+else:
+    #正常处理块
+finally :
+    #资源回收块
+    ...
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>整个异常处理结构中，只有 try 块是必需的，也就是说：</p>
 <ul>
-<li><p>如果没有 try 块，则不能有后面的 except 块、else 块和 * finally 块。但是也不能只使用 try 块，要么使用 try except 结构，要么使用 try finally 结构；<br>except 块、else 块、finally 块都是可选的，当然也可以同时出现；</p>
-</li>
-<li><p>可以有多个 except 块，但捕获父类异常的 except 块应该位于捕获子类异常的 except 块的后面；</p>
-</li>
-<li><p>多个except块必须位于try块之后，finally块必须位于所有的 except 块之后。</p>
-</li>
-<li><p>要使用else块，其前面必须包含 try和except。<br>异常处理语句块的执行流程如下图2：</p>
-<div align="center"><img src="/images/liucheng.png" width="400"></div>
+<li>如果没有 try 块，则不能有后面的 except 块、else 块和 * finally 块。但是也不能只使用 try 块，要么使用 try except 结构，要么使用 try finally 结构；<br>except 块、else 块、finally 块都是可选的，当然也可以同时出现；</li>
+<li>可以有多个 except 块，但捕获父类异常的 except 块应该位于捕获子类异常的 except 块的后面；</li>
+<li>多个except块必须位于try块之后，finally块必须位于所有的 except 块之后。</li>
+<li><p>要使用else块，其前面必须包含 try和except。<br>异常处理语句块的执行流程如下图2：<br><div align="center"><img src="/images/liucheng.png" width="400"></div></p>
 <center>图2 异常处理语句块的执行流程</center>
 
 <h1 id="raise用法"><a href="#raise用法" class="headerlink" title="raise用法"></a>raise用法</h1><p>raise 语句的基本语法格式为：<br>。raise [exceptionName [(reason)]]</p>
@@ -645,18 +645,14 @@ ZeroDivisionError<span class="token punctuation">(</span><span class="token stri
 </ul>
 <p>其中，用 [] 括起来的为可选参数，其作用是指定抛出的异常名称，以及异常信息的相关描述。如果可选参数全部省略，则 raise 会把当前错误原样抛出；如果仅省略 (reason)，则在抛出异常时，将不附带任何的异常描述信息。也就是说，raise 语句有如下三种常用的用法：</p>
 <ul>
-<li><p>raise：单独一个 raise。该语句引发当前上下文中捕获的异常（比如在 except 块中），或默认引发 RuntimeError 异常。</p>
-</li>
-<li><p>raise 异常类名称：raise 后带一个异常类名称，表示引发执行类型的异常。</p>
-</li>
+<li>raise：单独一个 raise。该语句引发当前上下文中捕获的异常（比如在 except 块中），或默认引发 RuntimeError 异常。</li>
+<li>raise 异常类名称：raise 后带一个异常类名称，表示引发执行类型的异常。</li>
 <li><p>raise 异常类名称(描述信息)：在引发指定类型的异常的同时，附带异常的描述信息。</p>
 <p>如果没有 finally 块，程序才会立即执行 return 或 raise 语句；反之，如果找到 finally 块，系统立即开始执行 finally 块，只有当 finally 块执行完成后，系统才会再次跳回来执行 try 块、except 块里的 return 或 raise 语句。尽量避免在 finally 块里使用 return 或 raise 等导致方法中止的语句，否则可能出现一些很奇怪的情况。<font color="red">但是，如果在 finally 块里也使用了 return 或 raise 等导致方法中止的语句，finally 块己经中止了方法，系统将不会跳回去执行 try 块、except 块里的任何代码。</font></p>
 <h1 id="sys-exc-info-方法：获取异常信息"><a href="#sys-exc-info-方法：获取异常信息" class="headerlink" title="sys.exc_info()方法：获取异常信息"></a>sys.exc_info()方法：获取异常信息</h1><p>捕获异常时，有 2 种方式可获得更多的异常信息，分别是：</p>
 </li>
-<li><p>使用 sys 模块中的 exc_info 方法；</p>
-</li>
-<li><p>使用 traceback 模块中的相关函数。</p>
-</li>
+<li>使用 sys 模块中的 exc_info 方法；</li>
+<li>使用 traceback 模块中的相关函数。</li>
 </ul>
 <p>模块 sys 中，有两个方法可以返回异常的全部信息，分别是 exc_info() 和 last_traceback()，这两个函数有相同的功能和用法，<br>exc_info() 方法会将当前的异常信息以元组的形式返回，该元组中包含 3 个元素，分别为 type、value 和 traceback，它们的含义分别是：</p>
 <ul>
@@ -668,27 +664,29 @@ ZeroDivisionError<span class="token punctuation">(</span><span class="token stri
 <blockquote>
 <p>print_exception(sys.exc_etype, sys.exc_value, sys.exc_tb[, limit[, file]])</p>
 </blockquote>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 捕捉异常，并将异常传播信息输出控制台</span>
-    traceback<span class="token punctuation">.</span>print_exc<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 捕捉异常，并将异常传播信息输出指定文件中</span>
-    traceback<span class="token punctuation">.</span>print_exc<span class="token punctuation">(</span>file<span class="token operator">=</span>open<span class="token punctuation">(</span><span class="token string">'log.txt'</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="自定义异常类"><a href="#自定义异常类" class="headerlink" title="自定义异常类"></a>自定义异常类</h1><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">InputError</span><span class="token punctuation">(</span>Exception<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token triple-quoted-string string">'''当输出有误时，抛出此异常'''</span>
-    <span class="token comment" spellcheck="true">#自定义异常类型的初始化</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>value <span class="token operator">=</span> value
-    <span class="token comment" spellcheck="true"># 返回异常类对象的说明信息</span>
-    <span class="token keyword">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token string">"{} is invalid input"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>repr<span class="token punctuation">(</span>self<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># 捕捉异常，并将异常传播信息输出控制台
+    traceback.print_exc()
+    # 捕捉异常，并将异常传播信息输出指定文件中
+    traceback.print_exc(file=open('log.txt', 'a'))
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="自定义异常类"><a href="#自定义异常类" class="headerlink" title="自定义异常类"></a>自定义异常类</h1><pre class="line-numbers language-lang-python"><code class="language-lang-python">class InputError(Exception):
+    '''当输出有误时，抛出此异常'''
+    #自定义异常类型的初始化
+    def __init__(self, value):
+        self.value = value
+    # 返回异常类对象的说明信息
+    def __str__(self):
+        return ("{} is invalid input".format(repr(self.value)))
 
-<span class="token keyword">try</span><span class="token punctuation">:</span>
-    <span class="token keyword">raise</span> InputError<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 抛出 MyInputError 这个异常</span>
-<span class="token keyword">except</span> InputError <span class="token keyword">as</span> err<span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'error: {}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token triple-quoted-string string">'''
+try:
+    raise InputError(1) # 抛出 MyInputError 这个异常
+except InputError as err:
+    print('error: {}'.format(err))
+'''
 运行结果：
     error: 1 is invalid input
-'''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+'''
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意，只要自定义的类继承自 Exception，则该类就是一个异常类，至于此类中包含的内容，并没有做任何规定。</p>
 <h1 id="异常使用规则"><a href="#异常使用规则" class="headerlink" title="异常使用规则"></a>异常使用规则</h1><p>成功的异常处理应该实现如下 4 个目标：</p>
 <ul>
@@ -704,8 +702,8 @@ ZeroDivisionError<span class="token punctuation">(</span><span class="token stri
 </ul>
 <blockquote>
 <p>异常处理机制的初衷是将不可预期异常的处理代码和正常的业务逻辑处理代码分离，因此绝不要使用异常处理来代替正常的业务逻辑判断。</p>
-</blockquote>
 <h2 id="不要使用过于庞大的-try-块"><a href="#不要使用过于庞大的-try-块" class="headerlink" title="不要使用过于庞大的 try 块"></a>不要使用过于庞大的 try 块</h2><p>因为 try 块里的代码过于庞大，业务过于复杂，就会造成 try 块中出现异常的可能性大大增加，从而导致分析异常原因的难度也大大增加。而且当时块过于庞大时，就难免在 try 块后紧跟大量的 except 块才可以针对不同的异常提供不同的处理逻辑。在同一个 try 块后紧跟大量的 except 块则需要分析它们之间的逻辑关系，反而增加了编程复杂度。</p>
+</blockquote>
 <p>正确的做法是，把大块的 try 块分割成多个可能出现异常的程序段落，并把它们放在单独的 try 块中，从而分别捕获并处理异常。</p>
 <h2 id="不要忽略捕获的异常"><a href="#不要忽略捕获的异常" class="headerlink" title="不要忽略捕获的异常"></a>不要忽略捕获的异常</h2><p>既然己捕获到异常，那么 except 块理应做些有用的事情，及处理并修复异常。except 块整个为空，或者仅仅打印简单的异常信息都是不妥的！常建议对异常采取适当措施，比如：</p>
 <ul>
@@ -714,29 +712,30 @@ ZeroDivisionError<span class="token punctuation">(</span><span class="token stri
 <li>在合适的层处理异常。如果当前层不清楚如何处理异常，就不要在当前层使用 except 语句来捕获该异常，让上层调用者来负责处理该异常。</li>
 </ul>
 <h1 id="logging模块用法"><a href="#logging模块用法" class="headerlink" title="logging模块用法"></a>logging模块用法</h1><p>logging模块可以很容易地创建自定义的消息记录，这些日志消息将描述程序执行何时到达日志函数调用，并列出指定的任何变量当时的值。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 程序开头加上</span>
-<span class="token keyword">import</span> logging
-logging<span class="token punctuation">.</span>basicConfig<span class="token punctuation">(</span>level<span class="token operator">=</span>logging<span class="token punctuation">.</span>DEBUG<span class="token punctuation">,</span> format<span class="token operator">=</span><span class="token string">' %(asctime)s - %(levelname)s - %(message)s'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># 程序开头加上
+import logging
+logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - %(message)s')
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>工作原理：当Python记录一个事件的日志时，它会创建一个LogRecord对象，保存关于该事件的信息。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> logging
-logging<span class="token punctuation">.</span>basicConfig<span class="token punctuation">(</span>level<span class="token operator">=</span>logging<span class="token punctuation">.</span>DEBUG<span class="token punctuation">,</span>
-                    format<span class="token operator">=</span><span class="token string">' %(asctime)s - %(levelname)s - %(message)s'</span><span class="token punctuation">)</span>
-logging<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'Start of program'</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">import logging
+logging.basicConfig(level=logging.DEBUG,
+                    format=' %(asctime)s - %(levelname)s - %(message)s')
+logging.debug('Start of program')
 
 
-<span class="token keyword">def</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    logging<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'Start of factorial(%s%%)'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    total <span class="token operator">=</span> <span class="token number">1</span>
-    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        total <span class="token operator">*=</span> i
-        logging<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'i is '</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">', total is '</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>total<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    logging<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'End of factorial(%s%%)'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> total
+def factorial(n):
+    logging.debug('Start of factorial(%s%%)' % (n))
+    total = 1
+    for i in range(n + 1):
+        total *= i
+        logging.debug('i is ' + str(i) + ', total is ' + str(total))
+    logging.debug('End of factorial(%s%%)' % (n))
+    return total
 
 
-<span class="token keyword">print</span><span class="token punctuation">(</span>factorial<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-logging<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'End of program'</span><span class="token punctuation">)</span>
-<span class="token triple-quoted-string string">'''
+print(factorial(5))
+logging.debug('End of program')
+'''
 运行结果：
 2020-04-29 15:48:52,751 - DEBUG - Start of program
  2020-04-29 15:48:52,751 - DEBUG - Start of factorial(5%)
@@ -749,8 +748,10 @@ logging<span class="token punctuation">.</span>debug<span class="token punctuati
  2020-04-29 15:48:52,751 - DEBUG - End of factorial(5%)
  2020-04-29 15:48:52,751 - DEBUG - End of program
 0
-'''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="logging日志级别"><a href="#logging日志级别" class="headerlink" title="logging日志级别"></a>logging日志级别</h2><table>
+'''
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="logging日志级别"><a href="#logging日志级别" class="headerlink" title="logging日志级别"></a>logging日志级别</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>级别</th>
@@ -758,7 +759,8 @@ logging<span class="token punctuation">.</span>debug<span class="token punctuati
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>DEBUG</td>
 <td>logging.debug()</td>
 <td>最低级别，用于小细节，通常只有在诊断问题时，才会关心这些消息。</td>
@@ -783,21 +785,15 @@ logging<span class="token punctuation">.</span>debug<span class="token punctuati
 <td>logging.critical()</td>
 <td>最高级别，用于表示致命的错误，它导致或将要导致程序完全停止工作。</td>
 </tr>
-<tr>
-<td>## logging禁用日志</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>在调试完程序后，可能并不希望所有这些日志消息出现在屏幕上，这时就可以使用 logging.disable() 函数禁用这些日志消息，从而不必进入到程序中，手工删除所有的日志调用。</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+<h2 id="logging禁用日志"><a href="#logging禁用日志" class="headerlink" title="logging禁用日志"></a>logging禁用日志</h2><p>在调试完程序后，可能并不希望所有这些日志消息出现在屏幕上，这时就可以使用 logging.disable() 函数禁用这些日志消息，从而不必进入到程序中，手工删除所有的日志调用。</p>
 <p>logging.disable() 函数的用法是，向其传入一个日志级别，它会禁止该级别以及更低级别的所有日志消息。因此，如果想要禁用所有日志，只要在程序中添加 logging.disable(logging.CRITICAL) 即可</p>
 <h2 id="日志消息输出到文件中"><a href="#日志消息输出到文件中" class="headerlink" title="日志消息输出到文件中"></a>日志消息输出到文件中</h2><p>将日志消息输出到文件中的实现方法很简单，只需要设置 logging.basicConfig() 函数中的 filename 关键字参数即可，例如：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">import</span> logging
-<span class="token operator">>></span><span class="token operator">></span> logging<span class="token punctuation">.</span>basicConfig<span class="token punctuation">(</span>filename<span class="token operator">=</span><span class="token string">'demo.txt'</span><span class="token punctuation">,</span> level<span class="token operator">=</span>logging<span class="token punctuation">.</span>DEBUG<span class="token punctuation">,</span> format<span class="token operator">=</span><span class="token string">'%(asctime)s - %(levelname)s - %(message)s'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">>>> import logging
+>>> logging.basicConfig(filename='demo.txt', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>此程序中，将日志消息存储到了 demo.txt 文件中，该文件就位于运行的程序文件所在的目录。</p>
 
             </div>
@@ -1539,7 +1535,7 @@ logging<span class="token punctuation">.</span>debug<span class="token punctuati
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1720,6 +1716,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

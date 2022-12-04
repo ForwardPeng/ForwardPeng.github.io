@@ -485,7 +485,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    583
+                    574
                 </div>
                 
 
@@ -515,87 +515,88 @@
 <li>具体原型类：实现抽象原型类的clone()方法，它是可被复制的对象。</li>
 <li>访问类：使用具体原型类中的clone()方法来复制新的对象。</li>
 </ul>
-<h2 id="模式的实现"><a href="#模式的实现" class="headerlink" title="模式的实现"></a>模式的实现</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> copy
+<h2 id="模式的实现"><a href="#模式的实现" class="headerlink" title="模式的实现"></a>模式的实现</h2><pre class="line-numbers language-lang-python"><code class="language-lang-python">import copy
 
-<span class="token keyword">class</span> <span class="token class-name">Prototype</span><span class="token punctuation">:</span>
-    value <span class="token operator">=</span> <span class="token string">'default'</span>
+class Prototype:
+    value = 'default'
 
-    <span class="token keyword">def</span> <span class="token function">clone</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">**</span>attrs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        obj <span class="token operator">=</span> copy<span class="token punctuation">.</span>deepcopy<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
-        obj<span class="token punctuation">.</span>__dict__<span class="token punctuation">.</span>update<span class="token punctuation">(</span>attrs<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> obj
+    def clone(self, **attrs):
+        obj = copy.deepcopy(self)
+        obj.__dict__.update(attrs)
+        return obj
 
-<span class="token keyword">class</span> <span class="token class-name">PrototypeDispatcher</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>_objects <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+class PrototypeDispatcher:
+    def __init__(self):
+        self._objects = {}
 
-    <span class="token keyword">def</span> <span class="token function">get_objects</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_objects
+    def get_objects(self):
+        return self._objects
 
-    <span class="token keyword">def</span> <span class="token function">register_object</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">,</span> obj<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>_objects<span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> obj
+    def register_object(self, name, obj):
+        self._objects[name] = obj
 
-    <span class="token keyword">def</span> <span class="token function">unregister_object</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">del</span> self<span class="token punctuation">.</span>_objects<span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+    def unregister_object(self, name):
+        del self._objects[name]
 
-<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    dispatcher <span class="token operator">=</span> PrototypeDispatcher<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    prototype <span class="token operator">=</span> Prototype<span class="token punctuation">(</span><span class="token punctuation">)</span>
+def main():
+    dispatcher = PrototypeDispatcher()
+    prototype = Prototype()
 
-    d <span class="token operator">=</span> prototype<span class="token punctuation">.</span>clone<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    a <span class="token operator">=</span> prototype<span class="token punctuation">.</span>clone<span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">'a-value'</span><span class="token punctuation">,</span>category<span class="token operator">=</span><span class="token string">'a'</span><span class="token punctuation">)</span>
-    b <span class="token operator">=</span> prototype<span class="token punctuation">.</span>clone<span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">'b-value'</span><span class="token punctuation">,</span>is_checked<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-    dispatcher<span class="token punctuation">.</span>register_object<span class="token punctuation">(</span><span class="token string">'objecta'</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span>
-    dispatcher<span class="token punctuation">.</span>register_object<span class="token punctuation">(</span><span class="token string">'objectb'</span><span class="token punctuation">,</span> b<span class="token punctuation">)</span>
-    dispatcher<span class="token punctuation">.</span>register_object<span class="token punctuation">(</span><span class="token string">'default'</span><span class="token punctuation">,</span> d<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span>n<span class="token punctuation">:</span> p<span class="token punctuation">.</span>value<span class="token punctuation">}</span> <span class="token keyword">for</span> n<span class="token punctuation">,</span>p <span class="token keyword">in</span> dispatcher<span class="token punctuation">.</span>get_objects<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    d = prototype.clone()
+    a = prototype.clone(value='a-value',category='a')
+    b = prototype.clone(value='b-value',is_checked=True)
+    dispatcher.register_object('objecta',a)
+    dispatcher.register_object('objectb', b)
+    dispatcher.register_object('default', d)
+    print([{n: p.value} for n,p in dispatcher.get_objects().items()])
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">##[{'objecta': 'a-value'}, {'objectb': 'b-value'}, {'default': 'default'}]</span>
-<span class="token keyword">import</span> copy
+if __name__ == '__main__':
+    main()
+##[{'objecta': 'a-value'}, {'objectb': 'b-value'}, {'default': 'default'}]
+import copy
 
-<span class="token keyword">class</span> <span class="token class-name">Prototype</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>_objects <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+class Prototype:
+    def __init__(self):
+        self._objects = {}
 
-    <span class="token keyword">def</span> <span class="token function">register_object</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">,</span> obj<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">"""Register an object"""</span>
-        self<span class="token punctuation">.</span>_objects<span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> obj
+    def register_object(self, name, obj):
+        """Register an object"""
+        self._objects[name] = obj
 
-    <span class="token keyword">def</span> <span class="token function">unregister_object</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">"""Unregister an object"""</span>
-        <span class="token keyword">del</span> self<span class="token punctuation">.</span>_objects<span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+    def unregister_object(self, name):
+        """Unregister an object"""
+        del self._objects[name]
 
-    <span class="token keyword">def</span> <span class="token function">clone</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">,</span> <span class="token operator">**</span>attr<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">"""Clone a registered object and update inner attributes dictionary"""</span>
-        obj <span class="token operator">=</span> copy<span class="token punctuation">.</span>deepcopy<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_objects<span class="token punctuation">.</span>get<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        obj<span class="token punctuation">.</span>__dict__<span class="token punctuation">.</span>update<span class="token punctuation">(</span>attr<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> obj
+    def clone(self, name, **attr):
+        """Clone a registered object and update inner attributes dictionary"""
+        obj = copy.deepcopy(self._objects.get(name))
+        obj.__dict__.update(attr)
+        return obj
 
 
-<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">class</span> <span class="token class-name">A</span><span class="token punctuation">:</span>
-        <span class="token keyword">pass</span>
+def main():
+    class A:
+        pass
 
-    a <span class="token operator">=</span> A<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    prototype <span class="token operator">=</span> Prototype<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    prototype<span class="token punctuation">.</span>register_object<span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span>
-    b <span class="token operator">=</span> prototype<span class="token punctuation">.</span>clone<span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span>a<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> b<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> c<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span>
+    a = A()
+    prototype = Prototype()
+    prototype.register_object('a', a)
+    b = prototype.clone('a',a=1, b=2, c=3)
 
-    <span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>b<span class="token punctuation">.</span>a<span class="token punctuation">,</span> b<span class="token punctuation">.</span>b<span class="token punctuation">,</span> b<span class="token punctuation">.</span>c<span class="token punctuation">)</span>
+    print(a)
+    print(b.a, b.b, b.c)
 
-main<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># &lt;__main__.main.&lt;locals>.A object at 0x7f7c4d0175f8></span>
-<span class="token comment" spellcheck="true"># 1 2 3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+main()
+# <__main__.main.<locals>.A object at 0x7f7c4d0175f8>
+# 1 2 3
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="原型模式的应用场景"><a href="#原型模式的应用场景" class="headerlink" title="原型模式的应用场景"></a>原型模式的应用场景</h1><p>原型模式通常适用于以下场景。</p>
 <ul>
 <li>对象之间相同或相似，即只是个别的几个属性不同的时候。</li>
 <li>对象的创建过程比较麻烦，但复制比较简单的时候。</li>
 </ul>
 <h1 id="原型模式的扩展"><a href="#原型模式的扩展" class="headerlink" title="原型模式的扩展"></a>原型模式的扩展</h1><p>原型模式可扩展为带原型管理器的原型模式，它在原型模式的基础上增加了一个原型管理器 PrototypeManager 类。该类用 HashMap 保存多个复制的原型，Client 类可以通过管理器的 get(String id) 方法从中获取复制的原型。</p>
-<div align="center"><img src="/images/yxglq.png" width="400"></div>
+<p><div align="center"><img src="/images/yxglq.png" width="400"></div></p>
 <center>图1 带原型管理器的原型模式的结构图</center>
             </div>
             <hr />
@@ -1324,7 +1325,7 @@ main<span class="token punctuation">(</span><span class="token punctuation">)</s
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1505,6 +1506,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

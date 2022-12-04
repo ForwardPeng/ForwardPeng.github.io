@@ -449,12 +449,12 @@ View 代表视图层，是系统前端显示部分，它负责显">
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/Web框架/" target="_blank">
-                            <span class="chip bg-color">Web框架</span>
-                        </a>
-                        
                         <a href="/tags/Python/" target="_blank">
                             <span class="chip bg-color">Python</span>
+                        </a>
+                        
+                        <a href="/tags/Web框架/" target="_blank">
+                            <span class="chip bg-color">Web框架</span>
                         </a>
                         
                     </div>
@@ -522,8 +522,7 @@ View 代表视图层，是系统前端显示部分，它负责显">
 <ul>
 <li>Modle 代表数据存储层，是对数据表的定义和数据的增删改查；</li>
 <li>View 代表视图层，是系统前端显示部分，它负责显示什么和如何进行显示；</li>
-<li>Controller 代表控制层，负责根据从 View 层输入的指令来检索 Model 层的数据，并在该层编写代码产生结果并输出。<div align="center"><img src="/images/MVC.png" width="400"></div>
-<center>图1 MVC设计模式</center>
+<li>Controller 代表控制层，负责根据从 View 层输入的指令来检索 Model 层的数据，并在该层编写代码产生结果并输出。<br><div align="center"><img src="/images/MVC.png" width="400"></div><center>图1 MVC设计模式</center>
 
 </li>
 </ul>
@@ -539,8 +538,7 @@ View 代表视图层，是系统前端显示部分，它负责显">
 <ul>
 <li>Model：数据存储层，处理所有数据相关的业务，和数据库进行交互，并提供数据的增删改查；</li>
 <li>Template：模板层（也叫表现层）具体来处理页面的显示；</li>
-<li>View：业务逻辑层，处理具体的业务逻辑，它的作用是连通Model 层和 Template 。<div align="center"><img src="/images/MTV.png" width="400"></div>
-<center>图2 MTV设计模式</center>
+<li>View：业务逻辑层，处理具体的业务逻辑，它的作用是连通Model 层和 Template 。<br><div align="center"><img src="/images/MTV.png" width="400"></div><center>图2 MTV设计模式</center>
 
 </li>
 </ul>
@@ -553,7 +551,7 @@ View 代表视图层，是系统前端显示部分，它负责显">
 </ul>
 <p>通过以上两种设计模式的比较， 我们可以得出MTV是MVC的一种细化，将原来MVC中的 V层拿出来进行分离，视图的显示与如何显示交给Template层，而View层更专注于实现业务逻辑。</p>
 <h1 id="ORM模块"><a href="#ORM模块" class="headerlink" title="ORM模块"></a>ORM模块</h1><p>ORM（Object Realtional Mapping）即对象关系映射，它是一种基于关系型数据库的程序技术。ORM允许你使用类和对象对数据库进行操作，这大大提高了对数据库的控制，避免了直接使用SQL语句对数据库进行操作。如图3是ORM与数据库的映射关系，ORM 把类映射成数据库中的表，把类的一个实例对象映射成数据库中的数据行，把类的属性映射成表中的字段，通过对象的操作对应到数据库表的操作，实现了对象到 SQL、SQL 到对象转换过程。</p>
-<div align="center"><img src="/images/ORM与DB.png" width="400"></div>
+<p><div align="center"><img src="/images/ORM与DB.png" width="400"></div></p>
 <center>图3 ORM与DB映射关系</center>
 
 <p>针对数据库中的字段类型，对应的”xxxField”表述如下表：</p>
@@ -623,9 +621,10 @@ View 代表视图层，是系统前端显示部分，它负责显">
 <li>verbose_name：设置此字段在 admin后台管理系统界面上的显示名称，如果没有设置这个字段，Django将会直接展示字段名并且将字段中的下划线转变为空格。</li>
 </ul>
 <h1 id="视图函数"><a href="#视图函数" class="headerlink" title="视图函数"></a>视图函数</h1><p> 视图函数是一个 Python 函数或者类，开发者主要通过编写视图函数来实现业务逻辑。视图函数首先接受来自浏览器或者客户端的请求，并最终返回响应，视图函数返回的响应可以是HTML文件，也可以是HTTP协议中的303重定向，如下：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>http <span class="token keyword">import</span> HttpResponse
-<span class="token keyword">def</span> <span class="token function">Hello_my_django</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'&lt;html>&lt;body>Hello my Django&lt;/body>&lt;/html>'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">from django.http import HttpResponse
+def Hello_my_django(request):
+    return HttpResponse('<html><body>Hello my Django</body></html>')
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p><strong>1.HttpResponse视图响应类型</strong></p>
 <p>django.http 模块中导入 HttpResponse，从它简单的名字我们可以得知，它是一种视图的响应类型。</p>
 <p><strong>2.视图函数参数request</strong></p>
@@ -634,11 +633,13 @@ View 代表视图层，是系统前端显示部分，它负责显">
 <p>视图函数要返回响应内容，这里的响应内容是我们用HTML标签编写的，把它作为HttpResponse的对象返回给浏览器。</p>
 <h1 id="模板系统及应用"><a href="#模板系统及应用" class="headerlink" title="模板系统及应用"></a>模板系统及应用</h1><p>“模板”称之为Template，它的存在使得HTML和 View视图层实现了解耦，在 templates 文件中新建一个 HTML 文件，并且将此文件命名为 hello.html，然后在此文件中书写我们的 HTML 代码，如下所示：</p>
 <p>写HTM代码：</p>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>{{vaule}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-html"><code class="language-lang-html"><html><body>{{vaule}}</body></html>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>写视图函数：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>shortcuts <span class="token keyword">import</span> render      
-<span class="token keyword">def</span> <span class="token function">hello_my_django</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token string">"hello.html"</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token string">"vaule"</span><span class="token punctuation">:</span><span class="token string">"hello my Django"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">from django.shortcuts import render      
+def hello_my_django(request):
+    return render(request,"hello.html",{"vaule":"hello my Django"})
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p><strong>1.模板传参</strong></p>
 <p>hello.html 文件中的  是一个模板的变量，视图函数必须把数据形成字典的形式才可以传递给模板，这就是“模板传参”。</p>
 <p><strong>2.render方法</strong></p>
@@ -654,17 +655,19 @@ View 代表视图层，是系统前端显示部分，它负责显">
 <li>name，是给 url 地址起个别名，在模板反向解析的时候使用</li>
 </ul>
 <h2 id="配置URL实现页面访问"><a href="#配置URL实现页面访问" class="headerlink" title="配置URL实现页面访问"></a>配置URL实现页面访问</h2><p>在 urls.py 的同级目录下，新建 views.py 文件，把它作为编写视图函数的 View 层，然后在 views.py 中编写如下代码：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>http <span class="token keyword">import</span> HttpResponse
-<span class="token keyword">def</span> <span class="token function">page_view</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    html<span class="token operator">=</span><span class="token string">'&lt;h1>欢迎来到，C语言中文网，网址是http://c.biancheng.net&lt;/h>'</span>
-    <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span>html<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">from django.http import HttpResponse
+def page_view(request):
+    html='<h1>欢迎来到，C语言中文网，网址是http://c.biancheng.net</h>'
+    return HttpResponse(html)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>目的是把 URL 与视图层进行绑定，然后在urls.py的 urlpatterns 中编写如下代码：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>conf<span class="token punctuation">.</span>urls <span class="token keyword">import</span> url
-<span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib <span class="token keyword">import</span> admin
-<span class="token keyword">from</span> myject <span class="token keyword">import</span> views
-urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
-    url<span class="token punctuation">(</span>r<span class="token string">'admin/'</span><span class="token punctuation">,</span> admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>urls<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    url<span class="token punctuation">(</span>r<span class="token string">'^page$/'</span><span class="token punctuation">,</span>views<span class="token punctuation">.</span>page_view<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">from django.conf.urls import url
+from django.contrib import admin
+from myject import views
+urlpatterns = [
+    url(r'admin/', admin.site.urls),
+    url(r'^page$/',views.page_view),]
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -1412,7 +1415,7 @@ import numpy as np
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1593,6 +1596,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

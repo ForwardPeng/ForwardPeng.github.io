@@ -523,112 +523,115 @@
 <li>适配器（Adapter）类：它是一个转换器，通过继承或引用适配者的对象，把适配者接口转换成目标接口，让客户按目标接口的格式访问适配者。</li>
 </ul>
 <h2 id="模式的实现"><a href="#模式的实现" class="headerlink" title="模式的实现"></a>模式的实现</h2><p>1.类适配器模式</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> Design_Pattern<span class="token punctuation">.</span>adapter<span class="token punctuation">;</span>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">package Design_Pattern.adapter;
 
-<span class="token comment" spellcheck="true">/**
+/**
  * @author peng
  * @date 20-5-12 下午12:53
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AdapterTest</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"类适配器模式测试："</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Target target <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ClassAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        target<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//目标接口</span>
-<span class="token keyword">interface</span> <span class="token class-name">Target</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//适配者接口</span>
-<span class="token keyword">class</span> <span class="token class-name">Adapter</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">specificRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"适配者中的业务代码被调用！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//类适配器类</span>
-<span class="token keyword">class</span> <span class="token class-name">ClassAdapter</span> <span class="token keyword">extends</span> <span class="token class-name">Adapter</span> <span class="token keyword">implements</span> <span class="token class-name">Target</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token function">specificRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/**
+ */
+public class AdapterTest {
+    public static void main(String[] args) {
+        System.out.println("类适配器模式测试：");
+        Target target = new ClassAdapter();
+        target.request();
+    }
+}
+//目标接口
+interface Target{
+    public void request();
+}
+//适配者接口
+class Adapter{
+    public void specificRequest(){
+        System.out.println("适配者中的业务代码被调用！");
+    }
+}
+//类适配器类
+class ClassAdapter extends Adapter implements Target{
+    public void request(){
+        specificRequest();
+    }
+}
+/**
  * 类适配器模式测试：
 适配者中的业务代码被调用！
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>2.对象适配器模式</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> Design_Pattern<span class="token punctuation">.</span>adapter<span class="token punctuation">;</span>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">package Design_Pattern.adapter;
 
-<span class="token comment" spellcheck="true">/**
+/**
  * @author peng
  * @date 20-5-12 下午1:04
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ObjectAdapterTest</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"对象适配器模式测试："</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Adapter adapter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Adapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Target target <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectAdapter</span><span class="token punctuation">(</span>adapter<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        target<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">class</span> <span class="token class-name">ObjectAdapter</span> <span class="token keyword">implements</span>  <span class="token class-name">Target</span><span class="token punctuation">{</span>
-    <span class="token keyword">private</span> Adapter adapter<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">ObjectAdapter</span><span class="token punctuation">(</span>Adapter adapter<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>adapter <span class="token operator">=</span> adapter<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        adapter<span class="token punctuation">.</span><span class="token function">specificRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
- <span class="token operator">*</span> 对象适配器模式测试：
+ */
+public class ObjectAdapterTest {
+    public static void main(String[] args) {
+        System.out.println("对象适配器模式测试：");
+        Adapter adapter = new Adapter();
+        Target target = new ObjectAdapter(adapter);
+        target.request();
+    }
+}
+class ObjectAdapter implements  Target{
+    private Adapter adapter;
+    public ObjectAdapter(Adapter adapter){
+        this.adapter = adapter;
+    }
+    public void request(){
+        adapter.specificRequest();
+    }
+}
+/**
+ * 对象适配器模式测试：
 适配者中的业务代码被调用！
- <span class="token operator">*</span> <span class="token operator">/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ * /
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><p>使用适配器模式模拟新能源汽车的发动机。客户端希望用统一的发动机驱动方法 drive() 访问这两种发动机，所以必须定义一个统一的目标接口 Motor，然后再定义电能适配器（Electric Adapter）和光能适配器（Optical Adapter）去适配这两种发动机。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//目标：发动机</span>
-<span class="token keyword">interface</span>　<span class="token class-name">Motor</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">drive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//适配者1：电能发动机</span>
-<span class="token keyword">class</span> <span class="token class-name">ElectricMotor</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">electricDrive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"电能发动机驱动汽车！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//适配者2：光能发动机</span>
-<span class="token keyword">class</span> <span class="token class-name">OpticalMotor</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">opticalDrive</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"光能发动机驱动汽车！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//电能适配器</span>
-<span class="token keyword">class</span> <span class="token class-name">ElectricAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">Motor</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> ElectricMotor emotor<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">ElectricAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        emotor<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ElectricMotor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">drive</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        emotor<span class="token punctuation">.</span><span class="token function">electricDrive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//光能适配器</span>
-<span class="token keyword">class</span> <span class="token class-name">OpticalAdapter</span> <span class="token keyword">implements</span> <span class="token class-name">Motor</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">private</span> OpticalMotor omotor<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">OpticalAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        omotor<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">OpticalMotor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">drive</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        omotor<span class="token punctuation">.</span><span class="token function">opticalDrive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-java"><code class="language-lang-java">//目标：发动机
+interface　Motor{
+    public void drive();
+}
+//适配者1：电能发动机
+class ElectricMotor{
+    public void electricDrive(){
+        System.out.println("电能发动机驱动汽车！");
+    }
+}
+//适配者2：光能发动机
+class OpticalMotor
+{
+    public void opticalDrive()
+    {
+        System.out.println("光能发动机驱动汽车！");
+    }
+}
+//电能适配器
+class ElectricAdapter implements Motor
+{
+    private ElectricMotor emotor;
+    public ElectricAdapter()
+    {
+        emotor=new ElectricMotor();
+    }
+    public void drive()
+    {
+        emotor.electricDrive();
+    }
+}
+//光能适配器
+class OpticalAdapter implements Motor
+{
+    private OpticalMotor omotor;
+    public OpticalAdapter()
+    {
+        omotor=new OpticalMotor();
+    }
+    public void drive()
+    {
+        omotor.opticalDrive();
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>适配器模式（Adapter）通常适用于以下场景。</p>
 <ul>
 <li>以前开发的系统存在满足新系统功能需求的类，但其接口同新系统的接口不一致。</li>
@@ -1367,7 +1370,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1548,6 +1551,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

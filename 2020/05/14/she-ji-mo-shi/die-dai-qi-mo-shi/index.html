@@ -484,14 +484,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    910
+                    705
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    2 分
                 </div>
                 
                 
@@ -522,35 +522,100 @@
 <li>抽象聚合（Aggregate）角色：定义存储、添加、删除聚合对象以及创建迭代器对象的接口。</li>
 <li>具体聚合（ConcreteAggregate）角色：实现抽象聚合类，返回一个具体迭代器的实例。</li>
 <li>抽象迭代器（Iterator）角色：定义访问和遍历聚合元素的接口，通常包含 hasNext()、first()、next() 等方法。</li>
-<li>具体迭代器（Concretelterator）角色：实现抽象迭代器接口中所定义的方法，完成对聚合对象的遍历，记录遍历的当前位置。<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2>```java<br>package iterator;<br>import java.util.*;<br>public class IteratorPattern<br>{<br>  public static void main(String[] args)<br>  {<pre><code>  Aggregate ag=new ConcreteAggregate(); 
-  ag.add(&quot;中山大学&quot;); 
-  ag.add(&quot;华南理工&quot;); 
-  ag.add(&quot;韶关学院&quot;);
-  System.out.print(&quot;聚合的内容有：&quot;);
-  Iterator it=ag.getIterator(); 
-  while(it.hasNext())
-  { 
-      Object ob=it.next(); 
-      System.out.print(ob.toString()+&quot;\t&quot;); 
-  }
-  Object ob=it.first();
-  System.out.println(&quot;\nFirst：&quot;+ob.toString());</code></pre>  }<br>}<br>//抽象聚合<br>interface Aggregate<br>{<br>  public void add(Object obj);<br>  public void remove(Object obj);<br>  public Iterator getIterator();<br>}<br>//具体聚合<br>class ConcreteAggregate implements Aggregate<br>{<br>  private List<object> list=new ArrayList<object>();<br>  public void add(Object obj)<br>  { <pre><code>  list.add(obj); </code></pre>  }<br>  public void remove(Object obj)<br>  { <pre><code>  list.remove(obj); </code></pre>  }<br>  public Iterator getIterator()<br>  { <pre><code>  return(new ConcreteIterator(list)); </code></pre>  }<br>}<br>//抽象迭代器<br>interface Iterator<br>{<br>  Object first();<br>  Object next();<br>  boolean hasNext();<br>}<br>//具体迭代器<br>class ConcreteIterator implements Iterator<br>{<br>  private List<object> list=null;<br>  private int index=-1;<br>  public ConcreteIterator(List<object> list)<br>  { <pre><code>  this.list=list; </code></pre>  }<br>  public boolean hasNext()<br>  { <pre><code>  if(index&lt;list.size()-1)
-  { 
-      return true;
-  }
-  else
+<li>具体迭代器（Concretelterator）角色：实现抽象迭代器接口中所定义的方法，完成对聚合对象的遍历，记录遍历的当前位置。<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre class="line-numbers language-lang-java"><code class="language-lang-java">package iterator;
+import java.util.*;
+public class IteratorPattern
+{
+  public static void main(String[] args)
   {
-      return false;
-  }</code></pre>  }<br>  public Object first()<br>  {<pre><code>  index=0;
-  Object obj=list.get(index);;
-  return obj;</code></pre>  }<br>  public Object next()<br>  { <pre><code>  Object obj=null; 
-  if(this.hasNext())
+      Aggregate ag=new ConcreteAggregate(); 
+      ag.add("中山大学"); 
+      ag.add("华南理工"); 
+      ag.add("韶关学院");
+      System.out.print("聚合的内容有：");
+      Iterator it=ag.getIterator(); 
+      while(it.hasNext())
+      { 
+          Object ob=it.next(); 
+          System.out.print(ob.toString()+"\t"); 
+      }
+      Object ob=it.first();
+      System.out.println("\nFirst："+ob.toString());
+  }
+}
+//抽象聚合
+interface Aggregate
+{ 
+  public void add(Object obj); 
+  public void remove(Object obj); 
+  public Iterator getIterator(); 
+}
+//具体聚合
+class ConcreteAggregate implements Aggregate
+{ 
+  private List<Object> list=new ArrayList<Object>(); 
+  public void add(Object obj)
   { 
-      obj=list.get(++index); 
+      list.add(obj); 
+  }
+  public void remove(Object obj)
+  { 
+      list.remove(obj); 
+  }
+  public Iterator getIterator()
+  { 
+      return(new ConcreteIterator(list)); 
+  }     
+}
+//抽象迭代器
+interface Iterator
+{
+  Object first();
+  Object next();
+  boolean hasNext();
+}
+//具体迭代器
+class ConcreteIterator implements Iterator
+{ 
+  private List<Object> list=null; 
+  private int index=-1; 
+  public ConcreteIterator(List<Object> list)
+  { 
+      this.list=list; 
   } 
-  return obj; </code></pre>  }<br>}<br>/*</object></object></object></object></li>
-<li>聚合的内容有：中山大学    华南理工    韶关学院<br>First：中山大学</li>
-<li>/<br>```<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1></li>
+  public boolean hasNext()
+  { 
+      if(index<list.size()-1)
+      { 
+          return true;
+      }
+      else
+      {
+          return false;
+      }
+  }
+  public Object first()
+  {
+      index=0;
+      Object obj=list.get(index);;
+      return obj;
+  }
+  public Object next()
+  { 
+      Object obj=null; 
+      if(this.hasNext())
+      { 
+          obj=list.get(++index); 
+      } 
+      return obj; 
+  }   
+}
+/*
+*聚合的内容有：中山大学    华南理工    韶关学院   
+First：中山大学
+*/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1></li>
 <li>当需要为聚合对象提供多种遍历方式时。</li>
 <li>当需要为遍历不同的聚合结构提供一个统一的接口时。</li>
 <li>当访问一个聚合对象的内容而无须暴露其内部细节的表示时。</li>
@@ -1284,7 +1349,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">133.1k</span>
+            <span class="white-color">126.3k</span>
             
 
             <br>
@@ -1465,6 +1530,21 @@ $(function () {
     <!-- 雪花特效 -->
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>
